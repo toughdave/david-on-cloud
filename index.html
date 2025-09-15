@@ -1,20 +1,442 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My app</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David | Cisco Networking Specialist</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="flex justify-center items-center h-screen overflow-hidden bg-white font-sans text-center px-6">
-    <div class="w-full">
-      <span class="text-xs rounded-full mb-2 inline-block px-2 py-1 border border-amber-500/15 bg-amber-500/15 text-amber-500">🔥 New version dropped!</span>
-      <h1 class="text-4xl lg:text-6xl font-bold font-sans">
-        <span class="text-2xl lg:text-4xl text-gray-400 block font-medium">I'm ready to work,</span>
-        Ask me anything.
-      </h1>
-    </div>
-      <img src="https://enzostvs-deepsite.hf.space/arrow.svg" class="absolute bottom-8 left-0 w-[100px] transform rotate-[30deg]" />
-    <script></script>
-  </body>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Animated Background -->
+    <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full -z-10"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-indigo-600">My Portfolio</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Contact</a>
+                </div>
+                <button class="md:hidden text-gray-700 focus:outline-none">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm David</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Networking Engineer</h2>
+                    <p class="text-lg opacity-90 mb-8">B.Tech & M.Tech in Computer Science with deep expertise in Cisco networking technologies. I operate a fully-equipped home lab with Cisco switches, routers, APs, IP phones, and security cameras to simulate and troubleshoot real enterprise networking scenarios.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition">Get In Touch</a>
+                        <a href="#projects" class="px-6 py-3 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition">View Projects</a>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-indigo-500 rounded-full opacity-20 blur-lg"></div>
+                        <img src="http://static.photos/technology/640x360/42" alt="David" class="relative rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
+                    <p class="text-gray-600 mb-4">I'm a dedicated Cisco networking professional with degrees in Computer Science (B.Tech & M.Tech). My passion lies in mastering Cisco technologies through hands-on projects in my comprehensive home lab environment.</p>
+                    <p class="text-gray-600 mb-6">For the past several months, I've been intensively working with Cisco switches, routers, wireless APs, IP telephony systems, and security cameras in my home lab. This setup allows me to replicate and troubleshoot complex enterprise networking issues, giving me practical experience that goes beyond theoretical knowledge.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
+                            <span>Location: Toronto, ON</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="mail" class="mr-2 text-indigo-600"></i>
+                            <span>Email: info@davidoncloud.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-gray-50 p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-6">Education</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-medium">M.Tech in Computer Science</h4>
+                                <p class="text-gray-600">Federal University of Technology, Akure (FUTA) • 2019</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">B.Tech in Computer Science</h4>
+                                <p class="text-gray-600">Federal University of Technology, Akure (FUTA) • 2014</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">My Skills</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Cisco Certifications -->
+                <div data-aos="fade-up" data-aos-delay="100" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="award" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Cisco Certifications</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CCNA (Pursuing)</span>
+
+                    </div>
+                </div>
+                
+                <!-- Web Development -->
+                <div data-aos="fade-up" data-aos-delay="200" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="code" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Web Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">HTML5</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CSS3</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">SQL</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">PHP</span>
+                    </div>
+                </div>
+                
+                <!-- Cisco Technologies -->
+                <div data-aos="fade-up" data-aos-delay="300" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="hard-drive" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Cisco Technologies</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">IOS/NX-OS</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Routing Protocols</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">VLANs & STP</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Cisco Wireless</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CUCM/IP Telephony</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Packet Tracer</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">SD-WAN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Work Experience</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Experience 1 -->
+                    <div data-aos="fade-up" class="relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-1">Computer Course Instructor</h3>
+                            <p class="text-indigo-600 mb-2">Pures College of Technology, Toronto • Jan. 2024 - 2025</p>
+                            <p class="text-gray-600">Teaching computer IT concepts including Cisco Networking, Information System Ethics, Internet Programming, and Security. Designing engaging lesson plans and incorporating innovative teaching techniques to maximize student participation and comprehension.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-1">System Programmer</h3>
+                            <p class="text-indigo-600 mb-2">Federal University of Technology, Akure • Mar. 2017 - Aug. 2023</p>
+                            <p class="text-gray-600">Applied Python and MySQL to automate student data analysis. Designed student result processing software and biometric systems. Programmed and managed Centre for Continuing Education subdomain and administrative interfaces.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 3 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-1">Founder & Creative Director</h3>
+                            <p class="text-indigo-600 mb-2">Matigestic Studios (formerly Rarebreed Studios) • Mar. 2014 - Present</p>
+                            <p class="text-gray-600">Self-employed graphic designer specializing in 2D and 3D graphics for advertisements, events, music videos, business logos, branding, and motion graphics using Adobe Creative Suite and MAXON Cinema 4D.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 4 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-1">Computer Science (ICT) Teacher</h3>
+                            <p class="text-indigo-600 mb-2">Community Secondary School, Agulu-Awka • Nov. 2014 - Oct. 2015</p>
+                            <p class="text-gray-600">Taught Computer Studies (practical and theory). Served as ICT President for Nigeria Christian Corpers' Fellowship, managing ICT department and creating motion graphics content for organizational YouTube channel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <img src="http://static.photos/technology/640x360/101" alt="Cloud Migration Tool" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Cloud Migration Tool</h3>
+                        <p class="text-gray-600 mb-4">Automated tool for migrating applications between cloud providers with minimal downtime.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Cisco IOS</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Packet Tracer</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Network Automation</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <img src="http://static.photos/technology/640x360/102" alt="Kubernetes Dashboard" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Kubernetes Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Custom dashboard for monitoring and managing Kubernetes clusters with real-time analytics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">React</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Kubernetes</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Golang</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <img src="http://static.photos/technology/640x360/103" alt="DevOps Pipeline" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">DevOps Pipeline</h3>
+                        <p class="text-gray-600 mb-4">End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Jenkins</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Docker</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Ansible</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
+                    View All Projects <i data-feather="chevron-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-semibold mb-6">Let's Talk About Your Project</h3>
+                    <p class="text-gray-600 mb-8">I'm currently available for freelance work, contracts and full-time positions. If you have a project that needs creative solutions or just want to say hello, feel free to reach out!</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                                <i data-feather="mail" class="text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-600">info@davidoncloud.com</p>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="flex items-center">
+                            <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                                <i data-feather="phone" class="text-indigo-600"></i>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        -->
+                        <div class="flex items-center">
+                            <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                                <i data-feather="map-pin" class="text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Location</h4>
+                                <p class="text-gray-600">Toronto, ON</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-indigo-100 transition">
+                            <i data-feather="github" class="text-gray-700"></i>
+                        </a>
+                        <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-indigo-100 transition">
+                            <i data-feather="linkedin" class="text-gray-700"></i>
+                        </a>
+                        <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-indigo-100 transition">
+                            <i data-feather="twitter" class="text-gray-700"></i>
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <form class="bg-gray-50 p-8 rounded-xl">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">David</h2>
+                <p class="text-gray-400 mb-8">Cisco Networking Engineer with extensive hands-on experience through dedicated home lab practice with enterprise-grade Cisco equipment.</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    © 2023 David. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize Vanta.js background
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x667eea,
+            backgroundColor: 0xf8fafc,
+            size: 0.8
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
 </html>
