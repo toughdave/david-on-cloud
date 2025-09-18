@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <style>
         .hero-gradient {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -39,7 +40,9 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-indigo-600">My Portfolio</span>
+                    <span class="text-xl font-bold text-indigo-600">
+                        <a href="#intro" class="hover:text-indigo-800 transition">My Portfolio</a>
+                    </span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
@@ -56,7 +59,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white min-h-screen flex items-center">
+    <section id = "intro" class="hero-gradient text-white min-h-screen flex items-center">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
@@ -250,7 +253,7 @@
                 <div id="projectsCarousel" class="flex overflow-x-auto space-x-8 pb-4 scroll-smooth snap-x snap-mandatory">
                     <!-- Networking Home Lab Project 1 -->
                     <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] snap-center">
-                        <img src="http://static.photos/technology/640x360/201" alt="Enterprise LAN Simulation" class="w-full h-48 object-cover">
+                        <img src="/images/Enterprise LAN Simulation 1-.png" alt="Enterprise LAN Simulation" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">Enterprise LAN Simulation</h3>
                             <p class="text-gray-600 mb-4">Designed and troubleshooted a multi-VLAN enterprise LAN using Cisco Catalyst switches, routers, and APs in my home lab. Implemented STP, inter-VLAN routing, and wireless security.</p>
@@ -267,7 +270,7 @@
                     </div>
                     <!-- Networking Home Lab Project 2 -->
                     <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] snap-center">
-                        <img src="http://static.photos/technology/640x360/202" alt="VoIP & IP Telephony Lab" class="w-full h-48 object-cover">
+                        <img src="/images/VoIP & IP Telephony Lab 1-.png" alt="VoIP & IP Telephony Lab" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">VoIP & IP Telephony Lab</h3>
                             <p class="text-gray-600 mb-4">Deployed Cisco IP phones and CUCM in a home lab to simulate enterprise VoIP, configure dial plans, and troubleshoot call routing and QoS issues.</p>
@@ -283,7 +286,7 @@
                     </div>
                     <!-- Networking Home Lab Project 3 -->
                     <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] snap-center">
-                        <img src="http://static.photos/technology/640x360/203" alt="Network Security & Surveillance" class="w-full h-48 object-cover">
+                        <img src="/images/Network Security & Surveillance 1-.png" alt="Network Security & Surveillance" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">Network Security & Surveillance</h3>
                             <p class="text-gray-600 mb-4">Integrated Cisco routers, firewalls, and IP cameras to create a secure, segmented network. Configured ACLs, NAT, and remote monitoring for real-world security scenarios.</p>
@@ -300,7 +303,7 @@
                     </div>
                     <!-- Packet Tracer Project 1 -->
                     <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] snap-center">
-                        <img src="http://static.photos/technology/640x360/101" alt="Cloud Migration Tool" class="w-full h-48 object-cover">
+                        <img src="/images/Cloud Migration Tool-.png" alt="Cloud Migration Tool" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">Cloud Migration Tool</h3>
                             <p class="text-gray-600 mb-4">Automated tool for migrating applications between cloud providers with minimal downtime.</p>
@@ -355,7 +358,7 @@
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">React</span>
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Kubernetes</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Golang</span>
+                                <!-- <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Golang</span> -->
                             </div>
                             <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                 View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -369,9 +372,9 @@
                             <h3 class="text-xl font-semibold mb-2">DevOps Pipeline</h3>
                             <p class="text-gray-600 mb-4">End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Jenkins</span>
+                                <!-- <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Jenkins</span> -->
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Docker</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Ansible</span>
+                                <!-- <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Ansible</span> -->
                             </div>
                             <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                 View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -384,7 +387,7 @@
                 </button>
             </div>
             <div class="text-center mt-12" data-aos="fade-up">
-                <a href="#" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
+                <a href="#projects" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
                     View All Projects <i data-feather="chevron-right" class="ml-2 w-4 h-4"></i>
                 </a>
             </div>
@@ -501,7 +504,9 @@
         </div>
     </footer>
 
-    <script>
+
+    <script src="js/scripts.js"></script>
+    <!-- <script>
         // Initialize animations
         AOS.init({
             duration: 800,
@@ -568,6 +573,6 @@
         document.getElementById('scrollRight').onclick = () => {
             carousel.scrollBy({ left: 360, behavior: 'smooth' });
         };
-    </script>
+    </script> -->
 </body>
 </html>
