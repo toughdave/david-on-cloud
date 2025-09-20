@@ -30,7 +30,7 @@ This website is my digital resume, highlighting my education, work experience, a
 
 ## How to Run Locally
 
-1. Clone this repository:
+- Clone this repository:
    ```bash
    git clone https://github.com/toughdave/david-on-cloud.git
    cd david-on-cloud
