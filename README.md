@@ -5,7 +5,7 @@ This site showcases my background, technical skills, certifications, and hands-o
 
 ## About
 
-I'm David, a networking engineer with B.Tech and M.Tech degrees in Computer Science. My passion is building, securing, and troubleshooting enterprise-grade networks, which I practice daily in my home lab using Cisco switches, routers,firewalls, WLC and wireless APs, IP phones, and security cameras.  
+I'm David, a networking engineer with B.Tech and M.Tech degrees in Computer Science. My passion is building, securing, and troubleshooting enterprise-grade networks, which I practice daily in my home lab using Cisco switches, routers, firewalls, WLC and wireless APs, IP phones, and security cameras.  
 This website is my digital resume, highlighting my education, work experience, and a curated selection of major projects — including both home lab builds and Packet Tracer simulations.
 
 ## Features
