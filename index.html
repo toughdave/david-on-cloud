@@ -246,10 +246,13 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
                 <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
             </div>
-            <div class="relative">
-                <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-200 shadow-lg rounded-full p-2 hover:bg-indigo-200 transition">
+            <div class="relative px-16"> <!-- Increased padding to accommodate external arrows -->
+                <!-- Left arrow positioned outside carousel bounds -->
+                <button id="scrollLeft" class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-gray-200 shadow-lg rounded-full p-2 hover:bg-indigo-200 transition">
                     <i data-feather="chevron-left"></i>
                 </button>
+                
+                <!-- Carousel content -->
                 <div id="projectsCarousel" class="flex overflow-x-auto space-x-8 pb-4 scroll-smooth snap-x snap-mandatory">
                     <!-- Networking Home Lab Project 1 -->
                     <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
@@ -400,7 +403,8 @@
                         </div>
                     </div>
                 </div>
-                <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-200 shadow-lg rounded-full p-2 hover:bg-indigo-200 transition">
+                <!-- Right arrow positioned outside carousel bounds -->
+                <button id="scrollRight" class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-gray-200 shadow-lg rounded-full p-2 hover:bg-indigo-200 transition">
                     <i data-feather="chevron-right"></i>
                 </button>
             </div>
