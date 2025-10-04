@@ -168,3 +168,22 @@ p {
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
     transition: box-shadow 0.3s;
 }
+
+/* Bounce right twice with ease-in and then normal speed for a poking effect */
+@keyframes bounceRightTwicePoke {
+    0%   { transform: scale(1) translateX(0); }
+    10%  { transform: scale(1.05) translateX(20px); }   /* Fast poke right */
+    25%  { transform: scale(1.05) translateX(0); }
+    40%  { transform: scale(1.05) translateX(14px); }   /* Second, gentler poke */
+    55%  { transform: scale(1.05) translateX(0); }
+    100% { transform: scale(1.05) translateX(0); }
+}
+
+.bounce-right-twice {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.bounce-right-twice:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    animation: bounceRightTwicePoke 0.55s cubic-bezier(0.7, 0, 0.84, 0) 1;
+}
