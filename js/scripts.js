@@ -85,11 +85,10 @@ const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
 mobileMenuButton.addEventListener('click', function() {
-    if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
-        mobileMenu.style.display = "block";
+    mobileMenu.classList.toggle('active');
+    if (mobileMenu.classList.contains('active')) {
         mobileMenuButton.querySelector('i').setAttribute('data-feather', 'x');
     } else {
-        mobileMenu.style.display = "none";
         mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
     }
     feather.replace();
@@ -99,8 +98,19 @@ mobileMenuButton.addEventListener('click', function() {
 const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 mobileMenuLinks.forEach(link => {
     link.addEventListener('click', function() {
-        mobileMenu.style.display = "none";
+        mobileMenu.classList.remove('active');
         mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
         feather.replace();
+    });
+});
+
+// Animate section title underline on section hover
+document.querySelectorAll('.section-title-container').forEach(container => {
+    const underline = container.querySelector('.section-title-underline');
+    container.addEventListener('mouseenter', () => {
+        underline.classList.add('active');
+    });
+    container.addEventListener('mouseleave', () => {
+        underline.classList.remove('active');
     });
 });
