@@ -92,7 +92,7 @@ p {
 .animated-btn:hover,
 .contact-btn:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .animated-btn:active,
@@ -109,7 +109,7 @@ p {
     display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .mobile-menu {
         background: white;
         border-top: 1px solid #e5e7eb;
@@ -135,6 +135,10 @@ p {
 
     .section-title-underline {
         width: 80px;
+    }
+
+    .skill-card h3 {
+        font-size: 1.16rem;
     }
 }
 
