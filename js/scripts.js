@@ -79,3 +79,28 @@ scrollRightBtn.onclick = () => {
         carousel.scrollBy({ left: 360, behavior: 'smooth' });
     }
 };
+
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+mobileMenuButton.addEventListener('click', function() {
+    if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
+        mobileMenu.style.display = "block";
+        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'x');
+    } else {
+        mobileMenu.style.display = "none";
+        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
+    }
+    feather.replace();
+});
+
+// Close mobile menu when clicking on a link
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        mobileMenu.style.display = "none";
+        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
+        feather.replace();
+    });
+});

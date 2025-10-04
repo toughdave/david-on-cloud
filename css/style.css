@@ -1,5 +1,4 @@
 body {
-	padding: 2rem;
 	font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
 }
 
@@ -9,7 +8,7 @@ h1 {
 }
 
 p {
-	color: rgb(107, 114, 128);
+	color: rgb(255, 255, 255);
 	font-size: 15px;
 	margin-bottom: 10px;
 	margin-top: 5px;
@@ -43,3 +42,91 @@ p {
 	width: 2px;
 	background: #e2e8f0;
 } */
+
+/* Navigation hover animations */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: translateX(-50%);
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 2px;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    color: #667eea !important;
+    animation: gentleBounce 0.6s ease-in-out;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(-2px); }
+    50% { transform: translateY(-4px); }
+}
+
+.nav-link:active {
+    transform: translateY(-1px);
+}
+
+/* Contact button hover animation */
+.contact-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.contact-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+    display: none;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        padding: 1rem;
+    }
+    
+    .mobile-menu a {
+        display: block;
+        padding: 0.75rem 0;
+        color: #374151;
+        text-decoration: none;
+        border-bottom: 1px solid #f3f4f6;
+        transition: color 0.2s;
+    }
+    
+    .mobile-menu a:hover {
+        color: #667eea;
+    }
+    
+    .mobile-menu a:last-child {
+        border-bottom: none;
+    }
+}

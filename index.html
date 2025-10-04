@@ -6,12 +6,13 @@
     <title>David | Networking Specialist</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
     <style>
         .hero-gradient {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -41,22 +42,32 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <span class="text-xl font-bold text-indigo-600">
-                        <a href="#intro" class="hover:text-indigo-800 transition">Portfolio</a>
+                        <a href="#intro" class="transition">Portfolio</a>
                     </span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
-                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
-                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
-                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Contact</a>
+                    <a href="#about" class="nav-link text-gray-700 transition relative">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 transition relative">Skills</a>
+                    <a href="#experience" class="nav-link text-gray-700 transition relative">Experience</a>
+                    <a href="#projects" class="nav-link text-gray-700 transition relative">Projects</a>
+                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
                 </div>
-                <button class="md:hidden text-gray-700 focus:outline-none">
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                     <i data-feather="menu"></i>
                 </button>
             </div>
         </div>
     </nav>
+    <!-- Mobile menu (outside nav for stacking) -->
+    <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 left-0 w-full bg-white shadow-lg border-t border-gray-200 z-40" style="display:none;">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col space-y-2">
+            <a href="#about" class="nav-link text-gray-700 transition relative">About</a>
+            <a href="#skills" class="nav-link text-gray-700 transition relative">Skills</a>
+            <a href="#experience" class="nav-link text-gray-700 transition relative">Experience</a>
+            <a href="#projects" class="nav-link text-gray-700 transition relative">Projects</a>
+            <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id = "intro" class="hero-gradient text-white min-h-screen flex items-center">
