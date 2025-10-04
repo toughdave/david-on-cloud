@@ -83,16 +83,19 @@ p {
     transform: translateY(-1px);
 }
 
-/* Contact button hover animation */
+/* Button hover animation (same as .contact-btn) */
+.animated-btn,
 .contact-btn {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.animated-btn:hover,
 .contact-btn:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
+.animated-btn:active,
 .contact-btn:active {
     transform: translateY(-1px) scale(1.02);
 }
@@ -129,11 +132,15 @@ p {
     .mobile-menu a:last-child {
         border-bottom: none;
     }
+
+    .section-title-underline {
+        width: 80px;
+    }
 }
 
 /* Section title underline animation */
 .section-title-underline {
-    width: 0;
+    width: 24px; /* Always visible, small line */
     height: 5px;
     margin: 0 auto;
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
@@ -142,5 +149,5 @@ p {
 }
 
 .section-title-underline.active {
-    width: 80px; /* or match your design */
+    width: 80px; /* Animates to full width on hover */
 }
