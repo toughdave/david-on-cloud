@@ -1,2 +1,4 @@
 # Ignore all files in the following directory
 /other-stuff
+/scripts
+VERSION
