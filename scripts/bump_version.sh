@@ -7,10 +7,17 @@ if ! git rev-parse --git-dir > /dev/null 2>&1; then
     exit 1
 fi
 
-# Check if there are uncommitted changes
-if ! git diff-index --quiet HEAD --; then
-    echo "❌ Error: You have uncommitted changes. Please commit them first."
+# Check if there are uncommitted changes (working directory only)
+if ! git diff --quiet; then
+    echo "❌ Error: You have unstaged changes. Please stage and commit them first."
     echo "Run: git add . && git commit -m 'Your commit message'"
+    exit 1
+fi
+
+# Check if there are staged but uncommitted changes
+if ! git diff --staged --quiet; then
+    echo "❌ Error: You have staged but uncommitted changes. Please commit them first."
+    echo "Run: git commit -m 'Your commit message'"
     exit 1
 fi
 
@@ -20,6 +27,12 @@ if ! git remote get-url origin > /dev/null 2>&1; then
     echo "Run: git remote add origin <your-repo-url>"
     exit 1
 fi
+
+# Check if we can reach the remote (optional - comment out if you want to work offline)
+# if ! git ls-remote origin > /dev/null 2>&1; then
+#     echo "❌ Error: Cannot reach remote repository"
+#     exit 1
+# fi
 
 # Read current version
 if [ -f VERSION ]; then
@@ -55,14 +68,15 @@ echo "✅ Created commit"
 git tag "v$NEW_VERSION"
 echo "✅ Created tag v$NEW_VERSION"
 
-# Push changes
-echo "📤 Pushing to remote..."
+# Push changes (including the previous unpushed commits)
+echo "📤 Pushing all commits and tags to remote..."
 git push origin main
 git push origin --tags
 
 echo "🎉 Successfully bumped to v$NEW_VERSION"
 echo "📝 Changes:"
 echo "   - VERSION file updated"
-echo "   - HTML files updated"
+echo "   - HTML files updated"  
 echo "   - Git commit created"
 echo "   - Tag v$NEW_VERSION created and pushed"
+echo "   - All local commits pushed to remote"
