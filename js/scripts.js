@@ -5,112 +5,186 @@ AOS.init({
     once: true
 });
 
-// Initialize Vanta.js background
-VANTA.GLOBE({
-    el: "#vanta-bg",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0x667eea,
-    backgroundColor: 0xf8fafc,
-    size: 0.8
-});
+// Initialize Vanta.js background (only if element exists)
+if (document.getElementById("vanta-bg")) {
+    VANTA.GLOBE({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x667eea,
+        backgroundColor: 0xf8fafc,
+        size: 0.8
+    });
+}
 
-// Initialize Feather Icons
-feather.replace();
-
-// Contact Form Submission (using Formspree as a simple solution)
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = {
-        name: form.name.value,
-        email: form.email.value,
-        subject: form.subject.value,
-        message: form.message.value
-    };
-    // Replace with your Formspree endpoint or similar service
-    const endpoint = 'https://formspree.io/f/mjkedzyv'; // <-- Use the same as your form action!
-    try {
-        const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (res.ok) {
-            document.getElementById('formStatus').classList.remove('hidden');
-            form.reset();
-        } else {
+// Contact Form Submission (only if form exists)
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+            name: form.name.value,
+            email: form.email.value,
+            subject: form.subject.value,
+            message: form.message.value
+        };
+        const endpoint = 'https://formspree.io/f/mjkedzyv';
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                document.getElementById('formStatus').classList.remove('hidden');
+                form.reset();
+            } else {
+                document.getElementById('formStatus').textContent = "Failed to send. Please try again.";
+                document.getElementById('formStatus').classList.remove('hidden');
+                document.getElementById('formStatus').classList.add('text-red-600');
+            }
+        } catch {
             document.getElementById('formStatus').textContent = "Failed to send. Please try again.";
             document.getElementById('formStatus').classList.remove('hidden');
             document.getElementById('formStatus').classList.add('text-red-600');
         }
-    } catch {
-        document.getElementById('formStatus').textContent = "Failed to send. Please try again.";
-        document.getElementById('formStatus').classList.remove('hidden');
-        document.getElementById('formStatus').classList.add('text-red-600');
-    }
-});
+    });
+}
 
-// Projects Carousel Scroll with looping animation
+// Projects Carousel Scroll (only if carousel exists)
 const carousel = document.getElementById('projectsCarousel');
 const scrollLeftBtn = document.getElementById('scrollLeft');
 const scrollRightBtn = document.getElementById('scrollRight');
 
-scrollLeftBtn.onclick = () => {
-    // If already at the start, animate to the end
-    if (carousel.scrollLeft <= 0) {
-        carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
-    } else {
-        carousel.scrollBy({ left: -360, behavior: 'smooth' });
-    }
-};
+if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.onclick = () => {
+        if (carousel.scrollLeft <= 0) {
+            carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+        } else {
+            carousel.scrollBy({ left: -360, behavior: 'smooth' });
+        }
+    };
 
-scrollRightBtn.onclick = () => {
-    // If already at (or near) the end, animate to the start
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-    if (carousel.scrollLeft >= maxScroll - 5) {
-        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-        carousel.scrollBy({ left: 360, behavior: 'smooth' });
-    }
-};
-
-// Mobile menu toggle
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-
-mobileMenuButton.addEventListener('click', function() {
-    mobileMenu.classList.toggle('active');
-    if (mobileMenu.classList.contains('active')) {
-        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'x');
-    } else {
-        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
-    }
-    feather.replace();
-});
-
-// Close mobile menu when clicking on a link
-const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        mobileMenu.classList.remove('active');
-        mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
-        feather.replace();
-    });
-});
+    scrollRightBtn.onclick = () => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= maxScroll - 5) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            carousel.scrollBy({ left: 360, behavior: 'smooth' });
+        }
+    };
+}
 
 // Animate section title underline on section hover
 document.querySelectorAll('.section-title-container').forEach(container => {
     const underline = container.querySelector('.section-title-underline');
-    container.addEventListener('mouseenter', () => {
-        underline.classList.add('active');
-    });
-    container.addEventListener('mouseleave', () => {
-        underline.classList.remove('active');
-    });
+    if (underline) {
+        container.addEventListener('mouseenter', () => {
+            underline.classList.add('active');
+        });
+        container.addEventListener('mouseleave', () => {
+            underline.classList.remove('active');
+        });
+    }
 });
+
+// Function to update active nav states based on current section
+function updateActiveNavStates() {
+    const currentPage = window.location.pathname;
+    const currentHash = window.location.hash;
+    
+    // Remove existing active states
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active-page');
+    });
+    
+    // Apply active state based on current section
+    if (currentPage.includes('projects.html')) {
+        // Projects page - activate Projects nav
+        document.querySelectorAll('a[href="projects.html"]').forEach(link => {
+            link.classList.add('active-page');
+        });
+    } else {
+        // Index page - check hash for sections
+        if (currentHash === '#about') {
+            document.querySelectorAll('a[href="index.html#about"], a[href="#about"]').forEach(link => {
+                link.classList.add('active-page');
+            });
+        } else if (currentHash === '#skills') {
+            document.querySelectorAll('a[href="index.html#skills"], a[href="#skills"]').forEach(link => {
+                link.classList.add('active-page');
+            });
+        } else if (currentHash === '#experience') {
+            document.querySelectorAll('a[href="index.html#experience"], a[href="#experience"]').forEach(link => {
+                link.classList.add('active-page');
+            });
+        } else {
+            // Default to Home if no specific section
+            document.querySelectorAll('a[href="index.html"]').forEach(link => {
+                link.classList.add('active-page');
+            });
+        }
+    }
+}
+
+// Click away to close mobile menu
+document.addEventListener('click', function(event) {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu'); 
+    const hamburgerLabel = document.querySelector('label[for="menu-toggle"]');
+    const hamburgerContainer = document.querySelector('.md\\:hidden');
+
+    if (
+        menuToggle &&
+        menuToggle.checked &&
+        mobileMenu &&
+        !mobileMenu.contains(event.target) &&
+        !hamburgerLabel.contains(event.target) &&
+        !hamburgerContainer.contains(event.target) &&
+        event.target !== menuToggle
+    ) {
+        menuToggle.checked = false;
+    }
+});
+
+// CONSOLIDATED DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Feather icons
+    feather.replace();
+    
+    // Update active nav states
+    updateActiveNavStates();
+    
+    // Back to Top Button functionality
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        // Smooth scroll to top when clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
+// Update active states when hash changes (for same-page navigation)
+window.addEventListener('hashchange', updateActiveNavStates);
+
+// Update active states when page loads (for direct links)
+window.addEventListener('load', updateActiveNavStates);

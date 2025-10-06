@@ -1,5 +1,6 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
+	/* scroll-snap-type: y mandatory; */ /* COMMENTED OUT - SCROLL SNAP */
 }
 
 h1 {
@@ -25,23 +26,6 @@ p {
 .card p:last-child {
 	margin-bottom: 0;
 }
-
-/* .hero-gradient {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-.skill-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-.timeline-item:not(:last-child)::after {
-	content: '';
-	position: absolute;
-	left: 7px;
-	top: 24px;
-	height: calc(100% - 24px);
-	width: 2px;
-	background: #e2e8f0;
-} */
 
 /* Navigation hover animations */
 .nav-link {
@@ -83,6 +67,17 @@ p {
     transform: translateY(-1px);
 }
 
+/* Frozen hover state for active page */
+.nav-link.active-page {
+    transform: translateY(-2px);
+    color: #667eea !important;
+    pointer-events: none;
+}
+
+.nav-link.active-page::before {
+    width: 100%;
+}
+
 /* Button hover animation (same as .contact-btn) */
 .animated-btn,
 .contact-btn {
@@ -102,44 +97,42 @@ p {
 
 /* Mobile menu styles */
 .mobile-menu {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    pointer-events: none;
 }
 
 .mobile-menu.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-@media (max-width: 1024px) {
-    .mobile-menu {
-        background: white;
-        border-top: 1px solid #e5e7eb;
-        padding: 1rem;
-    }
-    
-    .mobile-menu a {
-        display: block;
-        padding: 0.75rem 0;
-        color: #374151;
-        text-decoration: none;
-        border-bottom: 1px solid #f3f4f6;
-        transition: color 0.2s;
-    }
-    
-    .mobile-menu a:hover {
-        color: #667eea;
-    }
-    
-    .mobile-menu a:last-child {
-        border-bottom: none;
-    }
+.hamburger-menu-container {
+    position: relative;
+    display: inline-block;
+}
 
-    .section-title-underline {
-        width: 80px;
-    }
+/* Show menu on hover over the container */
+.hamburger-menu-container:hover .mobile-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
-    .skill-card h3 {
-        font-size: 1.16rem;
-    }
+/* Keep menu visible when hovering over the menu itself */
+.mobile-menu:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#mobile-menu-button {
+    display: none;
 }
 
 /* Section title underline animation */
@@ -187,3 +180,433 @@ p {
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
     animation: bounceRightTwicePoke 0.55s cubic-bezier(0.7, 0, 0.84, 0) 1;
 }
+
+/* Add to your style.css */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Remove fixed/min-height from card container */
+.bg-white.rounded-xl.overflow-hidden.shadow-md {
+    min-height: unset;
+}
+
+/* Show 2 lines and fade out bottom with gradient for card body */
+.card-body {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 2.5em; /* Approx. 2 lines */
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1);
+    margin-bottom: 0.1em;
+}
+
+.card-body::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.2em;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.85) 80%);
+}
+
+.card-body.expanded {
+    -webkit-line-clamp: unset;
+    max-height: 1000px;
+    padding-bottom: 1em;
+}
+
+.card-body.expanded::after {
+    display: none;
+}
+
+/* "more..." link closer to text */
+.more-link {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+    display: inline-block;
+}
+
+/* Reduce space below "View Project" link */
+.view-link {
+    margin-top: 0;
+    margin-bottom: 0em;
+    display: inline-block;
+}
+
+/* Top-align card content for all cards */
+.p-8.flex.flex-col.flex-1 {
+    justify-content: flex-start;
+}
+
+/* Reduce space between date lines */
+.flex.flex-col.items-start > span {
+    margin-bottom: 0.2em;
+}
+
+/* Reduce card heading size */
+h3.text-2xl.font-semibold, h3.text-xl.font-semibold {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+/* Hamburger icon styling */
+.hamburger-icon {
+    width: 2rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.hamburger-icon span {
+    transition: all 0.3s;
+}
+
+/* Mobile menu toggle using checkbox and peer */
+#menu-toggle:checked + label .hamburger-icon span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+#menu-toggle:checked + label .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+}
+#menu-toggle:checked + label .hamburger-icon span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu show/hide */
+.mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+.peer:checked ~ .mobile-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* Ensure nav alignment */
+nav .flex {
+    align-items: center;
+}
+
+/* Desktop menu alignment fix */
+@media (min-width: 1024px) {
+    nav .flex {
+        align-items: center;
+    }
+}
+
+/* --- CONSOLIDATED MOBILE STYLES --- */
+@media (max-width: 1024px) {
+    /* Hamburger button visibility */
+    #mobile-menu-button {
+        display: block;
+    }
+    
+    /* Mobile menu container */
+    .mobile-menu {
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        padding: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.95);
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        pointer-events: none;
+    }
+    .mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+    
+    /* Show menu on hover over the container (if used) */
+    .hamburger-menu-container:hover .mobile-menu,
+    .mobile-menu:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+    
+    /* Mobile menu link styling - center align text with hover background */
+    .mobile-menu a {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        margin: 0 -1rem;
+        color: #374151;
+        text-decoration: none;
+        border-bottom: 1px solid #f3f4f6;
+        transition: color 0.2s, background-color 0.2s;
+        cursor: pointer;
+        pointer-events: auto;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    
+    .mobile-menu a:hover {
+        color: #667eea;
+        background-color: rgba(102, 126, 234, 0.05); /* Restore the subtle background highlight */
+    }
+    
+    .mobile-menu a:last-child {
+        border-bottom: none;
+    }
+    
+    /* Back to Home arrow - center the flex container with hover effect */
+    .mobile-menu .nav-link.flex.items-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.75rem 0.1rem;
+        margin: 0 -1rem;
+        box-sizing: border-box;
+        text-align: center;
+        transition: color 0.2s, background-color 0.2s;
+    }
+    
+    .mobile-menu .nav-link.flex.items-center:hover {
+        color: #667eea;
+        background-color: rgba(102, 126, 234, 0.05); /* Subtle background for Back to Home */
+    }
+    
+    /* Back to Home arrow - make it bold and animate to the left */
+    .mobile-menu .nav-link i[data-feather="arrow-left"] {
+        transition: transform 0.3s ease;
+        width: 18px;
+        height: 18px;
+    }
+    
+    .mobile-menu .nav-link:hover i[data-feather="arrow-left"] {
+        transform: translateX(-6px); /* Move arrow to the left on hover */
+    }
+    
+    /* Mobile menu: RESTORE frozen hover state for active page (Projects/Home) */
+    .mobile-menu .nav-link.transition-none {
+        pointer-events: none;
+        font-weight: bold;
+        color: #4f46e5 !important;
+        background: none !important;
+        animation: none !important;
+        transition: none !important;
+        position: relative;
+        padding-bottom: 0.75rem;
+        display: inline-block;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Add underline for active page in mobile menu - properly sized */
+    .mobile-menu .nav-link.transition-none::before {
+        content: '';
+        position: absolute;
+        bottom: 0.25rem;
+        left: 50%;
+        width: calc(100% - 0.5rem);
+        height: 3px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+        transform: translateX(-50%);
+    }
+    
+    .mobile-menu .nav-link.transition-none:hover {
+        color: #4f46e5 !important;
+        background: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .mobile-menu .nav-link.font-bold {
+        font-weight: bold;
+    }
+    
+    /* Contact button in mobile menu - ALWAYS WHITE TEXT */
+    .mobile-menu .contact-btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        margin: 0 -1rem;
+        color: white !important; /* ALWAYS WHITE */
+        background: #4f46e5 !important;
+        border-radius: 0.75rem;
+        text-align: center;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-sizing: border-box;
+    }
+    
+    .mobile-menu .contact-btn:hover,
+    .mobile-menu .contact-btn:active {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        background-color: rgba(79, 70, 229, 0.9) !important;
+        color: white !important; /* KEEP WHITE ON HOVER */
+    }
+    
+    /* Override any conflicting hover styles for Contact button */
+    .mobile-menu .contact-btn:hover {
+        color: white !important; /* Force white text on hover */
+        background-color: rgba(79, 70, 229, 0.9) !important;
+    }
+    
+    /* Apply frozen hover state to active page links in mobile menu */
+    .mobile-menu .nav-link.active-page {
+        pointer-events: none;
+        font-weight: bold;
+        color: #4f46e5 !important;
+        background: none !important;
+        animation: none !important;
+        transition: none !important;
+        position: relative;
+        padding-bottom: 0.75rem;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    /* Add underline for active page in mobile menu */
+    .mobile-menu .nav-link.active-page::before {
+        content: '';
+        position: absolute;
+        bottom: 0.25rem;
+        left: 50%;
+        width: calc(100% - 0.5rem);
+        height: 3px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile menu styles for smaller screens */
+@media (max-width: 768px) {
+    #mobile-menu-button {
+        display: block;
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    margin-right: 3rem;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.back-to-top:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* Pulse animation for initial appearance */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.back-to-top.show {
+    animation: pulse 0.6s ease-in-out;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+        margin-right: 1rem;
+    }
+}
+
+/* ===== SCROLL SNAP FEATURES (COMMENTED OUT FOR FUTURE USE) ===== */
+
+/* 
+// Uncomment these sections to enable smooth scroll snapping
+
+// Smooth scroll snapping for sections
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+body {
+    scroll-snap-type: y mandatory;
+}
+
+section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+}
+
+// Disable snap on navigation
+nav {
+    scroll-snap-align: none;
+}
+
+// Fine-tune section heights for better snapping
+#intro {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#about, #skills, #experience, #projects, #contact {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 0;
+}
+
+// Override for mobile to prevent issues
+@media (max-width: 768px) {
+    section {
+        scroll-snap-align: start;
+        min-height: 100vh;
+    }
+    
+    // Adjust padding for mobile
+    #about, #skills, #experience, #projects, #contact {
+        padding: 3rem 0;
+    }
+}
+
+// Smooth scroll behavior for navigation links
+a[href^="#"] {
+    scroll-behavior: smooth;
+}
+
+*/
+
+/* ===== END OF SCROLL SNAP FEATURES ===== */
+

@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
     
     <style>
@@ -32,45 +30,56 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased text-gray-800">
+<body class="font-sans antialiased text-gray-800 snap-container">
     <!-- Animated Background -->
     <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full -z-10"></div>
 
     <!-- Navigation -->
     <nav class="bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-sm sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <span class="text-xl font-bold text-indigo-600">
-                        <a href="#intro" class="transition">Portfolio</a>
+                        <a href="index.html#intro" class="transition">Portfolio</a>
                     </span>
                 </div>
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="nav-link text-gray-700 transition relative">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 transition relative">Skills</a>
-                    <a href="#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                    <a href="#projects" class="nav-link text-gray-700 transition relative">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
+                    <a href="index.html" class="nav-link text-gray-700 font-bold transition relative">Home</a>
+                    <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
+                    <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
+                    <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
+                    <a href="projects.html" class="nav-link text-gray-700 transition relative">Projects</a>
+                    <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
                 </div>
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                    <i data-feather="menu"></i>
-                </button>
+                <!-- Hamburger Menu for Mobile -->
+                <div class="md:hidden flex items-center">
+                    <input type="checkbox" id="menu-toggle" class="hidden peer" />
+                    <label for="menu-toggle" class="cursor-pointer flex items-center h-16 px-2">
+                        <span class="hamburger-icon flex flex-col justify-center items-center h-8 w-8">
+                            <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
+                            <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
+                            <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all"></span>
+                        </span>
+                    </label>
+                    <div class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-40 rounded-xl
+                        opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
+                        <div class="flex flex-col py-4 px-4 space-y-2">
+                            <a href="index.html" class="nav-link text-gray-700 transition relative">Home</a>
+                            <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
+                            <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
+                            <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
+                            <a href="projects.html" class="nav-link text-gray-700 transition relative">Projects</a>
+                            <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn text-center">Contact</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <!-- Mobile menu (outside nav for stacking) -->
-    <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 left-0 w-full bg-white shadow-lg border-t border-gray-200 z-40" style="display:none;">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col space-y-2">
-            <a href="#about" class="nav-link text-gray-700 transition relative">About</a>
-            <a href="#skills" class="nav-link text-gray-700 transition relative">Skills</a>
-            <a href="#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-            <a href="#projects" class="nav-link text-gray-700 transition relative">Projects</a>
-            <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
-        </div>
-    </div>
 
     <!-- Hero Section -->
-    <section id = "intro" class="hero-gradient text-white min-h-screen flex items-center">
+    <section id = "intro" class="snap-section hero-gradient text-white min-h-screen flex items-center">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
@@ -79,7 +88,7 @@
                     <p class="text-lg opacity-90 mb-8">B.Tech & M.Tech in Computer Science with deep expertise in Cisco networking technologies. I operate a fully-equipped home lab with Cisco switches, routers, firewalls, APs, IP phones, and security cameras to simulate and troubleshoot real enterprise networking scenarios.</p>
                     <div class="flex space-x-4">
                         <a href="#contact" class="px-6 py-3 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition">Get In Touch</a>
-                        <a href="#projects" class="px-6 py-3 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition">View Projects</a>
+                        <a href="#projects" class="px-6 py-3 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition">View Projects Brief</a>
                     </div>
                 </div>
                 <div data-aos="fade-left" class="flex justify-center">
@@ -93,7 +102,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="snap-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
@@ -135,7 +144,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50">
+    <section id="skills" class="snap-section py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">My Skills</h2>
@@ -198,7 +207,7 @@
 
     
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white">
+    <section id="experience" class="snap-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Work Experience</h2>
@@ -251,7 +260,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50">
+    <section id="projects" class="snap-section py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
@@ -420,7 +429,7 @@
                 </button>
             </div>
             <div class="text-center mt-12" data-aos="fade-up">
-                <a href="#projects" class="animated-btn bounce-right-twice px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
+                <a href="projects.html" class="animated-btn bounce-right-twice px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
                     View All Projects <i data-feather="chevron-right" class="ml-2 w-4 h-4"></i>
                 </a>
             </div>
@@ -428,7 +437,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="snap-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
@@ -514,7 +523,7 @@
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">David on Cloud</h2>
+                <h2 class="text-2xl font-bold mb-4">David's Portfolio</h2>
                 <p class="text-gray-400 mb-8">Cisco Networking Engineer with extensive hands-on experience through dedicated home lab practice with enterprise-grade Cisco equipment.</p>
                 <div class="flex justify-center space-x-6 mb-8">
                     <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
@@ -526,17 +535,25 @@
                     <a href="https://x.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
                         <i data-feather="twitter"></i>
                     </a>
-                    <!-- <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i data-feather="instagram"></i>
-                    </a> -->
                 </div>
                 <div class="text-gray-500 text-sm">
                     © 2025 David on Cloud. All rights reserved.
                 </div>
+                <hr class="w-16 mx-auto my-3 border-gray-600">
+                <div class="text-gray-500 text-sm">
+                    <small>Designed by David | Version v1.2.0 — Deployed 2025-10-05</small>
+                </div>
             </div>
         </div>
+        
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:bg-indigo-700 hover:scale-110 z-50">
+        <i data-feather="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
