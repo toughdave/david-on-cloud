@@ -28,12 +28,6 @@ if ! git remote get-url origin > /dev/null 2>&1; then
     exit 1
 fi
 
-# Check if we can reach the remote (optional - comment out if you want to work offline)
-# if ! git ls-remote origin > /dev/null 2>&1; then
-#     echo "❌ Error: Cannot reach remote repository"
-#     exit 1
-# fi
-
 # Read current version
 if [ -f VERSION ]; then
   CURRENT_VERSION=$(cat VERSION)
@@ -53,8 +47,8 @@ echo "🚀 Bumping version to: $NEW_VERSION"
 # Update VERSION file
 echo "$NEW_VERSION" > VERSION
 
-# Update version in HTML files
-sed -i "s/Version v[0-9]\+\.[0-9]\+\.[0-9]\+/Version v$NEW_VERSION/g" index.html projects.html
+# Update version in HTML files (fallback span content - now fetched dynamically)
+sed -i "s/version-display\">.*</version-display\">$NEW_VERSION</g" index.html projects.html
 
 echo "✅ Updated VERSION file and HTML files"
 
@@ -76,7 +70,8 @@ git push origin --tags
 echo "🎉 Successfully bumped to v$NEW_VERSION"
 echo "📝 Changes:"
 echo "   - VERSION file updated"
-echo "   - HTML files updated"  
+echo "   - HTML files updated (fallback content)"
+echo "   - Version now loads dynamically from /VERSION"
 echo "   - Git commit created"
 echo "   - Tag v$NEW_VERSION created and pushed"
 echo "   - All local commits pushed to remote"

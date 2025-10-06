@@ -153,6 +153,25 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Fetch and display version from VERSION file
+async function loadVersion() {
+    try {
+        const response = await fetch('/VERSION');
+        if (response.ok) {
+            const version = await response.text();
+            const versionElement = document.getElementById('version-display');
+            if (versionElement) {
+                versionElement.textContent = version.trim();
+            }
+        } else {
+            console.warn('Could not fetch version file');
+        }
+    } catch (error) {
+        console.warn('Error fetching version:', error);
+        // Fallback to current hardcoded version if fetch fails
+    }
+}
+
 // CONSOLIDATED DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Feather icons
@@ -160,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update active nav states
     updateActiveNavStates();
+    
+    // Load version from VERSION file
+    loadVersion();
     
     // Back to Top Button functionality
     const backToTopButton = document.getElementById('backToTop');
