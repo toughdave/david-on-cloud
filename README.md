@@ -1,36 +1,103 @@
-# David On Cloud — CV & Portfolio
+# David On Cloud — Professional CV & Portfolio Website
 
-Welcome to my professional CV and portfolio website!  
-This site showcases my background, technical skills, certifications, and hands-on projects as a networking specialist with a strong focus on Cisco technologies and real-world IT solutions.
+**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 1.2.2
 
-## About
+A modern, responsive portfolio website showcasing my expertise as a Cisco networking engineer with extensive hands-on experience in enterprise network design, implementation, and troubleshooting.
 
-I'm David, a networking engineer with B.Tech and M.Tech degrees in Computer Science. My passion is building, securing, and troubleshooting enterprise-grade networks, which I practice daily in my home lab using Cisco switches, routers, firewalls, WLC and wireless APs, IP phones, and security cameras.  
-This website is my digital resume, highlighting my education, work experience, and a curated selection of major projects — including both home lab builds and Packet Tracer simulations.
+## 👨‍💻 About David
 
-## Features
+I'm a **Cisco Networking Engineer** with B.Tech and M.Tech degrees in Computer Science, currently based in **Toronto, ON**. My passion lies in building, securing, and troubleshooting enterprise-grade networks through dedicated hands-on practice in my comprehensive home lab environment.
 
-- **Professional summary and education**
-- **Detailed work experience**
-- **Skills and certifications (including Cisco technologies)**
-- **Major projects**:  
-  - Enterprise LAN simulation  
-  - VoIP & IP Telephony lab  
-  - Network security & surveillance  
-  - Packet Tracer SD-WAN and wireless designs  
-  - Cloud migration tools and more
-- **Contact form** for business inquiries or networking
-- **Responsive, modern design** with interactive animations
+### 🏠 Home Lab Infrastructure
 
-## Built With
+- **Cisco Catalyst Switches** (Layer 2/3)
+- **Cisco Routers** with advanced routing protocols
+- **Cisco Wireless Controllers (WLC)** and Access Points
+- **Cisco IP Phones** and CUCM telephony systems
+- **Network Security Cameras** and surveillance systems
+- **Cisco Firewalls** and security appliances
 
-- **HTML5**
-- **CSS3** (with [Tailwind CSS](https://tailwindcss.com/))
-- **JavaScript** (with AOS, Vanta.js, and Feather Icons)
+## 🚀 Website Features
 
-## How to Run Locally
+### 📱 **Responsive Design**
 
-- Clone this repository:
-   ```bash
-   git clone https://github.com/toughdave/david-on-cloud.git
-   cd david-on-cloud
+- Mobile-first approach with hamburger navigation
+- Smooth animations using AOS (Animate On Scroll)
+- Interactive Vanta.js 3D background animations
+- Optimized for all device sizes
+
+### 🎯 **Professional Sections**
+
+- **Hero Section**: Dynamic introduction with animated background
+- **About**: Educational background and professional summary
+- **Skills**: Cisco certifications, web development, and networking technologies
+- **Experience**: Detailed work history with timeline visualization
+- **Projects**: 8+ networking projects (home lab + Packet Tracer simulations)
+- **Contact**: Functional contact form with Formspree integration
+
+### 🛠 **Technical Features**
+
+- **Version Control**: Automated version bumping with Git integration
+- **Back-to-Top Button**: Smooth scroll enhancement
+- **Dynamic Version Display**: Real-time version fetching from VERSION file
+- **Active Navigation States**: Smart highlighting based on current section
+- **Project Carousel**: Horizontal scrolling with snap points
+- **Mobile Menu**: Smooth hamburger menu with click-away functionality
+
+## 🏗️ Built With
+
+### **Frontend Technologies**
+
+- **HTML5** - Semantic markup
+- **CSS3** - Custom animations and responsive design
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **JavaScript (ES6+)** - Interactive functionality
+
+### **Libraries & Frameworks**
+
+- **[AOS](https://michalsnik.github.io/aos/)** - Animate On Scroll library
+- **[Vanta.js](https://www.vantajs.com/)** - 3D animated backgrounds
+- **[Feather Icons](https://feathericons.com/)** - Beautiful icon set
+- **[Formspree](https://formspree.io/)** - Contact form backend
+
+## 📈 Last Update (v1.2.2)
+
+- ✅ Enhanced mobile menu with centered navigation
+- ✅ Added dynamic version display functionality  
+- ✅ Implemented back-to-top button with smooth animations
+- ✅ Improved project carousel with snap scrolling
+- ✅ Added automated version bumping system
+- ✅ Enhanced contact form with better validation
+- ✅ Optimized responsive design for all devices
+
+## 🎯 Featured Projects
+
+### **Home Lab Projects**
+
+1. **Enterprise LAN Simulation** - Multi-VLAN network with Cisco Catalyst switches
+2. **VoIP & IP Telephony Lab** - CUCM deployment with IP phones
+3. **Network Security & Surveillance** - Integrated security cameras and firewalls
+
+### **Packet Tracer Simulations**
+
+4. **SD-WAN Implementation** - Multi-branch WAN simulation
+5. **Wireless Network Design** - Campus wireless with guest VLANs
+6. **Cloud Migration Tools** - Network automation projects
+
+## 📞 Contact & Social
+
+- **Email**: [info@davidoncloud.com](mailto:info@davidoncloud.com)
+- **Location**: Toronto, ON, Canada
+- **LinkedIn**: [tope-david-m-48076969](https://www.linkedin.com/in/tope-david-m-48076969)
+- **GitHub**: [toughdave](https://github.com/toughdave)
+- **Twitter**: [@toughdave](https://x.com/toughdave)
+
+## 📜 License
+
+© 2025 David on Cloud. All rights reserved.
+
+---
+
+### Built With ❤️ by David | Networking Engineer, Cloud & Web Developer
+
+[davidoncloud.com](https://davidoncloud.com)
