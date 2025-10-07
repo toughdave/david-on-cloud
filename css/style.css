@@ -304,6 +304,47 @@ nav .flex {
     }
 }
 
+/* Back to Top Button */
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    margin-right: 2rem;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.back-to-top:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* Pulse animation for initial appearance */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.back-to-top.show {
+    animation: pulse 0.6s ease-in-out;
+}
+
 /* --- CONSOLIDATED MOBILE STYLES --- */
 @media (max-width: 1024px) {
     /* Hamburger button visibility */
@@ -363,34 +404,37 @@ nav .flex {
         border-bottom: none;
     }
     
-    /* Back to Home arrow - center the flex container with hover effect */
+    /* Back to Home arrow - RESTORE the arrow with proper styling */
     .mobile-menu .nav-link.flex.items-center {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
         width: 100%;
-        padding: 0.75rem 0.1rem;
+        padding: 0.75rem 0rem;
         margin: 0 -1rem;
         box-sizing: border-box;
         text-align: center;
         transition: color 0.2s, background-color 0.2s;
+        font-weight: bold !important; /* Make text bold */
     }
     
     .mobile-menu .nav-link.flex.items-center:hover {
         color: #667eea;
-        background-color: rgba(102, 126, 234, 0.05); /* Subtle background for Back to Home */
+        background-color: rgba(102, 126, 234, 0.05);
     }
     
-    /* Back to Home arrow - make it bold and animate to the left */
+    /* Make the arrow bold and ensure visibility */
     .mobile-menu .nav-link i[data-feather="arrow-left"] {
         transition: transform 0.3s ease;
-        width: 18px;
-        height: 18px;
+        width: 18px !important;
+        height: 18px !important;
+        display: inline-block !important;
+        stroke-width: 2.5 !important; /* Make arrow bold/thick */
     }
     
     .mobile-menu .nav-link:hover i[data-feather="arrow-left"] {
-        transform: translateX(-6px); /* Move arrow to the left on hover */
+        transform: translateX(-6px);
     }
     
     /* Mobile menu: RESTORE frozen hover state for active page (Projects/Home) */
@@ -489,62 +533,177 @@ nav .flex {
     }
 }
 
-/* Mobile menu styles for smaller screens */
+/* ===== CONSOLIDATED 768px MOBILE STYLES ===== */
 @media (max-width: 768px) {
+    /* Mobile menu button visibility */
     #mobile-menu-button {
         display: block;
     }
+
+    /* Enhanced hero section for mobile */
+    #intro {
+        min-height: 100vh !important;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 1rem 0.5rem !important;
+    }
+    
+    /* Remove excessive side margins on mobile */
+    #intro .max-w-6xl {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Hero content adjustments */
+    #intro .grid {
+        gap: 1rem !important;
+    }
+    
+    #intro h1 {
+        font-size: 2.25rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    #intro h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #intro p {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Hero buttons - side by side and smaller */
+    #intro .flex.flex-col {
+        flex-direction: row !important;
+        gap: 0.5rem !important;
+    }
+    
+    #intro .flex.flex-col a {
+        flex: 1;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.85rem !important;
+        text-align: center;
+    }
+    
+    /* Hero image smaller */
+    #intro img {
+        width: 180px !important;
+        height: 180px !important;
+    }
+    
+    /* Fix project carousel mobile issues */
+    #projectsCarousel {
+        padding: 0 0.5rem !important;
+        margin-bottom: 2rem !important; /* Add bottom margin */
+    }
+    
+    /* Mobile carousel with perfect centering */
+    #projectsCarousel {
+        padding: 0 !important;
+        margin-bottom: 2rem !important;
+        /* Calculate padding to center cards: (screen width - card width) / 2 */
+        padding-left: calc((100vw - 280px) / 2) !important;
+        padding-right: calc((100vw - 280px) / 2) !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Ensure cards are properly sized and spaced */
+    #projectsCarousel .min-w-\[340px\] {
+        min-width: 280px !important;
+        max-width: 280px !important;
+        height: auto !important;
+        margin-bottom: 1rem !important;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+    
+    /* Add space between cards to show next card peek */
+    #projectsCarousel > div + div {
+        margin-left: 1rem !important;
+    }
+    
+    /* Improve arrow positioning for mobile */
+    #scrollLeft, #scrollRight {
+        display: flex !important;
+        position: absolute;
+        top: 40%;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease, opacity 0.2s ease; /* Only allow background and opacity transitions */
+        transform: none !important; /* Prevent any transform animations */
+        animation: none !important; /* Disable any inherited animations */
+    }
+    
+    #scrollLeft {
+        left: 0.5rem;
+    }
+    
+    #scrollRight {
+        right: 0.5rem;
+    }
+    
+    /* Simple hover effect without bouncing/scaling */
+    #scrollLeft:hover, #scrollRight:hover {
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        transform: none !important; /* Prevent any transform on hover */
+        animation: none !important; /* Disable any animations on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow only */
+    }
+    
+    /* Override any global nav-link or button hover effects on mobile arrows */
+    #scrollLeft:hover, #scrollRight:hover {
+        transform: none !important;
+        scale: 1 !important;
+        animation: none !important;
+    }
+    
+    /* Prevent bounce animations from affecting mobile arrows */
+    #scrollLeft.nav-link, #scrollRight.nav-link,
+    #scrollLeft .nav-link, #scrollRight .nav-link {
+        animation: none !important;
+        transform: none !important;
+    }
 }
 
-/* Back to Top Button */
-.back-to-top {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    margin-right: 3rem;
-}
-
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-}
-
-.back-to-top:active {
-    transform: translateY(-1px) scale(1.05);
-}
-
-/* Pulse animation for initial appearance */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.back-to-top.show {
-    animation: pulse 0.6s ease-in-out;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .back-to-top {
-        bottom: 1rem;
-        right: 1rem;
-        width: 45px;
-        height: 45px;
-        margin-right: 1rem;
+/* Even smaller screens (phones in portrait) */
+@media (max-width: 480px) {
+    /* Tighter spacing for very small screens */
+    #intro .max-w-6xl {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    
+    /* Even smaller hero buttons */
+    #intro .flex.flex-col a {
+        padding: 0.5rem 0.5rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* Ultra-compact carousel for small phones */
+    #projectsCarousel .min-w-\[340px\] {
+        min-width: 240px !important;
+        max-width: 240px !important;
+    }
+    
+    /* Navigation spacing */
+    .max-w-6xl.mx-auto.px-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
     }
 }
 
@@ -609,4 +768,22 @@ a[href^="#"] {
 */
 
 /* ===== END OF SCROLL SNAP FEATURES ===== */
+
+/* In style.css - prevent initial jitter */
+@media (max-width: 768px) {
+    #projectsCarousel {
+        padding: 0 1rem !important;
+        margin-bottom: 2rem !important;
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+        transition: all 0.3s ease;
+    }
+    
+    #projectsCarousel.loaded {
+        padding-left: calc((100vw - 280px) / 2) !important;
+        padding-right: calc((100vw - 280px) / 2) !important;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+}
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>David | All Projects</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,16 +40,19 @@
                         <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all"></span>
                     </span>
                 </label>
-                <div class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-40 rounded-xl opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
+                <!-- Mobile menu with enhanced closing behavior -->
+                <div class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-40 rounded-xl
+                    opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
                     <div class="flex flex-col py-4 px-4 space-y-2">
-                        <a href="index.html" class="nav-link text-gray-700 font-bold transition relative flex items-center">
-                            <i data-feather="arrow-left" class="mr-2 w-4 h-4"></i>
+                        <!-- Back to Home with arrow -->
+                        <a href="index.html" class="nav-link flex items-center text-gray-700 transition relative">
+                            <i data-feather="arrow-left" class="w-4 h-4"></i>
                             Back to Home
                         </a>
                         <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
                         <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
                         <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                        <a href="projects.html" class="nav-link text-indigo-600 font-bold transition-none relative cursor-default">Projects</a>
+                        <a href="projects.html" class="nav-link text-gray-700 transition relative">Projects</a>
                         <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn text-center">Contact</a>
                     </div>
                 </div>

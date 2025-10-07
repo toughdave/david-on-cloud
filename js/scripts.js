@@ -61,24 +61,136 @@ if (contactForm) {
 const carousel = document.getElementById('projectsCarousel');
 const scrollLeftBtn = document.getElementById('scrollLeft');
 const scrollRightBtn = document.getElementById('scrollRight');
+const scrollLeftDesktop = document.getElementById('scrollLeftDesktop');
+const scrollRightDesktop = document.getElementById('scrollRightDesktop');
 
-if (carousel && scrollLeftBtn && scrollRightBtn) {
-    scrollLeftBtn.onclick = () => {
-        if (carousel.scrollLeft <= 0) {
-            carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+if (carousel) {
+    // Calculate scroll distance based on screen size
+    function getScrollDistance() {
+        if (window.innerWidth <= 480) {
+            return 260 + 16; // card width + margin for small phones
+        } else if (window.innerWidth <= 768) {
+            return 280 + 16; // card width + margin for mobile
         } else {
-            carousel.scrollBy({ left: -360, behavior: 'smooth' });
+            return 360; // desktop scroll distance
         }
-    };
-
-    scrollRightBtn.onclick = () => {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        if (carousel.scrollLeft >= maxScroll - 5) {
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+    
+    // Check if we're at the start (mobile-aware)
+    function isAtStart() {
+        if (window.innerWidth <= 768) {
+            // Mobile: account for the centering padding
+            const centerPadding = window.innerWidth <= 480 ? 
+                (window.innerWidth - 260) / 2 : 
+                (window.innerWidth - 280) / 2;
+            return carousel.scrollLeft <= centerPadding + 10; // 10px tolerance
         } else {
-            carousel.scrollBy({ left: 360, behavior: 'smooth' });
+            return carousel.scrollLeft <= 0;
         }
-    };
+    }
+    
+    // Check if we're at the end (mobile-aware)
+    function isAtEnd() {
+        if (window.innerWidth <= 768) {
+            // Mobile: account for the centering padding
+            const centerPadding = window.innerWidth <= 480 ? 
+                (window.innerWidth - 260) / 2 : 
+                (window.innerWidth - 280) / 2;
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            return carousel.scrollLeft >= maxScroll - centerPadding - 10; // 10px tolerance
+        } else {
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            return carousel.scrollLeft >= maxScroll - 5;
+        }
+    }
+    
+    // Scroll left function
+    function scrollLeft() {
+        const scrollDistance = getScrollDistance();
+        
+        if (isAtStart()) {
+            // If at the beginning, scroll to the end
+            if (window.innerWidth <= 768) {
+                // Mobile: scroll to last card position
+                const centerPadding = window.innerWidth <= 480 ? 
+                    (window.innerWidth - 260) / 2 : 
+                    (window.innerWidth - 280) / 2;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                carousel.scrollTo({ 
+                    left: maxScroll - centerPadding, 
+                    behavior: 'smooth' 
+                });
+            } else {
+                // Desktop: scroll to end
+                carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+            }
+        } else {
+            carousel.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+        }
+    }
+    
+    // Scroll right function
+    function scrollRight() {
+        const scrollDistance = getScrollDistance();
+        
+        if (isAtEnd()) {
+            // If at the end, scroll to the beginning
+            if (window.innerWidth <= 768) {
+                // Mobile: scroll to first card position (centered)
+                const centerPadding = window.innerWidth <= 480 ? 
+                    (window.innerWidth - 260) / 2 : 
+                    (window.innerWidth - 280) / 2;
+                carousel.scrollTo({ 
+                    left: centerPadding, 
+                    behavior: 'smooth' 
+                });
+            } else {
+                // Desktop: scroll to start
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        } else {
+            carousel.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+        }
+    }
+    
+    // Attach event listeners for mobile arrows
+    if (scrollLeftBtn && scrollRightBtn) {
+        scrollLeftBtn.onclick = scrollLeft;
+        scrollRightBtn.onclick = scrollRight;
+    }
+    
+    // Attach event listeners for desktop arrows
+    if (scrollLeftDesktop && scrollRightDesktop) {
+        scrollLeftDesktop.onclick = scrollLeft;
+        scrollRightDesktop.onclick = scrollRight;
+    }
+    
+    // Update arrow visibility based on scroll position
+    function updateArrowVisibility() {
+        const atStart = isAtStart();
+        const atEnd = isAtEnd();
+        
+        // Update mobile arrows
+        if (scrollLeftBtn && scrollRightBtn) {
+            scrollLeftBtn.style.opacity = atStart ? '0.5' : '1';
+            scrollRightBtn.style.opacity = atEnd ? '0.5' : '1';
+        }
+        
+        // Update desktop arrows
+        if (scrollLeftDesktop && scrollRightDesktop) {
+            scrollLeftDesktop.style.opacity = atStart ? '0.5' : '1';
+            scrollRightDesktop.style.opacity = atEnd ? '0.5' : '1';
+        }
+    }
+    
+    // Update arrow states on scroll
+    carousel.addEventListener('scroll', updateArrowVisibility);
+    
+    // Update arrow states on window resize
+    window.addEventListener('resize', updateArrowVisibility);
+    
+    // Initial check
+    updateArrowVisibility();
 }
 
 // Animate section title underline on section hover
@@ -94,40 +206,40 @@ document.querySelectorAll('.section-title-container').forEach(container => {
     }
 });
 
-// Function to update active nav states based on current section
+// Enhanced mobile menu functionality with proper active states
 function updateActiveNavStates() {
     const currentPage = window.location.pathname;
     const currentHash = window.location.hash;
     
     // Remove existing active states
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active-page');
+        link.classList.remove('active-page', 'transition-none', 'font-bold');
     });
     
     // Apply active state based on current section
     if (currentPage.includes('projects.html')) {
         // Projects page - activate Projects nav
         document.querySelectorAll('a[href="projects.html"]').forEach(link => {
-            link.classList.add('active-page');
+            link.classList.add('active-page', 'transition-none', 'font-bold');
         });
     } else {
-        // Index page - check hash for sections
+        // Index page - check hash for sections or default to Home
         if (currentHash === '#about') {
             document.querySelectorAll('a[href="index.html#about"], a[href="#about"]').forEach(link => {
-                link.classList.add('active-page');
+                link.classList.add('active-page', 'transition-none', 'font-bold');
             });
         } else if (currentHash === '#skills') {
             document.querySelectorAll('a[href="index.html#skills"], a[href="#skills"]').forEach(link => {
-                link.classList.add('active-page');
+                link.classList.add('active-page', 'transition-none', 'font-bold');
             });
         } else if (currentHash === '#experience') {
             document.querySelectorAll('a[href="index.html#experience"], a[href="#experience"]').forEach(link => {
-                link.classList.add('active-page');
+                link.classList.add('active-page', 'transition-none', 'font-bold');
             });
         } else {
-            // Default to Home if no specific section
+            // Default to Home if no specific section or on intro
             document.querySelectorAll('a[href="index.html"]').forEach(link => {
-                link.classList.add('active-page');
+                link.classList.add('active-page', 'transition-none', 'font-bold');
             });
         }
     }
@@ -150,6 +262,28 @@ document.addEventListener('click', function(event) {
         event.target !== menuToggle
     ) {
         menuToggle.checked = false;
+    }
+});
+
+// Close mobile menu when clicking navigation links
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
+    });
+});
+
+// Close mobile menu on scroll
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle && menuToggle.checked) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            menuToggle.checked = false;
+        }, 100);
     }
 });
 
@@ -201,6 +335,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+    }
+    
+    const carousel = document.getElementById('projectsCarousel');
+    if (carousel) {
+        // Apply centering after a brief delay
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                carousel.classList.add('loaded');
+            }, 150);
         });
     }
 });
