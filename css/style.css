@@ -297,433 +297,342 @@ nav .flex {
     display: none;
 }
 
-/* ===== CAROUSEL STYLES ===== */
+/* ===== PROJECTS CAROUSEL - PROPER BODY ALIGNMENT ===== */
+
+/* Carousel container - ensure proper boundaries */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2rem 0;
+    margin: 0;
+}
+
+/* Ensure carousel track has proper boundaries */
 #projectsCarousel {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 1rem 0;
+    min-height: 600px;
+    align-items: stretch;
+    position: relative;
+    transition: scroll-behavior 0.3s ease;
+    margin: 0;
+    /* Add padding to prevent cut-off */
+    padding-right: 2rem;
 }
 
-/* ===== DESKTOP STYLES ===== */
+/* Project cards - horizontal layout for carousel */
+.project-card {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    width: 340px;
+    min-width: 340px;
+    max-width: 340px;
+    height: 540px;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Vertical stack: image on top, content below */
+}
+
+.project-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Card image - full width at top */
+.project-card img {
+    width: 100%;
+    height: 192px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Update the project-card-content layout */
+.project-card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    color: #1f2937;
+}
+
+.project-card p {
+    color: #6b7280;
+    margin-bottom: 1rem; /* Space between text and tags */
+    font-size: 0.875rem;
+    line-height: 1.4;
+    flex: 0 0 auto; /* Don't let text expand to fill space */
+}
+
+/* Position tags directly below text */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: auto; /* Push View Project link to bottom */
+}
+
+.project-tag {
+    padding: 0.25rem 0.5rem;
+    background: #f3f4f6;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: #374151;
+}
+
+/* Keep View Project link at the bottom */
+.project-link {
+    margin-top: auto;
+    padding-top: 1.5rem; /* More space above View Project link */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Navigation arrows - positioned close to carousel edges */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease, opacity 0.3s ease;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-nav:hover {
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav svg {
+    width: 20px;
+    height: 20px;
+    color: #374151;
+}
+
+/* Position arrows just outside carousel content area */
+.carousel-nav-left {
+    left: -15px; /* Close to carousel but outside content */
+}
+
+.carousel-nav-right {
+    right: -15px; /* Close to carousel but outside content */
+}
+
+/* Desktop styles */
 @media (min-width: 1024px) {
-    nav .flex {
-        align-items: center;
+    .carousel-container {
+        padding: 2rem 3.5rem;
+        margin: 0;
     }
     
-    /* Desktop carousel scrollbar */
-    #projectsCarousel::-webkit-scrollbar {
-        height: 6px;
-        width: 0px;
+    .carousel-nav-left {
+        left: -15px;
     }
     
-    #projectsCarousel::-webkit-scrollbar-track {
-        background: rgba(156, 163, 175, 0.1);
-        border-radius: 3px;
+    .carousel-nav-right {
+        right: -15px;
     }
     
-    #projectsCarousel::-webkit-scrollbar-thumb {
-        background: rgba(156, 163, 175, 0.5);
-        border-radius: 3px;
+    .carousel-nav {
+        width: 52px;
+        height: 52px;
     }
     
-    #projectsCarousel::-webkit-scrollbar-thumb:hover {
-        background: rgba(156, 163, 175, 0.7);
+    .carousel-nav svg {
+        width: 22px;
+        height: 22px;
     }
     
-    #projectsCarousel::-webkit-scrollbar-vertical {
-        display: none;
-    }
-    
-    /* Remove vertical scrolling from desktop carousel */
     #projectsCarousel {
-        overflow-y: hidden !important;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        max-height: none !important;
-    }
-    
-    #projectsCarousel .min-w-\[340px\] {
-        overflow: visible !important;
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-    }
-    
-    #projectsCarousel .p-6,
-    #projectsCarousel .flex.flex-col,
-    #projectsCarousel > div {
-        overflow: visible !important;
-        height: auto !important;
-    }
-    
-    .relative.px-4.md\\:px-16,
-    .relative.px-16 {
-        overflow: visible !important;
-        height: auto !important;
-    }
-    
-    #projects .relative {
-        overflow: visible !important;
+        gap: 1rem;
+        padding: 1rem 0;
+        padding-right: 3rem; /* More padding on desktop */
     }
 }
 
-/* ===== TABLET STYLES ===== */
-@media (max-width: 1024px) {
-    #mobile-menu-button {
-        display: block;
+/* Tablet styles */
+@media (max-width: 1023px) and (min-width: 769px) {
+    .carousel-container {
+        margin: 0; /* Keep aligned with body */
     }
     
-    .mobile-menu {
-        background: white;
-        border-top: 1px solid #e5e7eb;
-        padding: 1rem;
+    .carousel-nav-left {
+        left: -10px;
     }
     
-    .mobile-menu a {
-        display: block;
-        width: 100%;
-        padding: 0.75rem 1rem;
-        margin: 0 -1rem;
-        color: #374151;
-        text-decoration: none;
-        border-bottom: 1px solid #f3f4f6;
-        transition: color 0.2s, background-color 0.2s;
-        cursor: pointer;
-        pointer-events: auto;
-        box-sizing: border-box;
-        text-align: center;
+    .carousel-nav-right {
+        right: -10px;
     }
     
-    .mobile-menu a:hover {
-        color: #667eea;
-        background-color: rgba(102, 126, 234, 0.05);
-    }
-    
-    .mobile-menu a:last-child {
-        border-bottom: none;
-    }
-    
-    /* Back to Home arrow styling */
-    .mobile-menu .nav-link.flex.items-center {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        padding: 0.75rem 0rem;
-        margin: 0 -1rem;
-        box-sizing: border-box;
-        text-align: center;
-        transition: color 0.2s, background-color 0.2s;
-        font-weight: bold !important;
-    }
-    
-    .mobile-menu .nav-link.flex.items-center:hover {
-        color: #667eea;
-        background-color: rgba(102, 126, 234, 0.05);
-    }
-    
-    .mobile-menu .nav-link i[data-feather="arrow-left"] {
-        transition: transform 0.3s ease;
-        width: 18px !important;
-        height: 18px !important;
-        display: inline-block !important;
-        stroke-width: 2.5 !important;
-    }
-    
-    .mobile-menu .nav-link:hover i[data-feather="arrow-left"] {
-        transform: translateX(-6px);
-    }
-    
-    /* Active page states */
-    .mobile-menu .nav-link.transition-none,
-    .mobile-menu .nav-link.active-page {
-        pointer-events: none;
-        font-weight: bold;
-        color: #4f46e5 !important;
-        background: none !important;
-        animation: none !important;
-        transition: none !important;
-        position: relative;
-        padding-bottom: 0.75rem;
-        display: inline-block;
-        text-align: center;
-    }
-    
-    .mobile-menu .nav-link.transition-none::before,
-    .mobile-menu .nav-link.active-page::before {
-        content: '';
-        position: absolute;
-        bottom: 0.25rem;
-        left: 50%;
-        width: calc(100% - 0.5rem);
-        height: 3px;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        border-radius: 2px;
-        transform: translateX(-50%);
-    }
-    
-    .mobile-menu .nav-link.transition-none:hover,
-    .mobile-menu .nav-link.active-page:hover {
-        color: #4f46e5 !important;
-        background: none !important;
-        animation: none !important;
-        transition: none !important;
-    }
-    
-    /* Contact button */
-    .mobile-menu .contact-btn {
-        display: block;
-        width: 100%;
-        padding: 0.75rem 1rem;
-        margin: 0 -1rem;
-        color: white !important;
-        background: #4f46e5 !important;
-        border-radius: 0.75rem;
-        text-align: center;
-        font-size: 1rem;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-sizing: border-box;
-    }
-    
-    .mobile-menu .contact-btn:hover,
-    .mobile-menu .contact-btn:active {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        background-color: rgba(79, 70, 229, 0.9) !important;
-        color: white !important;
+    .project-card {
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
     }
 }
 
-/* ===== MOBILE STYLES ===== */
+/* Mobile styles - arrows inside with proper spacing */
 @media (max-width: 768px) {
-    /* Back to Top Button mobile sizing */
-    .back-to-top {
-        bottom: 1rem;
-        right: 1rem;
-        width: 45px;
-        height: 45px;
-        margin-right: 1rem;
+    .carousel-container {
+        padding: 1rem 0;
+        margin: 0; /* Keep aligned with body */
+        overflow: visible;
     }
     
-    /* Hero section optimization */
-    #intro {
-        min-height: 100vh !important;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 1rem 0.5rem !important;
-    }
-    
-    #intro .max-w-6xl {
-        max-width: 100% !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    #intro .grid {
-        gap: 1rem !important;
-    }
-    
-    #intro h1 {
-        font-size: 2.25rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-    
-    #intro h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    #intro p {
-        font-size: 0.9rem !important;
-        margin-bottom: 1.5rem !important;
-        line-height: 1.4 !important;
-    }
-    
-    #intro .flex.flex-col {
-        flex-direction: row !important;
-        gap: 0.5rem !important;
-    }
-    
-    #intro .flex.flex-col a {
-        flex: 1;
-        padding: 0.6rem 0.75rem !important;
-        font-size: 0.85rem !important;
-        text-align: center;
-    }
-    
-    #intro img {
-        width: 180px !important;
-        height: 180px !important;
-    }
-    
-    /* Carousel optimization - CONSOLIDATED FROM DUPLICATE SECTION */
-    #projectsCarousel {
-        padding: 0 1rem !important;
-        margin-bottom: 2rem !important;
-        scroll-snap-type: none;
-        scroll-behavior: auto;
-        transition: all 0.3s ease;
-    }
-    
-    #projectsCarousel.loaded {
-        padding-left: calc((100vw - 280px) / 2) !important;
-        padding-right: calc((100vw - 280px) / 2) !important;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-    }
-    
-    #projectsCarousel .min-w-\[340px\] {
-        min-width: 280px !important;
-        max-width: 280px !important;
-        height: auto !important;
-        margin-bottom: 1rem !important;
-        flex-shrink: 0;
-        scroll-snap-align: center;
-    }
-    
-    #projectsCarousel > div + div {
-        margin-left: 1rem !important;
-    }
-    
-    /* Mobile carousel arrows */
-    #scrollLeft, #scrollRight {
-        display: flex !important;
-        position: absolute;
-        top: 40%;
-        z-index: 20;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(8px);
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        transition: background-color 0.2s ease, opacity 0.2s ease;
-        transform: none !important;
-        animation: none !important;
-    }
-    
-    #scrollLeft {
+    /* Mobile arrows positioned inside with safe margins */
+    .carousel-nav-left {
         left: 0.5rem;
     }
     
-    #scrollRight {
+    .carousel-nav-right {
         right: 0.5rem;
     }
     
-    #scrollLeft:hover, #scrollRight:hover {
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        transform: none !important;
-        animation: none !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .carousel-nav:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        transform: translateY(-50%) scale(1.02);
+    }
+    
+    .carousel-nav svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    #projectsCarousel {
+        gap: 1rem;
+        padding: 1rem 0;
+        /* Fix mobile centering and prevent cut-off */
+        padding-left: calc((100vw - 280px) / 2);
+        padding-right: calc((100vw - 280px) / 2 + 2rem); /* Extra padding to prevent cut-off */
+    }
+    
+    /* Mobile adjustments for carousel cards */
+    .project-card {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+        height: auto;
+        min-height: 480px;
+    }
+    
+    .project-card img {
+        height: 160px;
+    }
+    
+    .project-card-content {
+        padding: 1rem;
+    }
+    
+    .project-card h3 {
+        font-size: 1.125rem;
+    }
+    
+    .project-card p {
+        font-size: 0.8rem;
     }
 }
 
-/* ===== SMALL MOBILE STYLES ===== */
+/* Small mobile adjustments */
 @media (max-width: 480px) {
-    #intro .max-w-6xl {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
+    .carousel-nav-left {
+        left: 0.25rem;
     }
     
-    #intro .flex.flex-col a {
-        padding: 0.5rem 0.5rem !important;
-        font-size: 0.8rem !important;
+    .carousel-nav-right {
+        right: 0.25rem;
     }
     
-    #projectsCarousel.loaded {
-        padding-left: calc((100vw - 240px) / 2) !important;
-        padding-right: calc((100vw - 240px) / 2) !important;
-    }
-    
-    #projectsCarousel .min-w-\[340px\] {
-        min-width: 240px !important;
-        max-width: 240px !important;
-    }
-    
-    .max-w-6xl.mx-auto.px-4 {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-    }
-    
-    #scrollLeft, #scrollRight {
+    .carousel-nav {
         width: 36px;
         height: 36px;
     }
     
-    #scrollLeft {
-        left: 0.25rem;
+    .carousel-nav svg {
+        width: 16px;
+        height: 16px;
     }
     
-    #scrollRight {
-        right: 0.25rem;
+    #projectsCarousel {
+        padding-left: calc((100vw - 260px) / 2);
+        padding-right: calc((100vw - 260px) / 2 + 2rem); /* Extra padding to prevent cut-off */
+    }
+    
+    .project-card {
+        width: 260px;
+        min-width: 260px;
+        max-width: 260px;
     }
 }
 
-/* ===== SCROLL SNAP FEATURES (COMMENTED OUT FOR FUTURE USE) ===== */
+/* Focus states for accessibility */
+.carousel-nav:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
 
-/* 
-// Uncomment these sections to enable smooth scroll snapping
+/* Enhanced disabled states */
+.carousel-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: translateY(-50%) scale(0.9);
+}
 
-// Smooth scroll snapping for sections
+/* Smooth scrolling behavior for all browsers */
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
 }
 
-body {
-    scroll-snap-type: y mandatory;
+/* Prevent text selection on navigation */
+.carousel-nav {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-
-section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-}
-
-// Disable snap on navigation
-nav {
-    scroll-snap-align: none;
-}
-
-// Fine-tune section heights for better snapping
-#intro {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-#about, #skills, #experience, #projects, #contact {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5rem 0;
-}
-
-// Override for mobile to prevent issues
-@media (max-width: 768px) {
-    section {
-        scroll-snap-align: start;
-        min-height: 100vh;
-    }
-    
-    // Adjust padding for mobile
-    #about, #skills, #experience, #projects, #contact {
-        padding: 3rem 0;
-    }
-}
-
-// Smooth scroll behavior for navigation links
-a[href^="#"] {
-    scroll-behavior: smooth;
-}
-
-*/
 
 /* ===== END OF SCROLL SNAP FEATURES ===== */
 

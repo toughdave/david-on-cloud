@@ -90,7 +90,7 @@
                     <p class="text-lg opacity-90 mb-8">B.Tech & M.Tech in Computer Science with deep expertise in Cisco networking technologies. I operate a fully-equipped home lab with Cisco switches, routers, firewalls, APs, IP phones, and security cameras to simulate and troubleshoot real enterprise networking scenarios.</p>
                     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <a href="#contact" class="flex-1 px-4 py-2.5 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition text-center text-sm sm:text-base">Get In Touch</a>
-                        <a href="#projects" class="flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">View Projects</a>
+                        <a href="#projects" class="flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">View Projects Brief</a>
                     </div>
                 </div>
                 <div data-aos="fade-left" class="flex justify-center">
@@ -159,7 +159,7 @@
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
                             <i data-feather="award" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-xl font-semibold">Cisco Certifications</h3>
+                        <h3 class="text-lg font-bold">Cisco Certifications</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CCNA (Pursuing)</span>
@@ -173,7 +173,7 @@
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
                             <i data-feather="code" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-xl font-semibold">Web Development</h3>
+                        <h3 class="text-lg font-bold">Web Development</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">HTML5</span>
@@ -191,7 +191,7 @@
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
                             <i data-feather="hard-drive" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-xl font-semibold">Cisco Technologies</h3>
+                        <h3 class="text-lg font-bold">Cisco Technologies</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">IOS/NX-OS</span>
@@ -262,162 +262,177 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="snap-section py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" class="snap-section py-20 bg-gray-50" style="overflow: visible;">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="overflow: visible;">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
                 <div class="section-title-underline"></div>
             </div>
-            <div class="relative px-4 md:px-16">
-                <!-- Desktop arrows positioned outside carousel bounds -->
-                <button id="scrollLeftDesktop" class="carousel-arrow-left absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full w-12 h-12 hidden md:flex items-center justify-center hover:bg-white transition-all duration-200 border border-gray-200">
-                    <i data-feather="chevron-left" class="w-6 h-6 text-gray-700"></i>
+            
+            <!-- Carousel container with proper spacing -->
+            <div class="carousel-container">
+                <!-- Navigation arrows positioned outside -->
+                <button class="carousel-nav carousel-nav-left" id="scrollLeft" aria-label="Previous projects">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <button class="carousel-nav carousel-nav-right" id="scrollRight" aria-label="Next projects">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </button>
                 
                 <!-- Carousel content -->
-                <div id="projectsCarousel" class="flex overflow-x-auto space-x-4 pb-4 scroll-smooth snap-x snap-mandatory">
-                    <!-- Networking Home Lab Project 1 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col flex-shrink-0">
-                        <img src="/img/Enterprise-LAN-Simulation.png" alt="Enterprise LAN Simulation" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">Enterprise LAN Simulation</h3>
-                            <p class="text-gray-600 mb-4">Designed and troubleshooted a multi-VLAN enterprise LAN using Cisco Catalyst switches, routers, and APs in my home lab. Implemented STP, inter-VLAN routing, and wireless security.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Cisco Catalyst</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">VLAN</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">STP</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Wireless</span>
+                <div id="projectsCarousel" class="carousel-track">
+                    <!-- Project Card 1 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/Enterprise-LAN-Simulation.png" alt="Enterprise LAN Simulation">
+                        <div class="project-card-content">
+                            <h3>Enterprise LAN Simulation</h3>
+                            <p>Designed and troubleshooted a multi-VLAN enterprise LAN using Cisco Catalyst switches, routers, and APs in my home lab. Implemented STP, inter-VLAN routing, and wireless security.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Cisco Catalyst</span>
+                                <span class="project-tag">VLAN</span>
+                                <span class="project-tag">STP</span>
+                                <span class="project-tag">Wireless</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Networking Home Lab Project 2 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/VoIP-&-IP-Telephony-Lab.png" alt="VoIP & IP Telephony Lab" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">VoIP & IP Telephony Lab</h3>
-                            <p class="text-gray-600 mb-4">Deployed Cisco IP phones and CUCM in a home lab to simulate enterprise VoIP, configure dial plans, and troubleshoot call routing and QoS issues.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">CUCM</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">IP Telephony</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">QoS</span>
+                    
+                    <!-- Project Card 2 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/VoIP-&-IP-Telephony-Lab.png" alt="VoIP & IP Telephony Lab">
+                        <div class="project-card-content">
+                            <h3>VoIP & IP Telephony Lab</h3>
+                            <p>Deployed Cisco IP phones and CUCM in a home lab to simulate enterprise VoIP, configure dial plans, and troubleshoot call routing and QoS issues.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">CUCM</span>
+                                <span class="project-tag">IP Telephony</span>
+                                <span class="project-tag">QoS</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Networking Home Lab Project 3 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/Network-Security-&-Surveillance.png" alt="Network Security & Surveillance" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">Network Security & Surveillance</h3>
-                            <p class="text-gray-600 mb-4">Integrated Cisco routers, firewalls, and IP cameras to create a secure, segmented network. Configured ACLs, NAT, and remote monitoring for real-world security scenarios.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Cisco Router</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">ACL</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">IP Camera</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Firewall</span>
+                    
+                    <!-- Project Card 3 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/Network-Security-&-Surveillance.png" alt="Network Security & Surveillance">
+                        <div class="project-card-content">
+                            <h3>Network Security & Surveillance</h3>
+                            <p>Integrated Cisco routers, firewalls, and IP cameras to create a secure, segmented network. Configured ACLs, NAT, and remote monitoring for real-world security scenarios.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Cisco Router</span>
+                                <span class="project-tag">ACL</span>
+                                <span class="project-tag">IP Camera</span>
+                                <span class="project-tag">Firewall</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Packet Tracer Project 1 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/Cloud-Migration-Tool.png" alt="Cloud Migration Tool" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">Cloud Migration Tool</h3>
-                            <p class="text-gray-600 mb-4">Automated tool for migrating applications between cloud providers with minimal downtime.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Cisco IOS</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Packet Tracer</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Network Automation</span>
+                    
+                    <!-- Project Card 4 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/Cloud-Migration-Tool.png" alt="Cloud Migration Tool">
+                        <div class="project-card-content">
+                            <h3>Cloud Migration Tool</h3>
+                            <p>Automated tool for migrating applications between cloud providers with minimal downtime.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Cisco IOS</span>
+                                <span class="project-tag">Packet Tracer</span>
+                                <span class="project-tag">Network Automation</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Packet Tracer Project 2 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/WAN-Simulation-with-SD-WAN.png" alt="WAN Simulation with SD-WAN" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">WAN Simulation with SD-WAN</h3>
-                            <p class="text-gray-600 mb-4">Simulated a multi-branch WAN using Cisco Packet Tracer, implementing SD-WAN, dynamic routing, and failover testing for enterprise connectivity.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Packet Tracer</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">SD-WAN</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Routing</span>
+                    
+                    <!-- Project Card 5 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/WAN-Simulation-with-SD-WAN.png" alt="WAN Simulation with SD-WAN">
+                        <div class="project-card-content">
+                            <h3>WAN Simulation with SD-WAN</h3>
+                            <p>Simulated a multi-branch WAN using Cisco Packet Tracer, implementing SD-WAN, dynamic routing, and failover testing for enterprise connectivity.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Packet Tracer</span>
+                                <span class="project-tag">SD-WAN</span>
+                                <span class="project-tag">Routing</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Packet Tracer Project 3 -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/Wireless-Network-Design.png" alt="Wireless Network Design" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">Wireless Network Design</h3>
-                            <p class="text-gray-600 mb-4">Designed and simulated a secure wireless network for a campus environment using Cisco Packet Tracer, including WPA2, guest VLANs, and roaming.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Packet Tracer</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Wireless</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">VLAN</span>
+                    
+                    <!-- Project Card 6 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/Wireless-Network-Design.png" alt="Wireless Network Design">
+                        <div class="project-card-content">
+                            <h3>Wireless Network Design</h3>
+                            <p>Designed and simulated a secure wireless network for a campus environment using Cisco Packet Tracer, including WPA2, guest VLANs, and roaming.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Packet Tracer</span>
+                                <span class="project-tag">Wireless</span>
+                                <span class="project-tag">VLAN</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- DevOps Pipeline Project -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/DevOps-Pipeline.png" alt="DevOps Pipeline" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">DevOps Pipeline</h3>
-                            <p class="text-gray-600 mb-4">End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Docker</span>
+                    
+                    <!-- Project Card 7 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/DevOps-Pipeline.png" alt="DevOps Pipeline">
+                        <div class="project-card-content">
+                            <h3>DevOps Pipeline</h3>
+                            <p>End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Docker</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <!-- CLI Shells (PuTTY) for Real-World Networking -->
-                    <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 min-w-[340px] max-w-[340px] h-[540px] snap-center flex flex-col">
-                        <img src="/img/PuTTy-2.png" alt="PuTTY CLI Shells" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-semibold mb-2">CLI Shells (PuTTY) for Real-World Networking</h3>
-                            <p class="text-gray-600 mb-4">
-                                Demonstrated the use of CLI shells such as PuTTY to configure, monitor, and troubleshoot Cisco switches and routers in a live lab environment.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">PuTTY</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">SSH</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Cisco CLI</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Switch Configuration</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">Troubleshooting</span>
+                    
+                    <!-- Project Card 8 -->
+                    <div class="project-card" data-aos="fade-up">
+                        <img src="/img/PuTTy-2.png" alt="PuTTY CLI Shells">
+                        <div class="project-card-content">
+                            <h3>CLI Shells (PuTTY) for Real-World Networking</h3>
+                            <p>Demonstrated the use of CLI shells such as PuTTY to configure, monitor, and troubleshoot Cisco switches and routers in a live lab environment.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">PuTTY</span>
+                                <span class="project-tag">SSH</span>
+                                <span class="project-tag">Cisco CLI</span>
+                                <span class="project-tag">Switch Configuration</span>
+                                <span class="project-tag">Troubleshooting</span>
                             </div>
-                            <div class="mt-auto pt-2">
+                            <div class="project-link">
                                 <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
                                     View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                 </a>
@@ -425,21 +440,8 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Desktop arrows positioned outside carousel bounds -->
-                <button id="scrollRightDesktop" class="carousel-arrow-right absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full w-12 h-12 hidden md:flex items-center justify-center hover:bg-white transition-all duration-200 border border-gray-200">
-                    <i data-feather="chevron-right" class="w-6 h-6 text-gray-700"></i>
-                </button>
-                
-                <!-- Mobile arrows inside carousel (existing) -->
-                <button id="scrollLeft" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-white transition-all duration-200 border border-gray-200 md:hidden">
-                    <i data-feather="chevron-left" class="w-5 h-5 text-gray-700"></i>
-                </button>
-                
-                <button id="scrollRight" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-white transition-all duration-200 border border-gray-200 md:hidden">
-                    <i data-feather="chevron-right" class="w-5 h-5 text-gray-700"></i>
-                </button>
             </div>
+            
             <div class="text-center mt-12" data-aos="fade-up">
                 <a href="projects.html" class="animated-btn bounce-right-twice px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
                     View All Projects <i data-feather="chevron-right" class="ml-2 w-4 h-4"></i>

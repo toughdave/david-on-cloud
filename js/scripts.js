@@ -23,120 +23,250 @@ if (document.getElementById("vanta-bg")) {
     });
 }
 
-/* ===== CAROUSEL FUNCTIONALITY ===== */
-const carousel = document.getElementById('projectsCarousel');
-const scrollLeftBtn = document.getElementById('scrollLeft');
-const scrollRightBtn = document.getElementById('scrollRight');
-const scrollLeftDesktop = document.getElementById('scrollLeftDesktop');
-const scrollRightDesktop = document.getElementById('scrollRightDesktop');
-
-if (carousel) {
+/* ===== ENHANCED CAROUSEL WITH FIXED INFINITE LOOP ===== */
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('projectsCarousel');
+    const leftBtn = document.getElementById('scrollLeft');
+    const rightBtn = document.getElementById('scrollRight');
+    
+    if (!carousel || !leftBtn || !rightBtn) return;
+    
+    // Get all project cards
+    const cards = carousel.querySelectorAll('.project-card');
+    const totalCards = cards.length;
+    
+    if (totalCards === 0) return;
+    
+    // Calculate scroll distance based on card width + gap
     function getScrollDistance() {
-        if (window.innerWidth <= 480) {
-            return 260 + 16;
-        } else if (window.innerWidth <= 768) {
-            return 280 + 16;
-        } else {
-            return 360;
-        }
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 480) return 280; // 260px card + 20px gap
+        if (screenWidth <= 768) return 300; // 280px card + 20px gap
+        return 380; // 340px card + 40px gap
     }
     
+    // Get card width including gap
+    function getCardWidth() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 480) return 280;
+        if (screenWidth <= 768) return 300;
+        return 380;
+    }
+    
+    // Check if we're at the start (improved logic)
     function isAtStart() {
-        if (window.innerWidth <= 768) {
-            const centerPadding = window.innerWidth <= 480 ? 
-                (window.innerWidth - 260) / 2 : 
-                (window.innerWidth - 280) / 2;
-            return carousel.scrollLeft <= centerPadding + 10;
-        } else {
-            return carousel.scrollLeft <= 0;
-        }
+        return carousel.scrollLeft <= 5; // Reduced tolerance
     }
     
+    // Check if we're at the end (improved logic)
     function isAtEnd() {
-        if (window.innerWidth <= 768) {
-            const centerPadding = window.innerWidth <= 480 ? 
-                (window.innerWidth - 260) / 2 : 
-                (window.innerWidth - 280) / 2;
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            return carousel.scrollLeft >= maxScroll - centerPadding - 10;
-        } else {
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            return carousel.scrollLeft >= maxScroll - 5;
-        }
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const currentScroll = carousel.scrollLeft;
+        const threshold = 5; // Small threshold for detection
+        
+        console.log('End check:', {
+            currentScroll,
+            maxScroll,
+            difference: maxScroll - currentScroll,
+            isAtEnd: currentScroll >= maxScroll - threshold
+        });
+        
+        return currentScroll >= maxScroll - threshold;
     }
     
-    function scrollLeft() {
-        const scrollDistance = getScrollDistance();
+    // Enhanced scroll function with proper infinite loop
+    function scrollToCard(direction) {
+        const cardWidth = getCardWidth();
+        const currentScroll = carousel.scrollLeft;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         
-        if (isAtStart()) {
-            if (window.innerWidth <= 768) {
-                const centerPadding = window.innerWidth <= 480 ? 
-                    (window.innerWidth - 260) / 2 : 
-                    (window.innerWidth - 280) / 2;
-                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                carousel.scrollTo({ 
-                    left: maxScroll - centerPadding, 
-                    behavior: 'smooth' 
+        console.log('Scroll attempt:', {
+            direction,
+            currentScroll,
+            maxScroll,
+            cardWidth,
+            isAtStart: isAtStart(),
+            isAtEnd: isAtEnd()
+        });
+        
+        if (direction === 'left') {
+            if (isAtStart()) {
+                // At start, jump to end for infinite loop
+                console.log('Jumping to end from start');
+                carousel.scrollTo({
+                    left: maxScroll,
+                    behavior: 'smooth'
                 });
             } else {
-                carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+                // Normal scroll left
+                const targetScroll = Math.max(0, currentScroll - cardWidth);
+                console.log('Scrolling left to:', targetScroll);
+                carousel.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
             }
-        } else {
-            carousel.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+        } else { // direction === 'right'
+            if (isAtEnd()) {
+                // At end, jump to start for infinite loop
+                console.log('Jumping to start from end');
+                carousel.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                // Normal scroll right
+                const targetScroll = Math.min(maxScroll, currentScroll + cardWidth);
+                console.log('Scrolling right to:', targetScroll);
+                carousel.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
+            }
         }
     }
     
-    function scrollRight() {
-        const scrollDistance = getScrollDistance();
+    // Event listeners for navigation buttons
+    leftBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Left button clicked');
+        scrollToCard('left');
+    });
+    
+    rightBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Right button clicked');
+        scrollToCard('right');
+    });
+    
+    // Keyboard navigation with infinite loop
+    carousel.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            scrollToCard('left');
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollToCard('right');
+        }
+    });
+    
+    // Enhanced touch/swipe support
+    let isDown = false;
+    let startX;
+    let scrollLeftStart;
+    let hasMoved = false;
+    
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        hasMoved = false;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeftStart = carousel.scrollLeft;
+        carousel.style.cursor = 'grabbing';
+        carousel.style.userSelect = 'none';
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        if (isDown && hasMoved) {
+            snapToNearestCard();
+        }
+        isDown = false;
+        carousel.style.cursor = 'grab';
+        carousel.style.userSelect = 'auto';
+    });
+    
+    carousel.addEventListener('mouseup', () => {
+        if (isDown && hasMoved) {
+            snapToNearestCard();
+        }
+        isDown = false;
+        carousel.style.cursor = 'grab';
+        carousel.style.userSelect = 'auto';
+    });
+    
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        hasMoved = true;
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeftStart - walk;
+    });
+    
+    // Touch events for mobile
+    carousel.addEventListener('touchstart', (e) => {
+        isDown = true;
+        hasMoved = false;
+        startX = e.touches[0].pageX - carousel.offsetLeft;
+        scrollLeftStart = carousel.scrollLeft;
+    });
+    
+    carousel.addEventListener('touchend', () => {
+        if (isDown && hasMoved) {
+            snapToNearestCard();
+        }
+        isDown = false;
+    });
+    
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        hasMoved = true;
+        const x = e.touches[0].pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeftStart - walk;
+    });
+    
+    // Snap to nearest card after dragging
+    function snapToNearestCard() {
+        const cardWidth = getCardWidth();
+        const currentScroll = carousel.scrollLeft;
+        const nearestCardIndex = Math.round(currentScroll / cardWidth);
+        const targetScroll = Math.min(
+            carousel.scrollWidth - carousel.clientWidth,
+            nearestCardIndex * cardWidth
+        );
+        
+        carousel.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Update arrow states (visual feedback)
+    function updateArrowStates() {
+        // For infinite loop, arrows are always enabled
+        leftBtn.style.opacity = '1';
+        rightBtn.style.opacity = '1';
+        
+        // Optional: slight dimming at edges for visual feedback
+        if (isAtStart()) {
+            leftBtn.style.opacity = '0.7';
+        }
         
         if (isAtEnd()) {
-            if (window.innerWidth <= 768) {
-                const centerPadding = window.innerWidth <= 480 ? 
-                    (window.innerWidth - 260) / 2 : 
-                    (window.innerWidth - 280) / 2;
-                carousel.scrollTo({ 
-                    left: centerPadding, 
-                    behavior: 'smooth' 
-                });
-            } else {
-                carousel.scrollTo({ left: 0, behavior: 'smooth' });
-            }
-        } else {
-            carousel.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+            rightBtn.style.opacity = '0.7';
         }
     }
     
-    function updateArrowVisibility() {
-        const atStart = isAtStart();
-        const atEnd = isAtEnd();
-        
-        if (scrollLeftBtn && scrollRightBtn) {
-            scrollLeftBtn.style.opacity = atStart ? '0.5' : '1';
-            scrollRightBtn.style.opacity = atEnd ? '0.5' : '1';
-        }
-        
-        if (scrollLeftDesktop && scrollRightDesktop) {
-            scrollLeftDesktop.style.opacity = atStart ? '0.5' : '1';
-            scrollRightDesktop.style.opacity = atEnd ? '0.5' : '1';
-        }
-    }
+    // Update arrow states on scroll
+    carousel.addEventListener('scroll', updateArrowStates);
     
-    // Attach event listeners
-    if (scrollLeftBtn && scrollRightBtn) {
-        scrollLeftBtn.onclick = scrollLeft;
-        scrollRightBtn.onclick = scrollRight;
-    }
+    // Initialize
+    carousel.style.cursor = 'grab';
+    updateArrowStates();
     
-    if (scrollLeftDesktop && scrollRightDesktop) {
-        scrollLeftDesktop.onclick = scrollLeft;
-        scrollRightDesktop.onclick = scrollRight;
-    }
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        setTimeout(() => {
+            snapToNearestCard();
+            updateArrowStates();
+        }, 100);
+    });
     
-    // Event listeners
-    carousel.addEventListener('scroll', updateArrowVisibility);
-    window.addEventListener('resize', updateArrowVisibility);
-    updateArrowVisibility();
-}
+    // Debug: Log scroll events
+    carousel.addEventListener('scroll', () => {
+        console.log('Scroll position:', carousel.scrollLeft, '/', carousel.scrollWidth - carousel.clientWidth);
+    });
+});
 
 /* ===== NAVIGATION FUNCTIONALITY ===== */
 function updateActiveNavStates() {
