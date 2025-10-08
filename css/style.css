@@ -1,7 +1,7 @@
 /* ===== BASE STYLES ===== */
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
-	/* scroll-snap-type: y mandatory; */ /* COMMENTED OUT - SCROLL SNAP */
+    font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
+    /* scroll-snap-type: y mandatory; */ /* COMMENTED OUT - SCROLL SNAP */
 }
 
 h1 {
@@ -16,13 +16,14 @@ p {
 	margin-top: 5px;
 }
 
+
 /* ===== CARD COMPONENTS ===== */
 .card {
-	max-width: 620px;
-	margin: 0 auto;
-	padding: 16px;
-	border: 1px solid lightgray;
-	border-radius: 16px;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1px solid lightgray;
+    border-radius: 16px;
 }
 
 .card p:last-child {
@@ -648,4 +649,42 @@ html {
 }
 
 /* ===== END OF SCROLL SNAP FEATURES ===== */
+
+/* ===== CONTACT SECTION SOCIAL ICONS ANIMATION ===== */
+
+/* Place at the end of the file to avoid interfering with other styles */
+.contact-socials {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.contact-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
+    cursor: pointer;
+    position: relative;
+}
+.contact-social-btn:hover {
+    background: #e0e7ff;
+    animation: contactSocialBounce 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.18);
+}
+.contact-social-btn:hover i {
+    color: #6366f1 !important;
+    transition: color 0.3s;
+}
+@keyframes contactSocialBounce {
+    0%   { transform: scale(1) translateY(0); }
+    30%  { transform: scale(1.15) translateY(-8px); }
+    50%  { transform: scale(0.95) translateY(2px); }
+    70%  { transform: scale(1.05) translateY(-4px); }
+    100% { transform: scale(1) translateY(0); }
+}
 
