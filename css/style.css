@@ -195,7 +195,7 @@ nav .flex {
 .bounce-right-twice:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-    animation: bounceRightTwicePoke 0.55s cubic-bezier(0.7, 0, 0.84, 0) 1;
+    animation: bounceRightTwicePoke 1s ease-in-out;
 }
 
 /* ===== BACK TO TOP BUTTON ===== */
@@ -485,6 +485,9 @@ nav .flex {
         padding: 1rem 0;
         padding-right: 2rem; /* Slightly less padding for better arrow overlap */
     }
+    .back-to-top {
+        margin-right: 0.5rem;
+    }
 }
 
 /* Tablet styles */
@@ -506,6 +509,9 @@ nav .flex {
         width: 300px;
         min-width: 300px;
         max-width: 300px;
+    }
+    .back-to-top {
+        margin-right: 0.2rem;
     }
 }
 
@@ -575,6 +581,9 @@ nav .flex {
     .project-card p {
         font-size: 0.8rem;
     }
+    .back-to-top {
+        margin-right: 0;
+    }    
 }
 
 /* Small mobile adjustments */
@@ -607,6 +616,9 @@ nav .flex {
         min-width: 260px;
         max-width: 260px;
     }
+    .back-to-top {
+        margin-right: 0;
+    }   
 }
 
 /* Focus states for accessibility */
