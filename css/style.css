@@ -1,3 +1,28 @@
+/* ===== PAGE LAYOUT FIX FOR SIDE SPACE ===== */
+html, body {
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.hero-gradient,
+.snap-section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.max-w-6xl {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 /* ===== BASE STYLES ===== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
@@ -313,10 +338,10 @@ nav .flex {
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 100%;
     overflow: visible;
     padding: 2rem 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 /* Ensure carousel track has proper boundaries */
@@ -335,8 +360,7 @@ nav .flex {
     position: relative;
     transition: scroll-behavior 0.3s ease;
     margin: 0;
-    /* Add padding to prevent cut-off */
-    padding-right: 2rem;
+    box-sizing: border-box;
 }
 
 /* Project cards - horizontal layout for carousel */
@@ -503,18 +527,24 @@ nav .flex {
 /* Tablet styles */
 @media (max-width: 1023px) and (min-width: 769px) {
     .carousel-container {
-        padding: 1.5rem 1.5rem;
-        margin: 0; /* Keep aligned with body */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 0;
+        box-sizing: border-box;
+        max-width: 100%;
     }
-    
+    #projectsCarousel {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
     .carousel-nav-left {
         left: -10px;
     }
-    
     .carousel-nav-right {
         right: -10px;
     }
-    
     .project-card {
         width: 300px;
         min-width: 300px;
@@ -529,13 +559,13 @@ nav .flex {
 @media (max-width: 768px) {
     html, body {
         overflow-x: hidden !important;
-        max-width: 100vw;
+        max-width: 100%;
     }
     .carousel-container {
         padding: 1rem 0;
         margin: 0; /* Keep aligned with body */
         overflow: visible;
-        max-width: 100vw;
+        max-width: 100%;
         box-sizing: border-box;
     }
     /* Mobile arrows positioned inside with safe margins */
@@ -563,9 +593,9 @@ nav .flex {
         gap: 1rem;
         padding: 1rem 0;
         /* Fix mobile centering and prevent cut-off */
-        padding-left: calc((100vw - 280px) / 2);
-        padding-right: calc((100vw - 280px) / 2 + 2rem); /* Extra padding to prevent cut-off */
-        max-width: 100vw;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 100%;
         box-sizing: border-box;
     }
     /* Mobile adjustments for carousel cards */
@@ -598,26 +628,21 @@ nav .flex {
     .carousel-nav-left {
         left: 0.25rem;
     }
-    
     .carousel-nav-right {
         right: 0.25rem;
     }
-    
     .carousel-nav {
         width: 36px;
         height: 36px;
     }
-    
     .carousel-nav svg {
         width: 16px;
         height: 16px;
     }
-    
     #projectsCarousel {
-        padding-left: calc((100vw - 260px) / 2);
-        padding-right: calc((100vw - 260px) / 2 + 2rem); /* Extra padding to prevent cut-off */
+        padding-left: 0;
+        padding-right: 0;
     }
-    
     .project-card {
         width: 260px;
         min-width: 260px;
@@ -625,7 +650,7 @@ nav .flex {
     }
     .back-to-top {
         margin-right: 0;
-    }   
+    }
 }
 
 /* Focus states for accessibility */
