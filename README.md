@@ -1,6 +1,6 @@
 # David On Cloud — Professional CV & Portfolio Website
 
-**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 1.3.2
+**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 1.3.3
 
 A modern, responsive portfolio website showcasing my expertise as a Cisco networking engineer with extensive hands-on experience in enterprise network design, implementation, and troubleshooting.
 
@@ -60,7 +60,7 @@ I'm a **Cisco Networking Engineer** with B.Tech and M.Tech degrees in Computer S
 - **[Feather Icons](https://feathericons.com/)** - Beautiful icon set
 - **[Formspree](https://formspree.io/)** - Contact form backend
 
-## 📈 Last Update (v1.3.2)
+## 📈 Last Update (v1.3.3)
 
 
 
