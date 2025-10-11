@@ -1,6 +1,6 @@
 ## v1.3.4 — 2025-10-11 00:13:07
 - ✅ Corrected release notes format (most-recent-first; no duplicates)
-- ✅ Removed AI-related wording from summaries
+- ✅ Removed some unnecessary wording from summaries
 - ✅ No UI changes; internal release tooling updates only
 
 ## v1.3.3 — 2025-10-08 21:14:42
