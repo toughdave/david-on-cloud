@@ -60,10 +60,7 @@ I'm a **Cisco Networking Engineer** with B.Tech and M.Tech degrees in Computer S
 - **[Feather Icons](https://feathericons.com/)** - Beautiful icon set
 - **[Formspree](https://formspree.io/)** - Contact form backend
 
-## 📈 Last Update (v1.3.3)
-
-
-
+<!-- Last Update section removed; see RELEASE_NOTES.txt for update history -->
 
 ## 🎯 Featured Projects
 
@@ -75,9 +72,9 @@ I'm a **Cisco Networking Engineer** with B.Tech and M.Tech degrees in Computer S
 
 ### **Packet Tracer Simulations**
 
-4. **SD-WAN Implementation** - Multi-branch WAN simulation
-5. **Wireless Network Design** - Campus wireless with guest VLANs
-6. **Cloud Migration Tools** - Network automation projects
+1. **SD-WAN Implementation** - Multi-branch WAN simulation
+2. **Wireless Network Design** - Campus wireless with guest VLANs
+3. **Cloud Migration Tools** - Network automation projects
 
 ## 📞 Contact & Social
 
