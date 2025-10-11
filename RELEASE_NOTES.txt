@@ -1,3 +1,7 @@
+## v1.3.6 — 2025-10-11 01:28:00
+- ✅ Internal release tooling updates
+- ✅ Bumped version to v1.3.6
+
 ## v1.3.5 — 2025-10-11 01:14:47
 - ✅ Release tooling improvements and cleanup
 
