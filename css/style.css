@@ -74,6 +74,7 @@ p {
     position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     max-height: 2.5em;
@@ -94,6 +95,7 @@ p {
 
 .card-body.expanded {
     -webkit-line-clamp: unset;
+    line-clamp: unset;
     max-height: 1000px;
     padding-bottom: 1em;
 }
@@ -106,6 +108,7 @@ p {
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -718,4 +721,6 @@ html {
     70%  { transform: scale(1.05) translateY(-4px); }
     100% { transform: scale(1) translateY(0); }
 }
+
+
 
