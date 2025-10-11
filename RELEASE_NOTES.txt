@@ -1,3 +1,8 @@
+## v1.3.5 — 2025-10-11 01:14:47
+- ✅ Update release notes: refine v1.3.4 summary; finalize no- wording policy chore(script):...
+- ✅ Update release notes: update v1.3.4 notes with concrete changes; remove hints chore(scr...
+- ✅ Bumped version to v1.3.5
+
 ## v1.3.4 — 2025-10-11 00:13:07
 - ✅ Corrected release notes format (most-recent-first; no duplicates)
 - ✅ Removed some unnecessary wording from summaries
