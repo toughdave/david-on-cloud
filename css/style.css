@@ -308,6 +308,14 @@ nav .flex {
     pointer-events: auto;
 }
 
+/* JS fallback/open state */
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
 .hamburger-icon {
     width: 2rem;
     height: 2rem;

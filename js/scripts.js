@@ -303,17 +303,44 @@ function updateActiveNavStates() {
 }
 
 /* ===== MOBILE MENU FUNCTIONALITY ===== */
-// Fallback: ensure tapping label toggles the checkbox and menu opens/closes
-document.addEventListener('click', function(e) {
-    const label = e.target.closest('label[for="menu-toggle"]');
-    if (label) {
-        const checkbox = document.getElementById('menu-toggle');
-        if (checkbox) {
-            checkbox.checked = !checkbox.checked;
-        }
-    }
-});
+// Robust toggle: support CSS peer and JS class fallback; set ARIA for accessibility
+(() => {
+    const checkbox = document.getElementById('menu-toggle');
+    const label = document.querySelector('label[for="menu-toggle"]');
+    const menu = document.querySelector('.mobile-menu');
+    if (!checkbox || !label || !menu) return;
 
+    // Keep ARIA in sync
+    label.setAttribute('role', 'button');
+    label.setAttribute('aria-controls', 'mobile-nav');
+    menu.setAttribute('id', 'mobile-nav');
+    const syncAria = () => {
+        label.setAttribute('aria-expanded', checkbox.checked ? 'true' : 'false');
+    };
+    syncAria();
+
+    // When checkbox changes (native peer path), mirror state to .open for fallback
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            menu.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+        }
+        syncAria();
+    });
+
+    // Ensure label click toggles reliably across browsers (prevent default then toggle)
+    label.addEventListener('click', (e) => {
+        e.preventDefault();
+        checkbox.checked = !checkbox.checked;
+        if (checkbox.checked) {
+            menu.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+        }
+        syncAria();
+    });
+})();
 // Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
     const menuToggle = document.getElementById('menu-toggle');
@@ -331,6 +358,7 @@ document.addEventListener('click', function(event) {
         event.target !== menuToggle
     ) {
         menuToggle.checked = false;
+        mobileMenu.classList.remove('open');
     }
 });
 
@@ -340,6 +368,7 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
         const menuToggle = document.getElementById('menu-toggle');
         if (menuToggle) {
             menuToggle.checked = false;
+            document.querySelector('.mobile-menu')?.classList.remove('open');
         }
     });
 });
@@ -352,6 +381,7 @@ window.addEventListener('scroll', function() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             menuToggle.checked = false;
+            document.querySelector('.mobile-menu')?.classList.remove('open');
         }, 100);
     }
 });
