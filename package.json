@@ -1,0 +1,59 @@
+{
+  "name": "david-on-cloud-portfolio",
+  "version": "1.3.6",
+  "description": "Professional portfolio website for David - Cisco Networking Engineer & Web Developer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 8080",
+    "build": "npm run lint && npm run build:copy",
+    "build:copy": "mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "htmlhint \"*.html\" --config .htmlhintrc",
+    "lint:css": "stylelint \"css/**/*.css\" --config .stylelintrc.json",
+    "lint:js": "eslint \"js/**/*.js\" --config .eslintrc.js",
+    "lint:fix": "npm run lint:css -- --fix && npm run lint:js -- --fix",
+    "test": "npm run lint && npm run test:validate",
+    "test:validate": "node scripts/validate.js",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:staging": "DEPLOYMENT_TARGET=staging ./scripts/deploy.sh",
+    "deploy:production": "DEPLOYMENT_TARGET=production ./scripts/deploy.sh",
+    "version:bump": "./scripts/bump_version.sh",
+    "serve": "npx http-server . -p 8080 -o",
+    "dev": "npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toughdave/david-on-cloud.git"
+  },
+  "keywords": [
+    "portfolio",
+    "networking",
+    "cisco",
+    "web-development",
+    "responsive",
+    "tailwind",
+    "javascript"
+  ],
+  "author": "David <info@davidoncloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toughdave/david-on-cloud/issues"
+  },
+  "homepage": "https://davidoncloud.com",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^15.0.0",
+    "stylelint-config-standard": "^34.0.0",
+    "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

@@ -7,9 +7,9 @@ AOS.init({
 });
 
 // Initialize Vanta.js background
-if (document.getElementById("vanta-bg")) {
+if (document.getElementById('vanta-bg')) {
     VANTA.GLOBE({
-        el: "#vanta-bg",
+        el: '#vanta-bg',
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
@@ -368,12 +368,12 @@ if (contactForm) {
                 document.getElementById('formStatus').classList.remove('hidden');
                 form.reset();
             } else {
-                document.getElementById('formStatus').textContent = "Failed to send. Please try again.";
+                document.getElementById('formStatus').textContent = 'Failed to send. Please try again.';
                 document.getElementById('formStatus').classList.remove('hidden');
                 document.getElementById('formStatus').classList.add('text-red-600');
             }
         } catch {
-            document.getElementById('formStatus').textContent = "Failed to send. Please try again.";
+            document.getElementById('formStatus').textContent = 'Failed to send. Please try again.';
             document.getElementById('formStatus').classList.remove('hidden');
             document.getElementById('formStatus').classList.add('text-red-600');
         }
