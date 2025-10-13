@@ -315,8 +315,8 @@ fi
 # Update VERSION file
 echo "$NEW_VERSION" > VERSION
 
-# Update version in HTML files
-sed -i "s/version-display\">.*</version-display\">$NEW_VERSION</g" index.html projects.html
+# Update version in HTML files (safely replace only the text inside the span)
+sed -i -E "s/(id=\"version-display\">)[^<]*/\1$NEW_VERSION/g" index.html projects.html
 
 
 
