@@ -1,3 +1,7 @@
+## v2.0.0 — 2025-10-12 20:52:11
+- ✅ Add: implement complete CI/CD pipeline with multi-platform deployment support
+- ✅ Bumped version to v2.0.0
+
 ## v1.3.6 — 2025-10-11 01:28:00
 - ✅ Internal release tooling updates
 - ✅ Bumped version to v1.3.6
