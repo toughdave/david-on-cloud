@@ -303,88 +303,7 @@ function updateActiveNavStates() {
 }
 
 /* ===== MOBILE MENU FUNCTIONALITY ===== */
-// Robust toggle: support CSS peer and JS class fallback; set ARIA for accessibility
-(() => {
-    const checkbox = document.getElementById('menu-toggle');
-    const label = document.querySelector('label[for="menu-toggle"]');
-    const menu = document.querySelector('.mobile-menu');
-    if (!checkbox || !label || !menu) return;
-
-    // Keep ARIA in sync
-    label.setAttribute('role', 'button');
-    label.setAttribute('aria-controls', 'mobile-nav');
-    menu.setAttribute('id', 'mobile-nav');
-    const syncAria = () => {
-        label.setAttribute('aria-expanded', checkbox.checked ? 'true' : 'false');
-    };
-    syncAria();
-
-    // When checkbox changes (native peer path), mirror state to .open for fallback
-    checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-            menu.classList.add('open');
-        } else {
-            menu.classList.remove('open');
-        }
-        syncAria();
-    });
-
-    // Ensure label click toggles reliably across browsers (prevent default then toggle)
-    label.addEventListener('click', (e) => {
-        e.preventDefault();
-        checkbox.checked = !checkbox.checked;
-        if (checkbox.checked) {
-            menu.classList.add('open');
-        } else {
-            menu.classList.remove('open');
-        }
-        syncAria();
-    });
-})();
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu'); 
-    const hamburgerLabel = document.querySelector('label[for="menu-toggle"]');
-    const hamburgerContainer = document.querySelector('.md\\:hidden');
-
-    if (
-        menuToggle &&
-        menuToggle.checked &&
-        mobileMenu &&
-        !mobileMenu.contains(event.target) &&
-        !hamburgerLabel.contains(event.target) &&
-        !hamburgerContainer.contains(event.target) &&
-        event.target !== menuToggle
-    ) {
-        menuToggle.checked = false;
-        mobileMenu.classList.remove('open');
-    }
-});
-
-// Close mobile menu when clicking navigation links
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', function() {
-        const menuToggle = document.getElementById('menu-toggle');
-        if (menuToggle) {
-            menuToggle.checked = false;
-            document.querySelector('.mobile-menu')?.classList.remove('open');
-        }
-    });
-});
-
-// Close mobile menu on scroll
-let scrollTimeout;
-window.addEventListener('scroll', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    if (menuToggle && menuToggle.checked) {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            menuToggle.checked = false;
-            document.querySelector('.mobile-menu')?.classList.remove('open');
-        }, 100);
-    }
-});
+// Use pure CSS via checkbox + label (Tailwind peer utility). No JS needed here.
 
 /* ===== CONTACT FORM ===== */
 const contactForm = document.getElementById('contactForm');
@@ -484,6 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Carousel loading animation fix
+    const carousel = document.getElementById('projectsCarousel');
     if (carousel) {
         requestAnimationFrame(() => {
             setTimeout(() => {

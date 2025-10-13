@@ -299,6 +299,7 @@ nav .flex {
     transform: scale(0.95);
     transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
     pointer-events: none;
+    z-index: 50; /* ensure above page content */
 }
 
 .peer:checked ~ .mobile-menu {
@@ -308,13 +309,7 @@ nav .flex {
     pointer-events: auto;
 }
 
-/* JS fallback/open state */
-.mobile-menu.open {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-    pointer-events: auto;
-}
+/* No JS fallback needed when using pure CSS */
 
 .hamburger-icon {
     width: 2rem;

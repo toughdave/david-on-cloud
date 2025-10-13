@@ -33,7 +33,7 @@
             <!-- Hamburger Menu for Mobile -->
             <div class="md:hidden flex items-center">
                 <input type="checkbox" id="menu-toggle" class="hidden peer" />
-                <label for="menu-toggle" class="cursor-pointer flex items-center h-16 px-2">
+                <label for="menu-toggle" class="cursor-pointer flex items-center h-16 px-2" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="hamburger-icon flex flex-col justify-center items-center h-8 w-8">
                         <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
                         <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
@@ -41,7 +41,7 @@
                     </span>
                 </label>
                 <!-- Mobile menu with enhanced closing behavior -->
-                <div class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-40 rounded-xl
+                <div id="mobile-menu" class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-50 rounded-xl
                     opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
                     <div class="flex flex-col py-4 px-4 space-y-2">
                         <!-- Back to Home with arrow -->
