@@ -303,6 +303,17 @@ function updateActiveNavStates() {
 }
 
 /* ===== MOBILE MENU FUNCTIONALITY ===== */
+// Fallback: ensure tapping label toggles the checkbox and menu opens/closes
+document.addEventListener('click', function(e) {
+    const label = e.target.closest('label[for="menu-toggle"]');
+    if (label) {
+        const checkbox = document.getElementById('menu-toggle');
+        if (checkbox) {
+            checkbox.checked = !checkbox.checked;
+        }
+    }
+});
+
 // Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
     const menuToggle = document.getElementById('menu-toggle');

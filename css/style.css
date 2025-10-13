@@ -177,7 +177,6 @@ h3.text-2xl.font-semibold, h3.text-xl.font-semibold {
 .nav-link.active-page {
     transform: translateY(-2px);
     color: #667eea !important;
-    pointer-events: none;
 }
 
 .nav-link.active-page::before {
@@ -306,6 +305,7 @@ nav .flex {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
+    pointer-events: auto;
 }
 
 .hamburger-icon {
