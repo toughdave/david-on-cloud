@@ -1,3 +1,11 @@
+## v2.0.1 — 2025-10-30 20:25:51
+- ✅ fix(nav): restore fixed top navbar + sticky section headers; mobile menu interactivity and 
+- ✅ refactor(nav): pure-CSS mobile menu toggle; remove JS handlers; fix carousel reference; aria attrs 
+- ✅ fix(nav): reliable mobile hamburger toggle across browsers; aria sync and JS fallback class
+- ✅ fix(nav): mobile menu click and hover; restore active hover; JS fallback toggle
+- ✅ fix(html): close version span; chore(script): safer sed for version update
+- ✅ Bumped version to v2.0.1
+
 ## v2.0.0 — 2025-10-12 20:52:11
 - ✅ Add: implement complete CI/CD pipeline with multi-platform deployment support
 - ✅ Bumped version to v2.0.0
