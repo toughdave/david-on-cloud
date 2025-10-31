@@ -1,3 +1,7 @@
+## v3.0.0 — 2025-10-30 23:03:35
+- ✅ Add: implement dark mode with toggle, fix sticky headers, improve carousel spacing and contrast
+- ✅ Bumped version to v3.0.0
+
 ## v2.0.1 — 2025-10-30 20:25:51
 - ✅ fix(nav): restore fixed top navbar + sticky section headers; mobile menu interactivity and 
 - ✅ refactor(nav): pure-CSS mobile menu toggle; remove JS handlers; fix carousel reference; aria attrs 
