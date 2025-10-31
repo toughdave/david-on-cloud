@@ -305,6 +305,34 @@ function updateActiveNavStates() {
 /* ===== MOBILE MENU FUNCTIONALITY ===== */
 // Use pure CSS via checkbox + label (Tailwind peer utility). No JS needed here.
 
+// Auto-close mobile menu on same-page anchor navigation
+(function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!menuToggle || !mobileMenu) return;
+
+    function isSamePageAnchor(link) {
+        try {
+            const url = new URL(link.getAttribute('href', 2) || '', window.location.href);
+            if (!url.hash) return false;
+            const normalize = (p) => (p || '/').replace(/\/+$/, '') || '/';
+            const current = normalize(window.location.pathname);
+            const target = normalize(url.pathname || '/');
+            if (target === current) return true;
+            if (target.endsWith('/index.html') && (current === '/' || current.endsWith('/index.html'))) return true;
+            return false;
+        } catch { return false; }
+    }
+
+    mobileMenu.querySelectorAll('a, button').forEach(link => {
+        link.addEventListener('click', () => {
+            if (isSamePageAnchor(link)) {
+                setTimeout(() => { menuToggle.checked = false; }, 0);
+            }
+        });
+    });
+})();
+
 /* ===== CONTACT FORM ===== */
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {

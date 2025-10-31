@@ -298,8 +298,8 @@ nav .flex {
     visibility: hidden;
     transform: scale(0.95);
     transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-    pointer-events: none;
-    z-index: 50; /* ensure above page content */
+    pointer-events: auto;
+    z-index: 60;
 }
 
 .peer:checked ~ .mobile-menu {
@@ -308,6 +308,9 @@ nav .flex {
     transform: scale(1);
     pointer-events: auto;
 }
+
+#menu-toggle + label { position: relative; z-index: 40; }
+#menu-toggle:checked ~ #mobile-menu { z-index: 60; }
 
 /* No JS fallback needed when using pure CSS */
 
