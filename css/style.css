@@ -1,10 +1,50 @@
+/* ===== DARK MODE THEME VARIABLES ===== */
+:root {
+    /* Light mode (default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-sm: rgba(0, 0, 0, 0.05);
+    --shadow-md: rgba(0, 0, 0, 0.1);
+    --shadow-lg: rgba(0, 0, 0, 0.15);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+}
+
+[data-theme="dark"] {
+    /* Dark mode */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --border-color: #334155;
+    --shadow-sm: rgba(0, 0, 0, 0.3);
+    --shadow-md: rgba(0, 0, 0, 0.4);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+    --nav-bg: rgba(15, 23, 42, 0.95);
+    --card-bg: #1e293b;
+    --input-bg: #334155;
+    --gradient-start: #7c3aed;
+    --gradient-end: #a855f7;
+}
+
 /* ===== PAGE LAYOUT FIX FOR SIDE SPACE ===== */
 html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box;
     max-width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .hero-gradient,
@@ -26,16 +66,14 @@ html, body {
 /* ===== BASE STYLES ===== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
     /* scroll-snap-type: y mandatory; */ /* COMMENTED OUT - SCROLL SNAP */
 }
 
 html {
     scroll-behavior: smooth;
-}
-/* ===== BASE STYLES ===== */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
-    /* scroll-snap-type: y mandatory; */ /* COMMENTED OUT - SCROLL SNAP */
+    background-color: var(--bg-primary);
 }
 
 h1 {
@@ -281,6 +319,7 @@ nav .flex {
 }
 
 .sticky-section-title {
+    position: -webkit-sticky;
     position: sticky;
     top: 64px;
     z-index: 20;
@@ -290,6 +329,7 @@ nav .flex {
     margin-bottom: 0;
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
     transition: box-shadow 0.3s;
+    will-change: transform;
 }
 
 /* ===== MOBILE MENU BASE STYLES ===== */
@@ -348,7 +388,7 @@ nav .flex {
     position: relative;
     width: 100%;
     overflow: visible;
-    padding: 2rem 0;
+    padding: 2rem 3.5rem;
     margin: 0;
     box-sizing: border-box;
 }
@@ -501,7 +541,7 @@ nav .flex {
 /* Desktop styles */
 @media (min-width: 1024px) {
     .carousel-container {
-        padding: 2rem 2.5rem;
+        padding: 2rem 4rem;
         margin: 0;
     }
     
@@ -536,8 +576,7 @@ nav .flex {
 /* Tablet styles */
 @media (max-width: 1023px) and (min-width: 769px) {
     .carousel-container {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding: 2rem 3rem;
         margin: 0;
         box-sizing: border-box;
         max-width: 100%;
@@ -567,11 +606,11 @@ nav .flex {
 /* Mobile styles - arrows inside with proper spacing */
 @media (max-width: 768px) {
     html, body {
-        overflow-x: hidden !important;
+        overflow-x: clip !important;
         max-width: 100%;
     }
     .carousel-container {
-        padding: 1rem 0;
+        padding: 1rem 3rem;
         margin: 0; /* Keep aligned with body */
         overflow: visible;
         max-width: 100%;
@@ -726,6 +765,182 @@ html {
     50%  { transform: scale(0.95) translateY(2px); }
     70%  { transform: scale(1.05) translateY(-4px); }
     100% { transform: scale(1) translateY(0); }
+}
+
+/* ===== DARK MODE TOGGLE BUTTON ===== */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--bg-tertiary);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+}
+
+.theme-toggle:hover {
+    background: var(--border-color);
+}
+
+.theme-toggle-slider {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px var(--shadow-md);
+}
+
+.theme-toggle-slider svg {
+    width: 14px;
+    height: 14px;
+    color: white;
+}
+
+[data-theme="dark"] .theme-toggle-slider {
+    transform: translateX(30px);
+}
+
+/* ===== DARK MODE STYLES ===== */
+[data-theme="dark"] .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+    background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+    background-color: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-gray-800 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+    color: var(--text-tertiary) !important;
+}
+
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300 {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .shadow-sm,
+[data-theme="dark"] .shadow-md,
+[data-theme="dark"] .shadow-lg {
+    box-shadow: 0 4px 6px var(--shadow-md), 0 2px 4px var(--shadow-sm) !important;
+}
+
+[data-theme="dark"] nav {
+    background-color: var(--nav-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .mobile-menu {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+[data-theme="dark"] .hero-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
+}
+
+[data-theme="dark"] .sticky-section-title {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .sticky-section-title h2.text-gray-800,
+[data-theme="dark"] .section-title-container h2.text-gray-800,
+[data-theme="dark"] .sticky-section-title h2,
+[data-theme="dark"] .section-title-container h2 {
+    color: #c7d2fe !important;
+}
+
+[data-theme="dark"] .project-card {
+    background: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .project-card h3 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .project-card p {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .project-tag {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .skill-card {
+    background: var(--card-bg) !important;
+}
+
+[data-theme="dark"] footer {
+    background-color: #0a0f1e !important;
+}
+
+/* Dark mode: Better contrast for projects and skills section backgrounds */
+[data-theme="dark"] #projects,
+[data-theme="dark"] #skills {
+    background-color: #0f172a !important;
+}
+
+/* Dark mode: Social icons - make them visible with colored backgrounds */
+[data-theme="dark"] .contact-social-btn {
+    background: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] .contact-social-btn i,
+[data-theme="dark"] .contact-social-btn svg {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .contact-social-btn:hover {
+    background: #4f46e5 !important;
+}
+
+[data-theme="dark"] .contact-social-btn:hover i,
+[data-theme="dark"] .contact-social-btn:hover svg {
+    color: #ffffff !important;
+}
+
+/* Dark mode: Fix card body fade gradient */
+[data-theme="dark"] .card-body::after {
+    background: linear-gradient(to bottom, rgba(30, 41, 59, 0), rgba(30, 41, 59, 0.95) 80%) !important;
+}
+
+/* Dark mode: Section titles - MUST be last to override Tailwind classes */
+[data-theme="dark"] h2.text-gray-800 {
+    color: #c7d2fe !important;
 }
 
 
