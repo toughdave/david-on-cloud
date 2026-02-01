@@ -1,3 +1,7 @@
+## v3.0.1 — 2026-02-01 11:09:32
+- ✅ Improve accessibility and performance across pages
+- ✅ Bumped version to v3.0.1
+
 ## v3.0.0 — 2025-10-30 23:03:35
 - ✅ Add: implement dark mode with toggle, fix sticky headers, improve carousel spacing and contrast
 - ✅ Bumped version to v3.0.0
