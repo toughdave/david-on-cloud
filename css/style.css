@@ -60,7 +60,8 @@ html, body {
 .max-w-6xl {
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
+    width: 100%;
+    max-width: 72rem;
     box-sizing: border-box;
 }
 /* ===== BASE STYLES ===== */
@@ -82,10 +83,28 @@ h1 {
 }
 
 p {
-	color: rgb(255, 255, 255);
 	font-size: 15px;
 	margin-bottom: 10px;
 	margin-top: 5px;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 24px;
+    height: calc(100% - 24px);
+    width: 2px;
+    background: #e2e8f0;
 }
 
 
@@ -107,15 +126,16 @@ p {
     min-height: unset;
 }
 
-/* Show 2 lines and fade out bottom with gradient for card body */
+/* Show 3 lines and fade out bottom with gradient for card body */
 .card-body {
     position: relative;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-height: 2.5em;
+    max-height: 4.5em;
+    line-height: 1.5em;
     transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1);
     margin-bottom: 0.1em;
 }
@@ -126,9 +146,14 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 1.2em;
+    height: 1.5em;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.85) 80%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 70%);
+    display: none;
+}
+
+.card-body.has-overflow::after {
+    display: block;
 }
 
 .card-body.expanded {
@@ -154,7 +179,13 @@ p {
 .more-link {
     margin-top: 0;
     margin-bottom: 0.4em;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 .view-link {
@@ -410,6 +441,11 @@ nav .flex {
     transition: scroll-behavior 0.3s ease;
     margin: 0;
     box-sizing: border-box;
+}
+
+#projectsCarousel:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 4px;
 }
 
 /* Project cards - horizontal layout for carousel */
@@ -935,12 +971,34 @@ html {
 
 /* Dark mode: Fix card body fade gradient */
 [data-theme="dark"] .card-body::after {
-    background: linear-gradient(to bottom, rgba(30, 41, 59, 0), rgba(30, 41, 59, 0.95) 80%) !important;
+    background: linear-gradient(to bottom, rgba(30, 41, 59, 0) 0%, rgba(30, 41, 59, 0.95) 70%) !important;
+}
+
+/* Dark mode: Lighter project links for better visibility */
+[data-theme="dark"] .more-link,
+[data-theme="dark"] .view-link,
+[data-theme="dark"] .project-link a {
+    color: #a5b4fc !important;
+}
+
+[data-theme="dark"] .more-link:hover,
+[data-theme="dark"] .view-link:hover,
+[data-theme="dark"] .project-link a:hover {
+    color: #c7d2fe !important;
 }
 
 /* Dark mode: Section titles - MUST be last to override Tailwind classes */
 [data-theme="dark"] h2.text-gray-800 {
     color: #c7d2fe !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 

@@ -7,14 +7,16 @@
 
 /* ===== INITIALIZATION ===== */
 // Initialize AOS animations
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 AOS.init({
     duration: 800,
     easing: 'ease-in-out',
-    once: true
+    once: true,
+    disable: prefersReducedMotion
 });
 
 // Initialize Vanta.js background
-if (document.getElementById('vanta-bg')) {
+if (!prefersReducedMotion && document.getElementById('vanta-bg')) {
     VANTA.GLOBE({
         el: '#vanta-bg',
         mouseControls: true,
@@ -70,14 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         const currentScroll = carousel.scrollLeft;
         const threshold = 5; // Small threshold for detection
-        
-        console.log('End check:', {
-            currentScroll,
-            maxScroll,
-            difference: maxScroll - currentScroll,
-            isAtEnd: currentScroll >= maxScroll - threshold
-        });
-        
         return currentScroll >= maxScroll - threshold;
     }
     
@@ -87,19 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentScroll = carousel.scrollLeft;
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         
-        console.log('Scroll attempt:', {
-            direction,
-            currentScroll,
-            maxScroll,
-            cardWidth,
-            isAtStart: isAtStart(),
-            isAtEnd: isAtEnd()
-        });
-        
         if (direction === 'left') {
             if (isAtStart()) {
                 // At start, jump to end for infinite loop
-                console.log('Jumping to end from start');
                 carousel.scrollTo({
                     left: maxScroll,
                     behavior: 'smooth'
@@ -107,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Normal scroll left
                 const targetScroll = Math.max(0, currentScroll - cardWidth);
-                console.log('Scrolling left to:', targetScroll);
                 carousel.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
@@ -116,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else { // direction === 'right'
             if (isAtEnd()) {
                 // At end, jump to start for infinite loop
-                console.log('Jumping to start from end');
                 carousel.scrollTo({
                     left: 0,
                     behavior: 'smooth'
@@ -124,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Normal scroll right
                 const targetScroll = Math.min(maxScroll, currentScroll + cardWidth);
-                console.log('Scrolling right to:', targetScroll);
                 carousel.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
@@ -136,13 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for navigation buttons
     leftBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Left button clicked');
         scrollToCard('left');
     });
     
     rightBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Right button clicked');
         scrollToCard('right');
     });
     
@@ -269,10 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     });
     
-    // Debug: Log scroll events
-    carousel.addEventListener('scroll', () => {
-        console.log('Scroll position:', carousel.scrollLeft, '/', carousel.scrollWidth - carousel.clientWidth);
-    });
+    // Debug logging removed for production
 });
 
 /* ===== NAVIGATION FUNCTIONALITY ===== */

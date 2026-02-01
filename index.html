@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
     
     <!-- Structured data and meta tags -->
     <meta name="description" content="David - Cisco Networking Engineer & Web Developer">
@@ -23,24 +23,6 @@
     }
     </script>
 
-    <style>
-        .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 24px;
-            height: calc(100% - 24px);
-            width: 2px;
-            background: #e2e8f0;
-        }
-    </style>
 </head>
 <body class="font-sans antialiased text-gray-800 snap-container pt-16">
     <!-- Animated Background -->
@@ -121,7 +103,7 @@
                 <div data-aos="fade-left" class="flex justify-center">
                     <div class="relative">
                         <div class="absolute -inset-4 bg-indigo-500 rounded-full opacity-20 blur-lg"></div>
-                        <img src="http://static.photos/technology/640x360/149" alt="David" class="relative rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl">
+                        <img src="https://static.photos/technology/640x360/149" alt="David" class="relative rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl" width="256" height="256" loading="eager" fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
@@ -297,23 +279,23 @@
             <!-- Carousel container with proper spacing -->
             <div class="carousel-container">
                 <!-- Navigation arrows positioned outside -->
-                <button class="carousel-nav carousel-nav-left" id="scrollLeft" aria-label="Previous projects">
+                <button class="carousel-nav carousel-nav-left" id="scrollLeft" aria-label="Previous projects" aria-controls="projectsCarousel">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
                 
-                <button class="carousel-nav carousel-nav-right" id="scrollRight" aria-label="Next projects">
+                <button class="carousel-nav carousel-nav-right" id="scrollRight" aria-label="Next projects" aria-controls="projectsCarousel">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
                 
                 <!-- Carousel content -->
-                <div id="projectsCarousel" class="carousel-track">
+                <div id="projectsCarousel" class="carousel-track" tabindex="0" role="region" aria-label="Featured projects carousel" aria-roledescription="carousel">
                     <!-- Project Card 1 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Enterprise-LAN-Simulation.png" alt="Enterprise LAN Simulation">
+                        <img src="/img/Enterprise-LAN-Simulation.png" alt="Enterprise LAN Simulation" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>Enterprise LAN Simulation</h3>
                             <p>Designed and troubleshooted a multi-VLAN enterprise LAN using Cisco Catalyst switches, routers, and APs in my home lab. Implemented STP, inter-VLAN routing, and wireless security.</p>
@@ -333,7 +315,7 @@
                     
                     <!-- Project Card 2 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/VoIP-&-IP-Telephony-Lab.png" alt="VoIP & IP Telephony Lab">
+                        <img src="/img/VoIP-&-IP-Telephony-Lab.png" alt="VoIP & IP Telephony Lab" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>VoIP & IP Telephony Lab</h3>
                             <p>Deployed Cisco IP phones and CUCM in a home lab to simulate enterprise VoIP, configure dial plans, and troubleshoot call routing and QoS issues.</p>
@@ -352,7 +334,7 @@
                     
                     <!-- Project Card 3 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Network-Security-&-Surveillance.png" alt="Network Security & Surveillance">
+                        <img src="/img/Network-Security-&-Surveillance.png" alt="Network Security & Surveillance" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>Network Security & Surveillance</h3>
                             <p>Integrated Cisco routers, firewalls, and IP cameras to create a secure, segmented network. Configured ACLs, NAT, and remote monitoring for real-world security scenarios.</p>
@@ -372,7 +354,7 @@
                     
                     <!-- Project Card 4 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Cloud-Migration-Tool.png" alt="Cloud Migration Tool">
+                        <img src="/img/Cloud-Migration-Tool.png" alt="Cloud Migration Tool" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>Cloud Migration Tool</h3>
                             <p>Automated tool for migrating applications between cloud providers with minimal downtime.</p>
@@ -391,7 +373,7 @@
                     
                     <!-- Project Card 5 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/WAN-Simulation-with-SD-WAN.png" alt="WAN Simulation with SD-WAN">
+                        <img src="/img/WAN-Simulation-with-SD-WAN.png" alt="WAN Simulation with SD-WAN" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>WAN Simulation with SD-WAN</h3>
                             <p>Simulated a multi-branch WAN using Cisco Packet Tracer, implementing SD-WAN, dynamic routing, and failover testing for enterprise connectivity.</p>
@@ -410,7 +392,7 @@
                     
                     <!-- Project Card 6 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Wireless-Network-Design.png" alt="Wireless Network Design">
+                        <img src="/img/Wireless-Network-Design.png" alt="Wireless Network Design" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>Wireless Network Design</h3>
                             <p>Designed and simulated a secure wireless network for a campus environment using Cisco Packet Tracer, including WPA2, guest VLANs, and roaming.</p>
@@ -429,7 +411,7 @@
                     
                     <!-- Project Card 7 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/DevOps-Pipeline.png" alt="DevOps Pipeline">
+                        <img src="/img/DevOps-Pipeline.png" alt="DevOps Pipeline" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>DevOps Pipeline</h3>
                             <p>End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
@@ -446,7 +428,7 @@
                     
                     <!-- Project Card 8 -->
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/img/PuTTy-2.png" alt="PuTTY CLI Shells">
+                        <img src="/img/PuTTy-2.png" alt="PuTTY CLI Shells" loading="lazy" decoding="async" width="680" height="384">
                         <div class="project-card-content">
                             <h3>CLI Shells (PuTTY) for Real-World Networking</h3>
                             <p>Demonstrated the use of CLI shells such as PuTTY to configure, monitor, and troubleshoot Cisco switches and routers in a live lab environment.</p>
@@ -520,13 +502,13 @@
                     </div>
                     <div class="mt-8 flex space-x-4">
                         <div class="contact-socials">
-                            <a href="https://github.com/toughdave" class="contact-social-btn">
+                            <a href="https://github.com/toughdave" class="contact-social-btn" aria-label="GitHub">
                                 <i data-feather="github" class="text-gray-700"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="contact-social-btn">
+                            <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="contact-social-btn" aria-label="LinkedIn">
                                 <i data-feather="linkedin" class="text-gray-700"></i>
                             </a>
-                            <a href="https://x.com/toughdave" class="contact-social-btn">
+                            <a href="https://x.com/toughdave" class="contact-social-btn" aria-label="Twitter">
                                 <i data-feather="twitter" class="text-gray-700"></i>
                             </a>
                         </div>
@@ -553,7 +535,7 @@
                         <button type="submit" class="animated-btn w-full px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition">
                             Send Message
                         </button>
-                        <div id="formStatus" class="mt-4 text-center text-green-600 font-semibold hidden">Message sent!</div>
+                        <div id="formStatus" class="mt-4 text-center text-green-600 font-semibold hidden" role="status" aria-live="polite" aria-atomic="true">Message sent!</div>
                     </form>
                 </div>
             </div>
@@ -567,13 +549,13 @@
                 <h2 class="text-2xl font-bold mb-4">David's Portfolio</h2>
                 <p class="text-gray-400 mb-8">Cisco Networking Engineer with extensive hands-on experience through dedicated home lab practice with enterprise-grade Cisco equipment.</p>
                 <div class="flex justify-center space-x-6 mb-8">
-                    <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
+                    <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="GitHub">
                         <i data-feather="github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
+                    <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <i data-feather="linkedin"></i>
                     </a>
-                    <a href="https://x.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener">
+                    <a href="https://x.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="Twitter">
                         <i data-feather="twitter"></i>
                     </a>
                 </div>
@@ -590,11 +572,11 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:bg-indigo-700 hover:scale-110 z-50">
+    <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:bg-indigo-700 hover:scale-110 z-50" aria-label="Back to top">
         <i data-feather="arrow-up" class="w-5 h-5"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+    <script src="js/scripts.js" defer></script>
 </body>
 </html>
