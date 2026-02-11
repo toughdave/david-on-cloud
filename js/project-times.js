@@ -14,10 +14,13 @@ function timeAgo(date) {
 
 function updateTimes() {
     document.querySelectorAll('[data-posted]').forEach(el => {
-        el.textContent = 'Date posted: ' + timeAgo(el.getAttribute('data-posted'));
+        el.textContent = 'Posted: ' + timeAgo(el.getAttribute('data-posted'));
     });
     document.querySelectorAll('[data-modified]').forEach(el => {
-        el.textContent = 'Last modified: ' + timeAgo(el.getAttribute('data-modified'));
+        // We only use the attribute for the hover popover now.
+        // Clearing text content to remove it from visual layout as requested.
+        el.textContent = '';
+        el.style.display = 'none'; 
     });
 }
 const TIME_UPDATE_INTERVAL = 60000;
@@ -45,54 +48,98 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// "More..." link logic with overflow detection
+// "More" link logic with overflow detection
+const OVERFLOW_RECHECK_DELAY = 120;
+
+const getCardBodyFromLink = (link) => {
+    const targetId = link.getAttribute('data-target');
+    if (targetId) {
+        const body = document.getElementById(targetId);
+        if (body) return body;
+    }
+    const previous = link.previousElementSibling;
+    if (previous && previous.classList.contains('card-body')) return previous;
+    return null;
+};
+
+const getMoreLinkFromBody = (body) => {
+    const next = body.nextElementSibling;
+    if (next && next.classList.contains('more-link')) return next;
+    if (body.id) {
+        const scoped = body.parentElement?.querySelector(`.more-link[data-target="${body.id}"]`);
+        if (scoped) return scoped;
+    }
+    return null;
+};
+
+const updateMoreLinkState = (link, isExpanded) => {
+    if (!link) return;
+    const collapsedLabel = link.dataset.collapsedLabel || 'Read more...';
+    const expandedLabel = link.dataset.expandedLabel || 'Show less';
+    const textEl = link.querySelector('.more-link-text');
+    const nextLabel = isExpanded ? expandedLabel : collapsedLabel;
+    if (textEl) {
+        textEl.textContent = nextLabel;
+    } else {
+        link.textContent = nextLabel;
+    }
+    link.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    link.classList.toggle('is-expanded', isExpanded);
+};
+
 function checkTextOverflow() {
     document.querySelectorAll('.card-body').forEach(body => {
-        const moreLink = body.nextElementSibling;
-        if (!moreLink || !moreLink.classList.contains('more-link')) return;
-        
-        // Check if text is actually overflowing (clamped)
-        const isOverflowing = body.scrollHeight > body.clientHeight;
-        
-        if (isOverflowing) {
-            // Show fade and "more..." link
-            body.classList.add('has-overflow');
+        const moreLink = getMoreLinkFromBody(body);
+        if (!moreLink) return;
+
+        const isExpanded = body.classList.contains('expanded');
+        const isOverflowing = body.scrollHeight > body.clientHeight + 1;
+        const shouldShow = isOverflowing || isExpanded;
+
+        if (shouldShow) {
             moreLink.style.display = 'inline-flex';
+            body.classList.toggle('has-overflow', isOverflowing && !isExpanded);
         } else {
-            // Hide fade and "more..." link
-            body.classList.remove('has-overflow');
             moreLink.style.display = 'none';
-            moreLink.setAttribute('aria-expanded', 'false');
+            body.classList.remove('has-overflow');
+            body.classList.remove('expanded');
         }
+
+        updateMoreLinkState(moreLink, isExpanded && shouldShow);
     });
 }
+
+const scheduleOverflowCheck = (delay = OVERFLOW_RECHECK_DELAY) => {
+    setTimeout(checkTextOverflow, delay);
+};
+
+window.refreshProjectOverflow = scheduleOverflowCheck;
 
 // Run after DOM is loaded and fonts/styles are applied
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(checkTextOverflow, 100);
-    });
+    document.addEventListener('DOMContentLoaded', () => scheduleOverflowCheck());
 } else {
-    setTimeout(checkTextOverflow, 100);
+    scheduleOverflowCheck();
+}
+
+if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => scheduleOverflowCheck());
 }
 
 // Re-check on window resize
-window.addEventListener('resize', checkTextOverflow);
+window.addEventListener('resize', () => scheduleOverflowCheck());
 
-document.querySelectorAll('.more-link').forEach(link => {
-    link.addEventListener('click', function() {
-        const targetId = link.getAttribute('data-target');
-        const body = document.getElementById(targetId);
-        if (body.classList.contains('expanded')) {
-            body.classList.remove('expanded');
-            link.textContent = 'more...';
-            link.setAttribute('aria-expanded', 'false');
-            // Re-check overflow after collapse
-            setTimeout(checkTextOverflow, 100);
-        } else {
-            body.classList.add('expanded');
-            link.textContent = 'less...';
-            link.setAttribute('aria-expanded', 'true');
-        }
-    });
+// Delegate click handling so dynamically injected cards work
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('.more-link');
+    if (!link) return;
+    const body = getCardBodyFromLink(link);
+    if (!body) return;
+    const isExpanded = body.classList.toggle('expanded');
+    updateMoreLinkState(link, isExpanded);
+    if (!isExpanded) {
+        scheduleOverflowCheck();
+    } else {
+        body.classList.remove('has-overflow');
+    }
 });

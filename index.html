@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>David | Networking Specialist</title>
+    <title>David | Systems & Data Analyst</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" defer></script>
     
     <!-- Structured data and meta tags -->
-    <meta name="description" content="David - Cisco Networking Engineer & Web Developer">
+    <meta name="description" content="David - Systems & Data Analyst">
     <meta property="og:title" content="David On Cloud - Portfolio">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "David",
-      "jobTitle": "Cisco Networking Engineer"
+      "jobTitle": "Systems & Data Analyst"
     }
     </script>
 
 </head>
 <body class="font-sans antialiased text-gray-800 snap-container pt-16">
+    <script>
+        document.body.classList.toggle('fun-mode', localStorage.getItem('fun-mode') !== 'off');
+    </script>
     <!-- Animated Background -->
     <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full -z-10"></div>
 
@@ -33,21 +43,32 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-indigo-600">
-                        <a href="index.html#intro" class="transition">Portfolio</a>
+                    <span class="text-xl font-bold text-indigo-600 nav-brand">
+                        <a href="index.html#intro" class="transition">P<span class="brand-o">o</span>rtf<span class="brand-o">o</span>li<span class="brand-o">o</span></a>
                     </span>
                 </div>
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center nav-links">
                     <a href="index.html" class="nav-link text-gray-700 font-bold transition relative">Home</a>
                     <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
                     <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
                     <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                    <a href="projects.html" class="nav-link text-gray-700 transition relative">Projects</a>
-                    <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
+                    
+                    <!-- Projects Nav with Dropdown -->
+                    <div class="relative nav-item-projects group h-full flex items-center">
+                        <a href="projects.html" id="nav-projects-link" class="nav-link text-gray-700 transition relative"><span class="nav-link-text">Projects</span></a>
+                        <!-- Dropdown: Only shown when parent has 'mode-featured' class and is hovered -->
+                        <div id="nav-projects-dropdown" class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-48 bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-xl py-2 opacity-0 invisible transition-all duration-300 origin-top scale-95 border border-indigo-100">
+                            <a href="projects.html" class="flex items-center justify-center gap-1 px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition-colors rounded-lg mx-2">
+                                View all projects <i data-feather="arrow-right" class="inline w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="index.html#contact" id="nav-contact-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn ml-4">Contact</a>
                 </div>
                 <!-- Theme Toggle -->
-                <div class="flex items-center ml-4">
+                <div class="flex items-center ml-4 gap-3">
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
                         <div class="theme-toggle-slider">
                             <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,22 +109,32 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id = "intro" class="snap-section hero-gradient text-white min-h-screen flex items-center">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id = "intro" class="snap-section hero-gradient fun-star-scatter text-white min-h-screen flex items-center">
+        <div class="fun-star-overlay" aria-hidden="true"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 hero-content">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm David</h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Networking Engineer</h2>
-                    <p class="text-lg opacity-90 mb-8">B.Tech & M.Tech in Computer Science with deep expertise in Cisco networking technologies. I operate a fully-equipped home lab with Cisco switches, routers, firewalls, APs, IP phones, and security cameras to simulate and troubleshoot real enterprise networking scenarios.</p>
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                        <a href="#contact" class="flex-1 px-4 py-2.5 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition text-center text-sm sm:text-base">Get In Touch</a>
-                        <a href="#projects" class="flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">View Projects Brief</a>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                        <span id="typing-text" class="typing-text" data-text="Hi, I'm David" data-force-typing="true">Hi, I'm David</span>
+                        <span class="typing-cursor typing-cursor-underscore force-blink" aria-hidden="true"></span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Systems & Data Analyst</h2>
+                    <p class="text-lg opacity-90 mb-8">Systems & Data Analyst with a Master’s degree in Computer Science and 9+ years supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows. Experienced in system analysis, data process improvement, and operational reliability across Windows and Linux platforms. Hands-on experimentation in a personal home lab with enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments.</p>
+                    <div class="hero-tags flex flex-wrap gap-3 text-xs sm:text-sm uppercase tracking-wider text-indigo-100 mb-6">
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Systems Analysis</span>
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Data Accuracy</span>
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Process Improvement</span>
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">IT Support</span>
+                    </div>
+                    <div class="hero-actions flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <a href="#contact" class="hero-primary-btn flex-1 px-4 py-2.5 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition text-center text-sm sm:text-base">Get In Touch</a>
+                        <a href="#projects" class="hero-secondary-btn flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">Projects Brief</a>
                     </div>
                 </div>
-                <div data-aos="fade-left" class="flex justify-center">
+                <div data-aos="fade-left" class="flex justify-center hero-portrait-wrap">
                     <div class="relative">
-                        <div class="absolute -inset-4 bg-indigo-500 rounded-full opacity-20 blur-lg"></div>
-                        <img src="https://static.photos/technology/640x360/149" alt="David" class="relative rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl" width="256" height="256" loading="eager" fetchpriority="high" decoding="async">
+                        <div class="hero-portrait-glow absolute -inset-6 rounded-full" aria-hidden="true"></div>
+                        <img src="img/protrait-mtd-flip.jpg" alt="David" class="hero-portrait-img relative rounded-full object-cover border-4 border-white shadow-xl" width="320" height="320" loading="eager" fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
@@ -111,7 +142,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="snap-section py-20 bg-white">
+    <section id="about" class="snap-section fun-galaxy-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
@@ -120,8 +151,8 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
                     <h3 class="text-2xl font-semibold mb-4">Professional Summary</h3>
-                    <p class="text-gray-600 mb-4">I'm a dedicated Cisco networking professional with degrees in Computer Science (B.Tech & M.Tech). My passion lies in mastering Cisco technologies through hands-on projects in my comprehensive home lab environment.</p>
-                    <p class="text-gray-600 mb-6">For the past several months, I've been intensively working with Cisco switches, routers, wireless APs, IP telephony systems, and security cameras in my home lab. This setup allows me to replicate and troubleshoot complex enterprise networking issues, giving me practical experience that goes beyond theoretical knowledge.</p>
+                    <p class="text-gray-600 mb-4">Information Systems and Systems Analyst with a Master’s degree in Computer Science and proven experience supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows.</p>
+                    <p class="text-gray-600 mb-6">Strong background in analyzing existing systems, improving data processes, supporting system implementations, and maintaining operational reliability across Windows and Linux platforms. Known for structured documentation, data accuracy, and supporting high-volume institutional systems aligned with organizational standards.</p>
                     <div class="flex flex-wrap gap-4">
                         <div class="flex items-center">
                             <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
@@ -138,13 +169,17 @@
                         <h3 class="text-xl font-semibold mb-6">Education</h3>
                         <div class="space-y-6">
                             <div>
-                                <h4 class="font-medium">M.Tech in Computer Science</h4>
+                                <h4 class="font-medium">M.Sc. in Computer Science</h4>
                                 <p class="text-gray-600">Federal University of Technology, Akure (FUTA) • 2019</p>
                             </div>
                             <div>
-                                <h4 class="font-medium">B.Tech in Computer Science</h4>
+                                <h4 class="font-medium">B.Sc. in Computer Science</h4>
                                 <p class="text-gray-600">Federal University of Technology, Akure (FUTA) • 2014</p>
                             </div>
+                        </div>
+                        <div class="mt-8 border-t border-gray-200 pt-6">
+                            <h4 class="font-medium text-gray-800 mb-3">Additional Practical Experience</h4>
+                            <p class="text-gray-600">Hands-on systems and networking experimentation through a personal home lab using enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments.</p>
                         </div>
                     </div>
                 </div>
@@ -153,61 +188,167 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="snap-section py-20 bg-gray-50">
+    <section id="skills" class="snap-section fun-galaxy-section py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">My Skills</h2>
                 <div class="section-title-underline"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Cisco Certifications -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Systems Implementation & Support -->
+                <div data-aos="fade-up" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="settings" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Systems Implementation & Support</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Systems Analysis</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Software Installation</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Implementation & Testing</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Troubleshooting</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">QA Support</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Documentation</span>
+                    </div>
+                </div>
+
+                <!-- Data Analysis & Reporting -->
                 <div data-aos="fade-up" data-aos-delay="100" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
                     <div class="flex items-center mb-4">
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
-                            <i data-feather="award" class="text-indigo-600"></i>
+                            <i data-feather="pie-chart" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-lg font-bold">Cisco Certifications</h3>
+                        <h3 class="text-lg font-bold">Data Analysis & Reporting</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CCNA (Pursuing)</span>
-
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Excel</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Google Sheets</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Power BI</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">SQL Databases</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Data Validation</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Record Management</span>
                     </div>
                 </div>
                 
-                <!-- Web Development -->
+                <!-- Automation & Collaboration -->
                 <div data-aos="fade-up" data-aos-delay="200" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
                     <div class="flex items-center mb-4">
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
                             <i data-feather="code" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-lg font-bold">Web Development</h3>
+                        <h3 class="text-lg font-bold">Automation & Collaboration</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">HTML5</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CSS3</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">JavaScript</span>
                         <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">SQL</span>
                         <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">PHP</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Workflow Automation</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Microsoft 365</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">End-User Training</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Stakeholder Communication</span>
                     </div>
                 </div>
                 
-                <!-- Cisco Technologies -->
+                <!-- Operating Systems -->
                 <div data-aos="fade-up" data-aos-delay="300" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
                     <div class="flex items-center mb-4">
                         <div class="p-3 bg-indigo-100 rounded-full mr-4">
-                            <i data-feather="hard-drive" class="text-indigo-600"></i>
+                            <i data-feather="monitor" class="text-indigo-600"></i>
                         </div>
-                        <h3 class="text-lg font-bold">Cisco Technologies</h3>
+                        <h3 class="text-lg font-bold">Operating Systems</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">IOS/NX-OS</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Routing Protocols</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">VLANs & STP</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Cisco Wireless</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">CUCM/IP Telephony</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Packet Tracer</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">SD-WAN</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Windows</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Linux</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Configuration</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Updates</span>
+                    </div>
+                </div>
+
+                <!-- Infrastructure & Virtualization -->
+                <div data-aos="fade-up" data-aos-delay="400" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="server" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Infrastructure &amp; Virtualization</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Windows Server</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">Active Directory</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">VirtualBox</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">VMware</span>
+                    </div>
+                </div>
+
+                <!-- Networking Fundamentals -->
+                <div data-aos="fade-up" data-aos-delay="500" class="skill-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="share-2" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Networking Fundamentals</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">TCP/IP</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">DNS</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">DHCP</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">VPN Basics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fun-console" data-fun-element aria-hidden="true">
+                <div class="fun-console-header">
+                    <span class="console-title">System Console</span>
+                    <span class="console-chip">fun-mode</span>
+                </div>
+                <div class="fun-console-body">
+                    <p class="console-line">boot sequence: skills module online</p>
+                    <p class="console-line">latency check: 4ms • throughput 99.2%</p>
+                    <p class="console-line console-status fun-message" id="fun-console-status" data-messages="[OK] Data integrity checks passed|[SYNC] Reports cache warmed|[READY] Pipelines standing by|[WARN] Minor drift corrected">[OK] Data integrity checks passed</p>
+                </div>
+            </div>
+            <div class="analyst-insights mt-12 grid md:grid-cols-3 gap-6" data-aos="fade-up">
+                <div class="analyst-insight-card">
+                    <div class="analyst-metric">
+                        <span class="analyst-metric-value">4K+</span>
+                        <span class="analyst-metric-label">Student Records Processed</span>
+                    </div>
+                    <p class="analyst-metric-note">Semester results, admissions, and graduation audits.</p>
+                    <div class="analyst-spark">
+                        <span style="--bar: 82%"></span>
+                        <span style="--bar: 64%"></span>
+                        <span style="--bar: 78%"></span>
+                        <span style="--bar: 92%"></span>
+                        <span style="--bar: 70%"></span>
+                    </div>
+                </div>
+                <div class="analyst-insight-card">
+                    <div class="analyst-metric">
+                        <span class="analyst-metric-value">250+</span>
+                        <span class="analyst-metric-label">Reports Delivered Per Cycle</span>
+                    </div>
+                    <p class="analyst-metric-note">Executive-ready summaries and data integrity checks.</p>
+                    <div class="analyst-spark">
+                        <span style="--bar: 58%"></span>
+                        <span style="--bar: 72%"></span>
+                        <span style="--bar: 66%"></span>
+                        <span style="--bar: 84%"></span>
+                        <span style="--bar: 76%"></span>
+                    </div>
+                </div>
+                <div class="analyst-insight-card">
+                    <div class="analyst-metric">
+                        <span class="analyst-metric-value">6+</span>
+                        <span class="analyst-metric-label">Academic Cycles Supported</span>
+                    </div>
+                    <p class="analyst-metric-note">Operational continuity across exams and admissions.</p>
+                    <div class="analyst-spark">
+                        <span style="--bar: 48%"></span>
+                        <span style="--bar: 60%"></span>
+                        <span style="--bar: 74%"></span>
+                        <span style="--bar: 86%"></span>
+                        <span style="--bar: 90%"></span>
                     </div>
                 </div>
             </div>
@@ -216,51 +357,86 @@
 
     
     <!-- Experience Section -->
-    <section id="experience" class="snap-section py-20 bg-white">
+    <section id="experience" class="snap-section fun-galaxy-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Work Experience</h2>
                 <div class="section-title-underline"></div>
             </div>
-            <div class="max-w-3xl mx-auto">
+            <div class="max-w-6xl mx-auto">
                 <div class="space-y-8">
                     <!-- Experience 1 -->
-                    <div data-aos="fade-up" class="relative pl-8">
-                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
-                        <div class="bg-gray-50 p-6 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-1">Computer Course Instructor</h3>
-                            <p class="text-indigo-600 mb-2">Pures College of Technology, Toronto • Jan. 2024 - 2025</p>
-                            <p class="text-gray-600">Teaching computer IT concepts including Cisco Networking, Information System Ethics, Internet Programming, and Security. Designing engaging lesson plans and incorporating innovative teaching techniques to maximize student participation and comprehension.</p>
+                    <div data-aos="fade-up" class="experience-item relative">
+                        <div class="experience-card" style="--experience-image: url('https://static.photos/technology/1600x900/19'); --experience-inset-image: url('../img/Pures-College-classroom.jpg');">
+                            <div class="experience-card-content">
+                                <div>
+                                    <h3 class="experience-title">Computer IT Instructor (Computer Science &amp; Applied Computing)</h3>
+                                    <p class="experience-meta">Pures College of Technology - Scarborough, ON • Jan. 2024 - Aug. 2025</p>
+                                    <p class="experience-summary"><span class="experience-summary-title">Focus:</span> Delivered hands-on instruction while managing lab environments, software installations, and networking practicals for 250+ students.</p>
+                                    <p class="experience-bullet-title">Key outcomes</p>
+                                    <ul class="experience-list">
+                                        <li>Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.</li>
+                                        <li>Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory setups.</li>
+                                        <li>Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS environments).</li>
+                                        <li>Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.</li>
+                                        <li>Processed results and verified student records through Google Classroom workflows.</li>
+                                    </ul>
+                                    <div class="experience-log" data-fun-element aria-hidden="true">
+                                        <span class="log-label">System log</span>
+                                        <span class="log-line">lab sync: 250 endpoints • auth OK • deployment stable</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="experience-inset" aria-hidden="true"></div>
                         </div>
                     </div>
                     
                     <!-- Experience 2 -->
-                    <div data-aos="fade-up" data-aos-delay="100" class="relative pl-8">
-                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
-                        <div class="bg-gray-50 p-6 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-1">System Programmer</h3>
-                            <p class="text-indigo-600 mb-2">Federal University of Technology, Akure • Mar. 2017 - Aug. 2023</p>
-                            <p class="text-gray-600">Applied Python and MySQL to automate student data analysis. Designed student result processing software and biometric systems. Programmed and managed Centre for Continuing Education subdomain and administrative interfaces.</p>
+                    <div data-aos="fade-up" data-aos-delay="100" class="experience-item relative">
+                        <div class="experience-card" style="--experience-image: url('https://static.photos/technology/1600x900/45'); --experience-inset-image: url('../img/data-analysis-mtd.jpg');">
+                            <div class="experience-card-content">
+                                <div>
+                                    <h3 class="experience-title">Systems &amp; Data Analyst / System Programmer</h3>
+                                    <p class="experience-meta">Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE), Nigeria • Mar. 2017 - Aug. 2023</p>
+                                    <p class="experience-summary"><span class="experience-summary-title">Focus:</span> Supported academic information systems, data processing, and reporting workflows across admissions, examinations, and results processing.</p>
+                                    <p class="experience-bullet-title">Key outcomes</p>
+                                    <ul class="experience-list">
+                                        <li>Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.</li>
+                                        <li>Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.</li>
+                                        <li>Produced executive performance reports and analytical insights to guide planning decisions.</li>
+                                        <li>Managed exam operations tools (biometric verification, CCTV workflows) and secure evidence handling procedures.</li>
+                                        <li>Automated recurring data preparation with Python and performed readiness checks on exam systems.</li>
+                                    </ul>
+                                    <div class="experience-log" data-fun-element aria-hidden="true">
+                                        <span class="log-label">System log</span>
+                                        <span class="log-line">record queue: 4,000+ processed • anomaly rate 0.6%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="experience-inset" aria-hidden="true"></div>
                         </div>
                     </div>
                     
                     <!-- Experience 3 -->
-                    <div data-aos="fade-up" data-aos-delay="200" class="relative pl-8">
-                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
-                        <div class="bg-gray-50 p-6 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-1">Founder & Creative Director</h3>
-                            <p class="text-indigo-600 mb-2">Matigestic Studios (formerly Rarebreed Studios) • Mar. 2014 - Present</p>
-                            <p class="text-gray-600">Self-employed graphic designer specializing in 2D and 3D graphics for advertisements, events, music videos, business logos, branding, and motion graphics using Adobe Creative Suite and MAXON Cinema 4D.</p>
-                        </div>
-                    </div>
-
-                    <!-- Experience 4 -->
-                    <div data-aos="fade-up" data-aos-delay="300" class="relative pl-8">
-                        <div class="absolute left-0 top-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
-                        <div class="bg-gray-50 p-6 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-1">Computer Science (ICT) Teacher</h3>
-                            <p class="text-indigo-600 mb-2">Community Secondary School, Agulu-Awka • Nov. 2014 - Oct. 2015</p>
-                            <p class="text-gray-600">Taught Computer Studies (practical and theory). Served as ICT President for Nigeria Christian Corpers' Fellowship, managing ICT department and creating motion graphics content for organizational YouTube channel.</p>
+                    <div data-aos="fade-up" data-aos-delay="200" class="experience-item relative">
+                        <div class="experience-card experience-card-teaching" style="--experience-image: url('https://static.photos/technology/1600x900/102'); --experience-inset-image: url('../img/Teaching-Students-Anambra.jpg');">
+                            <div class="experience-card-content">
+                                <div>
+                                    <h3 class="experience-title">Computer Science (ICT) Teacher</h3>
+                                    <p class="experience-meta">Community Secondary School, Agulu-Awka, Nigeria • Dec. 2014 - Aug. 2015</p>
+                                    <p class="experience-summary"><span class="experience-summary-title">Focus:</span> Delivered foundational computer science instruction with emphasis on logical reasoning and structured problem solving.</p>
+                                    <p class="experience-bullet-title">Key outcomes</p>
+                                    <ul class="experience-list">
+                                        <li>Delivered foundational computer science instruction focused on logical reasoning and problem-solving.</li>
+                                        <li>Reviewed and assessed student work to ensure understanding and accuracy.</li>
+                                    </ul>
+                                    <div class="experience-log" data-fun-element aria-hidden="true">
+                                        <span class="log-label">System log</span>
+                                        <span class="log-line">curriculum boot: logic module deployed • comprehension 93%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="experience-inset" aria-hidden="true"></div>
                         </div>
                     </div>
                 </div>
@@ -269,11 +445,18 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="snap-section py-20 bg-gray-50" style="overflow: visible;">
+    <section id="projects" class="snap-section fun-galaxy-section featured-projects py-20 bg-gray-50" style="overflow: visible;">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="overflow: visible;">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
                 <div class="section-title-underline"></div>
+            </div>
+            <div class="fun-project-filters" data-aos="fade-up" data-aos-delay="150" data-filter-mode="soft" data-filter-scope="#projectsCarousel">
+                <button type="button" class="fun-filter-btn is-active" data-filter="all">All</button>
+                <button type="button" class="fun-filter-btn" data-filter="data" data-keywords="data,sql,power bi,excel,google sheets,reporting,validation,records,analytics">Data</button>
+                <button type="button" class="fun-filter-btn" data-filter="automation" data-keywords="automation,python,php,workflow">Automation</button>
+                <button type="button" class="fun-filter-btn" data-filter="systems" data-keywords="systems,implementation,qa,documentation,windows,server,support">Systems</button>
+                <button type="button" class="fun-filter-btn" data-filter="networking" data-keywords="network,vlan,tcp/ip,routing,vpn,dns,dhcp,switching,wireless">Networking</button>
             </div>
             
             <!-- Carousel container with proper spacing -->
@@ -293,172 +476,21 @@
                 
                 <!-- Carousel content -->
                 <div id="projectsCarousel" class="carousel-track" tabindex="0" role="region" aria-label="Featured projects carousel" aria-roledescription="carousel">
-                    <!-- Project Card 1 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Enterprise-LAN-Simulation.png" alt="Enterprise LAN Simulation" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>Enterprise LAN Simulation</h3>
-                            <p>Designed and troubleshooted a multi-VLAN enterprise LAN using Cisco Catalyst switches, routers, and APs in my home lab. Implemented STP, inter-VLAN routing, and wireless security.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Cisco Catalyst</span>
-                                <span class="project-tag">VLAN</span>
-                                <span class="project-tag">STP</span>
-                                <span class="project-tag">Wireless</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 2 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/VoIP-&-IP-Telephony-Lab.png" alt="VoIP & IP Telephony Lab" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>VoIP & IP Telephony Lab</h3>
-                            <p>Deployed Cisco IP phones and CUCM in a home lab to simulate enterprise VoIP, configure dial plans, and troubleshoot call routing and QoS issues.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">CUCM</span>
-                                <span class="project-tag">IP Telephony</span>
-                                <span class="project-tag">QoS</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 3 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Network-Security-&-Surveillance.png" alt="Network Security & Surveillance" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>Network Security & Surveillance</h3>
-                            <p>Integrated Cisco routers, firewalls, and IP cameras to create a secure, segmented network. Configured ACLs, NAT, and remote monitoring for real-world security scenarios.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Cisco Router</span>
-                                <span class="project-tag">ACL</span>
-                                <span class="project-tag">IP Camera</span>
-                                <span class="project-tag">Firewall</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 4 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Cloud-Migration-Tool.png" alt="Cloud Migration Tool" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>Cloud Migration Tool</h3>
-                            <p>Automated tool for migrating applications between cloud providers with minimal downtime.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Cisco IOS</span>
-                                <span class="project-tag">Packet Tracer</span>
-                                <span class="project-tag">Network Automation</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 5 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/WAN-Simulation-with-SD-WAN.png" alt="WAN Simulation with SD-WAN" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>WAN Simulation with SD-WAN</h3>
-                            <p>Simulated a multi-branch WAN using Cisco Packet Tracer, implementing SD-WAN, dynamic routing, and failover testing for enterprise connectivity.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Packet Tracer</span>
-                                <span class="project-tag">SD-WAN</span>
-                                <span class="project-tag">Routing</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 6 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/Wireless-Network-Design.png" alt="Wireless Network Design" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>Wireless Network Design</h3>
-                            <p>Designed and simulated a secure wireless network for a campus environment using Cisco Packet Tracer, including WPA2, guest VLANs, and roaming.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Packet Tracer</span>
-                                <span class="project-tag">Wireless</span>
-                                <span class="project-tag">VLAN</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 7 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/DevOps-Pipeline.png" alt="DevOps Pipeline" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>DevOps Pipeline</h3>
-                            <p>End-to-end CI/CD pipeline integrating testing, security scanning, and deployment automation.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Docker</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 8 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/img/PuTTy-2.png" alt="PuTTY CLI Shells" loading="lazy" decoding="async" width="680" height="384">
-                        <div class="project-card-content">
-                            <h3>CLI Shells (PuTTY) for Real-World Networking</h3>
-                            <p>Demonstrated the use of CLI shells such as PuTTY to configure, monitor, and troubleshoot Cisco switches and routers in a live lab environment.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">PuTTY</span>
-                                <span class="project-tag">SSH</span>
-                                <span class="project-tag">Cisco CLI</span>
-                                <span class="project-tag">Switch Configuration</span>
-                                <span class="project-tag">Troubleshooting</span>
-                            </div>
-                            <div class="project-link">
-                                <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
-                                    View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Projects will be loaded dynamically from js/projects.json -->
+                    <div class="text-center py-12 text-gray-500 w-full">Loading featured projects...</div>
                 </div>
             </div>
             
             <div class="text-center mt-12" data-aos="fade-up">
-                <a href="projects.html" class="animated-btn bounce-right-twice px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md font-medium hover:bg-indigo-600 hover:text-white transition inline-flex items-center">
-                    View All Projects <i data-feather="chevron-right" class="ml-2 w-4 h-4"></i>
+                <a href="projects.html" class="btn-explore-universe">
+                    View All Projects <i data-feather="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="snap-section py-20 bg-white">
+    <section id="contact" class="snap-section fun-galaxy-section py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
@@ -466,8 +498,8 @@
             </div>
             <div class="grid md:grid-cols-2 gap-12">
                 <div data-aos="fade-right">
-                    <h3 class="text-2xl font-semibold mb-6">Let's Talk About Your Project</h3>
-                    <p class="text-gray-600 mb-8">I'm currently available for freelance work, contracts and full-time positions. If you have a project that needs creative solutions or just want to say hello, feel free to reach out!</p>
+                    <h3 class="text-2xl font-semibold mb-6">Let's Talk About Your Systems &amp; Data Goals</h3>
+                    <p class="text-gray-600 mb-8">I'm available for full-time, contract, or consulting roles focused on systems analysis, reporting, and data operations. If you need help improving workflows, dashboards, or data integrity, let's connect.</p>
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="p-3 bg-indigo-100 rounded-full mr-4">
@@ -500,39 +532,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8 flex space-x-4">
-                        <div class="contact-socials">
-                            <a href="https://github.com/toughdave" class="contact-social-btn" aria-label="GitHub">
-                                <i data-feather="github" class="text-gray-700"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="contact-social-btn" aria-label="LinkedIn">
-                                <i data-feather="linkedin" class="text-gray-700"></i>
-                            </a>
-                            <a href="https://x.com/toughdave" class="contact-social-btn" aria-label="Twitter">
-                                <i data-feather="twitter" class="text-gray-700"></i>
-                            </a>
-                        </div>
+                    <div class="contact-socials">
+                        <a href="https://github.com/toughdave" class="contact-social-btn" aria-label="GitHub">
+                            <i data-feather="github" class="text-gray-700"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="contact-social-btn" aria-label="LinkedIn">
+                            <i data-feather="linkedin" class="text-gray-700"></i>
+                        </a>
+                        <!--
+                        <a href="https://x.com/toughdave" class="contact-social-btn" aria-label="Twitter">
+                            <i data-feather="twitter" class="text-gray-700"></i>
+                        </a>
+                        -->
                     </div>
                 </div>
                 <div data-aos="fade-left">
-                    <form class="bg-gray-50 p-8 rounded-xl" id="contactForm" action="https://formspree.io/f/mjkedzyv" method="POST">
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <form class="bg-gray-50 p-8 rounded-xl contact-form" id="contactForm" action="https://formspree.io/f/mjkedzyv" method="POST">
+                        <div class="terminal-header" data-fun-element aria-hidden="true">
+                            <span class="terminal-title">/usr/bin/send-message</span>
+                            <span class="terminal-status">awaiting input</span>
                         </div>
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <div class="contact-field mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2 contact-label">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 contact-input">
                         </div>
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <div class="contact-field mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2 contact-label">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 contact-input">
                         </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        <div class="contact-field mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2 contact-label">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 contact-input">
                         </div>
-                        <button type="submit" class="animated-btn w-full px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition">
+                        <div class="contact-field mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2 contact-label">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 contact-input"></textarea>
+                        </div>
+                        <button type="submit" class="animated-btn w-full px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition contact-submit">
                             Send Message
                         </button>
                         <div id="formStatus" class="mt-4 text-center text-green-600 font-semibold hidden" role="status" aria-live="polite" aria-atomic="true">Message sent!</div>
@@ -543,11 +579,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+    <footer class="bg-gray-900 text-white py-12 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center footer-content">
                 <h2 class="text-2xl font-bold mb-4">David's Portfolio</h2>
-                <p class="text-gray-400 mb-8">Cisco Networking Engineer with extensive hands-on experience through dedicated home lab practice with enterprise-grade Cisco equipment.</p>
+                <p class="text-gray-400 mb-2">Systems &amp; Data Analyst focused on data accuracy, reporting automation, and reliable operations.</p>
+                <p class="text-gray-500 mb-8">Toronto, ON • info@davidoncloud.com</p>
                 <div class="flex justify-center space-x-6 mb-8">
                     <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="GitHub">
                         <i data-feather="github"></i>
@@ -555,21 +592,101 @@
                     <a href="https://www.linkedin.com/in/tope-david-m-48076969" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <i data-feather="linkedin"></i>
                     </a>
+                    <!--
                     <a href="https://x.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="Twitter">
                         <i data-feather="twitter"></i>
                     </a>
+                    -->
                 </div>
                 <div class="text-gray-500 text-sm">
-                    © 2025 David on Cloud. All rights reserved.
+                    &copy; <span id="year-display">2025</span> David on Cloud. All rights reserved.
                 </div>
                 <hr class="w-16 mx-auto my-3 border-gray-600">
                 <div class="text-gray-500 text-sm">
                     <small>Designed by David | Version v<span id="version-display">3.0.1</span></small>
                 </div>
+                <div class="footer-ticker" data-fun-element aria-hidden="true">
+                    <span class="footer-ticker-label">system status</span>
+                    <span class="footer-ticker-text fun-message" data-messages="uptime 99.98% • last report 2h ago • queue steady|sync complete • 12 pipelines green • latency 4ms|alerts 0 • audits clean • handshakes stable" aria-live="polite">uptime 99.98% • last report 2h ago • queue steady</span>
+                </div>
             </div>
+            <div class="fun-footer-planet" aria-hidden="true"></div>
         </div>
         
     </footer>
+
+    <div class="fun-lab-button-wrap">
+        <button type="button" class="fun-lab-button" data-fun-toggle aria-pressed="false" aria-label="Toggle fun mode">
+            <span class="fun-lab-toggle-track" aria-hidden="true"><span class="fun-lab-toggle-knob"></span></span>
+            <span class="fun-lab-icon" aria-hidden="true">⬡</span>
+            <span class="fun-lab-label">Fun Lab</span>
+        </button>
+        <button type="button" class="fun-lab-settings-btn" data-fun-lab-toggle aria-expanded="false" aria-controls="funLabPanel" aria-label="Open Fun Lab settings">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+    </div>
+
+    <div id="funLabPanel" class="fun-lab-panel" aria-hidden="true" role="dialog" aria-label="Fun Lab settings">
+        <div class="fun-lab-header">
+            <span>Fun Lab</span>
+            <button type="button" class="fun-lab-close" data-fun-lab-close aria-label="Close Fun Lab">✕</button>
+        </div>
+        <div class="fun-lab-content">
+            <div class="fun-lab-row">
+                <div>
+                    <p class="fun-lab-title">Fun Mode</p>
+                    <p class="fun-lab-subtitle">Toggle the cosmic extras</p>
+                </div>
+                <label class="fun-switch">
+                    <input type="checkbox" data-fun-toggle aria-pressed="false">
+                    <span class="fun-switch-track"></span>
+                </label>
+            </div>
+            <div class="fun-lab-row">
+                <div>
+                    <p class="fun-lab-title">Rover Style</p>
+                    <p class="fun-lab-subtitle">Pick your floor buddy</p>
+                </div>
+                <div class="fun-select">
+                    <select data-fun-rover>
+                        <option value="none">No Rovers</option>
+                        <option value="rover">Mini Rover</option>
+                        <option value="hopper">Hopper Bot</option>
+                        <option value="skimmer">Skimmer</option>
+                        <option value="orb">Astronaut Orb</option>
+                        <option value="drone">Floating Drone</option>
+                        <option value="squad">Rover Squad</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fun-lab-row">
+                <div>
+                    <p class="fun-lab-title">Immersive Effects</p>
+                    <p class="fun-lab-subtitle">Skills, console & logs</p>
+                </div>
+                <label class="fun-switch">
+                    <input type="checkbox" data-fun-immersive aria-pressed="false">
+                    <span class="fun-switch-track"></span>
+                </label>
+            </div>
+            <div class="fun-lab-row">
+                <div>
+                    <p class="fun-lab-title">Vanta Background</p>
+                    <p class="fun-lab-subtitle">Dim or disable the globe</p>
+                </div>
+                <div class="fun-radio-group">
+                    <label class="fun-radio">
+                        <input type="radio" name="fun-vanta-mode" value="dim" data-fun-vanta>
+                        <span>Dim</span>
+                    </label>
+                    <label class="fun-radio">
+                        <input type="radio" name="fun-vanta-mode" value="off" data-fun-vanta>
+                        <span>Off</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:bg-indigo-700 hover:scale-110 z-50" aria-label="Back to top">

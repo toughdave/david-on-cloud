@@ -1,0 +1,144 @@
+{
+  "projects": [
+    {
+      "title": "Academic Results Analytics Dashboard",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Built Power BI, Excel, and Google Sheets dashboards to track results processing, anomaly rates, and cohort performance across admissions and examinations. Designed data validation checks and audit-ready exports for leadership.",
+      "tags": ["Power BI", "Excel", "Google Sheets", "Data Validation"],
+      "posted": "2026-01-15T09:20:00.000Z",
+      "modified": "2026-01-22T12:45:00.000Z",
+      "category": "data"
+    },
+    {
+      "title": "Admissions Data Quality Audit",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Audited admissions datasets by reconciling applicant records, identity fields, and eligibility rules using Excel, Google Sheets, and SQL validation checks before final approvals.",
+      "tags": ["Excel", "Google Sheets", "SQL", "Data Validation"],
+      "posted": "2026-01-08T08:10:00.000Z",
+      "modified": "2026-01-12T14:30:00.000Z",
+      "category": "data"
+    },
+    {
+      "title": "VLAN & IP Addressing Lab",
+      "featured": false,
+      "image": "/img/Enterprise-LAN-Simulation.png",
+      "description": "Built a home lab using enterprise switching equipment to practice VLAN segmentation, TCP/IP addressing, and connectivity troubleshooting in isolated test environments.",
+      "tags": ["VLAN", "TCP/IP", "IP Addressing", "Switching"],
+      "posted": "2025-10-04T01:04:57.056Z",
+      "modified": "2025-10-04T05:25:37.056Z",
+      "category": "networking"
+    },
+    {
+      "title": "Virtual Lab Deployment & Active Directory",
+      "featured": false,
+      "image": "/img/VoIP-&-IP-Telephony-Lab.png",
+      "description": "Set up Windows Server 2019/2022 and Windows 10/11 lab environments in VirtualBox and VMware Workstation Pro, including Active Directory configurations for classroom use.",
+      "tags": ["Windows Server", "Active Directory", "VirtualBox", "VMware"],
+      "posted": "2025-10-02T07:51:09.056Z",
+      "modified": "2025-10-02T07:51:09.056Z",
+      "category": "systems"
+    },
+    {
+      "title": "Examination Integrity Monitoring",
+      "featured": false,
+      "image": "/img/Network-Security-&-Surveillance.png",
+      "description": "Administered exam integrity workflows using biometric verification devices, CCTV monitoring, and secure evidence handling to support compliance.",
+      "tags": ["Biometric Verification", "CCTV Monitoring", "Compliance", "Record Management"],
+      "posted": "2025-09-30T05:55:05.056Z",
+      "modified": "2025-10-01T11:21:41.056Z",
+      "category": "systems"
+    },
+    {
+      "title": "Operational Reporting Automation Pipeline",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Automated weekly operational reports with Python and SQL, generating audit-ready summaries and scheduled exports for leadership reviews.",
+      "tags": ["Python", "SQL", "Workflow Automation", "Reporting"],
+      "posted": "2025-12-12T07:30:00.000Z",
+      "modified": "2025-12-20T10:15:00.000Z",
+      "category": "automation"
+    },
+    {
+      "title": "Student Records Reconciliation Hub",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Reconciled admissions, enrollment, and results records in SQL and Excel to flag duplicates, missing entries, and eligibility gaps before final reports.",
+      "tags": ["SQL", "Excel", "Data Validation", "Record Management"],
+      "posted": "2026-01-28T09:10:00.000Z",
+      "modified": "2026-01-31T14:20:00.000Z",
+      "category": "data"
+    },
+    {
+      "title": "Exam Operations SLA Tracker",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Built a Power BI and Google Sheets tracker to monitor readiness checks, device compliance, and processing SLAs across exam cycles.",
+      "tags": ["Power BI", "Google Sheets", "Reporting", "Process Improvement"],
+      "posted": "2026-02-02T14:20:00.000Z",
+      "modified": "2026-02-03T10:30:00.000Z",
+      "category": "data"
+    },
+    {
+      "title": "Systems Implementation & QA Playbooks",
+      "featured": true,
+      "image": "/img/Cloud-Migration-Tool.png",
+      "description": "Created implementation checklists, testing scripts, and documentation to standardize software installs and updates across lab environments.",
+      "tags": ["Documentation", "Implementation & Testing", "QA Support", "Process Improvement"],
+      "posted": "2025-09-29T02:11:14.056Z",
+      "modified": "2025-09-29T12:21:50.056Z",
+      "category": "systems"
+    },
+    {
+      "title": "Routing & VPN Basics Lab",
+      "featured": false,
+      "image": "/img/WAN-Simulation-with-SD-WAN.png",
+      "description": "Simulated multi-branch connectivity to practice routing fundamentals, VPN basics, and network troubleshooting in isolated environments.",
+      "tags": ["Routing", "VPN Basics", "TCP/IP", "Troubleshooting"],
+      "posted": "2025-09-26T05:01:44.056Z",
+      "modified": "2025-10-04T05:25:37.056Z",
+      "category": "networking"
+    },
+    {
+      "title": "DNS & DHCP Services Lab",
+      "featured": false,
+      "image": "/img/Wireless-Network-Design.png",
+      "description": "Configured DNS and DHCP services in a lab environment to support reliable name resolution and IP assignment across Windows and Linux clients.",
+      "tags": ["DNS", "DHCP", "Windows", "Linux"],
+      "posted": "2025-09-19T05:44:05.056Z",
+      "modified": "2025-09-19T05:44:00.056Z",
+      "category": "networking"
+    },
+    {
+      "title": "Operational Readiness Checks",
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=680&h=384&q=80",
+      "description": "Performed preventative maintenance and operational readiness checks on laptops and examination systems to ensure configuration compliance before high-stakes testing.",
+      "tags": ["Preventative Maintenance", "Software Updates", "Windows", "Troubleshooting"],
+      "posted": "2025-11-20T09:05:00.000Z",
+      "modified": "2025-11-27T15:40:00.000Z",
+      "category": "systems"
+    },
+    {
+      "title": "Technical Documentation & End-User Training",
+      "featured": true,
+      "image": "/img/DevOps-Pipeline.png",
+      "description": "Produced technical documentation and delivered end-user training to support system rollouts, troubleshooting, and consistent workflows.",
+      "tags": ["Documentation", "End-User Training", "Stakeholder Communication", "Process Improvement"],
+      "posted": "2025-09-14T05:15:24.056Z",
+      "modified": "2025-09-14T05:15:24.056Z",
+      "category": "systems"
+    },
+    {
+      "title": "Systems Support & Troubleshooting",
+      "featured": true,
+      "image": "/img/PuTTy-2.png",
+      "description": "Provided hands-on systems support for Windows and Linux environments, resolving issues and documenting fixes for repeatable support workflows.",
+      "tags": ["Systems Support", "Troubleshooting", "Windows", "Linux"],
+      "posted": "2025-09-06T05:25:18.056Z",
+      "modified": "2025-09-12T17:36:32.056Z",
+      "category": "systems"
+    }
+  ]
+}

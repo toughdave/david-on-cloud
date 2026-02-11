@@ -1,7 +1,152 @@
+/* ===== CONFIGURATION ===== */
+window.siteConfig = {
+    settings: {
+        shootingStarInterval: 25000,
+        defaultFunMode: true,
+        vanta: {
+            dark: { color: "#7c3aed", color2: "#6366f1", backgroundColor: "#0f172a" },
+            light: { color: "#667eea", color2: "#f8fafc", backgroundColor: "#f8fafc" }
+        }
+    }
+};
+
+// Load external config
+fetch('js/config.json')
+    .then(response => response.json())
+    .then(data => {
+        if (data && data.settings) {
+            window.siteConfig.settings = { ...window.siteConfig.settings, ...data.settings };
+            if (typeof document !== 'undefined') {
+                document.dispatchEvent(new Event('siteconfig:loaded'));
+            }
+            // Re-initialize effects if config loaded after page load
+            if (document.readyState === 'complete') {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                if (typeof initVanta === 'function') initVanta();
+            }
+        }
+    })
+    .catch(err => console.log('Using default config'));
+
+// Load and render projects dynamically
+const loadProjects = () => {
+    fetch('js/projects.json')
+        .then(response => response.json())
+        .then(data => {
+            if (!data || !data.projects) return;
+            
+            const projectsList = document.getElementById('projectsList');
+            const projectsCarousel = document.getElementById('projectsCarousel');
+
+            // 1. Render Projects Page (List View)
+            if (projectsList) {
+                projectsList.innerHTML = '';
+                const sortedProjects = [...data.projects].sort((a, b) => {
+                    return new Date(b.posted).getTime() - new Date(a.posted).getTime();
+                });
+
+                sortedProjects.forEach((project, index) => {
+                    const uniqueId = `body-dyn-${index}`;
+                    const tagsHtml = (project.tags || []).map(tag => 
+                        `<span class="px-2 py-1 bg-gray-100 rounded-full text-xs">${tag}</span>`
+                    ).join('');
+
+                    const cardHtml = `
+                        <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}">
+                            <div class="w-full md:w-1/3 flex-shrink-0">
+                                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-8 flex flex-col flex-1 justify-start">
+                                <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
+                                <p class="text-gray-600 card-body" id="${uniqueId}">
+                                    ${project.description}
+                                </p>
+                                <button type="button" class="more-link" data-target="${uniqueId}" aria-controls="${uniqueId}" aria-expanded="false" data-collapsed-label="Read more..." data-expanded-label="Show less">
+                                    <span class="more-link-text">Read more...</span>
+                                    <span class="more-link-icon" aria-hidden="true"></span>
+                                </button>
+                                <div class="flex flex-wrap gap-2 mb-4 mt-3">
+                                    ${tagsHtml}
+                                </div>
+                                <div class="flex justify-between items-end mt-auto">
+                                    <div class="flex flex-col items-start">
+                                        <time class="italic text-gray-500 text-sm" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                        <time class="italic text-gray-400 text-xs" data-modified="${project.modified}" datetime="${project.modified}"></time>
+                                    </div>
+                                    <div>
+                                        <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
+                                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    projectsList.insertAdjacentHTML('beforeend', cardHtml);
+                });
+            }
+
+            // 2. Render Home Page (Carousel View - Featured Only)
+            if (projectsCarousel) {
+                projectsCarousel.innerHTML = '';
+                const featuredProjects = data.projects.filter(p => p.featured);
+                // Sort featured by modified/posted desc
+                featuredProjects.sort((a, b) => new Date(b.modified || b.posted).getTime() - new Date(a.modified || a.posted).getTime());
+
+                featuredProjects.forEach((project) => {
+                    const tagsHtml = (project.tags || []).map(tag => 
+                        `<span class="project-tag">${tag}</span>`
+                    ).join('');
+
+                    const cardHtml = `
+                        <div class="project-card" data-aos="fade-up" data-category="${project.category || 'other'}">
+                            <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async">
+                            <div class="project-card-content">
+                                <h3>${project.title}</h3>
+                                <p>${project.description}</p>
+                                <div class="project-tags">
+                                    ${tagsHtml}
+                                </div>
+                                <div class="flex justify-between items-end mt-auto pt-4">
+                                    <div class="flex flex-col items-start">
+                                        <time class="italic text-gray-400 text-xs" data-modified="${project.modified}" datetime="${project.modified}"></time>
+                                    </div>
+                                    <div>
+                                        <a href="projects.html" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
+                                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    projectsCarousel.insertAdjacentHTML('beforeend', cardHtml);
+                });
+                
+                // Trigger carousel readiness (if logic depends on content presence)
+                if (window.initCarousel) window.initCarousel();
+            }
+
+            // Re-initialize components
+            if (typeof feather !== 'undefined') feather.replace();
+            if (typeof window.setupProjectCardReveal === 'function') window.setupProjectCardReveal();
+            if (typeof window.setupProjectFilters === 'function') window.setupProjectFilters();
+            if (typeof window.updateViewLinks === 'function') window.updateViewLinks();
+            if (typeof window.refreshProjectOverflow === 'function') window.refreshProjectOverflow();
+            
+            // Refresh AOS
+            if (typeof AOS !== 'undefined') {
+                setTimeout(() => AOS.refresh(), 100);
+            }
+
+        })
+        .catch(err => console.error('Error loading projects:', err));
+};
+
 /* ===== DARK MODE THEME SWITCHER ===== */
 // Initialize theme before page renders to prevent flash
 (function() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
 })();
 
@@ -15,274 +160,445 @@ AOS.init({
     disable: prefersReducedMotion
 });
 
-// Initialize Vanta.js background
-if (!prefersReducedMotion && document.getElementById('vanta-bg')) {
-    VANTA.GLOBE({
-        el: '#vanta-bg',
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x667eea,
-        backgroundColor: 0xf8fafc,
-        size: 0.8
+    // Initialize Vanta.js background
+    let vantaEffect = null;
+    const initVanta = () => {
+        if (prefersReducedMotion) {
+            console.log('[Vanta] Skipped: prefers-reduced-motion is enabled');
+            return;
+        }
+        if (!document.getElementById('vanta-bg')) {
+            console.warn('[Vanta] Skipped: #vanta-bg element not found');
+            return;
+        }
+        if (typeof VANTA === 'undefined' || typeof VANTA.GLOBE !== 'function') {
+            console.warn('[Vanta] Skipped: VANTA.GLOBE not available. CDN may have failed to load.');
+            return;
+        }
+        if (typeof THREE === 'undefined') {
+            console.warn('[Vanta] Skipped: THREE.js not available. CDN may have failed to load.');
+            return;
+        }
+        try {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            // Destroy existing instance if parameters need to change
+            if (vantaEffect) {
+                vantaEffect.destroy();
+                vantaEffect = null;
+            }
+            vantaEffect = VANTA.GLOBE({
+                el: '#vanta-bg',
+                THREE: THREE,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                color: isDark ? window.siteConfig.settings.vanta.dark.color : window.siteConfig.settings.vanta.light.color,
+                color2: isDark ? window.siteConfig.settings.vanta.dark.color2 : window.siteConfig.settings.vanta.light.color2,
+                backgroundColor: isDark ? window.siteConfig.settings.vanta.dark.backgroundColor : window.siteConfig.settings.vanta.light.backgroundColor,
+                backgroundAlpha: isDark ? 0 : 1,
+                size: 0.8,
+                scaleMobile: 1.50
+            });
+            console.log('[Vanta] Globe initialized successfully');
+        } catch (err) {
+            console.error('[Vanta] Initialization failed:', err);
+        }
+    };
+    
+    // Defer init slightly to ensure theme is applied
+    setTimeout(initVanta, 200);
+    // Fallback: also try on window load in case defer timing fails
+    window.addEventListener('load', () => {
+        if (!vantaEffect) initVanta();
     });
-}
 
-/* ===== ENHANCED CAROUSEL WITH FIXED INFINITE LOOP ===== */
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('projectsCarousel');
-    const leftBtn = document.getElementById('scrollLeft');
-    const rightBtn = document.getElementById('scrollRight');
-    
-    if (!carousel || !leftBtn || !rightBtn) return;
-    
-    // Get all project cards
-    const cards = carousel.querySelectorAll('.project-card');
-    const totalCards = cards.length;
-    
-    if (totalCards === 0) return;
-    
-    // Calculate scroll distance based on card width + gap
-    function getScrollDistance() {
-        const screenWidth = window.innerWidth;
-        if (screenWidth <= 480) return 280; // 260px card + 20px gap
-        if (screenWidth <= 768) return 300; // 280px card + 20px gap
-        return 380; // 340px card + 40px gap
+    /* ===== VANTA VERTICAL PARALLAX ===== */
+    let vantaParallaxTicking = false;
+    const vantaBgEl = document.getElementById('vanta-bg');
+    if (vantaBgEl) {
+        window.addEventListener('scroll', () => {
+            if (!vantaParallaxTicking) {
+                vantaParallaxTicking = true;
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY || window.pageYOffset;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollFraction = maxScroll > 0 ? scrollY / maxScroll : 0;
+                    const maxParallax = window.innerHeight * 0.12;
+                    vantaBgEl.style.transform = `translateY(${scrollFraction * maxParallax}px)`;
+                    vantaParallaxTicking = false;
+                });
+            }
+        }, { passive: true });
     }
-    
-    // Get card width including gap
-    function getCardWidth() {
-        const screenWidth = window.innerWidth;
-        if (screenWidth <= 480) return 280;
-        if (screenWidth <= 768) return 300;
-        return 380;
-    }
-    
-    // Check if we're at the start (improved logic)
-    function isAtStart() {
-        return carousel.scrollLeft <= 5; // Reduced tolerance
-    }
-    
-    // Check if we're at the end (improved logic)
-    function isAtEnd() {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        const currentScroll = carousel.scrollLeft;
-        const threshold = 5; // Small threshold for detection
-        return currentScroll >= maxScroll - threshold;
-    }
-    
-    // Enhanced scroll function with proper infinite loop
-    function scrollToCard(direction) {
-        const cardWidth = getCardWidth();
-        const currentScroll = carousel.scrollLeft;
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    /* ===== ENHANCED CAROUSEL WITH INFINITE LOOP ===== */
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('projectsCarousel');
+        const leftBtn = document.getElementById('scrollLeft');
+        const rightBtn = document.getElementById('scrollRight');
         
-        if (direction === 'left') {
-            if (isAtStart()) {
-                // At start, jump to end for infinite loop
-                carousel.scrollTo({
-                    left: maxScroll,
-                    behavior: 'smooth'
-                });
-            } else {
-                // Normal scroll left
-                const targetScroll = Math.max(0, currentScroll - cardWidth);
-                carousel.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-        } else { // direction === 'right'
-            if (isAtEnd()) {
-                // At end, jump to start for infinite loop
-                carousel.scrollTo({
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            } else {
-                // Normal scroll right
-                const targetScroll = Math.min(maxScroll, currentScroll + cardWidth);
-                carousel.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    }
-    
-    // Event listeners for navigation buttons
-    leftBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToCard('left');
-    });
-    
-    rightBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToCard('right');
-    });
-    
-    // Keyboard navigation with infinite loop
-    carousel.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            scrollToCard('left');
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            scrollToCard('right');
-        }
-    });
-    
-    // Enhanced touch/swipe support
-    let isDown = false;
-    let startX;
-    let scrollLeftStart;
-    let hasMoved = false;
-    
-    carousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        hasMoved = false;
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeftStart = carousel.scrollLeft;
-        carousel.style.cursor = 'grabbing';
-        carousel.style.userSelect = 'none';
-    });
-    
-    carousel.addEventListener('mouseleave', () => {
-        if (isDown && hasMoved) {
-            snapToNearestCard();
-        }
-        isDown = false;
-        carousel.style.cursor = 'grab';
-        carousel.style.userSelect = 'auto';
-    });
-    
-    carousel.addEventListener('mouseup', () => {
-        if (isDown && hasMoved) {
-            snapToNearestCard();
-        }
-        isDown = false;
-        carousel.style.cursor = 'grab';
-        carousel.style.userSelect = 'auto';
-    });
-    
-    carousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        hasMoved = true;
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeftStart - walk;
-    });
-    
-    // Touch events for mobile
-    carousel.addEventListener('touchstart', (e) => {
-        isDown = true;
-        hasMoved = false;
-        startX = e.touches[0].pageX - carousel.offsetLeft;
-        scrollLeftStart = carousel.scrollLeft;
-    });
-    
-    carousel.addEventListener('touchend', () => {
-        if (isDown && hasMoved) {
-            snapToNearestCard();
-        }
-        isDown = false;
-    });
-    
-    carousel.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        hasMoved = true;
-        const x = e.touches[0].pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeftStart - walk;
-    });
-    
-    // Snap to nearest card after dragging
-    function snapToNearestCard() {
-        const cardWidth = getCardWidth();
-        const currentScroll = carousel.scrollLeft;
-        const nearestCardIndex = Math.round(currentScroll / cardWidth);
-        const targetScroll = Math.min(
-            carousel.scrollWidth - carousel.clientWidth,
-            nearestCardIndex * cardWidth
+        if (!carousel || !leftBtn || !rightBtn) return;
+
+        // DYNAMIC getter for cards
+        const getCards = () => Array.from(carousel.querySelectorAll('.project-card'));
+        
+        // Visible = not dimmed AND not hidden by filters
+        const getVisibleCards = () => getCards().filter(c =>
+            !c.classList.contains('fun-filter-dim') && !c.classList.contains('fun-filter-hidden')
         );
+
+        // Find the card closest to the carousel centre (among visible cards only)
+        const getActiveVisibleIndex = () => {
+            const visible = getVisibleCards();
+            if (visible.length === 0) return -1;
+            
+            // Priority 1: If manual navigation just happened, trust the is-active class
+            const activeIdx = visible.findIndex(c => c.classList.contains('is-active'));
+            if (activeIdx !== -1 && manualNav) return activeIdx;
+
+            // Priority 2: If content fits (no scroll), trust is-active or default to 0
+            if (carousel.scrollWidth <= carousel.clientWidth + 5) {
+                return activeIdx !== -1 ? activeIdx : 0;
+            }
+            
+            // Priority 3: Geometric center (for scroll/swipe)
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            if (carousel.scrollLeft <= 10) return 0;
+            if (carousel.scrollLeft >= maxScroll - 10) return visible.length - 1;
+
+            const cx = carousel.getBoundingClientRect().left + carousel.clientWidth / 2;
+            let best = 0;
+            let bestDist = Infinity;
+            visible.forEach((card, i) => {
+                const r = card.getBoundingClientRect();
+                const d = Math.abs(r.left + r.width / 2 - cx);
+                if (d < bestDist) { bestDist = d; best = i; }
+            });
+            return best;
+        };
+
+        const setActiveCard = (card) => {
+            getCards().forEach(c => c.classList.remove('is-active'));
+            if (card) card.classList.add('is-active');
+        };
+
+        const scrollToCard = (card, behavior = 'smooth') => {
+            if (!card) return;
+            const cardW = card.getBoundingClientRect().width;
+            const target = card.offsetLeft - (carousel.clientWidth - cardW) / 2;
+            const max = carousel.scrollWidth - carousel.clientWidth;
+            if (carousel.scrollWidth <= carousel.clientWidth) return;
+            carousel.scrollTo({ left: Math.max(0, Math.min(target, max)), behavior });
+        };
+
+        // Navigation state
+        let manualNav = false;
+        let manualNavTimer;
+
+        // Navigate
+        function navigate(direction) {
+            const visible = getVisibleCards();
+            if (visible.length === 0) return;
+            
+            let curIdx = visible.findIndex(c => c.classList.contains('is-active'));
+            if (curIdx === -1) curIdx = getActiveVisibleIndex(); 
+            
+            let next;
+            if (direction === 'right') {
+                next = curIdx + 1 >= visible.length ? 0 : curIdx + 1;
+            } else {
+                next = curIdx - 1 < 0 ? visible.length - 1 : curIdx - 1;
+            }
+
+            const targetCard = visible[next];
+            manualNav = true;
+            clearTimeout(manualNavTimer);
+            
+            scrollToCard(targetCard, 'smooth');
+            setActiveCard(targetCard);
+            
+            manualNavTimer = setTimeout(() => { manualNav = false; }, 600);
+        }
         
-        carousel.scrollTo({
-            left: targetScroll,
-            behavior: 'smooth'
+        // Listeners (attached once)
+        leftBtn.addEventListener('click', (e) => { e.preventDefault(); navigate('left'); });
+        rightBtn.addEventListener('click', (e) => { e.preventDefault(); navigate('right'); });
+        
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); navigate('left'); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); navigate('right'); }
         });
-    }
-    
-    // Update arrow states (visual feedback)
-    function updateArrowStates() {
-        // For infinite loop, arrows are always enabled
+        
+        // Drag support
+        let isDown = false, startX, scrollLeftStart, hasMoved = false;
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true; hasMoved = false; manualNav = false;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeftStart = carousel.scrollLeft;
+            carousel.style.cursor = 'grabbing';
+            carousel.style.userSelect = 'none';
+        });
+        const endDrag = () => {
+            if (isDown && hasMoved) snapToNearest();
+            isDown = false;
+            carousel.style.cursor = 'grab';
+            carousel.style.userSelect = 'auto';
+        };
+        carousel.addEventListener('mouseleave', endDrag);
+        carousel.addEventListener('mouseup', endDrag);
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault(); hasMoved = true;
+            carousel.scrollLeft = scrollLeftStart - (e.pageX - carousel.offsetLeft - startX) * 2;
+        });
+        carousel.addEventListener('touchstart', (e) => {
+            isDown = true; hasMoved = false; manualNav = false;
+            startX = e.touches[0].pageX - carousel.offsetLeft;
+            scrollLeftStart = carousel.scrollLeft;
+        });
+        carousel.addEventListener('touchend', () => { if (isDown && hasMoved) snapToNearest(); isDown = false; });
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isDown) return; hasMoved = true;
+            carousel.scrollLeft = scrollLeftStart - (e.touches[0].pageX - carousel.offsetLeft - startX) * 2;
+        });
+        
+        function snapToNearest() {
+            const idx = getActiveVisibleIndex();
+            const visible = getVisibleCards();
+            if (idx >= 0 && visible[idx]) {
+                scrollToCard(visible[idx]);
+                setActiveCard(visible[idx]);
+            }
+        }
+        
         leftBtn.style.opacity = '1';
         rightBtn.style.opacity = '1';
         
-        // Optional: slight dimming at edges for visual feedback
-        if (isAtStart()) {
-            leftBtn.style.opacity = '0.7';
-        }
+        let scrollTimeout;
+        carousel.addEventListener('scroll', () => {
+            if (manualNav) return; 
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const idx = getActiveVisibleIndex();
+                const visible = getVisibleCards();
+                if (idx >= 0 && visible[idx]) setActiveCard(visible[idx]);
+            }, 120);
+        });
         
-        if (isAtEnd()) {
-            rightBtn.style.opacity = '0.7';
-        }
-    }
-    
-    // Update arrow states on scroll
-    carousel.addEventListener('scroll', updateArrowStates);
-    
-    // Initialize
-    carousel.style.cursor = 'grab';
-    updateArrowStates();
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        setTimeout(() => {
-            snapToNearestCard();
-            updateArrowStates();
-        }, 100);
-    });
-    
-    // Debug logging removed for production
-});
+        // Handle resize
+        window.addEventListener('resize', () => { setTimeout(snapToNearest, 100); });
 
-/* ===== NAVIGATION FUNCTIONALITY ===== */
-function updateActiveNavStates() {
-    const currentPage = window.location.pathname;
-    const currentHash = window.location.hash;
-    
+        // Expose init function for dynamic content
+        window.initCarousel = () => {
+            carousel.classList.remove('loaded');
+            // Give layout a moment to settle then snap
+            requestAnimationFrame(() => {
+                const visible = getVisibleCards();
+                if (visible.length > 0) { 
+                    setActiveCard(visible[0]); 
+                    // Don't scroll to 0 immediately if we want to keep position, 
+                    // but for new load it's fine.
+                    // If reloading, maybe resetting to 0 is good.
+                    carousel.scrollLeft = 0; 
+                }
+                setTimeout(() => carousel.classList.add('loaded'), 150);
+            });
+        };
+    });
+
+    /* ===== NAVIGATION FUNCTIONALITY ===== */
+const setActiveNavLink = (targetId) => {
+    const cleanedId = (targetId || '').replace('#', '').trim();
+    const normalized = cleanedId === 'intro' || cleanedId === 'home' || cleanedId === ''
+        ? 'home'
+        : cleanedId;
+
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active-page', 'transition-none', 'font-bold');
     });
-    
-    if (currentPage.includes('projects.html')) {
+    // Also clear from contact button (not a .nav-link)
+    const contactBtn = document.getElementById('nav-contact-btn');
+    if (contactBtn) {
+        contactBtn.classList.remove('active-page', 'transition-none', 'font-bold');
+    }
+
+    if (normalized === 'projects') {
         document.querySelectorAll('a[href="projects.html"]').forEach(link => {
+            if (link.classList.contains('btn-explore-universe')) return;
             link.classList.add('active-page', 'transition-none', 'font-bold');
         });
-    } else {
-        if (currentHash === '#about') {
-            document.querySelectorAll('a[href="index.html#about"], a[href="#about"]').forEach(link => {
-                link.classList.add('active-page', 'transition-none', 'font-bold');
-            });
-        } else if (currentHash === '#skills') {
-            document.querySelectorAll('a[href="index.html#skills"], a[href="#skills"]').forEach(link => {
-                link.classList.add('active-page', 'transition-none', 'font-bold');
-            });
-        } else if (currentHash === '#experience') {
-            document.querySelectorAll('a[href="index.html#experience"], a[href="#experience"]').forEach(link => {
-                link.classList.add('active-page', 'transition-none', 'font-bold');
-            });
-        } else {
-            document.querySelectorAll('a[href="index.html"]').forEach(link => {
-                link.classList.add('active-page', 'transition-none', 'font-bold');
-            });
+        // Also target the ID directly in case href was morphed to #projects
+        const projectsLink = document.getElementById('nav-projects-link');
+        if (projectsLink) {
+            projectsLink.classList.add('active-page', 'transition-none', 'font-bold');
         }
+        return;
     }
+
+    if (normalized === 'home') {
+        document.querySelectorAll('a[href="index.html"]').forEach(link => {
+            link.classList.add('active-page', 'transition-none', 'font-bold');
+        });
+        return;
+    }
+
+    document.querySelectorAll(`a[href="index.html#${normalized}"], a[href="#${normalized}"]`).forEach(link => {
+        // Contact button needs smooth transitions (FLIP + ::before fill) — skip transition-none
+        if (link.id === 'nav-contact-btn') {
+            link.classList.add('active-page', 'font-bold');
+        } else {
+            link.classList.add('active-page', 'transition-none', 'font-bold');
+        }
+    });
+};
+
+function updateActiveNavStates() {
+    const currentPage = window.location.pathname;
+    const currentHash = window.location.hash;
+
+    if (currentPage.includes('projects.html')) {
+        setActiveNavLink('projects');
+        return;
+    }
+
+    if (currentHash) {
+        setActiveNavLink(currentHash);
+        return;
+    }
+
+    setActiveNavLink('home');
+}
+
+const setupScrollSpy = () => {
+    if (window.location.pathname.includes('projects.html')) return;
+    const sectionIds = ['intro', 'about', 'skills', 'experience', 'projects', 'contact'];
+    const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+    if (!sections.length) return;
+
+    const visibilityMap = new Map();
+    sections.forEach((section) => visibilityMap.set(section.id, 0));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            visibilityMap.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+
+        const sorted = Array.from(visibilityMap.entries()).sort((a, b) => b[1] - a[1]);
+        if (!sorted.length) return;
+        const [activeId, ratio] = sorted[0];
+        
+        if (ratio > 0) {
+            setActiveNavLink(activeId);
+            
+            // Handle Contact Button Active State
+            const contactBtn = document.getElementById('nav-contact-btn');
+            if (contactBtn) {
+                if (activeId === 'contact') {
+                    contactBtn.classList.add('active-contact');
+                } else {
+                    contactBtn.classList.remove('active-contact');
+                }
+            }
+
+            // Handle Projects Nav Morphing
+            const projectsContainer = document.querySelector('.nav-item-projects');
+            const projectsLink = document.getElementById('nav-projects-link');
+            // Helper to get or create the text span if it was wiped
+            const getProjectTextSpan = () => {
+                let span = projectsLink.querySelector('.nav-link-text');
+                if (!span) {
+                    // Restore span if missing
+                    const text = projectsLink.textContent;
+                    projectsLink.textContent = '';
+                    span = document.createElement('span');
+                    span.className = 'nav-link-text';
+                    span.textContent = text;
+                    projectsLink.appendChild(span);
+                }
+                return span;
+            };
+            
+            if (projectsContainer && projectsLink) {
+                const projectsText = getProjectTextSpan();
+                
+                // FLIP animation helper: smoothly slide ALL sibling nav items
+                const flipNavSiblings = (callback) => {
+                    const navItems = Array.from(document.querySelectorAll('.nav-links > *'));
+                    // FIRST: capture current positions
+                    const firstRects = navItems.map(el => el.getBoundingClientRect());
+                    
+                    // Execute the layout change
+                    callback();
+                    
+                    // LAST: capture new positions & INVERT + PLAY
+                    requestAnimationFrame(() => {
+                        navItems.forEach((el, i) => {
+                            const lastRect = el.getBoundingClientRect();
+                            const deltaX = firstRects[i].left - lastRect.left;
+                            if (Math.abs(deltaX) > 0.5) {
+                                el.style.transition = 'none';
+                                el.style.transform = `translateX(${deltaX}px)`;
+                                requestAnimationFrame(() => {
+                                    el.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+                                    el.style.transform = '';
+                                });
+                            }
+                        });
+                    });
+                };
+                
+                if (activeId === 'projects') {
+                    if (!projectsContainer.classList.contains('mode-featured')) {
+                        // Phase 1: Hide current text
+                        projectsText.classList.add('morphing');
+                        
+                        // Phase 2: Swap text (still hidden) and start FLIP early
+                        setTimeout(() => {
+                            flipNavSiblings(() => {
+                                projectsContainer.classList.add('mode-featured');
+                                projectsText.textContent = 'Featured Projects';
+                                projectsLink.setAttribute('href', '#projects');
+                            });
+                            // Phase 3: Reveal text after siblings are already moving
+                            setTimeout(() => {
+                                projectsText.classList.remove('morphing');
+                            }, 100);
+                        }, 120);
+                    }
+                } else {
+                    if (projectsContainer.classList.contains('mode-featured')) {
+                        // Phase 1: Hide current text
+                        projectsText.classList.add('morphing');
+                        
+                        setTimeout(() => {
+                            flipNavSiblings(() => {
+                                projectsContainer.classList.remove('mode-featured');
+                                projectsText.textContent = 'Projects';
+                                projectsLink.setAttribute('href', 'projects.html');
+                            });
+                            setTimeout(() => {
+                                projectsText.classList.remove('morphing');
+                            }, 100);
+                        }, 120);
+                    }
+                }
+            }
+        }
+    }, {
+        rootMargin: '-35% 0px -45% 0px',
+        threshold: [0, 0.2, 0.4, 0.6]
+    });
+
+    sections.forEach((section) => observer.observe(section));
+};
+
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /* ===== MOBILE MENU FUNCTIONALITY ===== */
@@ -314,6 +630,24 @@ function updateActiveNavStates() {
             }
         });
     });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        const menuLabel = document.querySelector('label[for="menu-toggle"]');
+        if (menuToggle.checked && 
+            !mobileMenu.contains(e.target) && 
+            (!menuLabel || !menuLabel.contains(e.target)) &&
+            e.target !== menuToggle) {
+            menuToggle.checked = false;
+        }
+    });
+
+    // Close on scroll
+    window.addEventListener('scroll', () => {
+        if (menuToggle.checked) {
+            menuToggle.checked = false;
+        }
+    }, { passive: true });
 })();
 
 /* ===== CONTACT FORM ===== */
@@ -365,6 +699,14 @@ document.querySelectorAll('.section-title-container').forEach(container => {
     }
 });
 
+// Footer year auto-update
+function updateFooterYear() {
+    const yearElement = document.getElementById('year-display');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
 // Version loading
 async function loadVersion() {
     try {
@@ -413,17 +755,1549 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
+            scheduleShootingStar();
+            // Re-init Vanta to update colors based on new theme
+            if (typeof initVanta === 'function') {
+                initVanta();
+            }
         });
     }
+
+    // Fun mode toggle
+    const funButtons = document.querySelectorAll('[data-fun-toggle]');
+    const funElements = document.querySelectorAll('[data-fun-element]');
+    const funMessageElements = document.querySelectorAll('.fun-message');
+    const funLabButton = document.querySelector('[data-fun-lab-toggle]');
+    const funLabPanel = document.getElementById('funLabPanel');
+    const funLabClose = document.querySelector('[data-fun-lab-close]');
+    const roverSelect = document.querySelector('[data-fun-rover]');
+    const vantaRadios = document.querySelectorAll('[data-fun-vanta]');
+    const vantaBg = document.getElementById('vanta-bg');
+    const funModeKey = 'fun-mode';
+    const funRoverKey = 'fun-rover-style';
+    const funVantaKey = 'fun-vanta-mode';
+    const funSkillsKey = 'fun-skills-anim';
+    const funConsoleKey = 'fun-console-show';
+    const funLogsKey = 'fun-logs-show';
+    const funMessageTimers = new Map();
+    let starTexturesApplied = false;
+
+    // Generate a seamless tileable star texture via canvas
+    const generateStarTexture = (size, starCount, palette) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        const pad = 6; // wrap padding for seamless tiling
+
+        for (let i = 0; i < starCount; i++) {
+            const x = Math.random() * size;
+            const y = Math.random() * size;
+            const r = 0.4 + Math.random() * 1.2;
+            const color = palette[Math.floor(Math.random() * palette.length)];
+            const alpha = 0.25 + Math.random() * 0.55;
+
+            const drawDot = (dx, dy) => {
+                ctx.beginPath();
+                ctx.arc(dx, dy, r, 0, Math.PI * 2);
+                ctx.fillStyle = color.replace('ALPHA', alpha.toFixed(2));
+                ctx.fill();
+            };
+
+            drawDot(x, y);
+            // Wrap near edges for seamless tiling
+            if (x < pad) drawDot(x + size, y);
+            if (x > size - pad) drawDot(x - size, y);
+            if (y < pad) drawDot(x, y + size);
+            if (y > size - pad) drawDot(x, y - size);
+            if (x < pad && y < pad) drawDot(x + size, y + size);
+            if (x > size - pad && y > size - pad) drawDot(x - size, y - size);
+            if (x < pad && y > size - pad) drawDot(x + size, y - size);
+            if (x > size - pad && y < pad) drawDot(x - size, y + size);
+        }
+        return canvas.toDataURL('image/png');
+    };
+
+    const applyStarTextures = () => {
+        if (starTexturesApplied) return;
+        starTexturesApplied = true;
+
+        const darkPalette = [
+            'rgba(226, 232, 240, ALPHA)',
+            'rgba(129, 140, 248, ALPHA)',
+            'rgba(244, 114, 182, ALPHA)',
+            'rgba(186, 230, 253, ALPHA)',
+            'rgba(255, 255, 255, ALPHA)'
+        ];
+
+        // Generate two differently-seeded textures for variety
+        const tex1 = generateStarTexture(512, 180, darkPalette);
+        const tex2 = generateStarTexture(384, 120, darkPalette);
+
+        // Set as CSS custom properties on body
+        document.body.style.setProperty('--star-tex-1', `url(${tex1})`);
+        document.body.style.setProperty('--star-tex-2', `url(${tex2})`);
+    };
+
+    const removeStarTextures = () => {
+        document.body.style.removeProperty('--star-tex-1');
+        document.body.style.removeProperty('--star-tex-2');
+        starTexturesApplied = false;
+    };
+    let analystSparkTimer = null;
+    let roverBuddies = [];
+    let roverStates = [];
+    let roverFrameId = null;
+    let funRoverStyle = localStorage.getItem(funRoverKey) || 'rover';
+    let funVantaMode = localStorage.getItem(funVantaKey) || 'dim';
+    let funImmersive = localStorage.getItem('fun_immersive') === 'true'; // Unified toggle
+    let shootingStarTimer = null;
+    let isShootingStarActive = false;
+
+    const isDarkFunMode = () => (
+        document.body.classList.contains('fun-mode')
+        && document.documentElement.getAttribute('data-theme') === 'dark'
+    );
+
+    const triggerShootingStar = () => {
+        // Guard: skip if tab is hidden, mode is wrong, or a star is already flying
+        if (!isDarkFunMode() || prefersReducedMotion) return;
+        if (document.hidden || isShootingStarActive) return;
+        
+        isShootingStarActive = true;
+        
+        // Create a fresh element for every star to ensure CSS variables update correctly
+        const star = document.createElement('div');
+        star.className = 'fun-shooting-star';
+        star.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(star);
+        
+        // Broaden mobile check to include tablets/larger phones
+        const isMobile = window.innerWidth < 1024;
+        
+        // Calculate the exact trajectory angle based on the CSS animation path (130vw, 50vh)
+        const dx = window.innerWidth * 1.3;
+        const dy = window.innerHeight * 0.5;
+        const trajectoryAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+        
+        const topPos = randomBetween(5, 45);
+        
+        const angleVariance = isMobile ? randomBetween(0, 10) : randomBetween(-2, 5);
+        const angle = trajectoryAngle + angleVariance;
+        
+        // Mobile/medium: 550-800ms (fast streak)
+        // Desktop: 700-1100ms (scenic glide)
+        const duration = isMobile ? randomBetween(550, 800) : randomBetween(700, 1100);
+        
+        star.style.top = `${topPos}%`;
+        star.style.setProperty('--star-angle', `${angle}deg`);
+        star.style.setProperty('--shooting-duration', `${duration}ms`);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            star.classList.add('is-active');
+        });
+        
+        // Cleanup after animation
+        star.addEventListener('animationend', () => {
+            star.remove();
+            isShootingStarActive = false;
+        });
+    };
+
+    // Timer management for shooting stars
+    const scheduleShootingStar = () => {
+        clearTimeout(shootingStarTimer);
+        if (!isDarkFunMode() || prefersReducedMotion) return;
+
+        // Show shooting star based on config interval ONLY if no scrolling and tab is visible
+        const interval = window.siteConfig?.settings?.shootingStarInterval || 25000;
+        shootingStarTimer = setTimeout(() => {
+            triggerShootingStar();
+            scheduleShootingStar();
+        }, interval);
+    };
+
+    // Pause/resume on tab visibility to prevent accumulated bursts
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearTimeout(shootingStarTimer);
+        } else {
+            // Restart fresh countdown when tab becomes visible again
+            scheduleShootingStar();
+        }
+    });
+
+    // Reset timer on scroll
+    let scrollResetTimer = null;
+    const resetShootingStarTimer = () => {
+        if (!isDarkFunMode()) return;
+        clearTimeout(shootingStarTimer);
+        if (scrollResetTimer) clearTimeout(scrollResetTimer);
+        
+        scrollResetTimer = setTimeout(() => {
+            scheduleShootingStar();
+        }, 200);
+    };
+    window.addEventListener('scroll', resetShootingStarTimer, { passive: true });
+
+    const roverStyleOptions = ['rover', 'hopper', 'skimmer', 'orb', 'drone', 'squad', 'none'];
+    if (!roverStyleOptions.includes(funRoverStyle)) {
+        funRoverStyle = 'none';
+    }
+    if (!['dim', 'off'].includes(funVantaMode)) {
+        funVantaMode = 'dim';
+    }
+
+    const updateFunButtons = (enabled) => {
+        funButtons.forEach((button) => {
+            if (button.type === 'checkbox') {
+                button.checked = enabled;
+                button.setAttribute('aria-checked', enabled ? 'true' : 'false');
+            } else {
+                // Update label span if present, otherwise set textContent
+                const label = button.querySelector('.fun-lab-label');
+                if (label) {
+                    label.textContent = enabled ? 'Fun Lab' : 'Fun Lab';
+                } else {
+                    button.textContent = enabled ? 'Fun Mode: On' : 'Fun Mode';
+                }
+            }
+            button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+        });
+    };
+
+    const setFunLabOpen = (open) => {
+        if (!funLabPanel) return;
+        funLabPanel.classList.toggle('is-open', open);
+        funLabPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (funLabButton) {
+            funLabButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+    };
+
+    const syncFunLabInputs = () => {
+        if (roverSelect) roverSelect.value = funRoverStyle;
+        vantaRadios.forEach((radio) => {
+            radio.checked = radio.value === funVantaMode;
+        });
+        const immersiveCheck = document.querySelector('[data-fun-immersive]');
+        if (immersiveCheck) {
+            immersiveCheck.checked = funImmersive;
+            immersiveCheck.setAttribute('aria-pressed', funImmersive ? 'true' : 'false');
+        }
+    };
+
+    const applyVantaMode = (mode, enabled) => {
+        document.body.classList.toggle('fun-vanta-dim', enabled && mode === 'dim');
+        document.body.classList.toggle('fun-vanta-off', enabled && mode === 'off');
+        if (vantaBg) {
+            vantaBg.setAttribute('aria-hidden', enabled && mode === 'off' ? 'true' : 'false');
+        }
+    };
+
+    const applySkillAnimations = (enabled, funEnabled) => {
+        document.body.classList.toggle('fun-skills-on', funEnabled && enabled);
+        if (funEnabled && enabled) {
+            setupSkillConstellations();
+        } else {
+            // Optional: teardown or just let CSS hide it
+        }
+    };
+
+    const applySystemConsole = (enabled, funEnabled) => {
+        document.body.classList.toggle('fun-console-on', funEnabled && enabled);
+    };
+
+    const applyExperienceLogs = (enabled, funEnabled) => {
+        document.body.classList.toggle('fun-logs-on', funEnabled && enabled);
+    };
+
+    const setupStickySectionTitles = () => {
+        const stickyTitles = Array.from(document.querySelectorAll('.sticky-section-title'));
+        const stickyFilters = Array.from(document.querySelectorAll('#projects .fun-project-filters'));
+
+        const updateStickyStates = () => {
+            stickyTitles.forEach((title) => {
+                const stickyTop = parseFloat(getComputedStyle(title).top) || 0;
+                const rect = title.getBoundingClientRect();
+                // Check if element is at the sticky position (within small tolerance)
+                // It is NOT sticky if it has scrolled UP past the sticky point (pushed by container)
+                // or if it hasn't reached it yet.
+                const isSticky = Math.abs(rect.top - stickyTop) < 2;
+                title.classList.toggle('is-sticky', isSticky);
+            });
+            stickyFilters.forEach((filters) => {
+                const stickyTop = parseFloat(getComputedStyle(filters).top) || 0;
+                const rect = filters.getBoundingClientRect();
+                const isSticky = Math.abs(rect.top - stickyTop) < 2;
+                filters.classList.toggle('is-sticky', isSticky);
+            });
+        };
+
+        let ticking = false;
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                updateStickyStates();
+                ticking = false;
+            });
+        };
+
+        updateStickyStates();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateStickyStates);
+    };
+
+    const clearFunMessageTimers = () => {
+        funMessageTimers.forEach((timerId) => clearTimeout(timerId));
+        funMessageTimers.clear();
+        funMessageElements.forEach((element) => element.classList.remove('is-fading'));
+    };
+
+    const startFunMessageRotation = () => {
+        if (prefersReducedMotion) return;
+        funMessageElements.forEach((element) => {
+            const rawMessages = element.dataset.messages;
+            if (!rawMessages) return;
+            const messages = rawMessages.split('|').map((entry) => entry.trim()).filter(Boolean);
+            if (messages.length < 2) return;
+
+            let index = 0;
+            const rotate = () => {
+                index = (index + 1) % messages.length;
+                element.classList.add('is-fading');
+                const fadeDelay = 280;
+                const timerId = setTimeout(() => {
+                    element.textContent = messages[index];
+                    element.classList.remove('is-fading');
+                    const nextDelay = randomBetween(3200, 5200);
+                    funMessageTimers.set(element, setTimeout(rotate, nextDelay));
+                }, fadeDelay);
+                funMessageTimers.set(element, timerId);
+            };
+
+            const initialDelay = randomBetween(2600, 4200);
+            funMessageTimers.set(element, setTimeout(rotate, initialDelay));
+        });
+    };
+
+    const setupProjectFilters = () => {
+        // Sort projects by date (newest first) if on projects page
+        if (window.location.pathname.includes('projects.html')) {
+            const projectsList = document.getElementById('projectsList');
+            if (projectsList) {
+                const cards = Array.from(projectsList.children);
+                cards.sort((a, b) => {
+                    const getPostedDate = (card) => {
+                        const timeEl = card.querySelector('time[data-posted]');
+                        const dateStr = timeEl ? (timeEl.getAttribute('data-posted') || timeEl.getAttribute('datetime')) : '';
+                        return dateStr ? new Date(dateStr).getTime() : 0;
+                    };
+                    return getPostedDate(b) - getPostedDate(a); // Descending order
+                });
+                cards.forEach(card => projectsList.appendChild(card));
+            }
+        }
+
+        const filterGroups = document.querySelectorAll('.fun-project-filters');
+        filterGroups.forEach((group) => {
+            const scopeSelector = group.dataset.filterScope;
+            if (!scopeSelector) return;
+            const scope = document.querySelector(scopeSelector);
+            if (!scope) return;
+
+            const filterMode = group.dataset.filterMode || 'hide';
+            const items = group.dataset.filterItems === 'children'
+                ? Array.from(scope.children)
+                : Array.from(scope.querySelectorAll('.project-card'));
+
+            const updateItemInteractivity = (item, disabled) => {
+                const controls = item.querySelectorAll('a, button, [role="button"]');
+                controls.forEach((control) => {
+                    if (disabled) {
+                        if (control.dataset.funDisabled !== 'true') {
+                            const prevTabIndex = control.getAttribute('tabindex');
+                            control.dataset.prevTabindex = prevTabIndex === null ? '' : prevTabIndex;
+                            control.dataset.funDisabled = 'true';
+                        }
+                        control.setAttribute('tabindex', '-1');
+                        control.setAttribute('aria-disabled', 'true');
+                    } else if (control.dataset.funDisabled === 'true') {
+                        control.removeAttribute('aria-disabled');
+                        const prevTabIndex = control.dataset.prevTabindex;
+                        if (prevTabIndex === undefined || prevTabIndex === '') {
+                            control.removeAttribute('tabindex');
+                        } else {
+                            control.setAttribute('tabindex', prevTabIndex);
+                        }
+                        delete control.dataset.prevTabindex;
+                        delete control.dataset.funDisabled;
+                    }
+                });
+            };
+
+            const refreshAosVisibility = () => {
+                if (typeof AOS === 'undefined') return;
+                items.forEach((item) => {
+                    if (item.classList.contains('fun-filter-hidden')) return;
+                    if (item.hasAttribute('data-aos')) {
+                        item.classList.add('aos-animate');
+                    }
+                });
+                if (typeof AOS.refreshHard === 'function') {
+                    AOS.refreshHard();
+                } else if (typeof AOS.refresh === 'function') {
+                    AOS.refresh();
+                }
+            };
+
+            const applyFilter = (button, shouldScroll = true) => {
+                // Flip any revealed cards back to front before applying filter
+                items.forEach((item) => {
+                    if (item.classList.contains('fun-card-revealed')) {
+                        item.classList.remove('fun-card-revealed');
+                        const link = item.querySelector('.view-link');
+                        if (link) link.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                const filter = button.dataset.filter || 'all';
+                const keywords = (button.dataset.keywords || '')
+                    .split(',')
+                    .map((value) => value.trim().toLowerCase())
+                    .filter(Boolean);
+                let firstMatch = null;
+                const shouldFlip = shouldScroll && !prefersReducedMotion && !scope.classList.contains('carousel-track');
+                const firstRects = shouldFlip ? new Map() : null;
+
+                if (shouldFlip) {
+                    items.forEach((item) => {
+                        if (item.classList.contains('fun-filter-hidden')) return;
+                        firstRects.set(item, item.getBoundingClientRect());
+                    });
+                }
+
+                group.querySelectorAll('.fun-filter-btn').forEach((btn) => {
+                    const isActive = btn === button;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+
+                items.forEach((item) => {
+                    const text = item.textContent.toLowerCase();
+                    const category = item.dataset.category; 
+                    let matches = false;
+                    
+                    if (filter === 'all') {
+                        matches = true;
+                    } else if (category && category === filter) {
+                        matches = true;
+                    } else {
+                        // Fallback to keyword search
+                        matches = keywords.some((keyword) => text.includes(keyword));
+                    }
+
+                    if (matches && !firstMatch) {
+                        firstMatch = item;
+                    }
+
+                    const allowFocus = !scope.classList.contains('carousel-track');
+                    item.classList.toggle('fun-filter-hit', filter !== 'all' && matches);
+                    item.classList.toggle('fun-filter-focus', allowFocus && filter !== 'all' && matches && item === firstMatch);
+
+                    if (filterMode === 'soft') {
+                        item.classList.toggle('fun-filter-dim', !matches);
+                        item.classList.remove('fun-filter-hidden');
+                    } else {
+                        item.classList.toggle('fun-filter-hidden', !matches);
+                        item.classList.remove('fun-filter-dim');
+                    }
+
+                    const disableInteractions = filterMode === 'soft' ? !matches : !matches;
+                    updateItemInteractivity(item, disableInteractions);
+                });
+
+                // Refresh AOS after layout updates to prevent gaps
+                requestAnimationFrame(() => {
+                    refreshAosVisibility();
+                });
+
+                if (shouldScroll || shouldFlip) {
+                    const target = filter === 'all' ? items[0] : firstMatch;
+                    items.forEach((item) => {
+                        item.classList.toggle('is-active', item === target);
+                    });
+
+                    // Scroll to top of list if needed (only for list view)
+                    if (shouldScroll && !scope.classList.contains('carousel-track')) {
+                        const stickyOffset = 220;
+                        const listTop = scope.getBoundingClientRect().top + window.scrollY - stickyOffset;
+                        window.scrollTo({
+                            top: Math.max(0, listTop),
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    requestAnimationFrame(() => {
+                        if (shouldFlip && firstRects) {
+                            items.forEach((item) => {
+                                if (item.classList.contains('fun-filter-hidden')) return;
+                                const firstRect = firstRects.get(item);
+                                if (!firstRect) return;
+                                const lastRect = item.getBoundingClientRect();
+                                const deltaX = firstRect.left - lastRect.left;
+                                const deltaY = firstRect.top - lastRect.top;
+
+                                if (Math.abs(deltaX) > 0 || Math.abs(deltaY) > 0) {
+                                    item.style.transition = 'none';
+                                    item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+                                    requestAnimationFrame(() => {
+                                        item.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0.2, 1)';
+                                        item.style.transform = '';
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            };
+
+            // Attach listeners using cloning to prevent duplicates on re-init
+            group.querySelectorAll('.fun-filter-btn').forEach((btn) => {
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                newBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    applyFilter(newBtn, true);
+                });
+            });
+
+            // Re-apply current filter if one is active, otherwise default
+            const currentActive = group.querySelector('.fun-filter-btn.is-active');
+            if (currentActive) {
+                // Don't scroll on re-init
+                applyFilter(currentActive, false);
+            } else {
+                const defaultButton = group.querySelector('.fun-filter-btn');
+                if (defaultButton) {
+                    applyFilter(defaultButton, false);
+                }
+            }
+        });
+    };
+
+    const roverProfiles = {
+        rover: {
+            style: 'rover',
+            motion: 'ground',
+            speedRange: [2, 6],
+            bounceRange: [4, 8],
+            gravity: 0.18,
+            floorOffset: 10,
+            wobble: 1.4,
+            timeStep: 0.022,
+            spinRange: [12, 18]
+        },
+        hopper: {
+            style: 'hopper',
+            motion: 'ground',
+            speedRange: [2, 5],
+            bounceRange: [6, 10],
+            gravity: 0.35,
+            floorOffset: 0,
+            wobble: 0.6,
+            timeStep: 0.026,
+            spinRange: [14, 22]
+        },
+        skimmer: {
+            style: 'skimmer',
+            motion: 'glide',
+            speedRange: [2, 5],
+            floatAmpRange: [6, 14],
+            driftAmpRange: [16, 28],
+            baseHeight: 0.72,
+            floorOffset: 22,
+            wobble: 1.6,
+            timeStep: 0.02,
+            spinRange: [16, 24]
+        },
+        orb: {
+            style: 'orb',
+            motion: 'float',
+            speedRange: [1, 3],
+            floatAmpRange: [10, 20],
+            driftAmpRange: [20, 32],
+            baseHeight: 0.35,
+            wobble: 1.1,
+            timeStep: 0.018
+        },
+        drone: {
+            style: 'drone',
+            motion: 'float',
+            speedRange: [2, 4],
+            floatAmpRange: [8, 16],
+            driftAmpRange: [18, 34],
+            baseHeight: 0.25,
+            wobble: 1.2,
+            timeStep: 0.02,
+            spinRange: [12, 20]
+        }
+    };
+
+    const roverRosters = {
+        rover: ['rover'],
+        orb: ['orb'],
+        drone: ['drone'],
+        hopper: ['hopper'],
+        skimmer: ['skimmer'],
+        squad: ['rover', 'hopper', 'orb', 'drone', 'skimmer']
+    };
+
+    const getRoverRoster = (style) => {
+        const roster = roverRosters[style] || [style];
+        return roster.filter((value, index, array) => (
+            array.indexOf(value) === index && roverProfiles[value]
+        ));
+    };
+
+    const clearRoverBuddies = () => {
+        roverStates = [];
+        roverBuddies.forEach((buddy) => buddy.remove());
+        roverBuddies = [];
+    };
+
+    const roverQuips = [
+        "This site runs on 100% pure creativity!",
+        "I found zero bugs here. Just features!",
+        "David's code is cleaner than my chassis!",
+        "Scanning for awesomeness... found it!",
+        "10/10 would visit again.",
+        "My sensors detect high quality data structures.",
+        "Optimized for fun and function!",
+        "Beep boop! This portfolio rocks!",
+        "Data integrity verified: Excellent.",
+        "I could bounce around here all day!",
+        "Systems nominal. Aesthetic operational.",
+        "Have you seen the cool projects yet?",
+        "Searching for loose semicolons... none found!",
+        "This UI is smoother than my wheel bearings."
+    ];
+
+    const concerningQuips = [
+        "Wait... did something just move in the shadows?",
+        "I'm picking up strange energy readings here...",
+        "Why is the footer planet vibrating?",
+        "There are things in this code... ancient things.",
+        "My sensors are glitching. Is that a ghost?",
+        "I swear I heard a binary whisper.",
+        "Do not look directly at the void.",
+        "Searching for mythical bugs... found a trace.",
+        "Alert: Anomalous data detected in sector 7.",
+        "Is it just me, or is the background watching us?",
+        "I think we are not alone in this DOM.",
+        "Scavenging for lost packets... it's dark down here."
+    ];
+
+    const showRoverQuip = (buddy) => {
+        // Remove existing bubble if any
+        let bubble = buddy.querySelector('.rover-quip-bubble');
+        if (bubble) bubble.remove();
+
+        // Create new bubble
+        bubble = document.createElement('div');
+        bubble.className = 'rover-quip-bubble';
+        
+        // 30% chance for a concerning message
+        const useConcerning = Math.random() < 0.3;
+        const text = useConcerning 
+            ? concerningQuips[Math.floor(Math.random() * concerningQuips.length)]
+            : roverQuips[Math.floor(Math.random() * roverQuips.length)];
+            
+        if (useConcerning) bubble.classList.add('is-alert');
+        
+        bubble.textContent = text;
+        buddy.appendChild(bubble);
+
+        // Position - slightly random to feel natural
+        bubble.style.left = `${randomBetween(-20, 20)}px`;
+        bubble.style.bottom = '45px'; // Above the rover
+
+        // Animate in
+        requestAnimationFrame(() => {
+            bubble.classList.add('is-visible');
+        });
+
+        // Animate rover reaction (small jump)
+        const originalTransform = buddy.style.transform;
+        // Jitter shake if alerting, normal jump if happy
+        if (useConcerning) {
+             buddy.style.transform = `${originalTransform} rotate(10deg) scale(1.1)`;
+             setTimeout(() => { buddy.style.transform = `${originalTransform} rotate(-10deg) scale(1.1)`; }, 100);
+             setTimeout(() => { buddy.style.transform = originalTransform; }, 200);
+        } else {
+             buddy.style.transform = `${originalTransform} scale(1.2)`;
+             setTimeout(() => { buddy.style.transform = originalTransform; }, 200);
+        }
+
+        // Remove after delay
+        setTimeout(() => {
+            bubble.classList.remove('is-visible');
+            setTimeout(() => bubble.remove(), 500);
+        }, 3000);
+    };
+
+    const createRoverBuddy = (profileName, index, total) => {
+        const profile = roverProfiles[profileName];
+        if (!profile) return;
+        const buddy = document.createElement('div');
+        buddy.className = 'fun-rover-buddy';
+        buddy.dataset.style = profile.style;
+        buddy.dataset.motion = profile.motion;
+        buddy.setAttribute('aria-hidden', 'true');
+        // Allow clicks
+        buddy.style.pointerEvents = 'auto';
+        buddy.style.cursor = 'pointer';
+        
+        const spinRange = profile.spinRange || [14, 20];
+        buddy.style.setProperty('--wheel-speed', `${randomBetween(spinRange[0], spinRange[1]) / 10}s`);
+        
+        let extraParts = '';
+        if (profile.style === 'hopper') {
+             extraParts = `
+                <span class="rover-leg rover-leg-left"></span>
+                <span class="rover-leg rover-leg-right"></span>
+             `;
+        }
+        if (profile.style === 'drone' || profile.style === 'skimmer') {
+             extraParts += `<span class="rover-headlight"></span>`;
+        }
+
+        buddy.innerHTML = `
+            <span class="rover-glow"></span>
+            ${extraParts}
+            <span class="rover-body"></span>
+            <span class="rover-visor"></span>
+            <span class="rover-wheel rover-wheel-left"></span>
+            <span class="rover-wheel rover-wheel-right"></span>
+            <span class="rover-antenna"></span>
+            <span class="rover-fin"></span>
+        `;
+        
+        // Add click listener for quips
+        buddy.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering other things
+            showRoverQuip(buddy);
+        });
+
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.appendChild(buddy);
+        } else {
+            document.body.appendChild(buddy);
+        }
+
+        const rect = buddy.getBoundingClientRect();
+        const width = rect.width || 60;
+        const height = rect.height || 32;
+        
+        // Use footer dimensions for X positioning
+        const containerWidth = footer ? footer.clientWidth : window.innerWidth;
+        const spacing = (containerWidth - width - 40) / Math.max(total, 1);
+        const baseX = Math.max(16, Math.min(containerWidth - width - 16, spacing * (index + 0.6)));
+        
+        const speed = randomBetween(profile.speedRange[0], profile.speedRange[1]) / 10;
+        const floatAmp = profile.floatAmpRange
+            ? randomBetween(profile.floatAmpRange[0], profile.floatAmpRange[1])
+            : 0;
+        const driftAmp = profile.driftAmpRange
+            ? randomBetween(profile.driftAmpRange[0], profile.driftAmpRange[1])
+            : 0;
+        const state = {
+            element: buddy,
+            profile,
+            width,
+            height,
+            x: baseX,
+            baseX,
+            y: 0, // Initial Y will be set by bounds
+            vx: speed * (Math.random() < 0.5 ? -1 : 1),
+            vy: profile.motion === 'ground' ? -randomBetween(4, 12) / 10 : 0,
+            gravity: profile.gravity || 0,
+            bounce: profile.bounceRange ? randomBetween(profile.bounceRange[0], profile.bounceRange[1]) / 10 : 0,
+            baseY: 0,
+            floatAmp,
+            driftAmp,
+            phase: Math.random() * Math.PI * 2,
+            time: Math.random() * 4,
+            timeStep: profile.timeStep || 0.02,
+            wobble: profile.wobble || 1.2,
+            floor: 0,
+            ceiling: 0,
+            maxX: 0,
+            hopperState: 'hopping', // 'hopping' or 'scavenging'
+            scavengeTimer: 0
+        };
+        roverBuddies.push(buddy);
+        roverStates.push(state);
+    };
+
+    const updateRoverStyle = () => {
+        if (!document.body.classList.contains('fun-mode')) return;
+        startRoverBuddy();
+    };
+
+    const updateRoverBounds = (state) => {
+        const footer = document.querySelector('footer');
+        if (!footer) return;
+        const rect = state.element.getBoundingClientRect();
+        const width = rect.width || state.width || 60;
+        const height = rect.height || state.height || 32;
+        state.width = width;
+        state.height = height;
+        
+        // Use footer dimensions
+        const containerWidth = footer.clientWidth;
+        const containerHeight = footer.clientHeight;
+        
+        state.maxX = Math.max(0, containerWidth - width - 16);
+        if (state.profile.motion === 'ground') {
+            const floorOffset = state.profile.floorOffset || 10;
+            // Floor is relative to footer bottom
+            state.floor = containerHeight - height - floorOffset;
+            state.ceiling = Math.max(containerHeight * 0.2, state.floor - height * 4);
+        } else {
+            // For floaters, keep them in the upper/middle part of footer
+            const base = containerHeight * 0.5;
+            state.baseY = Math.min(containerHeight - height - 20, Math.max(20, base));
+        }
+    };
+
+    const renderRover = (state) => {
+        const drift = Math.sin(state.time * 1.6 + state.phase) * state.wobble;
+        const tilt = Math.max(-8, Math.min(8, state.vx * 10)) + drift;
+        
+        // Hopper squash/stretch visual
+        if (state.profile.style === 'hopper') {
+            const legs = state.element.querySelectorAll('.rover-leg');
+            const nearFloor = state.y >= state.floor - 2;
+            const rising = state.vy < -2;
+            const isScavenging = state.hopperState === 'scavenging';
+            
+            // Gentle squash on ground, mild stretch when rising, neutral mid-air
+            // Scavenging: flat legs
+            const scaleY = isScavenging ? 0.9 : (nearFloor ? 0.78 : (rising ? 1.15 : 1));
+            const scaleX = isScavenging ? 1.05 : (nearFloor ? 1.12 : (rising ? 0.92 : 1));
+            
+            legs.forEach(leg => {
+                leg.style.transform = `scaleY(${nearFloor || isScavenging ? 0.65 : 1})`;
+            });
+            state.element.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${tilt}deg) scaleX(${scaleX}) scaleY(${scaleY})`;
+            return;
+        }
+        
+        state.element.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${tilt}deg)`;
+    };
+
+    const animateRover = () => {
+        if (!roverStates.length) return;
+        roverStates.forEach((state) => {
+            updateRoverBounds(state);
+            state.time += state.timeStep;
+            if (state.profile.motion === 'ground') {
+                state.vy += state.gravity;
+                state.x += state.vx;
+                state.y += state.vy;
+
+                if (state.y >= state.floor) {
+                    state.y = state.floor;
+                    
+                    if (state.profile.style === 'hopper') {
+                         if (state.hopperState === 'scavenging') {
+                             // Scavenge behavior: move slowly or stop
+                             state.vy = 0; // Stick to floor
+                             state.scavengeTimer -= 0.016; // Approx 60fps
+                             if (state.scavengeTimer <= 0) {
+                                 state.hopperState = 'hopping';
+                                 // Big jump to start hopping
+                                 state.vy = -randomBetween(state.profile.bounceRange[0], state.profile.bounceRange[1]);
+                                 // Regular speed
+                                 state.vx = (Math.random() < 0.5 ? -1 : 1) * (randomBetween(state.profile.speedRange[0], state.profile.speedRange[1]) / 10);
+                             }
+                         } else {
+                             // Hopping behavior
+                             // 40% chance to switch to scavenging on landing
+                             if (Math.random() < 0.4) {
+                                 state.hopperState = 'scavenging';
+                                 state.scavengeTimer = randomBetween(2, 6); // 2-6 seconds
+                                 state.vx = (Math.random() < 0.5 ? -1 : 1) * (randomBetween(1, 3) / 10); // Slow crawl
+                                 state.vy = 0;
+                             } else {
+                                 // Keep hopping
+                                 state.vy = -randomBetween(state.profile.bounceRange[0], state.profile.bounceRange[1]);
+                                 const dir = state.vx >= 0 ? 1 : -1;
+                                 const flip = Math.random() < 0.25 ? -1 : 1; 
+                                 state.vx = dir * flip * (randomBetween(state.profile.speedRange[0], state.profile.speedRange[1]) / 10);
+                             }
+                         }
+                    } else {
+                        state.vy *= -state.bounce;
+                    }
+                }
+
+                if (state.y <= state.ceiling) {
+                    state.y = state.ceiling;
+                    state.vy = Math.abs(state.vy);
+                }
+            } else {
+                state.baseX += state.vx;
+                const lift = Math.cos(state.time + state.phase) * state.floatAmp;
+                const sway = Math.sin(state.time * 0.9 + state.phase) * state.driftAmp;
+                state.y = state.baseY + lift;
+                state.x = state.baseX + sway;
+            }
+
+            if (state.profile.motion === 'ground') {
+                if (state.x <= 8 || state.x >= state.maxX) {
+                    state.vx *= -1;
+                    state.x = Math.max(8, Math.min(state.x, state.maxX));
+                }
+            } else {
+                if (state.baseX <= 8 || state.baseX >= state.maxX) {
+                    state.vx *= -1;
+                    state.baseX = Math.max(8, Math.min(state.baseX, state.maxX));
+                }
+            }
+
+            renderRover(state);
+        });
+        roverFrameId = requestAnimationFrame(animateRover);
+    };
+
+    const startRoverBuddy = () => {
+        clearRoverBuddies();
+        const roster = getRoverRoster(funRoverStyle);
+        const footer = document.querySelector('footer');
+        // Only spawn if footer exists; otherwise fallback to body or abort (aborting is safer for 'footer only')
+        if (!footer) return;
+
+        roster.forEach((profileName, index) => createRoverBuddy(profileName, index, roster.length));
+        roverStates.forEach((state) => {
+            updateRoverBounds(state);
+            if (state.profile.motion === 'ground') {
+                state.y = state.floor;
+            } else {
+                state.y = state.baseY;
+            }
+            renderRover(state);
+        });
+        if (prefersReducedMotion) return;
+        if (roverFrameId) cancelAnimationFrame(roverFrameId);
+        roverFrameId = requestAnimationFrame(animateRover);
+    };
+
+    const stopRoverBuddy = () => {
+        if (roverFrameId) {
+            cancelAnimationFrame(roverFrameId);
+            roverFrameId = null;
+        }
+        clearRoverBuddies();
+    };
+
+    const resetProjectFilters = () => {
+        const filterGroups = document.querySelectorAll('.fun-project-filters');
+        filterGroups.forEach((group) => {
+            const buttons = group.querySelectorAll('.fun-filter-btn');
+            buttons.forEach((button, index) => {
+                const isDefault = index === 0;
+                button.classList.toggle('is-active', isDefault);
+                button.setAttribute('aria-pressed', isDefault ? 'true' : 'false');
+            });
+
+            const scopeSelector = group.dataset.filterScope;
+            if (!scopeSelector) return;
+            const scope = document.querySelector(scopeSelector);
+            if (!scope) return;
+            const items = group.dataset.filterItems === 'children'
+                ? Array.from(scope.children)
+                : Array.from(scope.querySelectorAll('.project-card'));
+            items.forEach((item) => {
+                item.classList.remove('fun-filter-hidden', 'fun-filter-dim', 'fun-filter-hit', 'fun-filter-focus');
+            });
+        });
+    };
+
+    const getSkillVisualType = (title) => {
+        const label = title.toLowerCase();
+        if (label.includes('data')) return 'data';
+        if (label.includes('automation')) return 'automation';
+        if (label.includes('operating')) return 'os';
+        if (label.includes('infrastructure')) return 'infra';
+        if (label.includes('network')) return 'network';
+        if (label.includes('systems')) return 'systems';
+        return 'systems';
+    };
+
+    const skillVisualTemplates = {
+        systems: `
+            <span class="circuit-line line-x"></span>
+            <span class="circuit-line line-x line-x2"></span>
+            <span class="circuit-line line-y"></span>
+            <span class="circuit-line line-y line-y2"></span>
+            <span class="circuit-node node-a"></span>
+            <span class="circuit-node node-b"></span>
+            <span class="circuit-node node-c"></span>
+        `,
+        data: `
+            <span class="radar-ring ring-1"></span>
+            <span class="radar-ring ring-2"></span>
+            <span class="radar-ring ring-3"></span>
+            <span class="radar-sweep"></span>
+            <span class="radar-dot dot-1"></span>
+            <span class="radar-dot dot-2"></span>
+            <span class="radar-dot dot-3"></span>
+        `,
+        automation: `
+            <svg viewBox="0 0 120 60" aria-hidden="true">
+                <path class="flow-path" d="M8 48 C 30 20, 60 20, 112 12" />
+                <circle class="flow-node" cx="8" cy="48" r="3" />
+                <circle class="flow-node" cx="55" cy="26" r="2.4" />
+                <circle class="flow-node" cx="112" cy="12" r="3" />
+                <circle class="flow-spark" cx="84" cy="18" r="2.2" />
+            </svg>
+        `,
+        os: `
+            <span class="terminal-line line-1"></span>
+            <span class="terminal-line line-2"></span>
+            <span class="terminal-line line-3"></span>
+            <span class="terminal-line line-4"></span>
+            <span class="terminal-cursor"></span>
+            <span class="terminal-scan"></span>
+        `,
+        infra: `
+            <span class="rack-unit unit-1"></span>
+            <span class="rack-unit unit-2"></span>
+            <span class="rack-unit unit-3"></span>
+            <span class="rack-light light-1"></span>
+            <span class="rack-light light-2"></span>
+            <span class="rack-light light-3"></span>
+        `,
+        network: `
+            <span class="net-line line-1"></span>
+            <span class="net-line line-2"></span>
+            <span class="net-line line-3"></span>
+            <span class="net-node node-1"></span>
+            <span class="net-node node-2"></span>
+            <span class="net-node node-3"></span>
+            <span class="net-node node-4"></span>
+            <span class="net-pulse"></span>
+        `
+    };
+
+    const setupSkillConstellations = () => {
+        document.querySelectorAll('.skill-card').forEach((card) => {
+            const existing = card.querySelector('.skill-constellation');
+            if (existing) existing.remove();
+            const existingSpark = card.querySelector('.skill-spark');
+            if (existingSpark) existingSpark.remove();
+
+            const title = card.querySelector('h3')?.textContent || '';
+            const type = getSkillVisualType(title);
+            const constellation = document.createElement('div');
+            constellation.className = 'skill-constellation';
+            constellation.dataset.visual = type;
+            constellation.setAttribute('aria-hidden', 'true');
+            constellation.style.setProperty('--constellation-delay', `${randomBetween(0, 12) / 10}s`);
+            constellation.innerHTML = skillVisualTemplates[type] || skillVisualTemplates.systems;
+            card.appendChild(constellation);
+        });
+    };
+
+    const setupAnalystSparks = () => {
+        document.querySelectorAll('.analyst-spark span').forEach((bar) => {
+            if (bar.dataset.baseHeight) return;
+            const baseHeight = bar.style.getPropertyValue('--bar') || `${randomBetween(50, 90)}%`;
+            bar.dataset.baseHeight = baseHeight.trim();
+            bar.style.setProperty('--bar', bar.dataset.baseHeight);
+            bar.style.setProperty('--spark-delay', `${randomBetween(0, 8) / 10}s`);
+        });
+    };
+
+    const startAnalystSparkCycle = () => {
+        if (prefersReducedMotion) return;
+        setupAnalystSparks();
+        if (analystSparkTimer) clearInterval(analystSparkTimer);
+        const bars = Array.from(document.querySelectorAll('.analyst-spark span'));
+        analystSparkTimer = setInterval(() => {
+            bars.forEach((bar) => {
+                const baseValue = parseFloat(bar.dataset.baseHeight || '70');
+                if (Number.isNaN(baseValue)) return;
+                const next = Math.min(95, Math.max(35, baseValue + randomBetween(-16, 16)));
+                bar.style.setProperty('--bar', `${next}%`);
+                bar.style.setProperty('--spark-delay', `${randomBetween(0, 8) / 10}s`);
+            });
+        }, 1800);
+    };
+
+    const stopAnalystSparkCycle = () => {
+        if (analystSparkTimer) {
+            clearInterval(analystSparkTimer);
+            analystSparkTimer = null;
+        }
+        document.querySelectorAll('.analyst-spark span').forEach((bar) => {
+            if (bar.dataset.baseHeight) {
+                bar.style.setProperty('--bar', bar.dataset.baseHeight);
+            }
+        });
+    };
+
+    const ensureViewLinkText = (link) => {
+        let textSpan = link.querySelector('.view-link-text');
+        if (textSpan) return textSpan;
+        const textNodes = Array.from(link.childNodes).filter((node) => node.nodeType === Node.TEXT_NODE);
+        const textContent = textNodes.map((node) => node.textContent).join(' ').trim() || 'View Project';
+        textNodes.forEach((node) => node.remove());
+        textSpan = document.createElement('span');
+        textSpan.className = 'view-link-text';
+        textSpan.textContent = textContent;
+        link.insertBefore(textSpan, link.firstChild);
+        return textSpan;
+    };
+
+    const timeAgo = (input) => {
+        const now = new Date();
+        const date = input instanceof Date ? input : new Date(input);
+        if (Number.isNaN(date.getTime())) return 'recently';
+        const diff = Math.floor((now - date) / 1000);
+        if (diff < 60) return 'just now';
+        if (diff < 3600) {
+            const minutes = Math.floor(diff / 60);
+            return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+        }
+        if (diff < 86400) {
+            const hours = Math.floor(diff / 3600);
+            return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+        }
+        if (diff < 604800) {
+            const days = Math.floor(diff / 86400);
+            return `${days} day${days !== 1 ? 's' : ''} ago`;
+        }
+        if (diff < 2592000) {
+            const weeks = Math.floor(diff / 604800);
+            return `${weeks} week${weeks !== 1 ? 's' : ''} ago`;
+        }
+        if (diff < 31536000) {
+            const months = Math.floor(diff / 2592000);
+            return `${months} month${months !== 1 ? 's' : ''} ago`;
+        }
+        const years = Math.floor(diff / 31536000);
+        return `${years} year${years !== 1 ? 's' : ''} ago`;
+    };
+
+    const getProjectCards = () => {
+        const cards = Array.from(document.querySelectorAll('.project-card'));
+        const projectsList = document.getElementById('projectsList');
+        if (projectsList) {
+            Array.from(projectsList.children).forEach((card) => {
+                card.classList.add('project-list-card');
+                cards.push(card);
+            });
+        }
+        return cards;
+    };
+
+    const setViewLinkHint = (link) => {
+        const textSpan = ensureViewLinkText(link);
+        if (!textSpan.dataset.originalText) {
+            textSpan.dataset.originalText = textSpan.textContent.trim();
+        }
+        
+        // Calculate modification date text
+        let revealText = "No modifications yet";
+        const card = link.closest('.project-card') || link.closest('.project-list-card');
+        if (card) {
+            const timeEl = card.querySelector('time[data-modified]');
+            const postedEl = card.querySelector('time[data-posted]');
+            if (timeEl) {
+                const dateStr = timeEl.getAttribute('data-modified') || timeEl.getAttribute('datetime');
+                if (dateStr) {
+                    try {
+                        const date = new Date(dateStr);
+                        if (!Number.isNaN(date.getTime())) {
+                            let isUnmodified = false;
+                            if (postedEl) {
+                                const postedStr = postedEl.getAttribute('data-posted') || postedEl.getAttribute('datetime');
+                                const postedDate = postedStr ? new Date(postedStr) : null;
+                                if (postedDate && !Number.isNaN(postedDate.getTime())) {
+                                    isUnmodified = Math.abs(date - postedDate) < 60000;
+                                }
+                            }
+                            revealText = isUnmodified
+                                ? 'No modifications yet'
+                                : `Modified: ${timeAgo(date)}`;
+                        }
+                    } catch (e) {}
+                }
+            }
+        }
+        
+        link.setAttribute('data-reveal-text', revealText);
+    };
+
+    const ensureCardInner = (card) => {
+        let inner = card.querySelector('.project-card-inner');
+        if (inner) return inner;
+        inner = document.createElement('div');
+        inner.className = 'project-card-inner';
+        const front = document.createElement('div');
+        front.className = 'project-card-front';
+        const children = Array.from(card.children);
+        children.forEach((child) => {
+            front.appendChild(child);
+        });
+        inner.appendChild(front);
+        card.appendChild(inner);
+        return inner;
+    };
+
+    const setupProjectCardReveal = () => {
+        const cards = getProjectCards();
+        cards.forEach((card) => {
+            const inner = ensureCardInner(card);
+            let reveal = inner.querySelector('.project-card-reveal');
+            if (!reveal) {
+                reveal = document.createElement('div');
+                reveal.className = 'project-card-reveal';
+                reveal.innerHTML = `
+                    <button class="project-card-reveal-close" aria-label="Close reveal">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <span>Pending reveal...</span>
+                `;
+                inner.appendChild(reveal);
+            } else if (!reveal.querySelector('.project-card-reveal-close')) {
+                // Add close button to existing reveal elements
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'project-card-reveal-close';
+                closeBtn.setAttribute('aria-label', 'Close reveal');
+                closeBtn.innerHTML = `
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                `;
+                reveal.insertBefore(closeBtn, reveal.firstChild);
+            }
+
+            // Bind close button click - ONLY way to close
+            const closeBtn = reveal.querySelector('.project-card-reveal-close');
+            if (closeBtn && !closeBtn.dataset.funCloseBound) {
+                closeBtn.dataset.funCloseBound = 'true';
+                closeBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    card.classList.remove('fun-card-revealed');
+                    const link = card.querySelector('.view-link');
+                    if (link) {
+                        link.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Removed card click listener to prevent closing by clicking anywhere on the back
+            if (card.dataset.funCardBound) {
+                // If we need to remove the old listener, we can't easily without the reference.
+                // But since we are likely reloading or the user is refreshing, we'll just not add it.
+                // If this is hot-reloading, we might have an issue, but for now we just won't add the "click anywhere to close" logic.
+            }
+        });
+
+        document.querySelectorAll('.view-link').forEach((link) => {
+            if (link.dataset.funRevealBound) return;
+            link.dataset.funRevealBound = 'true';
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const card = link.closest('.project-card') || link.closest('.project-list-card') || link.closest('#projectsList > div');
+                if (card && card.querySelector('.project-card-inner')) {
+                    const isRevealed = card.classList.toggle('fun-card-revealed');
+                    link.setAttribute('aria-expanded', isRevealed ? 'true' : 'false');
+                }
+            });
+        });
+    };
+
+    const updateViewLinks = () => {
+        document.querySelectorAll('.view-link').forEach((link) => {
+            link.classList.add('fun-view-link');
+            setViewLinkHint(link);
+            if (!link.hasAttribute('aria-expanded')) {
+                link.setAttribute('aria-expanded', 'false');
+            }
+        });
+    };
+
+    window.setupProjectCardReveal = setupProjectCardReveal;
+    window.setupProjectFilters = setupProjectFilters;
+    window.updateViewLinks = updateViewLinks;
+
+    const resetProjectCardReveal = () => {
+        getProjectCards().forEach((card) => {
+            card.classList.remove('fun-card-revealed');
+        });
+        document.querySelectorAll('.view-link').forEach((link) => {
+            link.removeAttribute('aria-expanded');
+        });
+    };
+
+    const brightStarColors = ['', 'star-blue', 'star-pink'];
+    let brightStarsCreated = false;
+
+    const createBrightStars = () => {
+        if (brightStarsCreated) return;
+        brightStarsCreated = true;
+        const sections = document.querySelectorAll('.fun-galaxy-section, .fun-star-scatter');
+        sections.forEach((section) => {
+            const count = 2 + Math.floor(Math.random() * 2); // 2–3 stars per section
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('span');
+                const colorClass = brightStarColors[Math.floor(Math.random() * brightStarColors.length)];
+                star.className = `fun-bright-star${colorClass ? ' ' + colorClass : ''}`;
+                star.style.left = `${8 + Math.random() * 84}%`;
+                star.style.top = `${8 + Math.random() * 84}%`;
+                // Wide range of durations and offsets so each star twinkles independently
+                star.style.setProperty('--twinkle-duration', `${5 + Math.random() * 8}s`);
+                star.style.setProperty('--twinkle-delay', `${Math.random() * 10}s`);
+                star.setAttribute('aria-hidden', 'true');
+                section.appendChild(star);
+            }
+        });
+    };
+
+    const removeBrightStars = () => {
+        document.querySelectorAll('.fun-bright-star').forEach((star) => star.remove());
+        brightStarsCreated = false;
+    };
+
+    const setFunMode = (enabled) => {
+        document.body.classList.toggle('fun-mode', enabled);
+        document.documentElement.classList.toggle('fun-mode-active', enabled); // For Vanta visibility
+        updateFunButtons(enabled);
+        funElements.forEach((element) => {
+            element.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+        });
+        applyVantaMode(funVantaMode, enabled);
+        
+        // Apply sub-feature toggles - all controlled by funImmersive
+        applySkillAnimations(funImmersive, enabled);
+        applySystemConsole(funImmersive, enabled);
+        applyExperienceLogs(funImmersive, enabled);
+
+        scheduleShootingStar();
+        
+        if (enabled) {
+            applyStarTextures();
+            startAnalystSparkCycle();
+            clearFunMessageTimers();
+            startFunMessageRotation();
+            startRoverBuddy();
+            createBrightStars();
+            if (typeof AOS !== 'undefined' && AOS.refresh) {
+                AOS.refresh();
+            }
+        } else {
+            clearFunMessageTimers();
+            stopAnalystSparkCycle();
+            stopRoverBuddy();
+            removeBrightStars();
+            removeStarTextures();
+        }
+        localStorage.setItem(funModeKey, enabled ? 'on' : 'off');
+    };
+
+    funButtons.forEach((button) => {
+        const handler = () => {
+            const enabled = button.type === 'checkbox'
+                ? button.checked
+                : !document.body.classList.contains('fun-mode');
+            setFunMode(enabled);
+            // Ensure localStorage reflects the toggle state
+            localStorage.setItem(funModeKey, enabled ? 'on' : 'off');
+        };
+        if (button.type === 'checkbox') {
+            button.addEventListener('change', handler);
+        } else {
+            button.addEventListener('click', handler);
+        }
+    });
+
+    // Event listener for unified Immersive toggle
+    const immersiveCheck = document.querySelector('[data-fun-immersive]');
+    if (immersiveCheck) {
+        immersiveCheck.addEventListener('change', (e) => {
+            funImmersive = e.target.checked;
+            localStorage.setItem('fun_immersive', funImmersive);
+            const enabled = document.body.classList.contains('fun-mode');
+            applySkillAnimations(funImmersive, enabled);
+            applySystemConsole(funImmersive, enabled);
+            applyExperienceLogs(funImmersive, enabled);
+            e.target.setAttribute('aria-pressed', funImmersive ? 'true' : 'false');
+        });
+    }
+
+    if (funLabButton && funLabPanel) {
+        funLabButton.addEventListener('click', () => {
+            const isOpen = funLabPanel.classList.contains('is-open');
+            setFunLabOpen(!isOpen);
+        });
+    }
+
+    if (funLabClose) {
+        funLabClose.addEventListener('click', () => setFunLabOpen(false));
+    }
+
+    if (roverSelect) {
+        roverSelect.addEventListener('change', (event) => {
+            funRoverStyle = event.target.value;
+            localStorage.setItem(funRoverKey, funRoverStyle);
+            updateRoverStyle();
+        });
+    }
+
+    vantaRadios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+            if (!radio.checked) return;
+            funVantaMode = radio.value;
+            localStorage.setItem(funVantaKey, funVantaMode);
+            applyVantaMode(funVantaMode, document.body.classList.contains('fun-mode'));
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!funLabPanel || !funLabButton || !funLabPanel.classList.contains('is-open')) return;
+        const wrap = funLabButton.closest('.fun-lab-button-wrap');
+        if (funLabPanel.contains(event.target) || (wrap && wrap.contains(event.target)) || funLabButton.contains(event.target)) return;
+        setFunLabOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setFunLabOpen(false);
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (!roverStates.length) return;
+        roverStates.forEach((state) => {
+            updateRoverBounds(state);
+            if (state.profile.motion === 'ground') {
+                state.y = state.floor;
+            } else {
+                state.y = state.baseY;
+            }
+            state.baseX = Math.max(8, Math.min(state.baseX, state.maxX));
+            state.x = Math.max(8, Math.min(state.x, state.maxX));
+            renderRover(state);
+        });
+    });
+
+    const storedFunMode = localStorage.getItem(funModeKey);
+    const shouldFollowConfigDefault = storedFunMode === null;
+    const funModeEnabled = shouldFollowConfigDefault
+        ? !!window.siteConfig?.settings?.defaultFunMode
+        : storedFunMode !== 'off';
+    syncFunLabInputs();
+    setFunLabOpen(false);
+    setupProjectCardReveal(); // Initialize universally
+    setFunMode(funModeEnabled);
+
+    document.addEventListener('siteconfig:loaded', () => {
+        if (!shouldFollowConfigDefault) return;
+        const configDefault = !!window.siteConfig?.settings?.defaultFunMode;
+        if (document.body.classList.contains('fun-mode') !== configDefault) {
+            setFunMode(configDefault);
+        }
+    });
     
     // Initialize Feather icons
     feather.replace();
     
+    // Global setup
+    setupStickySectionTitles();
+    loadProjects(); // Load dynamic projects
+    setupProjectFilters();
+    setupProjectCardReveal();
+    updateViewLinks();
+
     // Update active nav states
     updateActiveNavStates();
+    setupScrollSpy();
     
     // Load version
     loadVersion();
+
+    // Update footer year
+    updateFooterYear();
+
+    // Hero typing effect
+    const typingElement = document.getElementById('typing-text');
+    if (typingElement) {
+        const fullText = typingElement.dataset.text || typingElement.textContent.trim();
+        const forceTyping = typingElement.dataset.forceTyping === 'true';
+        if (prefersReducedMotion && !forceTyping) {
+            typingElement.textContent = fullText;
+        } else {
+            let index = 0;
+            let isDeleting = false;
+
+            const typingRange = { min: 70, max: 130 };
+            const deletingRange = { min: 40, max: 90 };
+            const hesitationChance = 0.16;
+            const hesitationDelay = { min: 120, max: 320 };
+            const endPauseRange = { min: 2600, max: 3800 };
+            const decisionPauseRange = { min: 700, max: 1200 };
+            const restartPauseRange = { min: 600, max: 1000 };
+
+            const addHesitation = () => (
+                Math.random() < hesitationChance
+                    ? randomBetween(hesitationDelay.min, hesitationDelay.max)
+                    : 0
+            );
+
+            const tick = () => {
+                if (!isDeleting) {
+                    index = Math.min(index + 1, fullText.length);
+                    typingElement.textContent = fullText.slice(0, index);
+                    if (index === fullText.length) {
+                        const hold = randomBetween(endPauseRange.min, endPauseRange.max);
+                        const decision = randomBetween(decisionPauseRange.min, decisionPauseRange.max);
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setTimeout(tick, decision);
+                        }, hold);
+                        return;
+                    }
+                    const delay = randomBetween(typingRange.min, typingRange.max) + addHesitation();
+                    setTimeout(tick, delay);
+                } else {
+                    index = Math.max(index - 1, 0);
+                    typingElement.textContent = fullText.slice(0, index);
+                    if (index === 0) {
+                        isDeleting = false;
+                        const restart = randomBetween(restartPauseRange.min, restartPauseRange.max);
+                        setTimeout(tick, restart);
+                        return;
+                    }
+                    const delay = randomBetween(deletingRange.min, deletingRange.max) + addHesitation() / 2;
+                    setTimeout(tick, delay);
+                }
+            };
+
+            typingElement.textContent = '';
+            setTimeout(tick, randomBetween(400, 900));
+        }
+    }
     
     // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');

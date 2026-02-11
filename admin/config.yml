@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "config"
+        label: "Configuration"
+        file: "js/config.json"
+        fields:
+          - {label: "Settings", name: "settings", widget: "object", fields: [
+              {label: "Shooting Star Interval (ms)", name: "shootingStarInterval", widget: "number", default: 25000},
+              {label: "Default Fun Mode Enabled", name: "defaultFunMode", widget: "boolean", default: true},
+              {label: "Vanta Background", name: "vanta", widget: "object", fields: [
+                {label: "Dark Theme", name: "dark", widget: "object", fields: [
+                  {label: "Primary Color", name: "color", widget: "color", default: "#7c3aed"},
+                  {label: "Secondary Color", name: "color2", widget: "color", default: "#6366f1"},
+                  {label: "Background Color", name: "backgroundColor", widget: "color", default: "#0f172a"}
+                ]},
+                {label: "Light Theme", name: "light", widget: "object", fields: [
+                  {label: "Primary Color", name: "color", widget: "color", default: "#667eea"},
+                  {label: "Secondary Color", name: "color2", widget: "color", default: "#f8fafc"},
+                  {label: "Background Color", name: "backgroundColor", widget: "color", default: "#f8fafc"}
+                ]}
+              ]}
+            ]}
+  - name: "projects_collection"
+    label: "Projects"
+    files:
+      - name: "projects"
+        label: "Projects List"
+        file: "js/projects.json"
+        fields:
+          - {label: "Projects", name: "projects", widget: "list", fields: [
+              {label: "Title", name: "title", widget: "string"},
+              {label: "Featured", name: "featured", widget: "boolean", default: false},
+              {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]},
+              {label: "Image URL", name: "image", widget: "image"},
+              {label: "Description", name: "description", widget: "text"},
+              {label: "Tags", name: "tags", widget: "list", default: []},
+              {label: "Posted Date", name: "posted", widget: "datetime"},
+              {label: "Modified Date", name: "modified", widget: "datetime"}
+            ]}

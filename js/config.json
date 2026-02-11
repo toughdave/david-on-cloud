@@ -1,0 +1,18 @@
+{
+    "settings": {
+        "shootingStarInterval": 25000,
+        "defaultFunMode": true,
+        "vanta": {
+            "dark": {
+                "color": "#7c3aed",
+                "color2": "#6366f1",
+                "backgroundColor": "#0f172a"
+            },
+            "light": {
+                "color": "#667eea",
+                "color2": "#f8fafc",
+                "backgroundColor": "#f8fafc"
+            }
+        }
+    }
+}
