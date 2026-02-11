@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: toughdave/david-on-cloud
   branch: main
 
 media_folder: "img"
@@ -38,11 +39,18 @@ collections:
         fields:
           - {label: "Projects", name: "projects", widget: "list", fields: [
               {label: "Title", name: "title", widget: "string"},
+              {label: "ID", name: "id", widget: "string", hint: "Slug-style ID (e.g. results-analytics-dashboard)"},
               {label: "Featured", name: "featured", widget: "boolean", default: false},
               {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]},
               {label: "Image URL", name: "image", widget: "image"},
-              {label: "Description", name: "description", widget: "text"},
-              {label: "Tags", name: "tags", widget: "list", default: []},
+              {label: "Summary", name: "summary", widget: "text"},
+              {label: "Detailed Body", name: "details", widget: "list", field: {label: "Paragraph", name: "paragraph", widget: "text"}},
+              {label: "Impact Metrics", name: "impact", widget: "list", fields: [
+                {label: "Value", name: "value", widget: "string"},
+                {label: "Label", name: "label", widget: "string"},
+                {label: "Detail", name: "detail", widget: "string", required: false}
+              ]},
+              {label: "Skills/Tags", name: "tags", widget: "list", default: []},
               {label: "Posted Date", name: "posted", widget: "datetime"},
               {label: "Modified Date", name: "modified", widget: "datetime"}
             ]}

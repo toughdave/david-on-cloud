@@ -14,13 +14,15 @@ function timeAgo(date) {
 
 function updateTimes() {
     document.querySelectorAll('[data-posted]').forEach(el => {
-        el.textContent = 'Posted: ' + timeAgo(el.getAttribute('data-posted'));
+        const postedDate = el.getAttribute('data-posted');
+        if (!postedDate) return;
+        el.textContent = 'Posted · ' + timeAgo(postedDate);
     });
     document.querySelectorAll('[data-modified]').forEach(el => {
-        // We only use the attribute for the hover popover now.
-        // Clearing text content to remove it from visual layout as requested.
-        el.textContent = '';
-        el.style.display = 'none'; 
+        const modifiedDate = el.getAttribute('data-modified');
+        if (!modifiedDate) return;
+        el.textContent = 'Updated · ' + timeAgo(modifiedDate);
+        el.style.display = '';
     });
 }
 const TIME_UPDATE_INTERVAL = 60000;

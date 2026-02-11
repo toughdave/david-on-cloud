@@ -37,29 +37,55 @@ const loadProjects = () => {
             
             const projectsList = document.getElementById('projectsList');
             const projectsCarousel = document.getElementById('projectsCarousel');
+            const allProjects = Array.isArray(data.projects) ? data.projects : [];
+            const getProjectSummary = (project) => project.summary || project.description || '';
+            const getProjectDetails = (project) => Array.isArray(project.details) ? project.details : [];
+            const getProjectImpact = (project) => Array.isArray(project.impact) ? project.impact : [];
+            const encodeProjectPayload = (project) => {
+                const summary = getProjectSummary(project);
+                const payload = {
+                    id: project.id || '',
+                    title: project.title,
+                    summary,
+                    details: getProjectDetails(project),
+                    impact: getProjectImpact(project),
+                    tags: project.tags || [],
+                    image: project.image,
+                    category: project.category || 'other',
+                    posted: project.posted,
+                    modified: project.modified,
+                    link: project.link || '',
+                    linkText: project.linkText || '',
+                    pdf: project.pdf || '',
+                    images: project.images || []
+                };
+                return encodeURIComponent(JSON.stringify(payload));
+            };
 
             // 1. Render Projects Page (List View)
             if (projectsList) {
                 projectsList.innerHTML = '';
-                const sortedProjects = [...data.projects].sort((a, b) => {
+                const sortedProjects = [...allProjects].sort((a, b) => {
                     return new Date(b.posted).getTime() - new Date(a.posted).getTime();
                 });
 
                 sortedProjects.forEach((project, index) => {
                     const uniqueId = `body-dyn-${index}`;
+                    const summary = getProjectSummary(project);
+                    const projectPayload = encodeProjectPayload(project);
                     const tagsHtml = (project.tags || []).map(tag => 
                         `<span class="px-2 py-1 bg-gray-100 rounded-full text-xs">${tag}</span>`
                     ).join('');
 
                     const cardHtml = `
-                        <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}">
+                        <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}" data-project="${projectPayload}">
                             <div class="w-full md:w-1/3 flex-shrink-0">
                                 <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="p-8 flex flex-col flex-1 justify-start">
                                 <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
                                 <p class="text-gray-600 card-body" id="${uniqueId}">
-                                    ${project.description}
+                                    ${summary}
                                 </p>
                                 <button type="button" class="more-link" data-target="${uniqueId}" aria-controls="${uniqueId}" aria-expanded="false" data-collapsed-label="Read more..." data-expanded-label="Show less">
                                     <span class="more-link-text">Read more...</span>
@@ -68,16 +94,11 @@ const loadProjects = () => {
                                 <div class="flex flex-wrap gap-2 mb-4 mt-3">
                                     ${tagsHtml}
                                 </div>
-                                <div class="flex justify-between items-end mt-auto">
-                                    <div class="flex flex-col items-start">
-                                        <time class="italic text-gray-500 text-sm" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                        <time class="italic text-gray-400 text-xs" data-modified="${project.modified}" datetime="${project.modified}"></time>
-                                    </div>
-                                    <div>
-                                        <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
-                                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                        </a>
-                                    </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
+                                        View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -89,33 +110,46 @@ const loadProjects = () => {
             // 2. Render Home Page (Carousel View - Featured Only)
             if (projectsCarousel) {
                 projectsCarousel.innerHTML = '';
-                const featuredProjects = data.projects.filter(p => p.featured);
-                // Sort featured by modified/posted desc
-                featuredProjects.sort((a, b) => new Date(b.modified || b.posted).getTime() - new Date(a.modified || a.posted).getTime());
+                const featuredProjects = allProjects.filter(p => p.featured);
+                
+                // Weighted Random Shuffle: Random but slightly favoring recent
+                if (featuredProjects.length > 0) {
+                    const times = featuredProjects.map(p => new Date(p.modified || p.posted).getTime());
+                    const maxTime = Math.max(...times);
+                    const minTime = Math.min(...times);
+                    const timeRange = maxTime - minTime || 1;
+
+                    featuredProjects.forEach(p => {
+                        const timeVal = new Date(p.modified || p.posted).getTime();
+                        const normTime = (timeVal - minTime) / timeRange; // 0.0 (oldest) to 1.0 (newest)
+                        // Score = Random (0-1) + Recency Bias (0-0.5)
+                        // Higher score = appears earlier
+                        p._shuffleScore = Math.random() + (normTime * 0.5);
+                    });
+                    featuredProjects.sort((a, b) => b._shuffleScore - a._shuffleScore);
+                }
 
                 featuredProjects.forEach((project) => {
+                    const summary = getProjectSummary(project);
+                    const projectPayload = encodeProjectPayload(project);
                     const tagsHtml = (project.tags || []).map(tag => 
                         `<span class="project-tag">${tag}</span>`
                     ).join('');
 
                     const cardHtml = `
-                        <div class="project-card" data-aos="fade-up" data-category="${project.category || 'other'}">
+                        <div class="project-card" data-aos="fade-up" data-category="${project.category || 'other'}" data-project="${projectPayload}">
                             <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async">
                             <div class="project-card-content">
                                 <h3>${project.title}</h3>
-                                <p>${project.description}</p>
+                                <p>${summary}</p>
                                 <div class="project-tags">
                                     ${tagsHtml}
                                 </div>
-                                <div class="flex justify-between items-end mt-auto pt-4">
-                                    <div class="flex flex-col items-start">
-                                        <time class="italic text-gray-400 text-xs" data-modified="${project.modified}" datetime="${project.modified}"></time>
-                                    </div>
-                                    <div>
-                                        <a href="projects.html" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
-                                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                        </a>
-                                    </div>
+                                <div class="flex justify-between items-center mt-auto pt-4">
+                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    <a href="projects.html" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
+                                        View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -776,9 +810,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const funModeKey = 'fun-mode';
     const funRoverKey = 'fun-rover-style';
     const funVantaKey = 'fun-vanta-mode';
-    const funSkillsKey = 'fun-skills-anim';
-    const funConsoleKey = 'fun-console-show';
-    const funLogsKey = 'fun-logs-show';
     const funMessageTimers = new Map();
     let starTexturesApplied = false;
 
@@ -1154,14 +1185,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             const applyFilter = (button, shouldScroll = true) => {
-                // Flip any revealed cards back to front before applying filter
-                items.forEach((item) => {
-                    if (item.classList.contains('fun-card-revealed')) {
-                        item.classList.remove('fun-card-revealed');
-                        const link = item.querySelector('.view-link');
-                        if (link) link.setAttribute('aria-expanded', 'false');
-                    }
-                });
+                if (typeof window.closeProjectModal === 'function') {
+                    window.closeProjectModal();
+                }
 
                 const filter = button.dataset.filter || 'all';
                 const keywords = (button.dataset.keywords || '')
@@ -1229,6 +1255,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     items.forEach((item) => {
                         item.classList.toggle('is-active', item === target);
                     });
+
+                    if (shouldScroll && scope.classList.contains('carousel-track') && target) {
+                        const cardWidth = target.getBoundingClientRect().width || target.offsetWidth;
+                        const targetLeft = target.offsetLeft - (scope.clientWidth - cardWidth) / 2;
+                        const max = scope.scrollWidth - scope.clientWidth;
+                        if (scope.scrollWidth > scope.clientWidth + 1) {
+                            scope.scrollTo({
+                                left: Math.max(0, Math.min(targetLeft, max)),
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
 
                     // Scroll to top of list if needed (only for list view)
                     if (shouldScroll && !scope.classList.contains('carousel-track')) {
@@ -1706,29 +1744,6 @@ document.addEventListener('DOMContentLoaded', function() {
         clearRoverBuddies();
     };
 
-    const resetProjectFilters = () => {
-        const filterGroups = document.querySelectorAll('.fun-project-filters');
-        filterGroups.forEach((group) => {
-            const buttons = group.querySelectorAll('.fun-filter-btn');
-            buttons.forEach((button, index) => {
-                const isDefault = index === 0;
-                button.classList.toggle('is-active', isDefault);
-                button.setAttribute('aria-pressed', isDefault ? 'true' : 'false');
-            });
-
-            const scopeSelector = group.dataset.filterScope;
-            if (!scopeSelector) return;
-            const scope = document.querySelector(scopeSelector);
-            if (!scope) return;
-            const items = group.dataset.filterItems === 'children'
-                ? Array.from(scope.children)
-                : Array.from(scope.querySelectorAll('.project-card'));
-            items.forEach((item) => {
-                item.classList.remove('fun-filter-hidden', 'fun-filter-dim', 'fun-filter-hit', 'fun-filter-focus');
-            });
-        });
-    };
-
     const getSkillVisualType = (title) => {
         const label = title.toLowerCase();
         if (label.includes('data')) return 'data';
@@ -1896,18 +1911,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${years} year${years !== 1 ? 's' : ''} ago`;
     };
 
-    const getProjectCards = () => {
-        const cards = Array.from(document.querySelectorAll('.project-card'));
-        const projectsList = document.getElementById('projectsList');
-        if (projectsList) {
-            Array.from(projectsList.children).forEach((card) => {
-                card.classList.add('project-list-card');
-                cards.push(card);
-            });
-        }
-        return cards;
-    };
-
     const setViewLinkHint = (link) => {
         const textSpan = ensureViewLinkText(link);
         if (!textSpan.dataset.originalText) {
@@ -1946,84 +1949,345 @@ document.addEventListener('DOMContentLoaded', function() {
         link.setAttribute('data-reveal-text', revealText);
     };
 
-    const ensureCardInner = (card) => {
-        let inner = card.querySelector('.project-card-inner');
-        if (inner) return inner;
-        inner = document.createElement('div');
-        inner.className = 'project-card-inner';
-        const front = document.createElement('div');
-        front.className = 'project-card-front';
-        const children = Array.from(card.children);
-        children.forEach((child) => {
-            front.appendChild(child);
-        });
-        inner.appendChild(front);
-        card.appendChild(inner);
-        return inner;
+    const parseProjectPayload = (card) => {
+        if (!card) return null;
+        const rawPayload = card.getAttribute('data-project');
+        if (!rawPayload) return null;
+        try {
+            return JSON.parse(decodeURIComponent(rawPayload));
+        } catch (err) {
+            console.warn('Unable to parse project payload', err);
+            return null;
+        }
     };
 
-    const setupProjectCardReveal = () => {
-        const cards = getProjectCards();
-        cards.forEach((card) => {
-            const inner = ensureCardInner(card);
-            let reveal = inner.querySelector('.project-card-reveal');
-            if (!reveal) {
-                reveal = document.createElement('div');
-                reveal.className = 'project-card-reveal';
-                reveal.innerHTML = `
-                    <button class="project-card-reveal-close" aria-label="Close reveal">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                    <span>Pending reveal...</span>
-                `;
-                inner.appendChild(reveal);
-            } else if (!reveal.querySelector('.project-card-reveal-close')) {
-                // Add close button to existing reveal elements
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'project-card-reveal-close';
-                closeBtn.setAttribute('aria-label', 'Close reveal');
-                closeBtn.innerHTML = `
+    const modalState = {
+        overlay: null,
+        activeTrigger: null,
+        closeTimer: null,
+        sourceCard: null
+    };
+
+    const getSourceCard = (trigger) => {
+        if (!trigger) return null;
+        return trigger.closest('.project-card') || trigger.closest('.project-list-card') || trigger.closest('#projectsList > div');
+    };
+
+    const applyModalMorph = (modalCard, sourceCard) => {
+        if (!modalCard || !sourceCard) return false;
+        const cardRect = sourceCard.getBoundingClientRect();
+        const modalRect = modalCard.getBoundingClientRect();
+        if (!modalRect.width || !modalRect.height) return false;
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+        const modalCenterX = modalRect.left + modalRect.width / 2;
+        const modalCenterY = modalRect.top + modalRect.height / 2;
+        const translateX = cardCenterX - modalCenterX;
+        const translateY = cardCenterY - modalCenterY;
+        const scaleX = Math.max(cardRect.width / modalRect.width, 0.1);
+        const scaleY = Math.max(cardRect.height / modalRect.height, 0.1);
+        const sourceRadius = window.getComputedStyle(sourceCard).borderRadius || '1rem';
+        modalCard.style.setProperty('--modal-translate-x', `${translateX}px`);
+        modalCard.style.setProperty('--modal-translate-y', `${translateY}px`);
+        modalCard.style.setProperty('--modal-scale-x', scaleX.toFixed(3));
+        modalCard.style.setProperty('--modal-scale-y', scaleY.toFixed(3));
+        modalCard.style.setProperty('--modal-radius', sourceRadius);
+        return true;
+    };
+
+    const resetModalMorph = (modalCard) => {
+        if (!modalCard) return;
+        modalCard.style.removeProperty('--modal-translate-x');
+        modalCard.style.removeProperty('--modal-translate-y');
+        modalCard.style.removeProperty('--modal-scale-x');
+        modalCard.style.removeProperty('--modal-scale-y');
+        modalCard.style.removeProperty('--modal-radius');
+    };
+
+    const applyModalMorphInstant = (modalCard, sourceCard) => {
+        if (!modalCard || !sourceCard) return false;
+        const prevTransition = modalCard.style.transition;
+        modalCard.style.transition = 'none';
+        const didApply = applyModalMorph(modalCard, sourceCard);
+        modalCard.offsetHeight; // force reflow
+        modalCard.style.transition = prevTransition;
+        return didApply;
+    };
+
+    const resetModalMorphInstant = (modalCard) => {
+        if (!modalCard) return;
+        const prevTransition = modalCard.style.transition;
+        modalCard.style.transition = 'none';
+        resetModalMorph(modalCard);
+        modalCard.offsetHeight; // force reflow
+        modalCard.style.transition = prevTransition;
+    };
+
+    const setModalScrollbarCompensation = (enabled) => {
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const value = enabled && scrollbarWidth > 0 ? `${scrollbarWidth}px` : '0px';
+        document.documentElement.style.setProperty('--modal-scrollbar-width', value);
+    };
+
+    const buildImpactCards = (impact = []) => {
+        if (!impact.length) return '';
+        return impact.map(item => `
+            <div class="project-modal-impact-card">
+                <span class="impact-value">${item.value || ''}</span>
+                <span class="impact-label">${item.label || ''}</span>
+                ${item.detail ? `<span class="impact-detail">${item.detail}</span>` : ''}
+            </div>
+        `).join('');
+    };
+
+    const buildDetails = (details = [], images = []) => {
+        if (!details.length) return '<p>No additional details yet.</p>';
+        const imagesByIndex = {};
+        (images || []).forEach(img => {
+            const idx = img.afterDetail ?? -1;
+            if (!imagesByIndex[idx]) imagesByIndex[idx] = [];
+            imagesByIndex[idx].push(img);
+        });
+        const buildImg = (img) => {
+            const darkSrc = img.srcDark ? ` data-dark-src="${img.srcDark}"` : '';
+            const caption = img.caption ? `<figcaption class="project-detail-img-caption">${img.caption}</figcaption>` : '';
+            return `<figure class="project-detail-figure">
+                <img class="project-detail-img${img.srcDark ? ' has-dark-variant' : ''}" src="${img.src}"${darkSrc} alt="${img.alt || ''}" loading="lazy" decoding="async">
+                ${caption}
+            </figure>`;
+        };
+        let html = '';
+        details.forEach((detail, i) => {
+            html += `<p>${detail}</p>`;
+            if (imagesByIndex[i]) html += imagesByIndex[i].map(buildImg).join('');
+        });
+        return html;
+    };
+
+    const buildTags = (tags = []) => {
+        if (!tags.length) return '';
+        return tags.map(tag => `<span class="project-modal-tag">${tag}</span>`).join('');
+    };
+
+    const ensureProjectModal = () => {
+        if (modalState.overlay) return modalState.overlay;
+        const overlay = document.createElement('div');
+        overlay.className = 'project-modal-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = `
+            <div class="project-modal-card" role="dialog" aria-modal="true" aria-label="Project details" tabindex="-1">
+                <button type="button" class="project-modal-close close-control" aria-label="Close project details">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
-                `;
-                reveal.insertBefore(closeBtn, reveal.firstChild);
-            }
+                </button>
+                <div class="project-modal-content"></div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        const closeBtn = overlay.querySelector('.project-modal-close');
 
-            // Bind close button click - ONLY way to close
-            const closeBtn = reveal.querySelector('.project-card-reveal-close');
-            if (closeBtn && !closeBtn.dataset.funCloseBound) {
-                closeBtn.dataset.funCloseBound = 'true';
-                closeBtn.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    card.classList.remove('fun-card-revealed');
-                    const link = card.querySelector('.view-link');
-                    if (link) {
-                        link.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            // Removed card click listener to prevent closing by clicking anywhere on the back
-            if (card.dataset.funCardBound) {
-                // If we need to remove the old listener, we can't easily without the reference.
-                // But since we are likely reloading or the user is refreshing, we'll just not add it.
-                // If this is hot-reloading, we might have an issue, but for now we just won't add the "click anywhere to close" logic.
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) {
+                closeProjectModal();
             }
         });
 
+        closeBtn.addEventListener('click', () => closeProjectModal());
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && document.body.classList.contains('project-modal-open')) {
+                closeProjectModal();
+            }
+        });
+
+        modalState.overlay = overlay;
+        return overlay;
+    };
+
+    const renderProjectModal = (project) => {
+        const overlay = ensureProjectModal();
+        const content = overlay.querySelector('.project-modal-content');
+        const postedText = project.posted ? `Posted · ${timeAgo(project.posted)}` : 'Posted recently';
+        const modifiedText = project.modified ? `Updated · ${timeAgo(project.modified)}` : '';
+        content.innerHTML = `
+            <div class="project-modal-header">
+                <div class="project-modal-image">
+                    <img src="${project.image || ''}" alt="${project.title || 'Project image'}" loading="lazy" decoding="async">
+                </div>
+                <div class="project-modal-intro">
+                    <div class="project-modal-dates">
+                        <p class="project-modal-date">${postedText}</p>
+                        ${modifiedText ? `<p class="project-modal-date project-modal-date--updated">${modifiedText}</p>` : ''}
+                    </div>
+                    <h3 id="project-modal-title">${project.title || 'Project details'}</h3>
+                    <p class="project-modal-summary">${project.summary || ''}</p>
+                    <div class="project-modal-tags">${buildTags(project.tags)}</div>
+                    ${project.link || project.pdf ? `
+                        <div class="project-modal-links">
+                            ${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${project.linkText || 'View Publication'}</a>` : ''}
+                            ${project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+            <div class="project-modal-body">
+                <div class="project-modal-section">
+                    <h4>Project details</h4>
+                    <div class="project-modal-details">${buildDetails(project.details, project.images)}</div>
+                </div>
+                ${project.impact && project.impact.length ? `
+                    <div class="project-modal-section">
+                        <h4>Impact metrics</h4>
+                        <div class="project-modal-impact-grid">
+                            ${buildImpactCards(project.impact)}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+        // Swap detail images for dark mode variants
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        content.querySelectorAll('.project-detail-img.has-dark-variant').forEach(img => {
+            const darkSrc = img.getAttribute('data-dark-src');
+            const lightSrc = img.src;
+            if (!img.dataset.lightSrc) img.dataset.lightSrc = lightSrc;
+            if (isDark && darkSrc) img.src = darkSrc;
+        });
+    };
+
+    const openProjectModal = (project, trigger) => {
+        if (!project) return;
+        if (modalState.closeTimer) {
+            clearTimeout(modalState.closeTimer);
+            modalState.closeTimer = null;
+        }
+        const overlay = ensureProjectModal();
+        modalState.activeTrigger = trigger || null;
+        const modalCard = overlay.querySelector('.project-modal-card');
+        const sourceCard = getSourceCard(trigger);
+        modalState.sourceCard = sourceCard || null;
+
+        renderProjectModal(project);
+        overlay.classList.remove('is-closing');
+        delete overlay.dataset.closing;
+
+        // Position modal at source card, start invisible
+        modalCard.style.setProperty('--modal-card-opacity', '0');
+        if (sourceCard) {
+            applyModalMorphInstant(modalCard, sourceCard);
+            sourceCard.classList.add('project-card--morphing');
+        }
+
+        setModalScrollbarCompensation(true);
+        document.body.classList.add('project-modal-open');
+        document.documentElement.classList.add('project-modal-open');
+        overlay.classList.add('is-active');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        // Crossfade: source card fades out, modal fades in + morphs to center
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (sourceCard) sourceCard.style.opacity = '0';
+                modalCard.style.setProperty('--modal-card-opacity', '1');
+                modalCard.style.setProperty('--modal-translate-x', '0px');
+                modalCard.style.setProperty('--modal-translate-y', '0px');
+                modalCard.style.setProperty('--modal-scale-x', '1');
+                modalCard.style.setProperty('--modal-scale-y', '1');
+                modalCard.style.setProperty('--modal-radius', '1.5rem');
+                modalCard.focus({ preventScroll: true });
+            });
+        });
+
+        // Clean up morphing class after animation completes
+        const morphDuration = prefersReducedMotion ? 0 : 420;
+        setTimeout(() => {
+            if (sourceCard) sourceCard.classList.remove('project-card--morphing');
+        }, morphDuration);
+    };
+
+    const closeProjectModal = () => {
+        if (!modalState.overlay) return;
+        const overlay = modalState.overlay;
+        if (!overlay.classList.contains('is-active')) {
+            modalState.activeTrigger = null;
+            return;
+        }
+        if (overlay.dataset.closing === 'true') return;
+
+        if (modalState.closeTimer) {
+            clearTimeout(modalState.closeTimer);
+            modalState.closeTimer = null;
+        }
+
+        overlay.dataset.closing = 'true';
+        const modalCard = overlay.querySelector('.project-modal-card');
+        const sourceCard = modalState.sourceCard || getSourceCard(modalState.activeTrigger);
+
+        // Prepare source card for crossfade back in
+        if (sourceCard) {
+            sourceCard.classList.add('project-card--morphing');
+            sourceCard.style.opacity = '0';
+            sourceCard.offsetHeight; // force reflow so transition starts from 0
+        }
+
+        // Add is-closing (switches to close easing, starts backdrop fade)
+        overlay.classList.add('is-closing');
+
+        // Morph modal to card position + fade out, fade source card back in
+        requestAnimationFrame(() => {
+            if (sourceCard) {
+                applyModalMorph(modalCard, sourceCard);
+                sourceCard.style.opacity = '1';
+            }
+            modalCard.style.setProperty('--modal-card-opacity', '0');
+        });
+
+        const closeDuration = prefersReducedMotion ? 0 : 420;
+
+        modalState.closeTimer = setTimeout(() => {
+            // Full cleanup after animation completes
+            overlay.classList.remove('is-active', 'is-closing');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('project-modal-open');
+            document.documentElement.classList.remove('project-modal-open');
+            setModalScrollbarCompensation(false);
+            resetModalMorphInstant(modalCard);
+            modalCard.style.setProperty('--modal-card-opacity', '0');
+
+            if (sourceCard) {
+                sourceCard.classList.remove('project-card--morphing');
+                sourceCard.style.removeProperty('opacity');
+            }
+            if (modalState.activeTrigger) {
+                modalState.activeTrigger.setAttribute('aria-expanded', 'false');
+                modalState.activeTrigger.focus({ preventScroll: true });
+            }
+            modalState.activeTrigger = null;
+            modalState.sourceCard = null;
+            delete overlay.dataset.closing;
+            modalState.closeTimer = null;
+        }, closeDuration);
+    };
+
+    window.closeProjectModal = closeProjectModal;
+
+    const setupProjectCardReveal = () => {
+        ensureProjectModal();
         document.querySelectorAll('.view-link').forEach((link) => {
             if (link.dataset.funRevealBound) return;
             link.dataset.funRevealBound = 'true';
             link.addEventListener('click', (event) => {
                 event.preventDefault();
                 const card = link.closest('.project-card') || link.closest('.project-list-card') || link.closest('#projectsList > div');
-                if (card && card.querySelector('.project-card-inner')) {
-                    const isRevealed = card.classList.toggle('fun-card-revealed');
-                    link.setAttribute('aria-expanded', isRevealed ? 'true' : 'false');
-                }
+                if (!card) return;
+                const project = parseProjectPayload(card);
+                if (!project) return;
+                link.setAttribute('aria-expanded', 'true');
+                openProjectModal(project, link);
             });
         });
     };
@@ -2041,15 +2305,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.setupProjectCardReveal = setupProjectCardReveal;
     window.setupProjectFilters = setupProjectFilters;
     window.updateViewLinks = updateViewLinks;
-
-    const resetProjectCardReveal = () => {
-        getProjectCards().forEach((card) => {
-            card.classList.remove('fun-card-revealed');
-        });
-        document.querySelectorAll('.view-link').forEach((link) => {
-            link.removeAttribute('aria-expanded');
-        });
-    };
 
     const brightStarColors = ['', 'star-blue', 'star-pink'];
     let brightStarsCreated = false;
