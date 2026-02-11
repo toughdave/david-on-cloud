@@ -1,3 +1,7 @@
+## v4.0.0 — 2026-02-10 19:57:32
+- ✅ Chore: checkpoint existing changes
+- ✅ Bumped version to v4.0.0
+
 ## v3.0.1 — 2026-02-01 11:09:32
 - ✅ Improve accessibility and performance across pages
 - ✅ Bumped version to v3.0.1
