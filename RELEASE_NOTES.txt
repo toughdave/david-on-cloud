@@ -1,3 +1,7 @@
+## v4.1.0 — 2026-02-11 18:39:38
+- ✅ Add: rewrite all project descriptions, add publication links/PDF, inline detail images, dark-mode 
+- ✅ Bumped version to v4.1.0
+
 ## v4.0.0 — 2026-02-10 19:57:32
 - ✅ Chore: checkpoint existing changes
 - ✅ Bumped version to v4.0.0
