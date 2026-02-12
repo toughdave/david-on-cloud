@@ -37,39 +37,13 @@
         return d.innerHTML;
     }
 
-    function buildEmailDropdown(email) {
-        return `<div class="contact-email-dropdown">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20"><span>Gmail</span>
-            </a>
-            <a href="https://compose.mail.yahoo.com/?to=${encodeURIComponent(email)}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg><span>Yahoo</span>
-            </a>
-            <a href="https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(email)}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg><span>Outlook</span>
-            </a>
-            <a href="mailto:${email}" class="contact-email-option">
-                <i data-feather="mail" class="w-5 h-5"></i><span>Default</span>
-            </a>
-        </div>`;
+    function buildEmailLink(email) {
+        return `<a href="mailto:${escapeHTML(email)}" class="contact-email-text">${escapeHTML(email)}</a>`;
     }
 
-    function buildLocationDropdown(location) {
+    function buildLocationLink(location) {
         const q = encodeURIComponent(location + ', Canada');
-        return `<div class="contact-email-dropdown contact-location-dropdown">
-            <a href="https://www.google.com/maps/search/${q}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#4285F4"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg><span>Google</span>
-            </a>
-            <a href="https://maps.apple.com/?q=${q}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#333"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg><span>Apple</span>
-            </a>
-            <a href="https://www.bing.com/maps?q=${q}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#008373"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg><span>Bing</span>
-            </a>
-            <a href="https://waze.com/ul?q=${q}" target="_blank" rel="noopener noreferrer" class="contact-email-option">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#33CCFF"/><circle cx="16" cy="14" r="7" fill="white"/><circle cx="13" cy="13" r="1.2" fill="#333"/><circle cx="19" cy="13" r="1.2" fill="#333"/><path d="M13 17c0 0 1.5 2 3 2s3-2 3-2" stroke="#333" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg><span>Waze</span>
-            </a>
-        </div>`;
+        return `<a href="https://www.google.com/maps/search/${q}" class="contact-location-text" target="_blank" rel="noopener noreferrer">${escapeHTML(location)}</a>`;
     }
 
     /* ── Section Visibility ── */
@@ -355,23 +329,18 @@
                 emailBlock.innerHTML = data.emails.map((em, i) => `
                     <div class="contact-email-line ${i > 0 ? 'contact-email-line--secondary' : ''}">
                         <span class="contact-email-label">${escapeHTML(em.label)}</span>
-                        <div class="contact-email-wrapper">
-                            <button class="contact-email-text" data-email="${escapeHTML(em.address)}" type="button">${escapeHTML(em.address)}</button>
-                            ${buildEmailDropdown(em.address)}
-                        </div>
+                        ${buildEmailLink(em.address)}
                     </div>
                 `).join('');
-                if (typeof feather !== 'undefined') feather.replace();
             }
         }
 
         if (data.location) {
-            const locWrapper = section.querySelector('.flex.items-center:last-of-type .contact-location-wrapper');
-            if (locWrapper) {
-                locWrapper.innerHTML = `
-                    <button class="contact-location-text" type="button">${escapeHTML(data.location)}</button>
-                    ${buildLocationDropdown(data.location)}
-                `;
+            const locEl = section.querySelector('.flex.items-center:last-of-type .contact-location-text');
+            if (locEl) {
+                const q = encodeURIComponent(data.location + ', Canada');
+                locEl.href = 'https://www.google.com/maps/search/' + q;
+                locEl.textContent = data.location;
             }
         }
 

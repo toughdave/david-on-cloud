@@ -177,6 +177,7 @@ const loadProjects = () => {
             if (typeof window.setupProjectFilters === 'function') window.setupProjectFilters();
             if (typeof window.updateViewLinks === 'function') window.updateViewLinks();
             if (typeof window.refreshProjectOverflow === 'function') window.refreshProjectOverflow();
+            if (typeof updateTimes === 'function') updateTimes();
             
             // Refresh AOS
             if (typeof AOS !== 'undefined') {
@@ -402,16 +403,13 @@ if (typeof AOS !== 'undefined') {
             e.preventDefault(); hasMoved = true;
             carousel.scrollLeft = scrollLeftStart - (e.pageX - carousel.offsetLeft - startX) * 2;
         });
-        carousel.addEventListener('touchstart', (e) => {
-            isDown = true; hasMoved = false; manualNav = false;
-            startX = e.touches[0].pageX - carousel.offsetLeft;
-            scrollLeftStart = carousel.scrollLeft;
-        });
-        carousel.addEventListener('touchend', () => { if (isDown && hasMoved) snapToNearest(); isDown = false; });
-        carousel.addEventListener('touchmove', (e) => {
-            if (!isDown) return; hasMoved = true;
-            carousel.scrollLeft = scrollLeftStart - (e.touches[0].pageX - carousel.offsetLeft - startX) * 2;
-        });
+        carousel.addEventListener('touchstart', () => {
+            manualNav = false;
+            carousel.style.scrollBehavior = 'auto';
+        }, { passive: true });
+        carousel.addEventListener('touchend', () => {
+            carousel.style.scrollBehavior = 'smooth';
+        }, { passive: true });
         
         function snapToNearest() {
             const idx = getActiveVisibleIndex();
@@ -2605,33 +2603,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== MOBILE DROPDOWN TAP-TO-TOGGLE =====
-    const isMobileViewport = () => window.innerWidth <= 768;
-
-    document.querySelectorAll('.contact-email-text, .contact-location-text').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if (!isMobileViewport()) return;
-            e.preventDefault();
-            e.stopPropagation();
-            const wrapper = btn.closest('.contact-email-wrapper, .contact-location-wrapper');
-            if (!wrapper) return;
-
-            // Close all other open dropdowns first
-            document.querySelectorAll('.contact-email-wrapper.dropdown-open, .contact-location-wrapper.dropdown-open').forEach(w => {
-                if (w !== wrapper) w.classList.remove('dropdown-open');
-            });
-
-            wrapper.classList.toggle('dropdown-open');
-        });
-    });
-
-    // Close dropdowns when tapping outside on mobile
-    document.addEventListener('click', (e) => {
-        if (!isMobileViewport()) return;
-        if (!e.target.closest('.contact-email-wrapper, .contact-location-wrapper')) {
-            document.querySelectorAll('.dropdown-open').forEach(w => w.classList.remove('dropdown-open'));
-        }
-    });
 });
 
 // Navigation state updates
