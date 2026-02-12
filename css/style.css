@@ -517,8 +517,11 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
         gap: 0;
         width: 46px;
         height: 26px;
+        border: none;
         border-radius: 999px 0 0 999px;
-        border-right: 1px solid rgba(148, 163, 184, 0.3);
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
     }
 
     .fun-lab-icon,
@@ -6248,21 +6251,21 @@ body.fun-mode .project-list-card:hover {
 
     /* Tighten section titles on mobile */
     .sticky-section-title {
-        font-size: 1.25rem !important;
         padding: 0.5rem 1rem !important;
     }
 
-    /* ===== MOBILE PROJECT CARDS ===== */
-    .project-card {
-        min-height: 280px !important;
+    .sticky-section-title h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
-    .project-card-content {
+    /* ===== MOBILE PROJECT CARDS ===== */
+    .project-card > .project-card-content {
+        overflow: visible !important;
         padding: 1rem !important;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        min-height: 140px;
+        flex: 1;
     }
 
     .project-card-content > *:last-child {
@@ -6270,18 +6273,15 @@ body.fun-mode .project-list-card:hover {
     }
 
     /* ===== MOBILE DOME LIGHTS FIX ===== */
-    [data-theme="dark"] .sticky-section-title::before {
+    [data-theme="dark"] .sticky-section-title.is-sticky::before {
         opacity: 1 !important;
         filter: blur(8px) !important;
         height: 60% !important;
-        background: radial-gradient(ellipse 70% 70% at 50% 0%, rgba(165, 180, 252, 0.25) 0%, rgba(129, 140, 248, 0.08) 55%, transparent 82%) !important;
     }
 
-    [data-theme="dark"] .sticky-section-title::after {
-        opacity: 1 !important;
+    [data-theme="dark"] .sticky-section-title.is-sticky::after {
         filter: blur(20px) !important;
         height: 300px !important;
-        background: radial-gradient(ellipse 85% 60% at 50% 0%, rgba(165, 180, 252, 0.45) 0%, rgba(129, 140, 248, 0.25) 30%, rgba(99, 102, 241, 0.1) 55%, transparent 75%) !important;
     }
     .carousel-container {
         padding: 0.9rem !important;

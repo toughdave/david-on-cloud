@@ -1061,16 +1061,15 @@ document.addEventListener('DOMContentLoaded', function() {
             stickyTitles.forEach((title) => {
                 const stickyTop = parseFloat(getComputedStyle(title).top) || 0;
                 const rect = title.getBoundingClientRect();
-                // Check if element is at the sticky position (within small tolerance)
-                // It is NOT sticky if it has scrolled UP past the sticky point (pushed by container)
-                // or if it hasn't reached it yet.
-                const isSticky = Math.abs(rect.top - stickyTop) < 2;
+                // Check if element is at the sticky position (within tolerance)
+                // Wider threshold (5px) ensures mobile momentum scrolling still triggers
+                const isSticky = Math.abs(rect.top - stickyTop) < 5;
                 title.classList.toggle('is-sticky', isSticky);
             });
             stickyFilters.forEach((filters) => {
                 const stickyTop = parseFloat(getComputedStyle(filters).top) || 0;
                 const rect = filters.getBoundingClientRect();
-                const isSticky = Math.abs(rect.top - stickyTop) < 2;
+                const isSticky = Math.abs(rect.top - stickyTop) < 5;
                 filters.classList.toggle('is-sticky', isSticky);
             });
         };
