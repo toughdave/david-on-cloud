@@ -1,3 +1,7 @@
+## v4.1.14 — 2026-02-12 18:50:36
+- ✅ Fix mobile spacing, double Vanta init, email/location font size, inline location
+- ✅ Bumped version to v4.1.14
+
 ## v4.1.13 — 2026-02-12 16:17:08
 - ✅ Ticker typing effect, mailto fix, email spacing, Vanta fade-in, brand-o color cascade
 - ✅ Auto patch bump version to v4.1.12 with update summary
