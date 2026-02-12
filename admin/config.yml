@@ -290,10 +290,10 @@ collections:
             fields:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "ID", name: "id", widget: "string", hint: "Slug-style unique ID"}
-              - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show in homepage carousel"}
-              - {label: "Hidden", name: "hidden", widget: "boolean", default: false, hint: "Hide this project card entirely"}
-              - {label: "Published (Peer-Reviewed)", name: "published", widget: "boolean", default: false, hint: "Mark this project as formally published"}
-              - {label: "Show Ribbon", name: "showRibbon", widget: "boolean", default: false, hint: "Display a sticker ribbon on the project card"}
+              - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false, hint: "Show in homepage carousel"}
+              - {label: "Hidden", name: "hidden", widget: "boolean", default: false, required: false, hint: "Hide this project card entirely"}
+              - {label: "Published (Peer-Reviewed)", name: "published", widget: "boolean", default: false, required: false, hint: "Mark this project as formally published"}
+              - {label: "Show Ribbon", name: "showRibbon", widget: "boolean", default: false, required: false, hint: "Display a sticker ribbon on the project card"}
               - {label: "Ribbon Text", name: "ribbonText", widget: "string", default: "Published", required: false, hint: "Text on the ribbon sticker (max 12 chars)", pattern: ['^.{0,12}$', "Max 12 characters"]}
               - {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]}
               - {label: "Cover Image", name: "image", widget: "image"}

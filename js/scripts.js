@@ -80,7 +80,7 @@ const loadProjects = () => {
                     const stickerText = project.ribbonText || 'Published';
                     const publishedSticker = (project.published && project.showRibbon !== false) ? `<span class="published-sticker">${stickerText}</span>` : '';
                     const cardHtml = `
-                        <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}" data-project="${projectPayload}" style="position:relative;">
+                        <div data-aos="fade-up" class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}" data-project="${projectPayload}" style="position:relative;">
                             ${publishedSticker}
                             <div class="w-full md:w-1/3 flex-shrink-0">
                                 <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
@@ -2179,6 +2179,15 @@ document.addEventListener('DOMContentLoaded', function() {
         renderProjectModal(project);
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
+
+        // Small-screen scroll listener: toggle compact header
+        const modalBody = overlay.querySelector('.project-modal-body');
+        const modalHeader = overlay.querySelector('.project-modal-header');
+        if (modalBody && modalHeader) {
+            modalBody.onscroll = () => {
+                modalHeader.classList.toggle('is-scrolled', modalBody.scrollTop > 20);
+            };
+        }
 
         // Position modal at source card, start invisible
         modalCard.style.setProperty('--modal-card-opacity', '0');
