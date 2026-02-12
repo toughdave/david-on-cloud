@@ -1,3 +1,8 @@
+## v4.1.1 — 2026-02-11 21:42:04
+- ✅ Add: interactive email/location dropdowns, fix CI/CD pipeline, fix OAuth handshake
+- ✅ Add: add Decap CMS OAuth proxy and configure GitHub backend with base_url
+- ✅ Bumped version to v4.1.1
+
 ## v4.1.0 — 2026-02-11 18:39:38
 - ✅ Add: rewrite all project descriptions, add publication links/PDF, inline detail images, dark-mode 
 - ✅ Bumped version to v4.1.0
