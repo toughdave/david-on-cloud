@@ -1,4 +1,7 @@
-## v4.1.12 — 2026-02-12 14:57:30
+## v4.1.12 — 2026-02-12 15:52:23
+- ✅ Internal release tooling updates
+- ✅ Bumped version to v4.1.12
+
 - ✅ Mobile UX: direct mailto/maps links, scroll perf, carousel touch fix, smaller tags, single-line 
 - ✅ Bumped version to v4.1.12
 
