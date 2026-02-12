@@ -1,17 +1,17 @@
 {
-    "title": "David's Portfolio",
-    "tagline": "Systems & Data Analyst focused on data accuracy, reporting automation, and reliable operations.",
-    "socialLinks": [
-        {
-            "platform": "github",
-            "url": "https://github.com/toughdave",
-            "label": "GitHub"
-        },
-        {
-            "platform": "linkedin",
-            "url": "https://www.linkedin.com/in/tope-david-m-48076969",
-            "label": "LinkedIn"
-        }
-    ],
-    "copyrightText": "David. All rights reserved."
+  "title": "David's Portfolio",
+  "tagline": "Information Systems & Data Analyst focused on data accuracy, reporting automation, and reliable operations.",
+  "socialLinks": [
+    {
+      "platform": "github",
+      "url": "https://github.com/toughdave",
+      "label": "GitHub"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/tope-david-m-48076969",
+      "label": "LinkedIn"
+    }
+  ],
+  "copyrightText": "David. All rights reserved."
 }
