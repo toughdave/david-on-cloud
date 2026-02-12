@@ -1,0 +1,9 @@
+{
+  "name": "david-on-cloud-cms-oauth",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub OAuth proxy for Decap CMS on davidoncloud.com",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -2,6 +2,9 @@ backend:
   name: github
   repo: toughdave/david-on-cloud
   branch: main
+  base_url: https://david-on-cloud-cms-oauth.vercel.app
+
+publish_mode: editorial_workflow
 
 media_folder: "img"
 public_folder: "/img"
@@ -52,5 +55,15 @@ collections:
               ]},
               {label: "Skills/Tags", name: "tags", widget: "list", default: []},
               {label: "Posted Date", name: "posted", widget: "datetime"},
-              {label: "Modified Date", name: "modified", widget: "datetime"}
+              {label: "Modified Date", name: "modified", widget: "datetime"},
+              {label: "Publication Link", name: "link", widget: "string", required: false, hint: "URL to published paper or external resource"},
+              {label: "Link Display Text", name: "linkText", widget: "string", required: false, hint: "Button label (e.g. Read Published Paper)"},
+              {label: "PDF Path", name: "pdf", widget: "file", required: false, hint: "Path to downloadable PDF in docs/ folder"},
+              {label: "Inline Images", name: "images", widget: "list", required: false, fields: [
+                {label: "Image", name: "src", widget: "image"},
+                {label: "Dark Mode Variant", name: "srcDark", widget: "image", required: false},
+                {label: "Alt Text", name: "alt", widget: "string"},
+                {label: "Caption", name: "caption", widget: "string", required: false},
+                {label: "After Detail Index", name: "afterDetail", widget: "number", hint: "0-indexed paragraph number after which this image appears"}
+              ]}
             ]}
