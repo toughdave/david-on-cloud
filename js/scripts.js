@@ -252,13 +252,18 @@ if (typeof AOS !== 'undefined') {
                 scaleMobile: 1.50
             });
             console.log('[Vanta] Globe initialized successfully');
+            // Fade in vanta after a short delay so page background is visible first
+            const vantaEl = document.getElementById('vanta-bg');
+            if (vantaEl) {
+                setTimeout(() => vantaEl.classList.add('vanta-ready'), 400);
+            }
         } catch (err) {
             console.error('[Vanta] Initialization failed:', err);
         }
     };
     
-    // Defer init slightly to ensure theme is applied
-    setTimeout(initVanta, 200);
+    // Defer init to ensure page background renders first
+    setTimeout(initVanta, 600);
     // Fallback: also try on window load in case defer timing fails
     window.addEventListener('load', () => {
         if (!vantaEffect) initVanta();
@@ -1106,6 +1111,61 @@ document.addEventListener('DOMContentLoaded', function() {
             const messages = rawMessages.split('|').map((entry) => entry.trim()).filter(Boolean);
             if (messages.length < 2) return;
 
+            // Use typing effect for footer ticker
+            const isTicker = element.classList.contains('footer-ticker-text');
+            if (isTicker) {
+                // Collect all segments from all message groups
+                const allSegments = [];
+                messages.forEach(msg => {
+                    msg.split('•').map(s => s.trim()).filter(Boolean).forEach(s => allSegments.push(s));
+                });
+                if (allSegments.length === 0) return;
+
+                let segIdx = 0;
+                const typeSpeed = 35;
+                const eraseSpeed = 18;
+                const pauseAfterType = 2200;
+                const pauseAfterErase = 300;
+
+                const typeSegment = () => {
+                    const text = allSegments[segIdx];
+                    let charIdx = 0;
+                    element.textContent = '';
+
+                    const typeChar = () => {
+                        if (charIdx <= text.length) {
+                            element.textContent = text.substring(0, charIdx);
+                            charIdx++;
+                            funMessageTimers.set(element, setTimeout(typeChar, typeSpeed));
+                        } else {
+                            // Pause then erase
+                            funMessageTimers.set(element, setTimeout(eraseSegment, pauseAfterType));
+                        }
+                    };
+
+                    const eraseSegment = () => {
+                        let eraseIdx = text.length;
+                        const eraseChar = () => {
+                            if (eraseIdx >= 0) {
+                                element.textContent = text.substring(0, eraseIdx);
+                                eraseIdx--;
+                                funMessageTimers.set(element, setTimeout(eraseChar, eraseSpeed));
+                            } else {
+                                segIdx = (segIdx + 1) % allSegments.length;
+                                funMessageTimers.set(element, setTimeout(typeSegment, pauseAfterErase));
+                            }
+                        };
+                        eraseChar();
+                    };
+
+                    typeChar();
+                };
+
+                funMessageTimers.set(element, setTimeout(typeSegment, 800));
+                return;
+            }
+
+            // Default fade rotation for non-ticker elements
             let index = 0;
             const rotate = () => {
                 index = (index + 1) % messages.length;
@@ -2593,6 +2653,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Fix mailto: links on mobile — prevent email clients from using anchor text as display name
+    document.addEventListener('click', (e) => {
+        const mailLink = e.target.closest('a[href^="mailto:"]');
+        if (!mailLink) return;
+        e.preventDefault();
+        const email = mailLink.getAttribute('href').replace('mailto:', '').split('?')[0];
+        window.location.href = 'mailto:' + encodeURIComponent(email).replace(/%40/g, '@');
+    });
+
     // Carousel loading animation fix
     const carousel = document.getElementById('projectsCarousel');
     if (carousel) {

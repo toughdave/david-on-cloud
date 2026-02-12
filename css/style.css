@@ -2855,11 +2855,11 @@ body.fun-mode .contact-submit {
     background: none;
     border: none;
     padding: 0.15rem 0.35rem;
-    margin: -0.15rem -0.35rem;
+    margin: 0;
     border-radius: 0.35rem;
     cursor: pointer;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1rem;
     text-align: left;
     transition: background 0.2s, color 0.2s;
     text-decoration: underline;
@@ -2981,11 +2981,11 @@ body.fun-mode .contact-submit {
     background: none;
     border: none;
     padding: 0.15rem 0.35rem;
-    margin: -0.15rem -0.35rem;
+    margin: 0;
     border-radius: 0.35rem;
     cursor: pointer;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1rem;
     text-align: left;
     transition: background 0.2s, color 0.2s;
     text-decoration: underline;
@@ -3116,7 +3116,6 @@ html:not([data-theme="dark"]) body.fun-mode .skill-spark span {
 .footer-ticker {
     display: none;
     align-items: center;
-    justify-content: center;
     gap: 0.5rem;
     margin-top: 1.5rem;
     padding: 0.45rem 0.9rem;
@@ -3152,11 +3151,7 @@ html:not([data-theme="dark"]) body.fun-mode .skill-spark span {
 }
 
 .footer-ticker::after {
-    content: "▋";
-    animation: tickerBlink 1s step-end infinite;
-    color: #4ade80;
-    margin-left: 0.25rem;
-    font-size: 0.7rem;
+    content: none;
 }
 
 @keyframes tickerBlink {
@@ -3178,12 +3173,24 @@ body.fun-mode .footer-ticker {
     font-weight: 700;
     letter-spacing: 0.18em;
     text-shadow: 0 0 4px rgba(74, 222, 128, 0.4);
+    flex-shrink: 0;
 }
 
 .footer-ticker-text {
-    transition: opacity 0.3s ease;
     position: relative;
     z-index: 2;
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+}
+
+.footer-ticker-text::after {
+    content: "▋";
+    animation: tickerBlink 1s step-end infinite;
+    color: #4ade80;
+    margin-left: 1px;
+    font-size: 0.65rem;
+    vertical-align: baseline;
 }
 
 .fun-message.is-fading {
@@ -4637,6 +4644,16 @@ body.fun-mode .nav-brand a {
     gap: 2px;
 }
 
+/* Vanta background - hidden initially to prevent bright flash on load */
+#vanta-bg {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+#vanta-bg.vanta-ready {
+    opacity: 1;
+}
+
 /* All 'o' letters become animated dots in fun mode */
 body.fun-mode .brand-o {
     font-size: 0;
@@ -4685,25 +4702,51 @@ body.fun-mode .nav-brand a::after {
     90% { transform: translateY(-1px) scale(1); }
 }
 
-body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(1) {
-    animation: dotPulse1 0.7s ease-in-out infinite;
-    background: #a5b4fc;
-    box-shadow: 0 0 12px rgba(165, 180, 252, 0.9);
-}
-body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(2) {
-    animation: dotPulse2 0.55s ease-in-out infinite;
-    background: #c4b5fd;
-    box-shadow: 0 0 12px rgba(196, 181, 253, 0.9);
-}
-body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(3) {
-    animation: dotPulse3 0.65s ease-in-out infinite;
-    background: #818cf8;
-    box-shadow: 0 0 14px rgba(129, 140, 248, 1);
+/* Sequential color gradient cascade on hover */
+@keyframes dotColorCascade {
+    0%   { background: #818cf8; box-shadow: 0 0 8px rgba(129, 140, 248, 0.7); }
+    15%  { background: #a5b4fc; box-shadow: 0 0 12px rgba(165, 180, 252, 0.9); }
+    30%  { background: #c4b5fd; box-shadow: 0 0 14px rgba(196, 181, 253, 0.9); }
+    45%  { background: #f0abfc; box-shadow: 0 0 14px rgba(240, 171, 252, 0.9); }
+    60%  { background: #fb7185; box-shadow: 0 0 12px rgba(251, 113, 133, 0.8); }
+    75%  { background: #c4b5fd; box-shadow: 0 0 12px rgba(196, 181, 253, 0.9); }
+    100% { background: #818cf8; box-shadow: 0 0 8px rgba(129, 140, 248, 0.7); }
 }
 
-html:not([data-theme="dark"]) body.fun-mode .nav-brand a:hover .brand-o {
-    background: #6366f1;
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(1) {
+    animation: dotPulse1 0.7s ease-in-out infinite, dotColorCascade 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0s;
+}
+body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(2) {
+    animation: dotPulse2 0.55s ease-in-out infinite, dotColorCascade 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0.3s;
+}
+body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(3) {
+    animation: dotPulse3 0.65s ease-in-out infinite, dotColorCascade 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0.6s;
+}
+
+@keyframes dotColorCascadeLight {
+    0%   { background: #4f46e5; box-shadow: 0 0 6px rgba(79, 70, 229, 0.5); }
+    15%  { background: #6366f1; box-shadow: 0 0 10px rgba(99, 102, 241, 0.8); }
+    30%  { background: #8b5cf6; box-shadow: 0 0 12px rgba(139, 92, 246, 0.8); }
+    45%  { background: #a855f7; box-shadow: 0 0 12px rgba(168, 85, 247, 0.8); }
+    60%  { background: #ec4899; box-shadow: 0 0 10px rgba(236, 72, 153, 0.7); }
+    75%  { background: #8b5cf6; box-shadow: 0 0 10px rgba(139, 92, 246, 0.7); }
+    100% { background: #4f46e5; box-shadow: 0 0 6px rgba(79, 70, 229, 0.5); }
+}
+
+html:not([data-theme="dark"]) body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(1) {
+    animation: dotPulse1 0.7s ease-in-out infinite, dotColorCascadeLight 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0s;
+}
+html:not([data-theme="dark"]) body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(2) {
+    animation: dotPulse2 0.55s ease-in-out infinite, dotColorCascadeLight 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0.3s;
+}
+html:not([data-theme="dark"]) body.fun-mode .nav-brand a:hover .brand-o:nth-of-type(3) {
+    animation: dotPulse3 0.65s ease-in-out infinite, dotColorCascadeLight 2.4s ease-in-out infinite;
+    animation-delay: 0s, 0.6s;
 }
 
 html:not([data-theme="dark"]) body.fun-mode .nav-brand a {
