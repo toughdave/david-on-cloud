@@ -1,29 +1,29 @@
 {
-    "sectionTitle": "Get In Touch",
-    "heading": "Let's Talk About Your Systems & Data Goals",
-    "subtitle": "I'm available for full-time, contract, or consulting roles focused on systems analysis, reporting, and data operations. If you need help improving workflows, dashboards, or data integrity, let's connect.",
-    "emails": [
-        {
-            "label": "Primary",
-            "address": "matthewtopedavid@gmail.com"
-        },
-        {
-            "label": "Secondary",
-            "address": "info@davidoncloud.com"
-        }
-    ],
-    "location": "Toronto, ON",
-    "socialLinks": [
-        {
-            "platform": "github",
-            "url": "https://github.com/toughdave",
-            "label": "GitHub"
-        },
-        {
-            "platform": "linkedin",
-            "url": "https://www.linkedin.com/in/tope-david-m-48076969",
-            "label": "LinkedIn"
-        }
-    ],
-    "formAction": "https://formspree.io/f/mjkedzyv"
+  "sectionTitle": "Get In Touch",
+  "heading": "Let's Talk About Your Systems & Data Goals",
+  "subtitle": "I'm available for full-time, contract, or consulting roles focused on systems analysis, reporting, and data operations. If you need help improving workflows, dashboards, or data integrity, let's connect..",
+  "emails": [
+    {
+      "label": "Primary",
+      "address": "matthewtopedavid@gmail.com"
+    },
+    {
+      "label": "Secondary",
+      "address": "info@davidoncloud.com"
+    }
+  ],
+  "location": "Toronto, ON",
+  "socialLinks": [
+    {
+      "platform": "github",
+      "url": "https://github.com/toughdave",
+      "label": "GitHub"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/tope-david-m-48076969",
+      "label": "LinkedIn"
+    }
+  ],
+  "formAction": "https://formspree.io/f/mjkedzyv"
 }
