@@ -1,3 +1,8 @@
+## v4.1.13 — 2026-02-12 16:17:08
+- ✅ Ticker typing effect, mailto fix, email spacing, Vanta fade-in, brand-o color cascade
+- ✅ Auto patch bump version to v4.1.12 with update summary
+- ✅ Bumped version to v4.1.13
+
 ## v4.1.12 — 2026-02-12 15:52:23
 - ✅ Internal release tooling updates
 - ✅ Bumped version to v4.1.12
