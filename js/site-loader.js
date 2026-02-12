@@ -27,7 +27,8 @@
 
     /* ── Helpers ── */
     function fetchJSON(path) {
-        return fetch(path).then(r => r.ok ? r.json() : null).catch(() => null);
+        const cacheBust = path + (path.includes('?') ? '&' : '?') + '_v=' + Date.now();
+        return fetch(cacheBust).then(r => r.ok ? r.json() : null).catch(() => null);
     }
 
     function escapeHTML(str) {

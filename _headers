@@ -1,0 +1,29 @@
+# HTML pages — never cache (ensures browsers always fetch latest ?v= references)
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/projects.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# CSS & JS — immutable long-term cache (version query strings handle cache busting)
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# VERSION file — never cache
+/VERSION
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Images — cache for 1 year (they rarely change)
+/img/*
+  Cache-Control: public, max-age=31536000
+
+# Static assets (favicon etc.) — cache for 1 day
+/static/*
+  Cache-Control: public, max-age=86400
+
+# Documents (PDFs) — cache for 1 week
+/docs/*
+  Cache-Control: public, max-age=604800

@@ -11,7 +11,7 @@ window.siteConfig = {
 };
 
 // Load external config
-fetch('js/config.json')
+fetch('js/config.json?v=' + Date.now())
     .then(response => response.json())
     .then(data => {
         if (data && data.settings) {
@@ -30,7 +30,7 @@ fetch('js/config.json')
 
 // Load and render projects dynamically
 const loadProjects = () => {
-    fetch('js/projects.json')
+    fetch('js/projects.json?v=' + Date.now())
         .then(response => response.json())
         .then(data => {
             if (!data || !data.projects) return;
@@ -758,7 +758,7 @@ function updateFooterYear() {
 // Version loading
 async function loadVersion() {
     try {
-        const response = await fetch('/VERSION');
+        const response = await fetch('/VERSION?v=' + Date.now());
         if (response.ok) {
             const version = await response.text();
             const versionElement = document.getElementById('version-display');

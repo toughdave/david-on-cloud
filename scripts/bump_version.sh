@@ -313,7 +313,7 @@ if [ "$DRY_RUN" -eq 1 ]; then
     echo ""
     echo "==== DRY RUN PREVIEW ===="
     echo "Would write to VERSION: $NEW_VERSION"
-    echo "Would update version spans in HTML"
+    echo "Would update version spans and cache-busting ?v= strings in HTML"
     echo -e "Would prepend to RELEASE_NOTES.txt:\n$NEW_ENTRY"
     echo "========================"
     echo "(No files were modified; no git operations performed)"
@@ -325,6 +325,9 @@ echo "$NEW_VERSION" > VERSION
 
 # Update version in HTML files (safely replace only the text inside the span)
 sed -i -E "s/(id=\"version-display\">)[^<]*/\1$NEW_VERSION/g" index.html projects.html
+
+# Update cache-busting ?v= query strings on local CSS/JS assets
+sed -i -E "s/(\.(css|js))\?v=[0-9]+\.[0-9]+\.[0-9]+/\1?v=$NEW_VERSION/g" index.html projects.html
 
 
 
@@ -367,7 +370,7 @@ echo ""
 echo "🎉 Successfully bumped to v$NEW_VERSION ($BUMP_TYPE)"
 echo "📝 Changes:"
 echo "   - VERSION file updated"
-echo "   - HTML files updated (fallback content)"
+echo "   - HTML files updated (version display + cache-busting ?v= strings)"
 echo "   - Release notes updated"
 echo "   - Git commit created with $BUMP_TYPE bump message"
 echo "   - Tag v$NEW_VERSION created and pushed"
