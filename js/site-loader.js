@@ -425,6 +425,20 @@
         }
     }
 
+    /* ── Fun Mode CMS Defaults ── */
+    function applyFunModeDefaults(settings) {
+        if (!settings) return;
+        if (settings.roverStyle && !localStorage.getItem('fun-rover-style')) {
+            localStorage.setItem('fun-rover-style', settings.roverStyle);
+        }
+        if (typeof settings.immersiveEffects === 'boolean' && localStorage.getItem('fun_immersive') === null) {
+            localStorage.setItem('fun_immersive', String(settings.immersiveEffects));
+        }
+        if (settings.defaultFunVantaMode && !localStorage.getItem('fun-vanta-mode')) {
+            localStorage.setItem('fun-vanta-mode', settings.defaultFunVantaMode);
+        }
+    }
+
     /* ── Main Loader ── */
     async function loadSiteContent() {
         const isIndex = !window.location.pathname.includes('projects.html');
@@ -445,6 +459,7 @@
         if (config && config.settings) {
             applySectionVisibility(config.settings.sections);
             applyVantaSettings(config.settings.vanta);
+            applyFunModeDefaults(config.settings);
         }
 
         renderHero(hero);

@@ -14,7 +14,7 @@
         {
             "icon": "code",
             "title": "Automation & Collaboration",
-            "items": ["Python", "PHP", "ETL Automation", "Workflow Automation", "End-User Training", "Stakeholder Communication"]
+            "items": ["Python", "PHP", "ETL Automation", "Workflow Automation", "Git / GitHub", "End-User Training", "Stakeholder Communication"]
         },
         {
             "icon": "monitor",
@@ -30,6 +30,11 @@
             "icon": "share-2",
             "title": "Networking Fundamentals",
             "items": ["TCP/IP", "DNS/DHCP", "VLAN Basics", "VPN Basics"]
+        },
+        {
+            "icon": "globe",
+            "title": "Web & Deployment",
+            "items": ["HTML / CSS / JS", "Tailwind CSS", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
         }
     ]
 }
