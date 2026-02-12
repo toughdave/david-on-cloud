@@ -1,3 +1,7 @@
+## v4.1.11 — 2026-02-12 14:00:32
+- ✅ Add cache-busting for mobile browser caching: version query strings on CSS/JS assets, Date.now() on 
+- ✅ Bumped version to v4.1.11
+
 ## v4.1.10 — 2026-02-12 13:59:23
 - ✅ Mobile UI: smaller settings btn, reduce contact text, hero h2 single line, stack badge/resume
 - ✅ Bumped version to v4.1.10
