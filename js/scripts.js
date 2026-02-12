@@ -192,12 +192,16 @@ const loadProjects = () => {
 /* ===== INITIALIZATION ===== */
 // Initialize AOS animations
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true,
-    disable: prefersReducedMotion
-});
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        disable: prefersReducedMotion
+    });
+} else {
+    console.warn('[AOS] Skipped: AOS library not available.');
+}
 
     // Initialize Vanta.js background
     let vantaEffect = null;
@@ -2596,6 +2600,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
         });
     }
+
+    // ===== MOBILE DROPDOWN TAP-TO-TOGGLE =====
+    const isMobileViewport = () => window.innerWidth <= 768;
+
+    document.querySelectorAll('.contact-email-text, .contact-location-text').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if (!isMobileViewport()) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const wrapper = btn.closest('.contact-email-wrapper, .contact-location-wrapper');
+            if (!wrapper) return;
+
+            // Close all other open dropdowns first
+            document.querySelectorAll('.contact-email-wrapper.dropdown-open, .contact-location-wrapper.dropdown-open').forEach(w => {
+                if (w !== wrapper) w.classList.remove('dropdown-open');
+            });
+
+            wrapper.classList.toggle('dropdown-open');
+        });
+    });
+
+    // Close dropdowns when tapping outside on mobile
+    document.addEventListener('click', (e) => {
+        if (!isMobileViewport()) return;
+        if (!e.target.closest('.contact-email-wrapper, .contact-location-wrapper')) {
+            document.querySelectorAll('.dropdown-open').forEach(w => w.classList.remove('dropdown-open'));
+        }
+    });
 });
 
 // Navigation state updates

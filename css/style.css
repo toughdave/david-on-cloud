@@ -125,9 +125,9 @@ body {
 
 .skip-link {
     position: fixed;
-    top: 1rem;
+    top: -100%;
     left: 50%;
-    transform: translate(-50%, -160%);
+    transform: translateX(-50%);
     padding: 0.55rem 1.2rem;
     border-radius: 999px;
     background: #111827;
@@ -139,14 +139,16 @@ body {
     text-decoration: none;
     z-index: 200;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: top 0.2s ease, box-shadow 0.2s ease;
+    pointer-events: none;
 }
 
 .skip-link:focus,
 .skip-link:focus-visible {
-    transform: translate(-50%, 0);
+    top: 1rem;
     outline: none;
     box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.5), 0 12px 30px rgba(15, 23, 42, 0.25);
+    pointer-events: auto;
 }
 
 #vanta-bg {
@@ -6255,6 +6257,55 @@ body.fun-mode .project-list-card:hover {
         min-height: 100%;
         height: auto;
         overflow: visible;
+    }
+
+    /* ===== MOBILE DROPDOWN FIX ===== */
+    /* Reposition dropdowns for small screens to prevent overflow */
+    .contact-email-dropdown {
+        left: auto;
+        right: 0;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    /* Disable hover/focus-within dropdown display on mobile touch devices */
+    .contact-email-wrapper:hover .contact-email-dropdown,
+    .contact-email-wrapper:focus-within .contact-email-dropdown,
+    .contact-location-wrapper:hover .contact-location-dropdown,
+    .contact-location-wrapper:focus-within .contact-location-dropdown,
+    .contact-location-wrapper:hover .contact-email-dropdown,
+    .contact-location-wrapper:focus-within .contact-email-dropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* Show dropdown only when explicitly toggled via JS tap */
+    .contact-email-wrapper.dropdown-open .contact-email-dropdown,
+    .contact-location-wrapper.dropdown-open .contact-location-dropdown,
+    .contact-location-wrapper.dropdown-open .contact-email-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+    /* Mobile footer dropdowns open upward */
+    .footer-inline-wrapper.dropdown-open .footer-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+    /* Ensure footer contact line wraps nicely on mobile */
+    .footer-contact-line {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-dot {
+        display: none;
     }
 }
 
