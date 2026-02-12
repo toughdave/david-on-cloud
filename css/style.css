@@ -289,14 +289,16 @@ p {
 
 .hero-status {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 0.75rem;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 1.5rem;
 }
 
 .hero-status--light {
     margin-top: -0.25rem;
+    align-items: center;
 }
 
 .availability-badge {
@@ -556,12 +558,14 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     .fun-lab-settings-btn {
-        padding: 0.35rem 0.3rem;
+        padding: 0.2rem 0.25rem;
+        height: 20px !important;
+        align-self: center;
     }
 
     .fun-lab-settings-btn svg {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
     }
 
     .hero-portrait-wrap .hero-portrait-glow {
@@ -6280,8 +6284,9 @@ body.fun-mode .project-list-card:hover {
     }
 
     /* ===== MOBILE HERO H2 + BADGES SINGLE LINE ===== */
-    #hero h2 {
-        font-size: 1.1rem !important;
+    #hero h2,
+    #intro h2 {
+        font-size: 0.85rem !important;
         white-space: nowrap;
     }
 
@@ -6339,6 +6344,17 @@ body.fun-mode .project-list-card:hover {
         background: rgba(15, 23, 42, 0.6) !important;
         border-color: rgba(99, 102, 241, 0.4) !important;
         box-shadow: none !important;
+    }
+
+    /* ===== MOBILE CONTACT TEXT ===== */
+    .contact-email-text,
+    .contact-location-text {
+        font-size: 0.75rem !important;
+    }
+
+    .contact-location-wrapper,
+    .contact-email-wrapper {
+        margin-left: 0.3rem;
     }
 
     /* ===== MOBILE PROJECT CARDS ===== */
