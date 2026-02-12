@@ -51,13 +51,17 @@ function postMessageHTML(status, content) {
 <body>
 <script>
 (function() {
-  function sendMsg(msg) {
-    if (window.opener) {
-      window.opener.postMessage(msg, '*');
-      setTimeout(function() { window.close(); }, 200);
-    }
+  function receiveMessage(e) {
+    console.log("receiveMessage", e);
+    window.removeEventListener("message", receiveMessage, false);
+    window.opener.postMessage(
+      'authorization:github:${status}:${content.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}',
+      e.origin
+    );
+    setTimeout(function() { window.close(); }, 250);
   }
-  sendMsg('authorization:github:${status}:${content.replace(/'/g, "\\'")}');
+  window.addEventListener("message", receiveMessage, false);
+  window.opener.postMessage("authorizing:github", "*");
 })();
 </script>
 </body>
