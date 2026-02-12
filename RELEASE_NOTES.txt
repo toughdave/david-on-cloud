@@ -1,3 +1,7 @@
+## v4.1.12 — 2026-02-12 14:57:30
+- ✅ Mobile UX: direct mailto/maps links, scroll perf, carousel touch fix, smaller tags, single-line 
+- ✅ Bumped version to v4.1.12
+
 ## v4.1.11 — 2026-02-12 14:00:32
 - ✅ Add cache-busting for mobile browser caching: version query strings on CSS/JS assets, Date.now() on 
 - ✅ Bumped version to v4.1.11
