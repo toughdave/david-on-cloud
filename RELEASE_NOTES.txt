@@ -1,3 +1,7 @@
+## v4.1.10 — 2026-02-12 13:59:23
+- ✅ Mobile UI: smaller settings btn, reduce contact text, hero h2 single line, stack badge/resume
+- ✅ Bumped version to v4.1.10
+
 ## v4.1.9 — 2026-02-12 13:32:44
 - ✅ Mobile UI: smaller tags, single-line h2/badges, tighter spacing, modified time, smaller settings 
 - ✅ Bumped version to v4.1.9
