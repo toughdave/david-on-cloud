@@ -26,7 +26,9 @@ collections:
               - {label: "Default Theme", name: "defaultTheme", widget: "select", options: ["dark", "light"], default: "dark"}
               - {label: "Fun Mode", name: "defaultFunMode", widget: "boolean", default: true, hint: "Enable the 'fun mode' interactive effects"}
               - {label: "Shooting Star Interval (ms)", name: "shootingStarInterval", widget: "number", default: 25000, hint: "Milliseconds between shooting star animations"}
-              - {label: "Rover Style", name: "roverStyle", widget: "select", options: ["default", "minimal", "bold"], default: "default", hint: "Visual style preset for site elements"}
+              - {label: "Rover Style", name: "roverStyle", widget: "select", options: ["rover", "hopper", "skimmer", "orb", "drone", "squad", "none"], default: "rover", hint: "Pick the floor buddy in Fun Mode"}
+              - {label: "Immersive Effects", name: "immersiveEffects", widget: "boolean", default: true, hint: "Skills animations, system console, and experience log lines in Fun Mode"}
+              - {label: "Fun Mode Vanta Default", name: "defaultFunVantaMode", widget: "select", options: ["dim", "off"], default: "dim", hint: "Default Vanta background mode when Fun Mode is active"}
               - label: "Vanta Background"
                 name: "vanta"
                 widget: "object"
@@ -290,6 +292,7 @@ collections:
               - {label: "ID", name: "id", widget: "string", hint: "Slug-style unique ID"}
               - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show in homepage carousel"}
               - {label: "Hidden", name: "hidden", widget: "boolean", default: false, hint: "Hide this project card entirely"}
+              - {label: "Published (Peer-Reviewed)", name: "published", widget: "boolean", default: false, hint: "Show a PUBLISHED ribbon/badge on the card"}
               - {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]}
               - {label: "Cover Image", name: "image", widget: "image"}
               - {label: "Summary", name: "summary", widget: "text"}

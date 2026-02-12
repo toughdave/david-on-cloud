@@ -17,7 +17,9 @@
                 "backgroundColor": "#f8fafc"
             }
         },
-        "roverStyle": "default",
+        "roverStyle": "rover",
+        "immersiveEffects": true,
+        "defaultFunVantaMode": "dim",
         "sections": {
             "hero": true,
             "about": true,
