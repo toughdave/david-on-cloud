@@ -146,7 +146,7 @@
       ],
       "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students over multiple academic terms, ensuring consistent and reliable virtual infrastructure for hands-on systems administration coursework.",
       "modified": "2025-10-02T07:51:09.056Z",
-      "featured": false,
+      "featured": true,
       "title": "Virtual Lab Deployment & Active Directory",
       "tags": [
         "Windows Server",
@@ -229,7 +229,7 @@
       "summary": "Co-authored a peer-reviewed research paper published in the Network and Communication Technologies journal (Canadian Center of Science and Education, 2020), proposing a Capability-based Context Aware Access Control (CCAAC) security model for internet-enabled host devices, validated through a custom web application implementing Elliptic-Curve Diffie-Hellman mutual authentication.",
       "linkText": "Read Published Paper (CCSE Journal)",
       "modified": "2025-10-26T20:06:00.000-04:00",
-      "featured": false,
+      "featured": true,
       "pdf": "docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf",
       "title": "A Secured System for Internet-Enabled Host Devices",
       "images": [
