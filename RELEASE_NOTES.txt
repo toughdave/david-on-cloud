@@ -1,3 +1,9 @@
+## v4.1.5 — 2026-02-12 03:08:11
+- ✅ Fixed CMS fields
+- ✅ Improved ribbon animation
+- ✅ Updated styles
+- ✅ Enhanced scripts
+
 ## v4.1.4 — 2026-02-12 01:37:59
 - ✅ Fix: inline experience inset images, Groq API for bump script, centered read-more buttons, post-it 
 - ✅ Auto patch bump version to v4.1.3 with update summary
