@@ -1,3 +1,7 @@
+## v4.1.8 — 2026-02-12 12:58:44
+- ✅ Audit fixes: toggle double border, h2 specificity, card overflow, dome light threshold
+- ✅ Bumped version to v4.1.8
+
 ## v4.1.7 — 2026-02-12 12:36:29
 - ✅ Mobile UI refinements: compact Fun Lab toggle, tighter filters, taller cards, dome lights fix
 - ✅ Bumped version to v4.1.7
