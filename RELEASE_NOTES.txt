@@ -1,3 +1,12 @@
+## v4.1.2 — 2026-02-11 21:51:05
+- ✅ Add: CMS overhaul — 10 collections, JSON data files for all sections, site-loader.js dynamic 
+- ✅ Auto patch bump version to v4.1.1 with update summary
+- ✅ Add: interactive email/location dropdowns, fix CI/CD pipeline, fix OAuth handshake
+- ✅ Merge pull request #1 from toughdave/cms/projects_collection/projects
+- ✅ Update Projects “projects”
+- ✅ Update Projects “projects”
+- ✅ Bumped version to v4.1.2
+
 ## v4.1.1 — 2026-02-11 21:42:04
 - ✅ Add: interactive email/location dropdowns, fix CI/CD pipeline, fix OAuth handshake
 - ✅ Add: add Decap CMS OAuth proxy and configure GitHub backend with base_url
