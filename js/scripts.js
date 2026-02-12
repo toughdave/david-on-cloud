@@ -262,11 +262,9 @@ if (typeof AOS !== 'undefined') {
         }
     };
     
-    // Defer init to ensure page background renders first
-    setTimeout(initVanta, 600);
-    // Fallback: also try on window load in case defer timing fails
+    // Single init path: wait for page load, then delay so background renders first
     window.addEventListener('load', () => {
-        if (!vantaEffect) initVanta();
+        setTimeout(() => { if (!vantaEffect) initVanta(); }, 600);
     });
 
     /* ===== VANTA VERTICAL PARALLAX ===== */

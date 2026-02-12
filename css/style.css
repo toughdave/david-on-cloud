@@ -2859,7 +2859,7 @@ body.fun-mode .contact-submit {
     border-radius: 0.35rem;
     cursor: pointer;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 1.05rem;
     text-align: left;
     transition: background 0.2s, color 0.2s;
     text-decoration: underline;
@@ -2985,7 +2985,7 @@ body.fun-mode .contact-submit {
     border-radius: 0.35rem;
     cursor: pointer;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 1.05rem;
     text-align: left;
     transition: background 0.2s, color 0.2s;
     text-decoration: underline;
@@ -6475,12 +6475,20 @@ body.fun-mode .project-list-card:hover {
     }
 
     /* ===== MOBILE SPACING TIGHTEN ===== */
+    #projects .section-title-container {
+        margin-bottom: 0.75rem !important;
+    }
+
+    #projects .hero-status {
+        margin-bottom: 0.75rem !important;
+    }
+
     .fun-project-filters {
         margin-bottom: 0.75rem !important;
     }
 
     #projects .fun-project-filters {
-        margin: 0.5rem 0 1rem !important;
+        margin: 0.25rem 0 0.75rem !important;
         padding: 0.75rem 0 !important;
     }
 
