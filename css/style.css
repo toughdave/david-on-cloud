@@ -515,7 +515,7 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     .fun-lab-button {
         padding: 0;
         gap: 0;
-        width: 46px;
+        width: 42px;
         height: 26px;
         border: none;
         border-radius: 999px 0 0 999px;
@@ -550,13 +550,18 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     body.fun-mode .fun-lab-toggle-knob {
-        left: 23px;
+        left: 19px;
         background: #a5b4fc;
         box-shadow: 0 0 6px rgba(165, 180, 252, 0.7);
     }
 
     .fun-lab-settings-btn {
-        padding: 0.5rem 0.4rem;
+        padding: 0.35rem 0.3rem;
+    }
+
+    .fun-lab-settings-btn svg {
+        width: 10px;
+        height: 10px;
     }
 
     .hero-portrait-wrap .hero-portrait-glow {
@@ -6091,6 +6096,20 @@ body.fun-mode .project-list-card:hover {
     color: #374151;
 }
 
+/* Project card footer - times above view link */
+.project-card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-times-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    align-items: center;
+}
+
 /* Keep View Project link at the bottom */
 .project-link {
     margin-top: auto;
@@ -6252,11 +6271,74 @@ body.fun-mode .project-list-card:hover {
     /* Tighten section titles on mobile */
     .sticky-section-title {
         padding: 0.5rem 1rem !important;
+        margin-bottom: 1.5rem !important;
     }
 
     .sticky-section-title h2 {
         font-size: 1.25rem !important;
         margin-bottom: 0.25rem !important;
+    }
+
+    /* ===== MOBILE HERO H2 + BADGES SINGLE LINE ===== */
+    #hero h2 {
+        font-size: 1.1rem !important;
+        white-space: nowrap;
+    }
+
+    .availability-badge,
+    .availability-badge--light {
+        font-size: 0.5rem !important;
+        padding: 0.3rem 0.65rem !important;
+        white-space: nowrap;
+        gap: 0.35rem !important;
+    }
+
+    .hero-status {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* ===== MOBILE PROJECT TAGS ===== */
+    .project-tag {
+        padding: 0.15rem 0.4rem !important;
+        font-size: 0.55rem !important;
+    }
+
+    .project-tags {
+        gap: 0.3rem !important;
+    }
+
+    /* ===== MOBILE SPACING TIGHTEN ===== */
+    .fun-project-filters {
+        margin-bottom: 0.75rem !important;
+    }
+
+    #projects .fun-project-filters {
+        margin: 0.5rem 0 1rem !important;
+        padding: 0.75rem 0 !important;
+    }
+
+    /* ===== MOBILE PROJECT TIME ===== */
+    .project-time {
+        font-size: 0.65rem !important;
+        white-space: nowrap;
+    }
+
+    .project-time-updated {
+        font-size: 0.6rem !important;
+    }
+
+    /* ===== DISABLE VIEW-LINK HOVER ON MOBILE ===== */
+    .view-link:hover,
+    .fun-view-link:hover .view-link-text,
+    .fun-view-link:hover::after {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    body.fun-mode .view-link:hover {
+        background: rgba(15, 23, 42, 0.6) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        box-shadow: none !important;
     }
 
     /* ===== MOBILE PROJECT CARDS ===== */

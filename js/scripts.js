@@ -97,11 +97,16 @@ const loadProjects = () => {
                                 <div class="flex flex-wrap gap-2 mb-4 mt-3">
                                     ${tagsHtml}
                                 </div>
-                                <div class="flex justify-between items-center mt-auto">
-                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                    <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
-                                        View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                    </a>
+                                <div class="project-card-footer mt-auto">
+                                    <div class="project-times-row">
+                                        <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                        ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}" style="display:none;"></time>` : ''}
+                                    </div>
+                                    <div class="flex justify-end items-center">
+                                        <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
+                                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
