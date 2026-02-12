@@ -1,0 +1,22 @@
+{
+    "sectionTitle": "About Me",
+    "professionalSummary": [
+        "Information Systems and Systems Analyst with a Master's degree in Computer Science and proven experience supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows.",
+        "Strong background in analyzing existing systems, improving data processes, supporting system implementations, and maintaining operational reliability across Windows and Linux platforms. Known for structured documentation, data accuracy, and supporting high-volume institutional systems aligned with organizational standards."
+    ],
+    "location": "Toronto, ON",
+    "email": "matthewtopedavid@gmail.com",
+    "education": [
+        {
+            "degree": "M.Sc. in Computer Science",
+            "institution": "Federal University of Technology, Akure (FUTA)",
+            "year": "2019"
+        },
+        {
+            "degree": "B.Sc. in Computer Science",
+            "institution": "Federal University of Technology, Akure (FUTA)",
+            "year": "2014"
+        }
+    ],
+    "additionalExperience": "Hands-on systems and networking experimentation through a personal home lab using enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments."
+}

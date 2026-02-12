@@ -2,7 +2,10 @@
     "settings": {
         "shootingStarInterval": 25000,
         "defaultFunMode": true,
+        "defaultTheme": "dark",
         "vanta": {
+            "opacity": 1.0,
+            "mode": "on",
             "dark": {
                 "color": "#7c3aed",
                 "color2": "#6366f1",
@@ -13,6 +16,17 @@
                 "color2": "#f8fafc",
                 "backgroundColor": "#f8fafc"
             }
+        },
+        "roverStyle": "default",
+        "sections": {
+            "hero": true,
+            "about": true,
+            "skills": true,
+            "experience": true,
+            "projects": true,
+            "process": true,
+            "testimonials": true,
+            "contact": true
         }
     }
 }

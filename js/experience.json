@@ -1,0 +1,53 @@
+{
+    "sectionTitle": "Work Experience",
+    "entries": [
+        {
+            "title": "Computer IT Instructor (Computer Science & Applied Computing)",
+            "company": "Pures College of Technology",
+            "location": "Scarborough, ON",
+            "period": "Jan. 2024 - Aug. 2025",
+            "focus": "Delivered hands-on instruction while managing lab environments, software installations, and networking practicals for 250+ students.",
+            "outcomes": [
+                "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
+                "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory setups.",
+                "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS environments).",
+                "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.",
+                "Processed results and verified student records through Google Classroom workflows."
+            ],
+            "backgroundImage": "https://static.photos/technology/1600x900/19",
+            "insetImage": "img/Pures-College-classroom.jpg",
+            "logLine": "lab sync: 250 endpoints • auth OK • deployment stable"
+        },
+        {
+            "title": "Systems & Data Analyst / System Programmer",
+            "company": "Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)",
+            "location": "Nigeria",
+            "period": "Mar. 2017 - Aug. 2023",
+            "focus": "Supported academic information systems, data processing, and reporting workflows across admissions, examinations, and results processing.",
+            "outcomes": [
+                "Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.",
+                "Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.",
+                "Produced executive performance reports and analytical insights to guide planning decisions.",
+                "Managed exam operations tools (biometric verification, CCTV workflows) and secure evidence handling procedures.",
+                "Automated recurring data preparation with Python and performed readiness checks on exam systems."
+            ],
+            "backgroundImage": "https://static.photos/technology/1600x900/45",
+            "insetImage": "img/data-analysis-mtd.jpg",
+            "logLine": "record queue: 4,000+ processed • anomaly rate 0.6%"
+        },
+        {
+            "title": "Computer Science (ICT) Teacher",
+            "company": "Community Secondary School, Agulu-Awka",
+            "location": "Nigeria",
+            "period": "Dec. 2014 - Aug. 2015",
+            "focus": "Delivered foundational computer science instruction with emphasis on logical reasoning and structured problem solving.",
+            "outcomes": [
+                "Delivered foundational computer science instruction focused on logical reasoning and problem-solving.",
+                "Reviewed and assessed student work to ensure understanding and accuracy."
+            ],
+            "backgroundImage": "https://static.photos/technology/1600x900/102",
+            "insetImage": "img/Teaching-Students-Anambra.jpg",
+            "logLine": "curriculum boot: logic module deployed • comprehension 93%"
+        }
+    ]
+}

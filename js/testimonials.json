@@ -1,0 +1,18 @@
+{
+    "sectionTitle": "Testimonials",
+    "subtitle": "Trusted by academic teams to keep systems stable, data accurate, and reporting on schedule.",
+    "entries": [
+        {
+            "quote": "David turned complex admissions and results workflows into dashboards our leadership trusted. His validation checks helped us catch issues early and keep every cycle audit-ready.",
+            "name": "Kingsley",
+            "initial": "K",
+            "role": "Senior Academic Personnel, Pures College of Technology"
+        },
+        {
+            "quote": "His reporting automation shortened our close-out process and improved collaboration with ICT operations. We relied on his documentation and steady hand during every intake.",
+            "name": "Mobolaji",
+            "initial": "M",
+            "role": "ICT Operations Manager, FUTA Centre for Continuing Education"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "sectionTitle": "Process & Services",
+    "subtitle": "A structured approach to stabilize data, streamline reporting, and keep systems reliable from discovery through handoff.",
+    "steps": [
+        {
+            "icon": "map",
+            "title": "Assess & Map",
+            "description": "Clarify goals, map workflows, and document system constraints early.",
+            "items": ["Stakeholder interviews", "Process documentation"]
+        },
+        {
+            "icon": "shield",
+            "title": "Stabilize Data",
+            "description": "Clean, validate, and reconcile records for audit-ready accuracy.",
+            "items": ["Validation checks", "Exception resolution"]
+        },
+        {
+            "icon": "bar-chart-2",
+            "title": "Automate & Report",
+            "description": "Build dashboards and repeatable reports that surface decisions faster.",
+            "items": ["Power BI / Excel outputs", "Scheduled reporting"]
+        },
+        {
+            "icon": "check-circle",
+            "title": "Enable Operations",
+            "description": "Deliver playbooks, training, and handoff support for reliable operations.",
+            "items": ["Documentation & SOPs", "Team enablement"]
+        }
+    ],
+    "tags": ["Systems analysis", "Data quality audits", "Reporting automation", "Implementation support", "Documentation & training"]
+}
