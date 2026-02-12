@@ -1,11 +1,6 @@
 {
   "projects": [
     {
-      "title": "Academic Results Analytics Dashboard",
-      "id": "academic-results-analytics-dashboard",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Built a comprehensive Power BI and Excel analytics suite to centralize results processing tracking, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles at a university serving 4,000+ students.",
       "details": [
         "Consolidated fragmented results data from admissions portals, examination records, and departmental grade submissions into a unified reporting layer, applying SQL-driven validation checks to identify discrepancies such as missing scores, duplicate entries, and eligibility mismatches before official publication.",
         "Designed interactive KPI panels in Power BI with drill-down capabilities across student cohorts, academic sessions, and departments, enabling leadership to monitor processing timelines, flag anomaly rates in real-time, and compare performance trends across admission intakes.",
@@ -13,21 +8,39 @@
         "Delivered export-ready dashboards and audit-trail reports formatted for leadership reviews, accreditation audits, and departmental briefings, directly supporting executive planning decisions and resource allocation across academic programs."
       ],
       "impact": [
-        {"value": "4K+", "label": "Records audited", "detail": "Admissions, exams, and results cycles"},
-        {"value": "35%", "label": "Faster reconciliation", "detail": "Automation reduced manual review time"},
-        {"value": "3", "label": "Leadership dashboards", "detail": "Power BI, Excel, Sheets"}
+        {
+          "value": "4K+",
+          "label": "Records audited",
+          "detail": "Admissions, exams, and results cycles"
+        },
+        {
+          "value": "35%",
+          "label": "Faster reconciliation",
+          "detail": "Automation reduced manual review time"
+        },
+        {
+          "value": "3",
+          "label": "Leadership dashboards",
+          "detail": "Power BI, Excel, Sheets"
+        }
       ],
-      "tags": ["Power BI", "Excel", "SQL", "Data Validation", "Reporting"],
-      "posted": "2026-01-15T09:20:00.000Z",
+      "summary": "Built a comprehensive Power BI and Excel analytics suite to centralize results processing tracking, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles at a university serving 4,000+ students.",
       "modified": "2026-01-31T14:45:00.000Z",
-      "category": "data"
+      "featured": true,
+      "title": "Academic Results Analytics Dashboard",
+      "tags": [
+        "Power BI",
+        "Excel",
+        "SQL",
+        "Data Validation",
+        "Reporting"
+      ],
+      "id": "academic-results-analytics-dashboard",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "data",
+      "posted": "2026-01-15T09:20:00.000Z"
     },
     {
-      "title": "Admissions Data Quality Audit",
-      "id": "admissions-data-quality-audit",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status to ensure data integrity before final approvals for 2,000+ applicants per cycle.",
       "details": [
         "Designed and implemented spreadsheet-based validation workflows using advanced lookup formulas, deduplication rules, and eligibility logic to systematically cross-reference applicant submissions against institutional admission criteria, flagging inconsistencies in identity documents, qualification records, and program eligibility.",
         "Leveraged the institution's Gradent data processing platform alongside Excel and Google Sheets to extract audit exports, reconcile discrepancies between portal submissions and backend records, and deliver clean, verified rosters to admissions committees for final sign-off.",
@@ -35,21 +48,39 @@
         "Established repeatable audit procedures that standardized how incoming applicant data was reviewed across multiple intake cycles, reducing manual re-checking and improving turnaround time for final admissions roster publication."
       ],
       "impact": [
-        {"value": "2K+", "label": "Applicants reviewed", "detail": "Multi-intake audits"},
-        {"value": "0.8%", "label": "Residual error rate", "detail": "After cleanup and verification"},
-        {"value": "4", "label": "Validation rule sets", "detail": "ID, eligibility, duplicates, missing fields"}
+        {
+          "value": "2K+",
+          "label": "Applicants reviewed",
+          "detail": "Multi-intake audits"
+        },
+        {
+          "value": "0.8%",
+          "label": "Residual error rate",
+          "detail": "After cleanup and verification"
+        },
+        {
+          "value": "4",
+          "label": "Validation rule sets",
+          "detail": "ID, eligibility, duplicates, missing fields"
+        }
       ],
-      "tags": ["Excel", "Google Sheets", "SQL", "Data Validation", "Admissions Audit"],
-      "posted": "2025-12-05T08:10:00.000Z",
+      "summary": "Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status to ensure data integrity before final approvals for 2,000+ applicants per cycle.",
       "modified": "2025-12-18T14:30:00.000Z",
-      "category": "data"
+      "featured": false,
+      "title": "Admissions Data Quality Audit",
+      "tags": [
+        "Excel",
+        "Google Sheets",
+        "SQL",
+        "Data Validation",
+        "Admissions Audit"
+      ],
+      "id": "admissions-data-quality-audit",
+      "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "data",
+      "posted": "2025-12-05T08:10:00.000Z"
     },
     {
-      "title": "VLAN & IP Addressing Lab",
-      "id": "vlan-ip-addressing-lab",
-      "featured": true,
-      "image": "/img/Enterprise-LAN-Simulation.png",
-      "summary": "Built and maintained a hands-on networking lab environment using enterprise-grade switching equipment and Cisco Packet Tracer to practice VLAN segmentation, IP addressing schemes, and structured network troubleshooting aligned with Cisco networking fundamentals.",
       "details": [
         "Configured trunk ports, access ports, and inter-VLAN routing scenarios on managed switches to create isolated network segments, simulating enterprise LAN environments where different departments or services operate on dedicated VLANs with controlled inter-segment communication.",
         "Developed structured IP addressing plans covering subnetting, CIDR notation, and address allocation strategies for multiple VLAN segments, documenting each scheme to mirror production-grade network planning methodologies used in enterprise environments.",
@@ -57,21 +88,39 @@
         "Used Cisco Packet Tracer alongside physical equipment and a Cisco network switch to bridge simulation with real-world configuration experience, reinforcing concepts such as switch port security, VLAN pruning, and spanning tree behavior in a controlled lab setting."
       ],
       "impact": [
-        {"value": "6", "label": "VLAN segments", "detail": "Isolated lab services"},
-        {"value": "20+", "label": "Endpoints simulated", "detail": "Clients and lab servers"},
-        {"value": "4", "label": "Lab scenarios", "detail": "Trunking, routing, addressing, failover"}
+        {
+          "value": "6",
+          "label": "VLAN segments",
+          "detail": "Isolated lab services"
+        },
+        {
+          "value": "20+",
+          "label": "Endpoints simulated",
+          "detail": "Clients and lab servers"
+        },
+        {
+          "value": "4",
+          "label": "Lab scenarios",
+          "detail": "Trunking, routing, addressing, failover"
+        }
       ],
-      "tags": ["VLAN", "TCP/IP", "IP Addressing", "Switching", "Routing"],
-      "posted": "2025-10-04T01:04:57.056Z",
+      "summary": "Built and maintained a hands-on networking lab environment using enterprise-grade switching equipment and Cisco Packet Tracer to practice VLAN segmentation, IP addressing schemes, and structured network troubleshooting aligned with Cisco networking fundamentals.",
       "modified": "2025-10-04T05:25:37.056Z",
-      "category": "networking"
+      "featured": true,
+      "title": "VLAN & IP Addressing Lab",
+      "tags": [
+        "VLAN",
+        "TCP/IP",
+        "IP Addressing",
+        "Switching",
+        "Routing"
+      ],
+      "id": "vlan-ip-addressing-lab",
+      "image": "/img/Enterprise-LAN-Simulation.png",
+      "category": "networking",
+      "posted": "2025-10-04T01:04:57.056Z"
     },
     {
-      "title": "Virtual Lab Deployment & Active Directory",
-      "id": "virtual-lab-deployment-active-directory",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1600267185393-e158a98703de?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students over multiple academic terms, ensuring consistent and reliable virtual infrastructure for hands-on systems administration coursework.",
       "details": [
         "Built baseline virtual machine images for Windows Server 2019/2022 and Windows 10/11 client systems in both Oracle VirtualBox and VMware Workstation Pro, pre-configuring Active Directory Domain Services, DNS, and Group Policy to provide students with ready-to-use lab environments from the first day of each term.",
         "Developed comprehensive setup playbooks and reset procedures to maintain consistency across 250+ student lab seats, enabling rapid redeployment of clean environments between terms and ensuring every student worked with identical baseline configurations regardless of their host machine.",
@@ -79,21 +128,39 @@
         "Documented repeatable onboarding procedures covering hypervisor installation, virtual network adapter configuration, shared folder setup, and snapshot management, reducing first-week setup failures and allowing instructional time to focus on core systems administration concepts."
       ],
       "impact": [
-        {"value": "250+", "label": "Lab seats", "detail": "Student environments"},
-        {"value": "3", "label": "Core services", "detail": "AD, DNS, Group Policy"},
-        {"value": "2", "label": "Virtualization stacks", "detail": "VirtualBox and VMware"}
+        {
+          "value": "250+",
+          "label": "Lab seats",
+          "detail": "Student environments"
+        },
+        {
+          "value": "3",
+          "label": "Core services",
+          "detail": "AD, DNS, Group Policy"
+        },
+        {
+          "value": "2",
+          "label": "Virtualization stacks",
+          "detail": "VirtualBox and VMware"
+        }
       ],
-      "tags": ["Windows Server", "Active Directory", "Group Policy", "VirtualBox/VMware", "Lab Deployment"],
-      "posted": "2025-10-02T07:51:09.056Z",
+      "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students over multiple academic terms, ensuring consistent and reliable virtual infrastructure for hands-on systems administration coursework.",
       "modified": "2025-10-02T07:51:09.056Z",
-      "category": "systems"
+      "featured": false,
+      "title": "Virtual Lab Deployment & Active Directory",
+      "tags": [
+        "Windows Server",
+        "Active Directory",
+        "Group Policy",
+        "VirtualBox/VMware",
+        "Lab Deployment"
+      ],
+      "id": "virtual-lab-deployment-active-directory",
+      "image": "https://images.unsplash.com/photo-1600267185393-e158a98703de?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "systems",
+      "posted": "2025-10-02T07:51:09.056Z"
     },
     {
-      "title": "Examination Integrity Monitoring",
-      "id": "examination-integrity-monitoring",
-      "featured": false,
-      "image": "/img/Network-Security-&-Surveillance.png",
-      "summary": "Designed and implemented a multi-layered examination integrity monitoring workflow at a federal university, integrating biometric identity verification, CCTV-based evidence capture, and structured incident reporting procedures to strengthen compliance and audit readiness across 12+ high-stakes examination cycles.",
       "details": [
         "Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving 98% verification compliance rates across multiple terms.",
         "Established CCTV monitoring workflows with systematic evidence logging procedures, ensuring continuous visual documentation of examination proceedings and creating a reliable chain-of-custody for recorded footage used in post-exam reviews and misconduct investigations.",
@@ -101,21 +168,39 @@
         "Maintained comprehensive audit trails linking biometric verification records, surveillance footage timestamps, and incident reports to individual examination sessions, providing institutional leadership with transparent evidence for compliance reporting and policy review."
       ],
       "impact": [
-        {"value": "98%", "label": "Verification compliance", "detail": "Biometric and CCTV checks"},
-        {"value": "12+", "label": "Exam cycles", "detail": "Multi-term coverage"},
-        {"value": "0", "label": "Critical gaps", "detail": "Incident handling standards"}
+        {
+          "value": "98%",
+          "label": "Verification compliance",
+          "detail": "Biometric and CCTV checks"
+        },
+        {
+          "value": "12+",
+          "label": "Exam cycles",
+          "detail": "Multi-term coverage"
+        },
+        {
+          "value": "0",
+          "label": "Critical gaps",
+          "detail": "Incident handling standards"
+        }
       ],
-      "tags": ["Biometric Verification", "CCTV Monitoring", "Compliance", "Incident Response", "Audit Trails"],
-      "posted": "2025-09-30T05:55:05.056Z",
+      "summary": "Designed and implemented a multi-layered examination integrity monitoring workflow at a federal university, integrating biometric identity verification, CCTV-based evidence capture, and structured incident reporting procedures to strengthen compliance and audit readiness across 12+ high-stakes examination cycles.",
       "modified": "2025-10-01T11:21:41.056Z",
-      "category": "systems"
+      "featured": false,
+      "title": "Examination Integrity Monitoring",
+      "tags": [
+        "Biometric Verification",
+        "CCTV Monitoring",
+        "Compliance",
+        "Incident Response",
+        "Audit Trails"
+      ],
+      "id": "examination-integrity-monitoring",
+      "image": "/img/Network-Security-&-Surveillance.png",
+      "category": "systems",
+      "posted": "2025-09-30T05:55:05.056Z"
     },
     {
-      "title": "A Secured System for Internet-Enabled Host Devices",
-      "id": "secured-system-internet-enabled-host-devices",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Co-authored a peer-reviewed research paper published in the Network and Communication Technologies journal (Canadian Center of Science and Education, 2020), proposing a Capability-based Context Aware Access Control (CCAAC) security model for internet-enabled host devices, validated through a custom web application implementing Elliptic-Curve Diffie-Hellman mutual authentication.",
       "details": [
         "Proposed and developed a security model adapting Capability-based Context Aware Access Control (CCAAC) for heterogeneous internet-enabled device environments, addressing authentication challenges in wireless communication topologies such as Wi-Fi and Long-Term Evolution (LTE) where unauthorized access, spoofing, and privilege escalation pose significant threats to device integrity and data confidentiality.",
         "Implemented the security model through TetherRemote, a custom-built web application enabling server-controller-client device pairing and remote management, using Apache and MySQL on a simulated server environment (XAMPP). As shown in Fig. 1, the TetherRemote dashboard provided administrators with a centralized overview of all registered devices — categorizing connected computers and smartphones, displaying their online/offline status, and serving as the primary interface for initiating device pairing, authorization, and management operations.",
@@ -125,11 +210,28 @@
         "Documented the complete research methodology, system framework, and experimental validation results for academic peer review, culminating in publication in the Network and Communication Technologies journal (Vol. 5, No. 1, 2020, ISSN 1927-064X), contributing to the body of knowledge on IoT security and access control models for connected device environments."
       ],
       "impact": [
-        {"value": "14ms", "label": "Auth latency", "detail": "IACAC mutual authentication"},
-        {"value": "3", "label": "Attacks mitigated", "detail": "DoS, MITM, Replay"},
-        {"value": "1", "label": "Published paper", "detail": "Peer-reviewed journal (CCSE, 2020)"}
+        {
+          "value": "14ms",
+          "label": "Auth latency",
+          "detail": "IACAC mutual authentication"
+        },
+        {
+          "value": "3",
+          "label": "Attacks mitigated",
+          "detail": "DoS, MITM, Replay"
+        },
+        {
+          "value": "1",
+          "label": "Published paper",
+          "detail": "Peer-reviewed journal (CCSE, 2020)"
+        }
       ],
-      "tags": ["Cybersecurity", "Access Control", "ECDH", "IoT Security", "Security Research"],
+      "summary": "Co-authored a peer-reviewed research paper published in the Network and Communication Technologies journal (Canadian Center of Science and Education, 2020), proposing a Capability-based Context Aware Access Control (CCAAC) security model for internet-enabled host devices, validated through a custom web application implementing Elliptic-Curve Diffie-Hellman mutual authentication.",
+      "linkText": "Read Published Paper (CCSE Journal)",
+      "modified": "2025-10-26T20:06:00.000-04:00",
+      "featured": false,
+      "pdf": "docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf",
+      "title": "A Secured System for Internet-Enabled Host Devices",
       "images": [
         {
           "src": "/img/TetherRemote-Dashboard.png",
@@ -151,19 +253,20 @@
           "afterDetail": 3
         }
       ],
+      "tags": [
+        "Cybersecurity",
+        "Access Control",
+        "ECDH",
+        "IoT Security",
+        "Security Research"
+      ],
       "link": "https://ccsenet.org/journal/index.php/nct/article/view/0/41982",
-      "linkText": "Read Published Paper (CCSE Journal)",
-      "pdf": "docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf",
-      "posted": "2018-04-01T08:00:00.000Z",
-      "modified": "2020-12-15T10:00:00.000Z",
-      "category": "systems"
+      "id": "secured-system-internet-enabled-host-devices",
+      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "systems",
+      "posted": "2019-06-12T16:00:00.000-04:00"
     },
     {
-      "title": "Operational Reporting Automation Pipeline",
-      "id": "operational-reporting-automation-pipeline",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting at a federal university from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles.",
       "details": [
         "Developed Python ETL scripts to extract raw data from academic information systems and MySQL databases, applying automated cleansing routines to handle missing fields, formatting inconsistencies, and duplicate records before loading validated datasets into reporting-ready structures.",
         "Implemented quality assurance checkpoints within each pipeline stage — extraction validation, transformation rule verification, and output integrity checks — ensuring that data anomalies were caught and flagged before reports reached leadership, significantly reducing post-publication corrections.",
@@ -171,21 +274,39 @@
         "Delivered scheduled, automated reporting outputs that provided university leadership with timely insights into admissions throughput, examination processing status, and results publication readiness, directly supporting planning decisions and resource allocation across departments."
       ],
       "impact": [
-        {"value": "8 hrs/week", "label": "Time saved", "detail": "Automation vs manual prep"},
-        {"value": "40+", "label": "Reports generated", "detail": "Recurring leadership updates"},
-        {"value": "100%", "label": "On-time delivery", "detail": "Scheduled pipeline runs"}
+        {
+          "value": "8 hrs/week",
+          "label": "Time saved",
+          "detail": "Automation vs manual prep"
+        },
+        {
+          "value": "40+",
+          "label": "Reports generated",
+          "detail": "Recurring leadership updates"
+        },
+        {
+          "value": "100%",
+          "label": "On-time delivery",
+          "detail": "Scheduled pipeline runs"
+        }
       ],
-      "tags": ["Python", "SQL", "ETL Automation", "Reporting", "Workflow Automation"],
-      "posted": "2025-12-12T07:30:00.000Z",
+      "summary": "Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting at a federal university from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles.",
       "modified": "2025-12-20T10:15:00.000Z",
-      "category": "automation"
+      "featured": true,
+      "title": "Operational Reporting Automation Pipeline",
+      "tags": [
+        "Python",
+        "SQL",
+        "ETL Automation",
+        "Reporting",
+        "Workflow Automation"
+      ],
+      "id": "operational-reporting-automation-pipeline",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "automation",
+      "posted": "2025-12-12T07:30:00.000Z"
     },
     {
-      "title": "Student Records Reconciliation Hub",
-      "id": "student-records-reconciliation-hub",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Built and operated a centralized records reconciliation process at a federal university, systematically cross-referencing admissions, enrollment, and results data from multiple source systems to identify and resolve duplicates, eligibility gaps, and data mismatches before official publication for 4,000+ student records each cycle.",
       "details": [
         "Mapped incoming data from admissions portals, enrollment management systems, and departmental results submissions to consistent student identifiers, systematically highlighting records with missing fields, mismatched personal information, or inconsistent enrollment status across sources.",
         "Developed correction queues and status dashboards in Excel and Google Sheets that provided departmental coordinators with clear, actionable lists of records requiring verification, enabling distributed resolution of issues without disrupting the overall processing timeline.",
@@ -193,21 +314,39 @@
         "Maintained lifecycle data integrity from initial application intake through graduation processing, applying SQL queries and formula-driven validation to ensure that records remained consistent and audit-ready across multiple academic sessions and reporting cycles."
       ],
       "impact": [
-        {"value": "4K+", "label": "Records reviewed", "detail": "Each academic cycle"},
-        {"value": "1.2%", "label": "Duplicates flagged", "detail": "Resolved pre-publish"},
-        {"value": "3", "label": "Source systems", "detail": "Admissions, enrollment, results"}
+        {
+          "value": "4K+",
+          "label": "Records reviewed",
+          "detail": "Each academic cycle"
+        },
+        {
+          "value": "1.2%",
+          "label": "Duplicates flagged",
+          "detail": "Resolved pre-publish"
+        },
+        {
+          "value": "3",
+          "label": "Source systems",
+          "detail": "Admissions, enrollment, results"
+        }
       ],
-      "tags": ["SQL", "Excel", "Data Validation", "Record Management", "Reconciliation"],
-      "posted": "2026-01-28T09:10:00.000Z",
+      "summary": "Built and operated a centralized records reconciliation process at a federal university, systematically cross-referencing admissions, enrollment, and results data from multiple source systems to identify and resolve duplicates, eligibility gaps, and data mismatches before official publication for 4,000+ student records each cycle.",
       "modified": "2026-01-31T14:20:00.000Z",
-      "category": "data"
+      "featured": true,
+      "title": "Student Records Reconciliation Hub",
+      "tags": [
+        "SQL",
+        "Excel",
+        "Data Validation",
+        "Record Management",
+        "Reconciliation"
+      ],
+      "id": "student-records-reconciliation-hub",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "data",
+      "posted": "2026-01-28T09:10:00.000Z"
     },
     {
-      "title": "Exam Operations SLA Tracker",
-      "id": "exam-operations-sla-tracker",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.",
       "details": [
         "Centralized examination readiness data from multiple operational streams — device inventory and compliance status, invigilation personnel assignments, venue preparation checklists, and technology setup verification — into a single unified dashboard providing real-time visibility into overall exam preparedness.",
         "Designed SLA threshold indicators and automated alerting logic to flag checkpoints at risk of breaching target deadlines, enabling operations leads to prioritize escalation actions and allocate resources to the most critical preparation gaps before each examination cycle.",
@@ -215,21 +354,39 @@
         "Improved overall SLA adherence to 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations."
       ],
       "impact": [
-        {"value": "95%", "label": "SLA adherence", "detail": "Improved monitoring"},
-        {"value": "120+", "label": "Devices tracked", "detail": "Per cycle"},
-        {"value": "6", "label": "Readiness checkpoints", "detail": "Daily SLA dashboard"}
+        {
+          "value": "95%",
+          "label": "SLA adherence",
+          "detail": "Improved monitoring"
+        },
+        {
+          "value": "120+",
+          "label": "Devices tracked",
+          "detail": "Per cycle"
+        },
+        {
+          "value": "6",
+          "label": "Readiness checkpoints",
+          "detail": "Daily SLA dashboard"
+        }
       ],
-      "tags": ["Power BI", "Google Sheets", "SLA Tracking", "Operations", "Reporting"],
-      "posted": "2026-02-02T14:20:00.000Z",
+      "summary": "Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.",
       "modified": "2026-02-03T10:30:00.000Z",
-      "category": "data"
+      "featured": true,
+      "title": "Exam Operations SLA Tracker",
+      "tags": [
+        "Power BI",
+        "Google Sheets",
+        "SLA Tracking",
+        "Operations",
+        "Reporting"
+      ],
+      "id": "exam-operations-sla-tracker",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "data",
+      "posted": "2026-02-02T14:20:00.000Z"
     },
     {
-      "title": "Systems Implementation & QA Playbooks",
-      "id": "systems-implementation-qa-playbooks",
-      "featured": true,
-      "image": "/img/Cloud-Migration-Tool.png",
-      "summary": "Created comprehensive implementation checklists, quality assurance scripts, and standardized documentation to bring consistency and repeatability to software rollouts, lab environment provisioning, and technical deployment workflows across classroom and examination environments.",
       "details": [
         "Defined structured testing gates, compatibility verification steps, and rollback procedures for each phase of software and system deployments, ensuring that new installations were validated against baseline requirements before being released to production or classroom environments.",
         "Developed step-by-step QA scripts covering pre-deployment environment checks, installation verification, post-deployment functional testing, and user acceptance criteria, reducing the likelihood of configuration drift and inconsistent setups across multiple machines.",
@@ -237,21 +394,39 @@
         "Maintained a living library of deployment playbooks covering common scenarios — including development tool installation (Eclipse, VS Code, MySQL), operating system configuration, virtual machine setup, and network service provisioning — with version tracking to keep procedures current as software updates were released."
       ],
       "impact": [
-        {"value": "30+", "label": "Deployments standardized", "detail": "Checklist-driven rollouts"},
-        {"value": "15%", "label": "Faster setup", "detail": "Reduced repeat troubleshooting"},
-        {"value": "6", "label": "Playbooks", "detail": "Install, QA, rollback, and docs"}
+        {
+          "value": "30+",
+          "label": "Deployments standardized",
+          "detail": "Checklist-driven rollouts"
+        },
+        {
+          "value": "15%",
+          "label": "Faster setup",
+          "detail": "Reduced repeat troubleshooting"
+        },
+        {
+          "value": "6",
+          "label": "Playbooks",
+          "detail": "Install, QA, rollback, and docs"
+        }
       ],
-      "tags": ["Documentation", "QA Support", "Implementation", "Process Improvement", "Change Management"],
-      "posted": "2025-09-29T02:11:14.056Z",
+      "summary": "Created comprehensive implementation checklists, quality assurance scripts, and standardized documentation to bring consistency and repeatability to software rollouts, lab environment provisioning, and technical deployment workflows across classroom and examination environments.",
       "modified": "2025-09-29T12:21:50.056Z",
-      "category": "systems"
+      "featured": true,
+      "title": "Systems Implementation & QA Playbooks",
+      "tags": [
+        "Documentation",
+        "QA Support",
+        "Implementation",
+        "Process Improvement",
+        "Change Management"
+      ],
+      "id": "systems-implementation-qa-playbooks",
+      "image": "/img/Cloud-Migration-Tool.png",
+      "category": "systems",
+      "posted": "2025-09-29T02:11:14.056Z"
     },
     {
-      "title": "Routing & VPN Basics Lab",
-      "id": "routing-vpn-basics-lab",
-      "featured": false,
-      "image": "/img/WAN-Simulation-with-SD-WAN.png",
-      "summary": "Designed and operated a multi-site network simulation lab to practice routing fundamentals, VPN tunnel configuration, and connectivity troubleshooting, reinforcing Cisco networking concepts through hands-on experimentation with both static and dynamic routing protocols.",
       "details": [
         "Configured multi-branch network topologies simulating enterprise WAN connectivity, including static routing paths for predictable traffic patterns and dynamic routing protocol scenarios that demonstrated how networks adapt to link failures and topology changes in production environments.",
         "Implemented VPN tunnel configurations across isolated network segments, practicing split-tunnel, full-tunnel, and failover scenarios to understand how encrypted connectivity is established and maintained between geographically separated sites.",
@@ -259,21 +434,39 @@
         "Bridged theoretical networking concepts with practical implementation by systematically working through real-world scenarios such as routing table convergence, asymmetric path detection, and VPN re-establishment after link failures, using both Packet Tracer simulations and physical lab equipment."
       ],
       "impact": [
-        {"value": "5", "label": "Site links", "detail": "Simulated branch network"},
-        {"value": "2", "label": "Routing modes", "detail": "Static and dynamic"},
-        {"value": "4", "label": "VPN scenarios", "detail": "Split, full, failover, fallback"}
+        {
+          "value": "5",
+          "label": "Site links",
+          "detail": "Simulated branch network"
+        },
+        {
+          "value": "2",
+          "label": "Routing modes",
+          "detail": "Static and dynamic"
+        },
+        {
+          "value": "4",
+          "label": "VPN scenarios",
+          "detail": "Split, full, failover, fallback"
+        }
       ],
-      "tags": ["Routing", "VPN Basics", "TCP/IP", "Troubleshooting", "Network Design"],
-      "posted": "2025-09-26T05:01:44.056Z",
+      "summary": "Designed and operated a multi-site network simulation lab to practice routing fundamentals, VPN tunnel configuration, and connectivity troubleshooting, reinforcing Cisco networking concepts through hands-on experimentation with both static and dynamic routing protocols.",
       "modified": "2025-10-04T05:25:37.056Z",
-      "category": "networking"
+      "featured": false,
+      "title": "Routing & VPN Basics Lab",
+      "tags": [
+        "Routing",
+        "VPN Basics",
+        "TCP/IP",
+        "Troubleshooting",
+        "Network Design"
+      ],
+      "id": "routing-vpn-basics-lab",
+      "image": "/img/WAN-Simulation-with-SD-WAN.png",
+      "category": "networking",
+      "posted": "2025-09-26T05:01:44.056Z"
     },
     {
-      "title": "DNS & DHCP Services Lab",
-      "id": "dns-dhcp-services-lab",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Configured and validated DNS and DHCP infrastructure services in a mixed Windows and Linux lab environment, building foundational network service skills for reliable name resolution, automated IP address management, and cross-platform client connectivity troubleshooting.",
       "details": [
         "Built forward and reverse DNS lookup zones with properly configured records (A, AAAA, PTR, CNAME, MX), establishing reliable name resolution services that client machines across multiple VLANs could use for both internal resource discovery and external connectivity.",
         "Configured DHCP server scopes with appropriate address ranges, lease durations, and reservation policies to provide automated IP assignment for 50+ mixed client devices, including both Windows and Linux systems operating across different network segments.",
@@ -281,21 +474,39 @@
         "Tested cross-platform client connectivity to ensure consistent DNS resolution and DHCP address acquisition across Windows and Linux operating systems, verifying that network services functioned correctly regardless of client platform and documenting platform-specific configuration requirements."
       ],
       "impact": [
-        {"value": "50+", "label": "Leases managed", "detail": "Mixed client devices"},
-        {"value": "2", "label": "DNS zones", "detail": "Forward and reverse"},
-        {"value": "3", "label": "Client OS", "detail": "Windows, Linux, VM lab"}
+        {
+          "value": "50+",
+          "label": "Leases managed",
+          "detail": "Mixed client devices"
+        },
+        {
+          "value": "2",
+          "label": "DNS zones",
+          "detail": "Forward and reverse"
+        },
+        {
+          "value": "3",
+          "label": "Client OS",
+          "detail": "Windows, Linux, VM lab"
+        }
       ],
-      "tags": ["DNS", "DHCP", "Windows", "Linux", "Network Services"],
-      "posted": "2025-09-19T05:44:05.056Z",
+      "summary": "Configured and validated DNS and DHCP infrastructure services in a mixed Windows and Linux lab environment, building foundational network service skills for reliable name resolution, automated IP address management, and cross-platform client connectivity troubleshooting.",
       "modified": "2025-09-19T05:44:00.056Z",
-      "category": "networking"
+      "featured": false,
+      "title": "DNS & DHCP Services Lab",
+      "tags": [
+        "DNS",
+        "DHCP",
+        "Windows",
+        "Linux",
+        "Network Services"
+      ],
+      "id": "dns-dhcp-services-lab",
+      "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "networking",
+      "posted": "2025-09-19T05:44:05.056Z"
     },
     {
-      "title": "Operational Readiness Checks",
-      "id": "operational-readiness-checks",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Performed systematic preventative maintenance and operational readiness verification on examination technology infrastructure before high-stakes testing periods at a federal university, ensuring device compliance, software currency, and security baseline adherence across 150+ systems each exam cycle.",
       "details": [
         "Conducted comprehensive pre-examination readiness assessments covering operating system patch levels, antivirus definition currency, application version compliance, and hardware functionality across laptops and desktop systems used in examination environments.",
         "Tracked remediation status for identified deficiencies using structured checklists and status dashboards, coordinating with IT support teams to prioritize and resolve critical issues within a 24-hour turnaround target before examination commencement.",
@@ -303,21 +514,39 @@
         "Logged detailed readiness outcomes and compliance status reports for each examination cycle, building historical records that supported trend analysis, resource planning, and continuous improvement of the pre-exam technology verification process."
       ],
       "impact": [
-        {"value": "150+", "label": "Devices checked", "detail": "Per exam cycle"},
-        {"value": "98%", "label": "Compliance rate", "detail": "Pre-exam verification"},
-        {"value": "24 hrs", "label": "Issue turnaround", "detail": "Readiness remediation"}
+        {
+          "value": "150+",
+          "label": "Devices checked",
+          "detail": "Per exam cycle"
+        },
+        {
+          "value": "98%",
+          "label": "Compliance rate",
+          "detail": "Pre-exam verification"
+        },
+        {
+          "value": "24 hrs",
+          "label": "Issue turnaround",
+          "detail": "Readiness remediation"
+        }
       ],
-      "tags": ["Preventative Maintenance", "Compliance", "Windows Support", "Troubleshooting", "Operations"],
-      "posted": "2025-11-20T09:05:00.000Z",
+      "summary": "Performed systematic preventative maintenance and operational readiness verification on examination technology infrastructure before high-stakes testing periods at a federal university, ensuring device compliance, software currency, and security baseline adherence across 150+ systems each exam cycle.",
       "modified": "2025-11-27T15:40:00.000Z",
-      "category": "systems"
+      "featured": false,
+      "title": "Operational Readiness Checks",
+      "tags": [
+        "Preventative Maintenance",
+        "Compliance",
+        "Windows Support",
+        "Troubleshooting",
+        "Operations"
+      ],
+      "id": "operational-readiness-checks",
+      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "systems",
+      "posted": "2025-11-20T09:05:00.000Z"
     },
     {
-      "title": "Technical Documentation & End-User Training",
-      "id": "technical-documentation-end-user-training",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=680&h=384&q=80",
-      "summary": "Produced comprehensive standard operating procedures, technical runbooks, and hands-on training materials to support system rollouts, troubleshooting workflows, and staff onboarding across academic IT environments, directly reducing support ticket volume and accelerating new team member productivity.",
       "details": [
         "Authored detailed step-by-step installation guides, configuration runbooks, and quick-reference materials covering common system administration tasks, software deployment procedures, and troubleshooting workflows used by support staff and instructors across classroom and examination environments.",
         "Facilitated hands-on training workshops for technical and non-technical staff, translating complex system workflows into practical, actionable instructions and ensuring alignment on standard operating procedures, escalation paths, and documentation expectations across teams.",
@@ -325,21 +554,39 @@
         "Developed onboarding documentation packages for new team members covering system access procedures, tool configurations, institutional workflows, and key contacts, enabling faster ramp-up and consistent adherence to operational standards from day one."
       ],
       "impact": [
-        {"value": "12", "label": "Guides delivered", "detail": "SOPs and runbooks"},
-        {"value": "6", "label": "Workshops led", "detail": "Team onboarding sessions"},
-        {"value": "100+", "label": "Users supported", "detail": "Staff and students"}
+        {
+          "value": "12",
+          "label": "Guides delivered",
+          "detail": "SOPs and runbooks"
+        },
+        {
+          "value": "6",
+          "label": "Workshops led",
+          "detail": "Team onboarding sessions"
+        },
+        {
+          "value": "100+",
+          "label": "Users supported",
+          "detail": "Staff and students"
+        }
       ],
-      "tags": ["Documentation", "End-User Training", "Stakeholder Communication", "Process Improvement", "Knowledge Base"],
-      "posted": "2025-09-14T05:15:24.056Z",
+      "summary": "Produced comprehensive standard operating procedures, technical runbooks, and hands-on training materials to support system rollouts, troubleshooting workflows, and staff onboarding across academic IT environments, directly reducing support ticket volume and accelerating new team member productivity.",
       "modified": "2025-09-14T05:15:24.056Z",
-      "category": "systems"
+      "featured": true,
+      "title": "Technical Documentation & End-User Training",
+      "tags": [
+        "Documentation",
+        "End-User Training",
+        "Stakeholder Communication",
+        "Process Improvement",
+        "Knowledge Base"
+      ],
+      "id": "technical-documentation-end-user-training",
+      "image": "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=680&h=384&q=80",
+      "category": "systems",
+      "posted": "2025-09-14T05:15:24.056Z"
     },
     {
-      "title": "Systems Support & Troubleshooting",
-      "id": "systems-support-troubleshooting",
-      "featured": true,
-      "image": "/img/PuTTy-2.png",
-      "summary": "Provided frontline Windows and Linux systems support across academic IT environments, diagnosing and resolving hardware, operating system, and application issues while maintaining structured incident documentation and SLA compliance for 200+ tracked support requests.",
       "details": [
         "Diagnosed and resolved a diverse range of technical issues including hardware failures, OS boot and configuration problems, application installation errors, network connectivity issues, and peripheral device malfunctions across Windows and Linux platforms used in classroom and examination settings.",
         "Built and maintained a known-issues knowledge base documenting recurring problems, root cause analyses, and validated resolution steps, enabling faster incident resolution and reducing escalation rates for common support scenarios encountered across multiple academic terms.",
@@ -347,14 +594,37 @@
         "Escalated critical incidents through established channels with comprehensive documentation of troubleshooting steps already attempted, enabling senior support teams to quickly assess the situation and implement fixes while prevention recommendations were documented to reduce future recurrence."
       ],
       "impact": [
-        {"value": "200+", "label": "Incidents resolved", "detail": "Tracked support requests"},
-        {"value": "95%", "label": "SLA compliance", "detail": "Response and resolution"},
-        {"value": "1", "label": "Knowledge base", "detail": "Documented recurring fixes"}
+        {
+          "value": "200+",
+          "label": "Incidents resolved",
+          "detail": "Tracked support requests"
+        },
+        {
+          "value": "95%",
+          "label": "SLA compliance",
+          "detail": "Response and resolution"
+        },
+        {
+          "value": "1",
+          "label": "Knowledge base",
+          "detail": "Documented recurring fixes"
+        }
       ],
-      "tags": ["Systems Support", "Troubleshooting", "Windows", "Linux", "Service Desk"],
-      "posted": "2025-09-06T05:25:18.056Z",
+      "summary": "Provided frontline Windows and Linux systems support across academic IT environments, diagnosing and resolving hardware, operating system, and application issues while maintaining structured incident documentation and SLA compliance for 200+ tracked support requests.",
       "modified": "2025-09-12T17:36:32.056Z",
-      "category": "systems"
+      "featured": true,
+      "title": "Systems Support & Troubleshooting",
+      "tags": [
+        "Systems Support",
+        "Troubleshooting",
+        "Windows",
+        "Linux",
+        "Service Desk"
+      ],
+      "id": "systems-support-troubleshooting",
+      "image": "/img/PuTTy-2.png",
+      "category": "systems",
+      "posted": "2025-09-06T05:25:18.056Z"
     }
   ]
 }
