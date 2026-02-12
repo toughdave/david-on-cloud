@@ -1,3 +1,7 @@
+## v4.1.7 — 2026-02-12 12:36:29
+- ✅ Mobile UI refinements: compact Fun Lab toggle, tighter filters, taller cards, dome lights fix
+- ✅ Bumped version to v4.1.7
+
 ## v4.1.6 — 2026-02-12 11:04:54
 - ✅ Fix mobile dropdowns and guard fun mode init
 - ✅ Bumped version to v4.1.6
