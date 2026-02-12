@@ -47,24 +47,29 @@ if ! git remote get-url origin > /dev/null 2>&1; then
     exit 1
 fi
 
-# Function to check if Ollama is running (endpoint configurable via $OLLAMA_ENDPOINT)
-check_ollama() {
-    local endpoint="${OLLAMA_ENDPOINT:-http://localhost:11434}"
-    if ! curl -s "${endpoint}/api/tags" > /dev/null 2>&1; then
-        # Log to stderr only; do not emit to stdout to avoid polluting summaries
-        echo "⚠️  Ollama endpoint not reachable at ${endpoint}" 1>&2
+# Function to check if Groq API key is available
+check_groq() {
+    if [ -z "${GROQ_API_KEY:-}" ]; then
+        echo "⚠️  GROQ_API_KEY not set — skipping AI release notes" 1>&2
+        return 1
+    fi
+    # Quick auth check
+    local status
+    status=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${GROQ_API_KEY}" \
+        "https://api.groq.com/openai/v1/models" 2>/dev/null)
+    if [ "$status" != "200" ]; then
+        echo "⚠️  Groq API returned HTTP ${status} — skipping AI release notes" 1>&2
         return 1
     fi
     return 0
 }
 
-# Function to generate update summary using Ollama
+# Function to generate update summary using Groq (free tier, OpenAI-compatible)
 generate_ai_updates() {
     local current_version=$1
     local recent_commits=$2
     local files_changed=$3
     
-    # Create the prompt for the model (no AI mentions; focus on concrete code changes)
     local prompt="You are preparing concise release notes for a portfolio website. Based on the recent Git commit subjects and changed files below, output 3-7 short bullet points describing what changed in plain language.
 
 Recent commit subjects (latest first):
@@ -83,25 +88,28 @@ Requirements:
 - No code blocks or prose outside of bullets
 "
 
-    # Call Ollama API
+    # Build JSON payload safely via Python to avoid shell escaping issues
+    local json_payload
+    json_payload=$(python3 -c "
+import json, sys
+prompt = sys.stdin.read()
+print(json.dumps({
+    'model': '${GROQ_MODEL:-llama-3.3-70b-versatile}',
+    'messages': [{'role': 'user', 'content': prompt}],
+    'temperature': 0.7,
+    'top_p': 0.9,
+    'max_tokens': 400
+}))
+" <<< "$prompt" 2>/dev/null)
+
     local ai_response
-    local endpoint="${OLLAMA_ENDPOINT:-http://localhost:11434}"
-    local model="${OLLAMA_MODEL:-gpt-oss:20b}"
-    ai_response=$(curl -s -X POST "${endpoint}/api/generate" \
+    ai_response=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
         -H "Content-Type: application/json" \
-        -d "{
-            \"model\": \"${model}\",
-            \"prompt\": \"$prompt\",
-            \"stream\": false,
-            \"options\": {
-                \"temperature\": 0.7,
-                \"top_p\": 0.9,
-                \"max_tokens\": 300
-            }
-        }" 2>/dev/null)
+        -H "Authorization: Bearer ${GROQ_API_KEY}" \
+        -d "$json_payload" 2>/dev/null)
     
     if [ $? -eq 0 ] && [ ! -z "$ai_response" ]; then
-        # Extract the response text from JSON
+        # Extract the response text from JSON (OpenAI chat completions format)
         local update_text
     update_text=$(echo "$ai_response" | python3 -c "
 import sys
@@ -109,7 +117,7 @@ import json
 import re
 try:
     data = json.load(sys.stdin)
-    response = data.get('response', '')
+    response = data.get('choices', [{}])[0].get('message', {}).get('content', '')
     # Clean up the response - extract only bullet points, remove AI/tool mentions
     lines = response.split('\n')
     bullets = []
@@ -259,7 +267,7 @@ elif [ $TOTAL_HINTS -le 5 ]; then
 else
     DESIRED_COUNT=7
 fi
-if check_ollama; then
+if check_groq; then
     UPDATE_SUMMARY=$(generate_ai_updates "$NEW_VERSION" "$RECENT_COMMITS" "$FILES_CHANGED")
     if [ -n "$UPDATE_SUMMARY" ]; then
         # Trim empty lines and cap to desired count

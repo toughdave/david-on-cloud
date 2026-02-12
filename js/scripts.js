@@ -77,10 +77,11 @@ const loadProjects = () => {
                         `<span class="px-2 py-1 bg-gray-100 rounded-full text-xs">${tag}</span>`
                     ).join('');
 
-                    const publishedRibbon = project.published ? '<div class="published-ribbon"><span>Published</span></div>' : '';
+                    const stickerText = project.ribbonText || 'Published';
+                    const publishedSticker = (project.published && project.showRibbon !== false) ? `<span class="published-sticker">${stickerText}</span>` : '';
                     const cardHtml = `
                         <div data-aos="fade-up" class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}" data-project="${projectPayload}" style="position:relative;">
-                            ${publishedRibbon}
+                            ${publishedSticker}
                             <div class="w-full md:w-1/3 flex-shrink-0">
                                 <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             </div>
@@ -138,10 +139,11 @@ const loadProjects = () => {
                         `<span class="project-tag">${tag}</span>`
                     ).join('');
 
-                    const publishedBadge = project.published ? '<span class="published-badge">Published</span>' : '';
+                    const stickerTextC = project.ribbonText || 'Published';
+                    const publishedStickerC = (project.published && project.showRibbon !== false) ? `<span class="published-sticker">${stickerTextC}</span>` : '';
                     const cardHtml = `
                         <div class="project-card" data-aos="fade-up" data-category="${project.category || 'other'}" data-project="${projectPayload}">
-                            ${publishedBadge}
+                            ${publishedStickerC}
                             <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async">
                             <div class="project-card-content">
                                 <h3>${project.title}</h3>

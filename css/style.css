@@ -3171,76 +3171,67 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
 	margin-bottom: 0;
 }
 
-/* ===== PUBLISHED BADGE & RIBBON ===== */
+/* ===== PUBLISHED STICKER ===== */
 
-/* Badge for carousel cards — small floating badge top-right */
-.published-badge {
+/* Unified post-it sticker — sticks out top-right of card */
+.published-sticker {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    z-index: 5;
+    top: -0.45rem;
+    right: -0.6rem;
+    z-index: 10;
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.2rem 0.55rem;
-    background: linear-gradient(135deg, #059669, #10b981);
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+    background: linear-gradient(135deg, #059669 0%, #10b981 60%, #34d399 100%);
     color: #fff;
     font-family: "JetBrains Mono", "Fira Code", monospace;
-    font-size: 0.55rem;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
+    letter-spacing: 0.09em;
+    line-height: 1;
+    border-radius: 3px 6px 6px 3px;
+    box-shadow:
+        0 3px 12px rgba(5, 150, 105, 0.45),
+        0 1px 3px rgba(0, 0, 0, 0.12);
     pointer-events: none;
+    transform: rotate(2deg);
+    transform-origin: top right;
 }
 
-.published-badge::before {
+.published-sticker::before {
     content: "";
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
 }
 
-/* Ribbon for projects list page — corner ribbon sticking out */
-.published-ribbon {
+.published-sticker::after {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    overflow: hidden;
-    width: 5.5rem;
-    height: 5.5rem;
-    pointer-events: none;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 5px solid #059669;
 }
 
-.published-ribbon span {
-    position: absolute;
-    display: block;
-    width: 9rem;
-    padding: 0.3rem 0;
-    background: linear-gradient(135deg, #059669, #10b981);
-    color: #fff;
-    font-family: "JetBrains Mono", "Fira Code", monospace;
-    font-size: 0.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(5, 150, 105, 0.35);
-    transform: rotate(-45deg) translate(-2.1rem, 1.1rem);
+[data-theme="dark"] .published-sticker {
+    background: linear-gradient(135deg, #047857 0%, #059669 60%, #10b981 100%);
+    box-shadow:
+        0 3px 14px rgba(16, 185, 129, 0.5),
+        0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="dark"] .published-badge {
-    background: linear-gradient(135deg, #047857, #059669);
-    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.45);
-}
-
-[data-theme="dark"] .published-ribbon span {
-    background: linear-gradient(135deg, #047857, #059669);
-    box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4);
+[data-theme="dark"] .published-sticker::after {
+    border-right-color: #047857;
 }
 
 /* Remove fixed/min-height from card container */
@@ -3312,6 +3303,7 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
     margin-bottom: 0.35rem;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.3rem;
     background: linear-gradient(120deg, rgba(99, 102, 241, 0.12), rgba(56, 189, 248, 0.12));
     border: 1px solid rgba(79, 70, 229, 0.35);
@@ -4304,7 +4296,7 @@ html:not([data-theme="dark"]) .sticky-section-title::after {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0.5rem;
+    padding: 0.75rem 0.5rem 0.5rem;
     scroll-padding-inline: 0.5rem;
     min-height: 0;
     align-items: stretch;
@@ -5139,6 +5131,7 @@ body.fun-mode .btn-explore-universe:hover {
 
 /* Project cards - horizontal layout for carousel */
 .project-card {
+    position: relative;
     flex: 0 0 auto;
     scroll-snap-align: center;
     scroll-snap-stop: normal;
@@ -5148,11 +5141,21 @@ body.fun-mode .btn-explore-universe:hover {
     height: 540px;
     background: white;
     border-radius: 0.75rem;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column; /* Vertical stack: image on top, content below */
+}
+
+.project-card > img {
+    border-radius: 0.75rem 0.75rem 0 0;
+    object-fit: cover;
+}
+
+.project-card > .project-card-content {
+    overflow: hidden;
+    border-radius: 0 0 0.75rem 0.75rem;
 }
 
 /* Projects list should span full width (override carousel sizing) */
@@ -5163,6 +5166,18 @@ body.fun-mode .btn-explore-universe:hover {
     max-width: 100%;
     height: auto;
     scroll-snap-align: unset;
+    overflow: visible;
+    position: relative;
+}
+
+#projectsList .project-card > div:first-of-type {
+    border-radius: 0.75rem 0 0 0.75rem;
+    overflow: hidden;
+}
+
+#projectsList .project-card > div:last-of-type {
+    border-radius: 0 0.75rem 0.75rem 0;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {

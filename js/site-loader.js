@@ -257,7 +257,7 @@
                                 </div>` : ''}
                             </div>
                         </div>
-                        <div class="experience-inset" aria-hidden="true"></div>
+                        <div class="experience-inset" aria-hidden="true" style="background-image: url('${exp.insetImage || ''}');"></div>
                     </div>
                 </div>
             `).join('');
