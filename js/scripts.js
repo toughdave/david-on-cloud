@@ -145,8 +145,7 @@ const loadProjects = () => {
                                 <div class="project-tags">
                                     ${tagsHtml}
                                 </div>
-                                <div class="flex justify-between items-center mt-auto pt-4">
-                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                <div class="flex justify-end items-center mt-auto pt-4">
                                     <a href="projects.html" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
                                         View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                     </a>

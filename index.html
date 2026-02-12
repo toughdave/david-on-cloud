@@ -178,11 +178,53 @@
                     <div class="flex flex-wrap gap-4">
                         <div class="flex items-center">
                             <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
-                            <span>Location: Toronto, ON</span>
+                            <span>Location: </span>
+                            <div class="contact-location-wrapper">
+                                <button class="contact-location-text" type="button">Toronto, ON</button>
+                                <div class="contact-email-dropdown contact-location-dropdown">
+                                    <a href="https://www.google.com/maps/search/Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#4285F4"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                        <span>Google</span>
+                                    </a>
+                                    <a href="https://maps.apple.com/?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#333"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                        <span>Apple</span>
+                                    </a>
+                                    <a href="https://www.bing.com/maps?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#008373"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                        <span>Bing</span>
+                                    </a>
+                                    <a href="https://waze.com/ul?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#33CCFF"/><circle cx="16" cy="14" r="7" fill="white"/><circle cx="13" cy="13" r="1.2" fill="#333"/><circle cx="19" cy="13" r="1.2" fill="#333"/><path d="M13 17c0 0 1.5 2 3 2s3-2 3-2" stroke="#333" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+                                        <span>Waze</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="flex items-center">
                             <i data-feather="mail" class="mr-2 text-indigo-600"></i>
-                            <span>Email: matthewtopedavid@gmail.com</span>
+                            <span>Email: </span>
+                            <div class="contact-email-wrapper">
+                                <button class="contact-email-text" data-email="matthewtopedavid@gmail.com" type="button">matthewtopedavid@gmail.com</button>
+                                <div class="contact-email-dropdown">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20">
+                                        <span>Gmail</span>
+                                    </a>
+                                    <a href="https://compose.mail.yahoo.com/?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg>
+                                        <span>Yahoo</span>
+                                    </a>
+                                    <a href="https://outlook.live.com/mail/0/deeplink/compose?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+                                        <span>Outlook</span>
+                                    </a>
+                                    <a href="mailto:matthewtopedavid@gmail.com" class="contact-email-option">
+                                        <i data-feather="mail" class="w-5 h-5"></i>
+                                        <span>Default</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -637,11 +679,51 @@
                                 <div class="contact-email-block">
                                     <div class="contact-email-line">
                                         <span class="contact-email-label">Primary</span>
-                                        <span class="contact-email-text">matthewtopedavid@gmail.com</span>
+                                        <div class="contact-email-wrapper">
+                                            <button class="contact-email-text" data-email="matthewtopedavid@gmail.com" type="button">matthewtopedavid@gmail.com</button>
+                                            <div class="contact-email-dropdown">
+                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20">
+                                                    <span>Gmail</span>
+                                                </a>
+                                                <a href="https://compose.mail.yahoo.com/?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg>
+                                                    <span>Yahoo</span>
+                                                </a>
+                                                <a href="https://outlook.live.com/mail/0/deeplink/compose?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+                                                    <span>Outlook</span>
+                                                </a>
+                                                <a href="mailto:matthewtopedavid@gmail.com" class="contact-email-option">
+                                                    <i data-feather="mail" class="w-5 h-5"></i>
+                                                    <span>Default</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="contact-email-line contact-email-line--secondary">
                                         <span class="contact-email-label">Secondary</span>
-                                        <span class="contact-email-text">info@davidoncloud.com</span>
+                                        <div class="contact-email-wrapper">
+                                            <button class="contact-email-text" data-email="info@davidoncloud.com" type="button">info@davidoncloud.com</button>
+                                            <div class="contact-email-dropdown">
+                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20">
+                                                    <span>Gmail</span>
+                                                </a>
+                                                <a href="https://compose.mail.yahoo.com/?to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg>
+                                                    <span>Yahoo</span>
+                                                </a>
+                                                <a href="https://outlook.live.com/mail/0/deeplink/compose?to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                                    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+                                                    <span>Outlook</span>
+                                                </a>
+                                                <a href="mailto:info@davidoncloud.com" class="contact-email-option">
+                                                    <i data-feather="mail" class="w-5 h-5"></i>
+                                                    <span>Default</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -664,7 +746,27 @@
                             </div>
                             <div>
                                 <h4 class="font-medium">Location</h4>
-                                <p class="text-gray-600">Toronto, ON</p>
+                                <div class="contact-location-wrapper">
+                                    <button class="contact-location-text" type="button">Toronto, ON</button>
+                                    <div class="contact-email-dropdown contact-location-dropdown">
+                                        <a href="https://www.google.com/maps/search/Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#4285F4"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                            <span>Google</span>
+                                        </a>
+                                        <a href="https://maps.apple.com/?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#333"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                            <span>Apple</span>
+                                        </a>
+                                        <a href="https://www.bing.com/maps?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#008373"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                            <span>Bing</span>
+                                        </a>
+                                        <a href="https://waze.com/ul?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#33CCFF"/><circle cx="16" cy="14" r="7" fill="white"/><circle cx="13" cy="13" r="1.2" fill="#333"/><circle cx="19" cy="13" r="1.2" fill="#333"/><path d="M13 17c0 0 1.5 2 3 2s3-2 3-2" stroke="#333" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+                                            <span>Waze</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -722,7 +824,73 @@
             <div class="text-center footer-content">
                 <h2 class="text-2xl font-bold mb-4">David's Portfolio</h2>
                 <p class="text-gray-400 mb-2">Systems &amp; Data Analyst focused on data accuracy, reporting automation, and reliable operations.</p>
-                <p class="text-gray-500 mb-8">Toronto, ON • matthewtopedavid@gmail.com • info@davidoncloud.com</p>
+                <div class="footer-contact-line text-gray-500 mb-8">
+                    <div class="contact-location-wrapper footer-inline-wrapper">
+                        <button class="contact-location-text footer-inline-btn" type="button"><i data-feather="map-pin" class="w-3.5 h-3.5"></i> Toronto, ON</button>
+                        <div class="contact-email-dropdown contact-location-dropdown footer-dropdown">
+                            <a href="https://www.google.com/maps/search/Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#4285F4"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                <span>Google</span>
+                            </a>
+                            <a href="https://maps.apple.com/?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#333"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                <span>Apple</span>
+                            </a>
+                            <a href="https://www.bing.com/maps?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#008373"/><path d="M16 7c-3.87 0-7 3.13-7 7 0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="white"/></svg>
+                                <span>Bing</span>
+                            </a>
+                            <a href="https://waze.com/ul?q=Toronto,+ON,+Canada" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#33CCFF"/><circle cx="16" cy="14" r="7" fill="white"/><circle cx="13" cy="13" r="1.2" fill="#333"/><circle cx="19" cy="13" r="1.2" fill="#333"/><path d="M13 17c0 0 1.5 2 3 2s3-2 3-2" stroke="#333" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+                                <span>Waze</span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="footer-dot">•</span>
+                    <div class="contact-email-wrapper footer-inline-wrapper">
+                        <button class="contact-email-text footer-inline-btn" data-email="matthewtopedavid@gmail.com" type="button">matthewtopedavid@gmail.com</button>
+                        <div class="contact-email-dropdown footer-dropdown">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20">
+                                <span>Gmail</span>
+                            </a>
+                            <a href="https://compose.mail.yahoo.com/?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg>
+                                <span>Yahoo</span>
+                            </a>
+                            <a href="https://outlook.live.com/mail/0/deeplink/compose?to=matthewtopedavid@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+                                <span>Outlook</span>
+                            </a>
+                            <a href="mailto:matthewtopedavid@gmail.com" class="contact-email-option">
+                                <i data-feather="mail" class="w-5 h-5"></i>
+                                <span>Default</span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="footer-dot">•</span>
+                    <div class="contact-email-wrapper footer-inline-wrapper">
+                        <button class="contact-email-text footer-inline-btn" data-email="info@davidoncloud.com" type="button">info@davidoncloud.com</button>
+                        <div class="contact-email-dropdown footer-dropdown">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <img src="https://www.gstatic.com/images/branding/product/1x/gmail_2020q4_32dp.png" alt="Gmail" width="20" height="20">
+                                <span>Gmail</span>
+                            </a>
+                            <a href="https://compose.mail.yahoo.com/?to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#6001D2"/><path d="M7 9l5.5 8.5V24h3v-6.5L21 9h-3.2l-3.8 6-3.8-6H7z" fill="white"/></svg>
+                                <span>Yahoo</span>
+                            </a>
+                            <a href="https://outlook.live.com/mail/0/deeplink/compose?to=info@davidoncloud.com" target="_blank" rel="noopener noreferrer" class="contact-email-option">
+                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#0078D4"/><ellipse cx="13" cy="16" rx="5" ry="6" stroke="white" stroke-width="2" fill="none"/><path d="M18 12l7-3v14l-7-3" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+                                <span>Outlook</span>
+                            </a>
+                            <a href="mailto:info@davidoncloud.com" class="contact-email-option">
+                                <i data-feather="mail" class="w-5 h-5"></i>
+                                <span>Default</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex justify-center space-x-6 mb-8">
                     <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="GitHub">
                         <i data-feather="github"></i>
