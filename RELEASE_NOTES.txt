@@ -1,3 +1,7 @@
+## v4.1.22 — 2026-02-13 18:41:15
+- ✅ Fix mobile h4 padding (Impact metrics only), mobile button clickability (pointer-events + disable 
+- ✅ Bumped version to v4.1.22
+
 ## v4.1.21 — 2026-02-13 14:56:38
 - ✅ UI/UX fixes: delay modal shrink, mobile carousel summaries, card tap, touch targets, hover fix, fun 
 - ✅ Bumped version to v4.1.21
