@@ -1,3 +1,10 @@
+## v4.1.19 — 2026-02-13 00:10:40
+- ✅ Fix: modal summary/tags overlap (flex-shrink:0 + line-clamp), CMS immersive effects always 
+- ✅ Merge origin/main - resolve config.json conflict
+- ✅ Merge pull request #6 from toughdave/cms/site_settings/config
+- ✅ Update 1 · Site Settings “config”
+- ✅ Bumped version to v4.1.19
+
 ## v4.1.18 — 2026-02-12 22:58:41
 - ✅ Fix: dark fun mode default ON, remove Email h4, tighten mobile spacing, sticky modal h4, constrain 
 - ✅ Bumped version to v4.1.18
