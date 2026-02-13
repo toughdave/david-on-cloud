@@ -1,3 +1,7 @@
+## v4.1.20 — 2026-02-13 02:42:24
+- ✅ Fix: modal h4 overlap, remove summary line-clamp, desktop scroll-shrink header, reduce hero h2 
+- ✅ Bumped version to v4.1.20
+
 ## v4.1.19 — 2026-02-13 00:10:40
 - ✅ Fix: modal summary/tags overlap (flex-shrink:0 + line-clamp), CMS immersive effects always 
 - ✅ Merge origin/main - resolve config.json conflict
