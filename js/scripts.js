@@ -2273,9 +2273,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modalBody && modalHeader) {
             modalBody.onscroll = () => {
                 const st = modalBody.scrollTop;
-                if (st > 30 && !modalHeader.classList.contains('is-scrolled')) {
+                if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');
-                } else if (st <= 5 && modalHeader.classList.contains('is-scrolled')) {
+                } else if (st <= 15 && modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.remove('is-scrolled');
                 }
             };
@@ -2396,6 +2396,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 openProjectModal(project, link);
             });
         });
+
+        // Mobile: make entire carousel card surface clickable
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouchDevice) {
+            document.querySelectorAll('#projectsCarousel .project-card').forEach((card) => {
+                if (card.dataset.cardTapBound) return;
+                card.dataset.cardTapBound = 'true';
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', (event) => {
+                    // Don't intercept if user tapped a link/button directly
+                    if (event.target.closest('a, button')) return;
+                    const project = parseProjectPayload(card);
+                    if (!project) return;
+                    const link = card.querySelector('.view-link');
+                    if (link) link.setAttribute('aria-expanded', 'true');
+                    openProjectModal(project, link || card);
+                });
+            });
+        }
     };
 
     const updateViewLinks = () => {

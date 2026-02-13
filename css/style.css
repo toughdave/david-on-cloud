@@ -3450,7 +3450,7 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
     gap: 0.3rem;
     background: linear-gradient(120deg, rgba(99, 102, 241, 0.12), rgba(56, 189, 248, 0.12));
     border: 1px solid rgba(79, 70, 229, 0.35);
-    padding: 0.15rem 0.5rem 0.15rem 0.45rem;
+    padding: 0.25rem 0.55rem 0.25rem 0.5rem;
     border-radius: 999px;
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 0.6rem;
@@ -6028,13 +6028,20 @@ body.project-modal-open .fun-lab-panel {
         position: sticky;
         top: 0;
         z-index: 2;
-        background: #ffffff;
-        padding: 0.6rem 0 0.4rem;
+        padding: 0.6rem 0 0.4rem 0.6rem;
         margin: 0;
     }
 
-    [data-theme="dark"] .project-modal-section h4 {
+    .project-modal-section:first-child h4 {
+        background: #ffffff;
+    }
+
+    [data-theme="dark"] .project-modal-section:first-child h4 {
         background: #1e293b;
+    }
+
+    .project-modal-section:not(:first-child) h4 {
+        background: transparent;
     }
 
     .project-modal-section h4 + .project-modal-details {
@@ -6646,17 +6653,91 @@ body.fun-mode #projectsList > div:hover {
     }
 
     /* ===== DISABLE VIEW-LINK HOVER ON MOBILE ===== */
-    .view-link:hover,
-    .fun-view-link:hover .view-link-text,
+    .fun-view-link:hover .view-link-text {
+        max-width: 200px !important;
+        opacity: 1 !important;
+        padding-right: 0.15rem !important;
+        transform: none !important;
+        filter: none !important;
+    }
     .fun-view-link:hover::after {
+        max-width: 0 !important;
+        opacity: 0 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+    .fun-view-link:hover i,
+    .fun-view-link:hover svg {
+        transform: none !important;
+        color: inherit !important;
+    }
+    .view-link:hover,
+    body.fun-mode .view-link:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    body.fun-mode .view-link:hover {
+        background: rgba(15, 23, 42, 0.6) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+    }
+    .more-link:hover {
         transform: none !important;
         box-shadow: none !important;
     }
 
-    body.fun-mode .view-link:hover {
-        background: rgba(15, 23, 42, 0.6) !important;
-        border-color: rgba(99, 102, 241, 0.4) !important;
-        box-shadow: none !important;
+    /* ===== MOBILE TOUCH TARGETS ===== */
+    .more-link {
+        padding: 0.3rem 0.6rem 0.3rem 0.55rem !important;
+        position: relative;
+    }
+    .more-link::before {
+        content: '';
+        position: absolute;
+        inset: -6px -8px;
+    }
+    .view-link,
+    body.fun-mode .view-link {
+        padding-top: 0.45rem !important;
+        padding-bottom: 0.45rem !important;
+        position: relative;
+    }
+    .view-link::before {
+        content: '';
+        position: absolute;
+        inset: -5px -6px;
+    }
+
+    /* ===== MOBILE SECTION SPACING ===== */
+    .sticky-section-title + .max-w-6xl > .grid > div:first-child > h3:first-of-type,
+    .sticky-section-title ~ .max-w-6xl h3:first-of-type,
+    section > .max-w-6xl > .grid > div > h3:first-child {
+        margin-top: 0.5rem;
+    }
+    #projects .hero-status {
+        margin-top: 0.6rem !important;
+    }
+
+    /* ===== FUN MODE MODAL PERFORMANCE ===== */
+    body.fun-mode.project-modal-open .fun-star-overlay,
+    body.fun-mode.project-modal-open .fun-star-scatter::before,
+    body.fun-mode.project-modal-open .fun-star-scatter::after {
+        animation-play-state: paused !important;
+    }
+    body.fun-mode.project-modal-open #vanta-canvas,
+    body.fun-mode.project-modal-open .vanta-canvas {
+        will-change: auto !important;
+        animation-play-state: paused !important;
+    }
+    body.project-modal-open .project-modal-overlay {
+        will-change: opacity;
+    }
+    body.project-modal-open .project-modal-card {
+        will-change: transform, opacity;
+    }
+    body.fun-mode.project-modal-open .project-card,
+    body.fun-mode.project-modal-open .project-list-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
     /* ===== MOBILE CONTACT TEXT ===== */
@@ -6765,7 +6846,14 @@ body.fun-mode #projectsList > div:hover {
         margin-bottom: 0.75rem;
     }
     #projectsCarousel .project-card p {
-        display: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.72rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
     }
     #projectsCarousel .project-tags {
         gap: 0.4rem;
@@ -6868,7 +6956,14 @@ body.fun-mode #projectsList > div:hover {
         min-height: 400px;
     }
     #projectsCarousel .project-card p {
-        display: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.68rem;
+        line-height: 1.35;
+        margin-bottom: 0.4rem;
     }
     .back-to-top {
         margin-right: 0;
