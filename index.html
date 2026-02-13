@@ -43,7 +43,7 @@
 </head>
 <body class="font-sans antialiased text-gray-800 snap-container pt-16">
     <script>
-        document.body.classList.toggle('fun-mode', localStorage.getItem('fun-mode') === 'on');
+        document.body.classList.toggle('fun-mode', localStorage.getItem('fun-mode') !== 'off');
     </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- Animated Background -->
@@ -653,17 +653,14 @@
                             <div class="p-3 bg-indigo-100 rounded-full mr-4">
                                 <i data-feather="mail" class="text-indigo-600"></i>
                             </div>
-                            <div>
-                                <h4 class="font-medium">Email</h4>
-                                <div class="contact-email-block">
-                                    <div class="contact-email-line">
-                                        <span class="contact-email-label">Primary</span>
-                                        <a href="mailto:matthewtopedavid@gmail.com" class="contact-email-text">matthewtopedavid@gmail.com</a>
-                                    </div>
-                                    <div class="contact-email-line contact-email-line--secondary">
-                                        <span class="contact-email-label">Secondary</span>
-                                        <a href="mailto:info@davidoncloud.com" class="contact-email-text">info@davidoncloud.com</a>
-                                    </div>
+                            <div class="contact-email-block">
+                                <div class="contact-email-line">
+                                    <span class="contact-email-label">Primary</span>
+                                    <a href="mailto:matthewtopedavid@gmail.com" class="contact-email-text">matthewtopedavid@gmail.com</a>
+                                </div>
+                                <div class="contact-email-line contact-email-line--secondary">
+                                    <span class="contact-email-label">Secondary</span>
+                                    <a href="mailto:info@davidoncloud.com" class="contact-email-text">info@davidoncloud.com</a>
                                 </div>
                             </div>
                         </div>
