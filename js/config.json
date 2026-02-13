@@ -1,7 +1,7 @@
 {
     "settings": {
         "shootingStarInterval": 25000,
-        "defaultFunMode": true,
+        "defaultFunMode": false,
         "defaultTheme": "dark",
         "vanta": {
             "opacity": 1.0,

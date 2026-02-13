@@ -2567,7 +2567,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const shouldFollowConfigDefault = storedFunMode === null;
     const funModeEnabled = shouldFollowConfigDefault
         ? !!window.siteConfig?.settings?.defaultFunMode
-        : storedFunMode !== 'off';
+        : storedFunMode === 'on';
     syncFunLabInputs();
     setFunLabOpen(false);
     setupProjectCardReveal(); // Initialize universally
