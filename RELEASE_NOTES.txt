@@ -1,3 +1,7 @@
+## v4.1.15 — 2026-02-12 20:00:42
+- ✅ UI/UX: 9 enhancements - modal layout, card glow, toggle fix, nav dropdown, time slide-out, footer 
+- ✅ Bumped version to v4.1.15
+
 ## v4.1.14 — 2026-02-12 18:50:36
 - ✅ Fix mobile spacing, double Vanta init, email/location font size, inline location
 - ✅ Bumped version to v4.1.14
