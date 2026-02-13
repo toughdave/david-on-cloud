@@ -25,6 +25,7 @@
         }
       ],
       "summary": "Built a comprehensive Power BI and Excel analytics suite to centralize results processing tracking, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles at a university serving 4,000+ students.",
+      "mobileSummary": "Built a Power BI and Excel analytics suite that centralized results processing, anomaly detection, and cohort performance tracking for 4,000+ students across multiple exam cycles.",
       "modified": "2026-01-31T14:45:00.000Z",
       "featured": true,
       "title": "Academic Results Analytics Dashboard",
@@ -105,6 +106,7 @@
         }
       ],
       "summary": "Built and maintained a hands-on networking lab environment using enterprise-grade switching equipment and Cisco Packet Tracer to practice VLAN segmentation, IP addressing schemes, and structured network troubleshooting aligned with Cisco networking fundamentals.",
+      "mobileSummary": "Created a hands-on networking lab with enterprise switches and Cisco Packet Tracer to practice VLAN segmentation, IP addressing plans, and structured troubleshooting.",
       "modified": "2025-10-04T05:25:37.056Z",
       "featured": true,
       "title": "VLAN & IP Addressing Lab",
@@ -145,6 +147,7 @@
         }
       ],
       "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students over multiple academic terms, ensuring consistent and reliable virtual infrastructure for hands-on systems administration coursework.",
+      "mobileSummary": "Provisioned standardized Windows Server and Active Directory labs in VirtualBox and VMware for 250+ students, ensuring reliable, repeatable environments.",
       "modified": "2025-10-02T07:51:09.056Z",
       "featured": true,
       "title": "Virtual Lab Deployment & Active Directory",
@@ -227,6 +230,7 @@
         }
       ],
       "summary": "Co-authored a peer-reviewed research paper published in the Network and Communication Technologies journal (Canadian Center of Science and Education, 2020), proposing a Capability-based Context Aware Access Control (CCAAC) security model for internet-enabled host devices, validated through a custom web application implementing Elliptic-Curve Diffie-Hellman mutual authentication.",
+      "mobileSummary": "Co-authored a peer-reviewed paper proposing a CCAAC security model for IoT devices, validated through a custom web app using ECDH mutual authentication.",
       "linkText": "Read Published Paper (CCSE Journal)",
       "modified": "2025-10-26T20:06:00.000-04:00",
       "featured": true,
@@ -294,6 +298,7 @@
         }
       ],
       "summary": "Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting at a federal university from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles.",
+      "mobileSummary": "Built Python and SQL pipelines that automated recurring reporting, replacing manual spreadsheets with scheduled, quality-checked outputs.",
       "modified": "2025-12-20T10:15:00.000Z",
       "featured": true,
       "title": "Operational Reporting Automation Pipeline",
@@ -334,6 +339,7 @@
         }
       ],
       "summary": "Built and operated a centralized records reconciliation process at a federal university, systematically cross-referencing admissions, enrollment, and results data from multiple source systems to identify and resolve duplicates, eligibility gaps, and data mismatches before official publication for 4,000+ student records each cycle.",
+      "mobileSummary": "Ran a centralized records reconciliation hub that cross-checked admissions, enrollment, and results data to resolve duplicates and eligibility gaps for 4,000+ records.",
       "modified": "2026-01-31T14:20:00.000Z",
       "featured": true,
       "title": "Student Records Reconciliation Hub",
@@ -374,6 +380,7 @@
         }
       ],
       "summary": "Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.",
+      "mobileSummary": "Built a Power BI and Google Sheets SLA tracker that centralized exam readiness checkpoints and flagged at-risk items before each cycle.",
       "modified": "2026-02-03T10:30:00.000Z",
       "featured": true,
       "title": "Exam Operations SLA Tracker",
@@ -414,6 +421,7 @@
         }
       ],
       "summary": "Created comprehensive implementation checklists, quality assurance scripts, and standardized documentation to bring consistency and repeatability to software rollouts, lab environment provisioning, and technical deployment workflows across classroom and examination environments.",
+      "mobileSummary": "Created implementation checklists and QA scripts that standardized software rollouts and lab deployments across classrooms and exams.",
       "modified": "2025-09-29T12:21:50.056Z",
       "featured": true,
       "title": "Systems Implementation & QA Playbooks",
@@ -574,6 +582,7 @@
         }
       ],
       "summary": "Produced comprehensive standard operating procedures, technical runbooks, and hands-on training materials to support system rollouts, troubleshooting workflows, and staff onboarding across academic IT environments, directly reducing support ticket volume and accelerating new team member productivity.",
+      "mobileSummary": "Produced SOPs, runbooks, and training materials that streamlined system rollouts and reduced repeat support tickets.",
       "modified": "2025-09-14T05:15:24.056Z",
       "featured": true,
       "title": "Technical Documentation & End-User Training",
@@ -614,6 +623,7 @@
         }
       ],
       "summary": "Provided frontline Windows and Linux systems support across academic IT environments, diagnosing and resolving hardware, operating system, and application issues while maintaining structured incident documentation and SLA compliance for 200+ tracked support requests.",
+      "mobileSummary": "Delivered frontline Windows and Linux support, resolving hardware and OS issues while maintaining detailed incident logs and SLA compliance.",
       "modified": "2025-09-12T17:36:32.056Z",
       "featured": true,
       "title": "Systems Support & Troubleshooting",

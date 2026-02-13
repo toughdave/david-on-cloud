@@ -39,6 +39,11 @@ const loadProjects = () => {
             const projectsCarousel = document.getElementById('projectsCarousel');
             const allProjects = Array.isArray(data.projects) ? data.projects : [];
             const getProjectSummary = (project) => project.summary || project.description || '';
+            const isMobileCarousel = window.matchMedia('(max-width: 768px)').matches;
+            const getCarouselSummary = (project) => {
+                if (isMobileCarousel && project.mobileSummary) return project.mobileSummary;
+                return getProjectSummary(project);
+            };
             const getProjectDetails = (project) => Array.isArray(project.details) ? project.details : [];
             const getProjectImpact = (project) => Array.isArray(project.impact) ? project.impact : [];
             const encodeProjectPayload = (project) => {
@@ -138,7 +143,7 @@ const loadProjects = () => {
                 }
 
                 featuredProjects.forEach((project) => {
-                    const summary = getProjectSummary(project);
+                    const summary = getCarouselSummary(project);
                     const projectPayload = encodeProjectPayload(project);
                     const tagsHtml = (project.tags || []).map(tag => 
                         `<span class="project-tag">${tag}</span>`
@@ -293,7 +298,8 @@ if (typeof AOS !== 'undefined') {
     /* ===== VANTA VERTICAL PARALLAX ===== */
     let vantaParallaxTicking = false;
     const vantaBgEl = document.getElementById('vanta-bg');
-    if (vantaBgEl) {
+    const isMobileScrollReduce = window.matchMedia('(max-width: 768px)').matches;
+    if (vantaBgEl && !isMobileScrollReduce) {
         window.addEventListener('scroll', () => {
             if (!vantaParallaxTicking) {
                 vantaParallaxTicking = true;
@@ -311,6 +317,17 @@ if (typeof AOS !== 'undefined') {
 
     /* ===== ENHANCED CAROUSEL WITH INFINITE LOOP ===== */
     document.addEventListener('DOMContentLoaded', function() {
+    const isMobileScrollReduce = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobileScrollReduce) {
+        let scrollTimer = null;
+        window.addEventListener('scroll', () => {
+            document.body.classList.add('is-scrolling');
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                document.body.classList.remove('is-scrolling');
+            }, 200);
+        }, { passive: true });
+    }
         const carousel = document.getElementById('projectsCarousel');
         const leftBtn = document.getElementById('scrollLeft');
         const rightBtn = document.getElementById('scrollRight');
@@ -917,6 +934,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let roverBuddies = [];
     let roverStates = [];
     let roverFrameId = null;
+    let roverActive = false;
+    let roverFooterVisible = false;
+    let roverObserver = null;
     let funRoverStyle = localStorage.getItem(funRoverKey) || 'rover';
     let funVantaMode = localStorage.getItem(funVantaKey) || 'dim';
     let funImmersive = localStorage.getItem('fun_immersive') === 'true'; // Unified toggle
@@ -1675,8 +1695,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const updateRoverStyle = () => {
-        if (!document.body.classList.contains('fun-mode')) return;
-        startRoverBuddy();
+        updateRoverVisibility();
     };
 
     const updateRoverBounds = (state) => {
@@ -1810,9 +1829,10 @@ document.addEventListener('DOMContentLoaded', function() {
         clearRoverBuddies();
         const roster = getRoverRoster(funRoverStyle);
         const footer = document.querySelector('footer');
-        // Only spawn if footer exists; otherwise fallback to body or abort (aborting is safer for 'footer only')
+        // Only spawn if footer exists; otherwise abort (footer-only display)
         if (!footer) return;
 
+        roverActive = true;
         roster.forEach((profileName, index) => createRoverBuddy(profileName, index, roster.length));
         roverStates.forEach((state) => {
             updateRoverBounds(state);
@@ -1833,7 +1853,34 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelAnimationFrame(roverFrameId);
             roverFrameId = null;
         }
+        roverActive = false;
         clearRoverBuddies();
+    };
+
+    const updateRoverVisibility = () => {
+        const shouldRun = roverFooterVisible
+            && document.body.classList.contains('fun-mode')
+            && funRoverStyle !== 'none';
+        if (shouldRun && !roverActive) {
+            startRoverBuddy();
+        } else if (!shouldRun && roverActive) {
+            stopRoverBuddy();
+        }
+    };
+
+    const observeRoverFooter = () => {
+        if (roverObserver) return;
+        const footer = document.querySelector('footer');
+        if (!footer || !('IntersectionObserver' in window)) return;
+        roverObserver = new IntersectionObserver((entries) => {
+            roverFooterVisible = entries.some((entry) => entry.isIntersecting);
+            updateRoverVisibility();
+        }, {
+            root: null,
+            rootMargin: '0px 0px 240px 0px',
+            threshold: 0.01
+        });
+        roverObserver.observe(footer);
     };
 
     const getSkillVisualType = (title) => {
@@ -2407,6 +2454,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.addEventListener('click', (event) => {
                     // Don't intercept if user tapped a link/button directly
                     if (event.target.closest('a, button')) return;
+                    // Don't open modal for filtered/dimmed cards
+                    if (card.classList.contains('fun-filter-dim')) return;
                     const project = parseProjectPayload(card);
                     if (!project) return;
                     const link = card.querySelector('.view-link');
@@ -2481,7 +2530,8 @@ document.addEventListener('DOMContentLoaded', function() {
             startAnalystSparkCycle();
             clearFunMessageTimers();
             startFunMessageRotation();
-            startRoverBuddy();
+            observeRoverFooter();
+            updateRoverVisibility();
             createBrightStars();
             if (typeof AOS !== 'undefined' && AOS.refresh) {
                 AOS.refresh();

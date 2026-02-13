@@ -154,6 +154,7 @@ body {
 #vanta-bg {
     transition: opacity 0.6s ease, filter 0.6s ease;
     z-index: -1;
+    pointer-events: none;
 }
 
 /* Small screen: shift vanta left so globe appears on right side like desktop */
@@ -3447,6 +3448,10 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    touch-action: manipulation;
     gap: 0.3rem;
     background: linear-gradient(120deg, rgba(99, 102, 241, 0.12), rgba(56, 189, 248, 0.12));
     border: 1px solid rgba(79, 70, 229, 0.35);
@@ -3536,6 +3541,10 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
     margin-top: 0;
     margin-bottom: 0em;
     display: inline-block;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .project-card time,
@@ -4848,8 +4857,7 @@ html:not([data-theme="dark"]) body.fun-mode .nav-brand a {
     color: #ffffff !important;
 }
 
-.nav-item-projects.mode-featured:hover #nav-projects-dropdown,
-.nav-item-projects:hover #nav-projects-dropdown {
+.nav-item-projects.mode-featured:hover #nav-projects-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0) scale(1);
@@ -5541,7 +5549,7 @@ body.project-modal-open .fun-lab-panel {
 .project-modal-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: 1.8rem 1.8rem;
+    gap: 1.4rem 1.8rem;
     padding: 2.8rem 2.8rem 1.6rem;
     align-items: center;
     transition: grid-template-columns 0.4s ease, gap 0.4s ease, padding 0.4s ease;
@@ -5662,7 +5670,7 @@ body.project-modal-open .fun-lab-panel {
     color: #475569;
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.9rem;
 }
 
 .project-modal-tags {
@@ -5686,7 +5694,7 @@ body.project-modal-open .fun-lab-panel {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-top: 1rem;
+    margin-top: 0.6rem;
 }
 
 .project-modal-link {
@@ -5732,6 +5740,10 @@ body.project-modal-open .fun-lab-panel {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: #1f2937;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #ffffff;
     margin-bottom: 0.75rem;
 }
 
@@ -5834,6 +5846,7 @@ body.project-modal-open .fun-lab-panel {
 
 [data-theme="dark"] .project-modal-section h4 {
     color: #c7d2fe;
+    background: #0f172a;
 }
 
 [data-theme="dark"] .project-modal-tag {
@@ -6030,6 +6043,10 @@ body.project-modal-open .fun-lab-panel {
         z-index: 2;
         padding: 0.6rem 0 0.4rem 0.6rem;
         margin: 0;
+    }
+
+    .project-modal-section:not(:first-child) h4 {
+        padding-left: 0;
     }
 
     .project-modal-section:first-child h4 {
@@ -6266,6 +6283,21 @@ body.fun-mode .project-list-card:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.project-card-footer {
+    position: relative;
+    z-index: 2;
+}
+
+.project-card a,
+.project-card button {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .project-card h3 {
@@ -6547,6 +6579,13 @@ body.fun-mode #projectsList > div:hover {
         backface-visibility: hidden;
     }
 
+    /* Disable 3D hover lift/rotation on mobile — prevents hit-target misalignment */
+    .project-card:hover,
+    .project-list-card:hover {
+        transform: none !important;
+        animation: none !important;
+    }
+
     .fun-filter-btn {
         backdrop-filter: none !important;
     }
@@ -6554,7 +6593,7 @@ body.fun-mode #projectsList > div:hover {
     /* Tighten section titles on mobile */
     .sticky-section-title {
         padding: 0.5rem 1rem !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 1.1rem !important;
     }
 
     .sticky-section-title h2 {
@@ -6711,10 +6750,16 @@ body.fun-mode #projectsList > div:hover {
     .sticky-section-title + .max-w-6xl > .grid > div:first-child > h3:first-of-type,
     .sticky-section-title ~ .max-w-6xl h3:first-of-type,
     section > .max-w-6xl > .grid > div > h3:first-child {
-        margin-top: 0.5rem;
+        margin-top: 1.05rem;
+    }
+    .sticky-section-title + .grid,
+    .sticky-section-title + .hero-status,
+    .sticky-section-title + .fun-project-filters,
+    .sticky-section-title + .max-w-6xl {
+        margin-top: 1rem;
     }
     #projects .hero-status {
-        margin-top: 0.6rem !important;
+        margin-top: 1rem !important;
     }
 
     /* ===== FUN MODE MODAL PERFORMANCE ===== */
@@ -6738,6 +6783,33 @@ body.fun-mode #projectsList > div:hover {
     body.fun-mode.project-modal-open .project-list-card {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
+    }
+
+    /* ===== MOBILE SCROLL PERFORMANCE ===== */
+    body.is-scrolling .fun-star-overlay,
+    body.is-scrolling .fun-star-scatter::before,
+    body.is-scrolling .fun-star-scatter::after,
+    body.is-scrolling .fun-shooting-star,
+    body.is-scrolling .fun-rover-buddy .rover-wheel,
+    body.is-scrolling .fun-rover-buddy .rover-glow,
+    body.is-scrolling .fun-rover-buddy .rover-fin,
+    body.is-scrolling .fun-rover-buddy .rover-headlight {
+        animation-play-state: paused !important;
+    }
+    body.is-scrolling .fun-console::before {
+        animation: none !important;
+    }
+    body.is-scrolling #vanta-bg,
+    body.is-scrolling #vanta-bg canvas {
+        opacity: 0.4 !important;
+    }
+
+    /* ===== MOBILE STATIC STARS ===== */
+    body.fun-mode .fun-star-overlay,
+    body.fun-mode .fun-galaxy-section::before,
+    body.fun-mode .fun-bright-star,
+    body.fun-mode footer::before {
+        animation: none !important;
     }
 
     /* ===== MOBILE CONTACT TEXT ===== */
@@ -6846,11 +6918,8 @@ body.fun-mode #projectsList > div:hover {
         margin-bottom: 0.75rem;
     }
     #projectsCarousel .project-card p {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
         font-size: 0.72rem;
         line-height: 1.4;
         margin-bottom: 0.5rem;
@@ -6956,11 +7025,8 @@ body.fun-mode #projectsList > div:hover {
         min-height: 400px;
     }
     #projectsCarousel .project-card p {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
         font-size: 0.68rem;
         line-height: 1.35;
         margin-bottom: 0.4rem;
