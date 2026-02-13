@@ -53,7 +53,15 @@
                 <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
                 <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
                 <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                <a href="projects.html" class="nav-link text-indigo-600 font-bold active-page transition relative">Projects</a>
+                <!-- Projects Nav with Dropdown -->
+                <div class="relative nav-item-projects group h-full flex items-center">
+                    <a href="projects.html" class="nav-link text-indigo-600 font-bold active-page transition relative"><span class="nav-link-text">Projects</span></a>
+                    <div id="nav-projects-dropdown" class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-48 bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-xl py-2 opacity-0 invisible transition-all duration-300 origin-top scale-95 border border-indigo-100">
+                        <a href="index.html#projects" class="flex items-center justify-center gap-1 px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition-colors rounded-lg mx-2">
+                            Featured projects <i data-feather="arrow-right" class="inline w-3 h-3 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
                 <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn">Contact</a>
             </div>
             <!-- Theme Toggle -->
@@ -136,12 +144,18 @@
     </main>
 
     <!-- Footer (same as homepage) -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-gray-900 text-white py-12 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center footer-content">
                 <h2 class="text-2xl font-bold mb-4">David's Portfolio</h2>
                 <p class="text-gray-400 mb-2">Systems &amp; Data Analyst focused on data accuracy, reporting automation, and reliable operations.</p>
-                <p class="text-gray-500 mb-8">Toronto, ON • matthewtopedavid@gmail.com • info@davidoncloud.com</p>
+                <p class="text-gray-500 mb-8">
+                    <a href="https://www.google.com/maps/search/Toronto,+ON,+Canada" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer">Toronto, ON</a>
+                    <span class="footer-dot">•</span>
+                    <a href="mailto:matthewtopedavid@gmail.com" class="text-gray-400 hover:text-white transition">matthewtopedavid@gmail.com</a>
+                    <span class="footer-dot">•</span>
+                    <a href="mailto:info@davidoncloud.com" class="text-gray-400 hover:text-white transition">info@davidoncloud.com</a>
+                </p>
                 <div class="flex justify-center space-x-6 mb-8">
                     <a href="https://github.com/toughdave" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="GitHub">
                         <i data-feather="github"></i>

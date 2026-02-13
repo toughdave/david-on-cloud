@@ -515,15 +515,16 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
 
     /* ===== MOBILE FUN LAB TOGGLE ===== */
     .fun-lab-button {
-        padding: 0;
+        padding: 3px;
         gap: 0;
-        width: 42px;
-        height: 26px;
+        width: 48px;
+        height: 28px;
         border: none;
         border-radius: 999px 0 0 999px;
         background: transparent;
         box-shadow: none;
         backdrop-filter: none;
+        justify-content: center;
     }
 
     .fun-lab-icon,
@@ -532,18 +533,19 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     .fun-lab-toggle-track {
-        width: 100%;
-        height: 100%;
+        width: 38px;
+        height: 20px;
         border-radius: 999px;
         border: 2px solid rgba(148, 163, 184, 0.5);
         background: rgba(100, 116, 139, 0.5);
+        margin: auto;
     }
 
     .fun-lab-toggle-knob {
-        top: 3px;
-        left: 3px;
-        width: 16px;
-        height: 16px;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
     }
 
     body.fun-mode .fun-lab-toggle-track {
@@ -552,20 +554,20 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     body.fun-mode .fun-lab-toggle-knob {
-        left: 19px;
+        left: 20px;
         background: #a5b4fc;
         box-shadow: 0 0 6px rgba(165, 180, 252, 0.7);
     }
 
     .fun-lab-settings-btn {
-        padding: 0.2rem 0.25rem;
-        height: 20px !important;
+        padding: 0.2rem 0.35rem;
+        height: 28px !important;
         align-self: center;
     }
 
     .fun-lab-settings-btn svg {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
     }
 
     .hero-portrait-wrap .hero-portrait-glow {
@@ -1513,9 +1515,9 @@ body.fun-mode .fun-project-filters {
 }
 
 .fun-filter-btn {
-    padding: 0.35rem 0.75rem;
+    padding: 0.45rem 1rem;
     border-radius: 999px;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.025em;
     line-height: 1.2;
@@ -3855,11 +3857,11 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
 .process-tag {
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.55rem;
+    padding: 0.35rem 0.75rem;
     border-radius: 999px;
     background: rgba(79, 70, 229, 0.12);
     color: #4338ca;
-    font-size: 0.55rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -4845,7 +4847,8 @@ html:not([data-theme="dark"]) body.fun-mode .nav-brand a {
     color: #ffffff !important;
 }
 
-.nav-item-projects.mode-featured:hover #nav-projects-dropdown {
+.nav-item-projects.mode-featured:hover #nav-projects-dropdown,
+.nav-item-projects:hover #nav-projects-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0) scale(1);
@@ -5316,7 +5319,7 @@ body.fun-mode .btn-explore-universe:hover {
     width: 320px;
     min-width: 320px;
     max-width: 320px;
-    height: 540px;
+    height: auto;
     background: white;
     border-radius: 0.75rem;
     overflow: visible;
@@ -5537,9 +5540,19 @@ body.project-modal-open .fun-lab-panel {
 .project-modal-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: 1.8rem;
+    gap: 1.8rem 1.8rem;
     padding: 2.8rem 2.8rem 1.6rem;
     align-items: center;
+}
+
+.project-modal-header > .project-modal-summary,
+.project-modal-header > .project-modal-tags,
+.project-modal-header > .project-modal-links {
+    grid-column: 1 / -1;
+}
+
+.project-modal-header.is-scrolled > .project-modal-summary {
+    display: none;
 }
 
 .project-modal-image {
@@ -5892,11 +5905,6 @@ body.project-modal-open .fun-lab-panel {
         font-size: 0.78rem;
         line-height: 1.45;
         margin-bottom: 0.6rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
 
     .project-modal-tags {
@@ -5965,17 +5973,15 @@ body.project-modal-open .fun-lab-panel {
         width: 60px;
     }
 
-    .project-modal-header.is-scrolled .project-modal-summary {
-        -webkit-line-clamp: 1;
-        line-clamp: 1;
-        margin-bottom: 0.2rem;
-    }
-
-    .project-modal-header.is-scrolled .project-modal-tags {
+    .project-modal-header.is-scrolled > .project-modal-summary {
         display: none;
     }
 
-    .project-modal-header.is-scrolled .project-modal-links {
+    .project-modal-header.is-scrolled > .project-modal-tags {
+        display: none;
+    }
+
+    .project-modal-header.is-scrolled > .project-modal-links {
         display: none;
     }
 
@@ -6178,9 +6184,7 @@ body.fun-mode .project-list-card:hover {
 }
 
 .project-time-updated {
-    font-size: 0.62rem;
-    color: #16a34a;
-    font-weight: 500;
+    display: none !important;
 }
 
 .project-times-row {
@@ -6188,8 +6192,27 @@ body.fun-mode .project-list-card:hover {
     flex-wrap: wrap;
     gap: 0.15rem 0.6rem;
     align-items: center;
-    padding: 0.35rem 0;
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    padding: 0;
+    border-top: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+}
+
+.project-card:hover .project-times-row,
+.project-list-card:hover .project-times-row,
+#projectsList > div:hover .project-times-row {
+    max-height: 2.5rem;
+    opacity: 1;
+    padding: 0.3rem 0 0;
+}
+
+.project-card:hover .project-time-posted,
+.project-list-card:hover .project-time-posted,
+#projectsList > div:hover .project-time-posted {
+    color: #818cf8;
+    filter: brightness(1.2);
 }
 
 [data-theme="dark"] .project-times-row {
@@ -6205,11 +6228,24 @@ body.fun-mode .project-list-card:hover {
 }
 
 #projectsCarousel .project-card p {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: block;
+    overflow: visible;
+}
+
+/* Item 6: Visible glow on project page cards - override Tailwind hover:shadow-lg */
+#projectsList .project-card:hover,
+#projectsList .project-list-card:hover,
+#projectsList > div:hover {
+    box-shadow: 0 0 24px rgba(99, 102, 241, 0.3), 0 20px 30px -5px rgba(0, 0, 0, 0.15) !important;
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 0;
+}
+
+body.fun-mode #projectsList .project-card:hover,
+body.fun-mode #projectsList .project-list-card:hover,
+body.fun-mode #projectsList > div:hover {
+    box-shadow: 0 0 28px rgba(129, 140, 248, 0.5), 0 22px 38px rgba(30, 41, 59, 0.3) !important;
+    outline: 2px solid rgba(129, 140, 248, 0.8);
 }
 
 /* Position tags directly below text */
@@ -6476,20 +6512,20 @@ body.fun-mode .project-list-card:hover {
 
     /* ===== MOBILE SPACING TIGHTEN ===== */
     #projects .section-title-container {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
     #projects .hero-status {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
     .fun-project-filters {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     #projects .fun-project-filters {
-        margin: 0.25rem 0 0.75rem !important;
-        padding: 0.75rem 0 !important;
+        margin: 0 0 0.5rem !important;
+        padding: 0.5rem 0 !important;
     }
 
     /* ===== MOBILE PROJECT TIME ===== */
@@ -6605,8 +6641,8 @@ body.fun-mode .project-list-card:hover {
         width: 280px;
         min-width: 280px;
         max-width: 280px;
-        height: 460px;
-        min-height: 460px;
+        height: auto;
+        min-height: auto;
     }
     .project-card img {
         height: 160px;
@@ -6718,8 +6754,8 @@ body.fun-mode .project-list-card:hover {
         width: 260px;
         min-width: 260px;
         max-width: 260px;
-        height: 440px;
-        min-height: 440px;
+        height: auto;
+        min-height: auto;
     }
     .back-to-top {
         margin-right: 0;

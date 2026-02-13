@@ -98,15 +98,15 @@ const loadProjects = () => {
                                     ${tagsHtml}
                                 </div>
                                 <div class="project-card-footer mt-auto">
-                                    <div class="project-times-row">
-                                        <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                        ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}" style="display:none;"></time>` : ''}
-                                    </div>
                                     <div class="flex justify-end items-center">
                                         <a href="#projects" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center view-link">
                                             View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                         </a>
                                     </div>
+                                    <div class="project-times-row">
+                                        <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    </div>
+                                    ${project.modified ? `<time data-modified="${project.modified}" datetime="${project.modified}" style="display:none;" aria-hidden="true"></time>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -182,6 +182,29 @@ const loadProjects = () => {
             // Refresh AOS
             if (typeof AOS !== 'undefined') {
                 setTimeout(() => AOS.refresh(), 100);
+            }
+
+            // Equalize carousel card heights based on tallest card
+            if (projectsCarousel) {
+                const equalizeCarouselCards = () => {
+                    const cards = projectsCarousel.querySelectorAll('.project-card');
+                    if (!cards.length) return;
+                    cards.forEach(c => { c.style.height = 'auto'; c.style.minHeight = 'auto'; });
+                    let maxH = 0;
+                    cards.forEach(c => { const h = c.scrollHeight; if (h > maxH) maxH = h; });
+                    if (maxH > 0) cards.forEach(c => { c.style.height = maxH + 'px'; c.style.minHeight = maxH + 'px'; });
+                };
+                // Wait for images to load then equalize
+                const imgs = projectsCarousel.querySelectorAll('img');
+                let loaded = 0;
+                const onLoad = () => { loaded++; if (loaded >= imgs.length) equalizeCarouselCards(); };
+                imgs.forEach(img => {
+                    if (img.complete) { loaded++; } else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
+                });
+                if (loaded >= imgs.length) equalizeCarouselCards();
+                // Also equalize after a fallback delay
+                setTimeout(equalizeCarouselCards, 1500);
+                window._equalizeCarouselCards = equalizeCarouselCards;
             }
 
         })
@@ -2190,15 +2213,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${modifiedText ? `<p class="project-modal-date project-modal-date--updated">${modifiedText}</p>` : ''}
                     </div>
                     <h3 id="project-modal-title">${project.title || 'Project details'}</h3>
-                    <p class="project-modal-summary">${project.summary || ''}</p>
-                    <div class="project-modal-tags">${buildTags(project.tags)}</div>
-                    ${project.link || project.pdf ? `
-                        <div class="project-modal-links">
-                            ${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${project.linkText || 'View Publication'}</a>` : ''}
-                            ${project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
-                        </div>
-                    ` : ''}
                 </div>
+                <p class="project-modal-summary">${project.summary || ''}</p>
+                <div class="project-modal-tags">${buildTags(project.tags)}</div>
+                ${project.link || project.pdf ? `
+                    <div class="project-modal-links">
+                        ${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${project.linkText || 'View Publication'}</a>` : ''}
+                        ${project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
+                    </div>
+                ` : ''}
             </div>
             <div class="project-modal-body">
                 <div class="project-modal-section">

@@ -22,7 +22,6 @@ function updateTimes() {
         const modifiedDate = el.getAttribute('data-modified');
         if (!modifiedDate) return;
         el.textContent = 'Updated · ' + timeAgo(modifiedDate);
-        el.style.display = '';
     });
 }
 const TIME_UPDATE_INTERVAL = 60000;
