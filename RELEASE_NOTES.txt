@@ -1,3 +1,7 @@
+## v4.1.18 — 2026-02-12 22:58:41
+- ✅ Fix: dark fun mode default ON, remove Email h4, tighten mobile spacing, sticky modal h4, constrain 
+- ✅ Bumped version to v4.1.18
+
 ## v4.1.17 — 2026-02-12 22:15:55
 - ✅ Fix: fun mode off by default, tighten email spacing, sync footers, mobile projects spacing, hero 
 - ✅ Bumped version to v4.1.17
