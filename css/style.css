@@ -5544,6 +5544,7 @@ body.project-modal-open .fun-lab-panel {
     gap: 1.8rem 1.8rem;
     padding: 2.8rem 2.8rem 1.6rem;
     align-items: center;
+    transition: grid-template-columns 0.4s ease, gap 0.4s ease, padding 0.4s ease;
 }
 
 .project-modal-header > .project-modal-summary,
@@ -5559,10 +5560,51 @@ body.project-modal-open .fun-lab-panel {
     overflow: hidden;
 }
 
+.project-modal-header.is-scrolled {
+    grid-template-columns: 160px minmax(0, 1.2fr);
+    gap: 1rem 1.2rem;
+    padding: 1.6rem 2.4rem 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.project-modal-header.is-scrolled .project-modal-image {
+    width: 160px;
+    border-radius: 0.7rem;
+}
+
+.project-modal-header.is-scrolled .project-modal-intro h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+}
+
+.project-modal-header.is-scrolled .project-modal-dates {
+    margin-bottom: 0.25rem;
+}
+
+.project-modal-header.is-scrolled .project-modal-date {
+    font-size: 0.55rem;
+}
+
 .project-modal-header.is-scrolled > .project-modal-summary {
     max-height: 0;
     opacity: 0;
     margin: 0;
+}
+
+.project-modal-header.is-scrolled > .project-modal-tags {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+.project-modal-header.is-scrolled > .project-modal-links {
+    margin-top: 0.3rem;
+    gap: 0.3rem;
+}
+
+.project-modal-header.is-scrolled > .project-modal-links .project-modal-link {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.72rem;
 }
 
 .project-modal-image {
@@ -5572,6 +5614,7 @@ body.project-modal-open .fun-lab-panel {
     overflow: hidden;
     background: #111827;
     border: 1px solid rgba(148, 163, 184, 0.25);
+    transition: width 0.4s ease, border-radius 0.4s ease;
 }
 
 .project-modal-image img {
@@ -5612,6 +5655,7 @@ body.project-modal-open .fun-lab-panel {
     font-weight: 700;
     margin-bottom: 0.6rem;
     color: #111827;
+    transition: font-size 0.35s ease, margin 0.35s ease;
 }
 
 .project-modal-summary {
@@ -5923,12 +5967,6 @@ body.project-modal-open .fun-lab-panel {
         font-size: 0.78rem;
         line-height: 1.45;
         margin-bottom: 0.6rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        max-height: none;
         opacity: 1;
         transform: scale(1);
         transform-origin: top left;
@@ -5936,8 +5974,6 @@ body.project-modal-open .fun-lab-panel {
 
     .project-modal-tags {
         gap: 0.3rem;
-        max-height: 3.5rem;
-        overflow: hidden;
         opacity: 1;
         transform: scale(1);
         transform-origin: top left;
@@ -5993,12 +6029,16 @@ body.project-modal-open .fun-lab-panel {
         top: 0;
         z-index: 2;
         background: #ffffff;
-        padding: 0.5rem 0 0.35rem;
-        margin: -0.5rem 0 0;
+        padding: 0.6rem 0 0.4rem;
+        margin: 0;
     }
 
     [data-theme="dark"] .project-modal-section h4 {
         background: #1e293b;
+    }
+
+    .project-modal-section h4 + .project-modal-details {
+        padding-top: 0.15rem;
     }
 
     .project-modal-details p {
