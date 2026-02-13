@@ -2574,10 +2574,22 @@ document.addEventListener('DOMContentLoaded', function() {
     setFunMode(funModeEnabled);
 
     document.addEventListener('siteconfig:loaded', () => {
-        if (!shouldFollowConfigDefault) return;
-        const configDefault = !!window.siteConfig?.settings?.defaultFunMode;
-        if (document.body.classList.contains('fun-mode') !== configDefault) {
-            setFunMode(configDefault);
+        if (shouldFollowConfigDefault) {
+            const configDefault = !!window.siteConfig?.settings?.defaultFunMode;
+            if (document.body.classList.contains('fun-mode') !== configDefault) {
+                setFunMode(configDefault);
+            }
+        }
+
+        // Always re-sync immersive effects from CMS config
+        const cfgImmersive = window.siteConfig?.settings?.immersiveEffects;
+        if (typeof cfgImmersive === 'boolean') {
+            funImmersive = cfgImmersive;
+            const enabled = document.body.classList.contains('fun-mode');
+            applySkillAnimations(funImmersive, enabled);
+            applySystemConsole(funImmersive, enabled);
+            applyExperienceLogs(funImmersive, enabled);
+            syncFunLabInputs();
         }
     });
     

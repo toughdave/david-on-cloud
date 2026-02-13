@@ -401,7 +401,7 @@
         if (settings.roverStyle && !localStorage.getItem('fun-rover-style')) {
             localStorage.setItem('fun-rover-style', settings.roverStyle);
         }
-        if (typeof settings.immersiveEffects === 'boolean' && localStorage.getItem('fun_immersive') === null) {
+        if (typeof settings.immersiveEffects === 'boolean') {
             localStorage.setItem('fun_immersive', String(settings.immersiveEffects));
         }
         if (settings.defaultFunVantaMode && !localStorage.getItem('fun-vanta-mode')) {
