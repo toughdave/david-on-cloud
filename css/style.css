@@ -515,16 +515,17 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
 
     /* ===== MOBILE FUN LAB TOGGLE ===== */
     .fun-lab-button {
-        padding: 3px;
+        padding: 0;
         gap: 0;
-        width: 48px;
-        height: 28px;
+        width: 46px;
+        height: 26px;
         border: none;
         border-radius: 999px 0 0 999px;
         background: transparent;
         box-shadow: none;
         backdrop-filter: none;
         justify-content: center;
+        align-items: center;
     }
 
     .fun-lab-icon,
@@ -533,19 +534,18 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     .fun-lab-toggle-track {
-        width: 38px;
-        height: 20px;
+        width: 36px;
+        height: 18px;
         border-radius: 999px;
         border: 2px solid rgba(148, 163, 184, 0.5);
         background: rgba(100, 116, 139, 0.5);
-        margin: auto;
     }
 
     .fun-lab-toggle-knob {
         top: 2px;
         left: 2px;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
     }
 
     body.fun-mode .fun-lab-toggle-track {
@@ -554,20 +554,21 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     }
 
     body.fun-mode .fun-lab-toggle-knob {
-        left: 20px;
+        left: 18px;
         background: #a5b4fc;
         box-shadow: 0 0 6px rgba(165, 180, 252, 0.7);
     }
 
     .fun-lab-settings-btn {
-        padding: 0.2rem 0.35rem;
-        height: 28px !important;
+        padding: 0.15rem 0.2rem;
+        height: 18px !important;
+        min-width: 14px;
         align-self: center;
     }
 
     .fun-lab-settings-btn svg {
-        width: 10px;
-        height: 10px;
+        width: 7px;
+        height: 7px;
     }
 
     .hero-portrait-wrap .hero-portrait-glow {
@@ -5551,8 +5552,17 @@ body.project-modal-open .fun-lab-panel {
     grid-column: 1 / -1;
 }
 
+.project-modal-header > .project-modal-summary,
+.project-modal-header > .project-modal-tags,
+.project-modal-header > .project-modal-links {
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.35s ease, transform 0.35s ease;
+    overflow: hidden;
+}
+
 .project-modal-header.is-scrolled > .project-modal-summary {
-    display: none;
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
 }
 
 .project-modal-image {
@@ -5901,14 +5911,29 @@ body.project-modal-open .fun-lab-panel {
         font-size: 0.58rem;
     }
 
+    .project-modal-header > .project-modal-summary,
+    .project-modal-header > .project-modal-tags,
+    .project-modal-header > .project-modal-links {
+        transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.35s ease, transform 0.35s ease;
+        overflow: hidden;
+    }
+
     .project-modal-summary {
         font-size: 0.78rem;
         line-height: 1.45;
         margin-bottom: 0.6rem;
+        max-height: 8rem;
+        opacity: 1;
+        transform: scale(1);
+        transform-origin: top left;
     }
 
     .project-modal-tags {
         gap: 0.3rem;
+        max-height: 6rem;
+        opacity: 1;
+        transform: scale(1);
+        transform-origin: top left;
     }
 
     .project-modal-tag {
@@ -5919,11 +5944,15 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-links {
         margin-top: 0.5rem;
         gap: 0.4rem;
+        max-height: 4rem;
+        opacity: 1;
+        transition: font-size 0.35s ease, padding 0.35s ease, gap 0.35s ease, margin 0.35s ease;
     }
 
     .project-modal-link {
         padding: 0.3rem 0.65rem;
         font-size: 0.7rem;
+        transition: padding 0.35s ease, font-size 0.35s ease;
     }
 
     .project-modal-close {
@@ -5960,12 +5989,12 @@ body.project-modal-open .fun-lab-panel {
         line-height: 1.55;
     }
 
-    /* Scrolled state — header shrinks further, intro widens */
+    /* Scrolled state — header shrinks, summary/tags fade, links stay small */
     .project-modal-header.is-scrolled {
         grid-template-columns: 60px minmax(0, 1fr);
         padding-top: 0.7rem;
         padding-bottom: 0.5rem;
-        gap: 0.6rem;
+        gap: 0.4rem;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
@@ -5974,20 +6003,40 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-header.is-scrolled > .project-modal-summary {
-        display: none;
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        transform: scale(0.95);
     }
 
     .project-modal-header.is-scrolled > .project-modal-tags {
-        display: none;
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        transform: scale(0.95);
     }
 
     .project-modal-header.is-scrolled > .project-modal-links {
-        display: none;
+        margin-top: 0;
+        gap: 0.25rem;
+    }
+
+    .project-modal-header.is-scrolled > .project-modal-links .project-modal-link {
+        padding: 0.2rem 0.45rem;
+        font-size: 0.6rem;
     }
 
     .project-modal-header.is-scrolled .project-modal-intro h3 {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .project-modal-header.is-scrolled .project-modal-dates {
         margin-bottom: 0.15rem;
+    }
+
+    .project-modal-header.is-scrolled .project-modal-date {
+        font-size: 0.55rem;
     }
 
     /* Modal top respects navbar, equal bottom spacing */
@@ -6641,8 +6690,8 @@ body.fun-mode #projectsList > div:hover {
         width: 280px;
         min-width: 280px;
         max-width: 280px;
-        height: auto;
-        min-height: auto;
+        height: 420px;
+        min-height: 420px;
     }
     .project-card img {
         height: 160px;
@@ -6656,6 +6705,9 @@ body.fun-mode #projectsList > div:hover {
     .project-card p {
         font-size: 0.8rem;
         margin-bottom: 0.75rem;
+    }
+    #projectsCarousel .project-card p {
+        display: none;
     }
     #projectsCarousel .project-tags {
         gap: 0.4rem;
@@ -6754,8 +6806,11 @@ body.fun-mode #projectsList > div:hover {
         width: 260px;
         min-width: 260px;
         max-width: 260px;
-        height: auto;
-        min-height: auto;
+        height: 400px;
+        min-height: 400px;
+    }
+    #projectsCarousel .project-card p {
+        display: none;
     }
     .back-to-top {
         margin-right: 0;

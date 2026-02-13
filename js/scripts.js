@@ -2267,12 +2267,17 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
-        // Small-screen scroll listener: toggle compact header
+        // Scroll listener: toggle compact header with hysteresis to prevent jitter
         const modalBody = overlay.querySelector('.project-modal-body');
         const modalHeader = overlay.querySelector('.project-modal-header');
         if (modalBody && modalHeader) {
             modalBody.onscroll = () => {
-                modalHeader.classList.toggle('is-scrolled', modalBody.scrollTop > 20);
+                const st = modalBody.scrollTop;
+                if (st > 30 && !modalHeader.classList.contains('is-scrolled')) {
+                    modalHeader.classList.add('is-scrolled');
+                } else if (st <= 5 && modalHeader.classList.contains('is-scrolled')) {
+                    modalHeader.classList.remove('is-scrolled');
+                }
             };
         }
 
