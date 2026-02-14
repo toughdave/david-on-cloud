@@ -1,3 +1,7 @@
+## v4.1.28 — 2026-02-13 21:29:25
+- ✅ Fix image-to-title centering via position:relative+top (bypasses CSS animation forwards override), 
+- ✅ Bumped version to v4.1.28
+
 ## v4.1.27 — 2026-02-13 21:10:13
 - ✅ Fix image-to-title centering: delay alignment until morph animation completes for accurate 
 - ✅ Bumped version to v4.1.27
