@@ -2326,7 +2326,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!h3 || !intro || !image) return;
             const introRect = intro.getBoundingClientRect();
             const h3Rect = h3.getBoundingClientRect();
-            // How far the h3 center is from the intro center
             const introCenterY = introRect.top + introRect.height / 2;
             const h3CenterY = h3Rect.top + h3Rect.height / 2;
             const offset = h3CenterY - introCenterY;
@@ -2342,12 +2341,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let headerShrinkEnabled = false;
 
         // Determine if body content is long enough for header shrink to fully complete.
-        // When the header shrinks, the body gains that freed space — if there isn't
-        // enough scrollable content remaining after that gain, disable shrink entirely.
         const checkHeaderShrinkEligibility = () => {
             if (!modalBody || !modalHeader) return false;
             const scrollable = modalBody.scrollHeight - modalBody.clientHeight;
-            // Estimate height the body gains when header collapses (summary + tags + padding)
             const headerH = modalHeader.offsetHeight;
             const estimatedGain = headerH * 0.45;
             return scrollable > (80 + estimatedGain);
@@ -2359,15 +2355,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 headerShrinkEnabled = checkHeaderShrinkEligibility();
             }));
 
+            // Re-align image after header transition completes (not mid-animation)
+            let alignPending = false;
+            modalHeader.addEventListener('transitionend', (e) => {
+                if (e.target !== modalHeader || alignPending) return;
+                alignPending = true;
+                requestAnimationFrame(() => {
+                    alignImageToTitle();
+                    alignPending = false;
+                });
+            });
+
             modalBody.onscroll = () => {
                 if (!headerShrinkEnabled) return;
                 const st = modalBody.scrollTop;
                 if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');
-                    requestAnimationFrame(() => alignImageToTitle());
                 } else if (st <= 15 && modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.remove('is-scrolled');
-                    requestAnimationFrame(() => alignImageToTitle());
                 }
             };
         }

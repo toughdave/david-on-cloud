@@ -4456,7 +4456,7 @@ html:not([data-theme="dark"]) .sticky-section-title::after {
     margin: 0;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
     will-change: scroll-position;
 }
 
@@ -5653,8 +5653,9 @@ body.project-modal-open .fun-lab-panel {
 }
 
 .project-modal-date--updated {
-    font-size: 0.58rem;
+    font-size: 0.54rem;
     font-style: italic;
+    padding: 0.1rem 0.4rem;
     color: #16a34a;
     background: rgba(22, 163, 106, 0.08);
 }
