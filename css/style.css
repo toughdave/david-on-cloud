@@ -5656,9 +5656,9 @@ body.project-modal-open .fun-lab-panel {
 }
 
 .project-modal-date--updated {
-    font-size: 0.54rem;
+    font-size: 0.48rem;
     font-style: italic;
-    padding: 0.1rem 0.4rem;
+    padding: 0.08rem 0.35rem;
     color: #16a34a;
     background: rgba(22, 163, 106, 0.08);
 }
@@ -5972,7 +5972,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-date--updated {
-        font-size: 0.58rem;
+        font-size: 0.46rem;
     }
 
     .project-modal-header > .project-modal-summary,
