@@ -1,3 +1,7 @@
+## v4.1.27 — 2026-02-13 21:10:13
+- ✅ Fix image-to-title centering: delay alignment until morph animation completes for accurate 
+- ✅ Bumped version to v4.1.27
+
 ## v4.1.26 — 2026-02-13 20:47:15
 - ✅ Increase modal top/bottom margin with dvh fallback, broaden touch detection for Opera Mobile card 
 - ✅ Bumped version to v4.1.26
