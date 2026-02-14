@@ -2319,7 +2319,7 @@ document.addEventListener('DOMContentLoaded', function() {
         delete overlay.dataset.closing;
 
         // Align image vertical center with h3 title center
-        const alignImageToTitle = () => {
+        const alignImageToTitle = (instant) => {
             const h3 = overlay.querySelector('.project-modal-intro h3');
             const intro = overlay.querySelector('.project-modal-intro');
             const image = overlay.querySelector('.project-modal-image');
@@ -2329,11 +2329,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const introCenterY = introRect.top + introRect.height / 2;
             const h3CenterY = h3Rect.top + h3Rect.height / 2;
             const offset = h3CenterY - introCenterY;
-            image.style.transform = `translateY(${offset}px)`;
+            if (instant) {
+                image.style.transition = 'none';
+                image.style.transform = `translateY(${offset}px)`;
+                image.offsetHeight; // force reflow
+                image.style.transition = '';
+            } else {
+                image.style.transform = `translateY(${offset}px)`;
+            }
         };
-
-        // Run after layout settles
-        requestAnimationFrame(() => requestAnimationFrame(() => alignImageToTitle()));
 
         // Scroll listener: toggle compact header with hysteresis to prevent jitter
         const modalBody = overlay.querySelector('.project-modal-body');
@@ -2350,11 +2354,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (modalBody && modalHeader) {
-            // Check eligibility after layout settles
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                headerShrinkEnabled = checkHeaderShrinkEligibility();
-            }));
-
             // Re-align image after header transition completes (not mid-animation)
             let alignPending = false;
             modalHeader.addEventListener('transitionend', (e) => {
@@ -2408,7 +2407,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const morphDuration = prefersReducedMotion ? 0 : 420;
         setTimeout(() => {
             if (sourceCard) sourceCard.classList.remove('project-card--morphing');
-        }, morphDuration);
+            // Align image after morph completes — measurements need scale(1)
+            alignImageToTitle(true);
+            headerShrinkEnabled = checkHeaderShrinkEligibility();
+        }, morphDuration + 30);
     };
 
     const closeProjectModal = () => {
