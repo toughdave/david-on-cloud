@@ -1,3 +1,7 @@
+## v4.1.26 — 2026-02-13 20:47:15
+- ✅ Increase modal top/bottom margin with dvh fallback, broaden touch detection for Opera Mobile card 
+- ✅ Bumped version to v4.1.26
+
 ## v4.1.25 — 2026-02-13 20:22:23
 - ✅ Fix image-to-title centering via transitionend, smaller Updated pill, enable carousel vertical 
 - ✅ Bumped version to v4.1.25
