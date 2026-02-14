@@ -2320,23 +2320,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Align image vertical center with h3 title center
         const alignImageToTitle = () => {
-            const dates = overlay.querySelector('.project-modal-dates');
+            const h3 = overlay.querySelector('.project-modal-intro h3');
+            const intro = overlay.querySelector('.project-modal-intro');
             const image = overlay.querySelector('.project-modal-image');
-            if (!dates || !image) return;
-            const datesH = dates.offsetHeight;
-            const datesGap = parseFloat(getComputedStyle(dates).marginBottom) || 0;
-            const offset = (datesH + datesGap) / 2;
+            if (!h3 || !intro || !image) return;
+            const introRect = intro.getBoundingClientRect();
+            const h3Rect = h3.getBoundingClientRect();
+            // How far the h3 center is from the intro center
+            const introCenterY = introRect.top + introRect.height / 2;
+            const h3CenterY = h3Rect.top + h3Rect.height / 2;
+            const offset = h3CenterY - introCenterY;
             image.style.transform = `translateY(${offset}px)`;
         };
 
         // Run after layout settles
-        requestAnimationFrame(() => alignImageToTitle());
+        requestAnimationFrame(() => requestAnimationFrame(() => alignImageToTitle()));
 
         // Scroll listener: toggle compact header with hysteresis to prevent jitter
         const modalBody = overlay.querySelector('.project-modal-body');
         const modalHeader = overlay.querySelector('.project-modal-header');
+        let headerShrinkEnabled = false;
+
+        // Determine if body content is long enough for header shrink to fully complete.
+        // When the header shrinks, the body gains that freed space — if there isn't
+        // enough scrollable content remaining after that gain, disable shrink entirely.
+        const checkHeaderShrinkEligibility = () => {
+            if (!modalBody || !modalHeader) return false;
+            const scrollable = modalBody.scrollHeight - modalBody.clientHeight;
+            // Estimate height the body gains when header collapses (summary + tags + padding)
+            const headerH = modalHeader.offsetHeight;
+            const estimatedGain = headerH * 0.45;
+            return scrollable > (80 + estimatedGain);
+        };
+
         if (modalBody && modalHeader) {
+            // Check eligibility after layout settles
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                headerShrinkEnabled = checkHeaderShrinkEligibility();
+            }));
+
             modalBody.onscroll = () => {
+                if (!headerShrinkEnabled) return;
                 const st = modalBody.scrollTop;
                 if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');

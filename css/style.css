@@ -5654,6 +5654,7 @@ body.project-modal-open .fun-lab-panel {
 
 .project-modal-date--updated {
     font-size: 0.58rem;
+    font-style: italic;
     color: #16a34a;
     background: rgba(22, 163, 106, 0.08);
 }
