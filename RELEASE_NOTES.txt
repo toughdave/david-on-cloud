@@ -1,3 +1,7 @@
+## v4.1.25 — 2026-02-13 20:22:23
+- ✅ Fix image-to-title centering via transitionend, smaller Updated pill, enable carousel vertical 
+- ✅ Bumped version to v4.1.25
+
 ## v4.1.24 — 2026-02-13 20:02:37
 - ✅ Style Updated date pill with italics, fix image-to-title centering using DOM measurements, 
 - ✅ Bumped version to v4.1.24
