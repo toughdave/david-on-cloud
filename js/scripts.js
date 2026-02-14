@@ -2494,7 +2494,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Mobile: make entire carousel card surface clickable
-        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+            || ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
         if (isTouchDevice) {
             document.querySelectorAll('#projectsCarousel .project-card').forEach((card) => {
                 if (card.dataset.cardTapBound) return;

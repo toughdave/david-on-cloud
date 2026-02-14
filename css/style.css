@@ -5437,7 +5437,7 @@ body.project-modal-open .fun-lab-panel {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5rem 1.5rem 1.5rem;
+    padding: 5.5rem 1.5rem 2rem;
     visibility: hidden;
     pointer-events: none;
     z-index: 80;
@@ -5481,7 +5481,8 @@ body.project-modal-open .fun-lab-panel {
     --modal-card-opacity: 0;
     width: min(960px, 100%);
     height: fit-content;
-    max-height: calc(100vh - 6.5rem);
+    max-height: calc(100vh - 7.5rem);
+    max-height: calc(100dvh - 7.5rem);
     background: #ffffff;
     border-radius: var(--modal-radius);
     box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
@@ -6125,11 +6126,12 @@ body.project-modal-open .fun-lab-panel {
 
     /* Modal top respects navbar, equal bottom spacing */
     .project-modal-overlay {
-        padding: 4.5rem 0.6rem 1rem;
+        padding: 5.5rem 0.6rem 1.5rem;
     }
 
     .project-modal-card {
-        max-height: calc(100vh - 5.5rem);
+        max-height: calc(100vh - 7rem);
+        max-height: calc(100dvh - 7rem);
     }
 }
 
