@@ -515,11 +515,15 @@ const setActiveNavLink = (targetId) => {
     }
 
     if (normalized === 'projects') {
-        document.querySelectorAll('a[href="projects.html"]').forEach(link => {
-            if (link.classList.contains('btn-explore-universe')) return;
-            link.classList.add('active-page', 'transition-none', 'font-bold');
-        });
-        // Also target the ID directly in case href was morphed to #projects
+        const onProjectsPage = window.location.pathname.includes('projects.html');
+        if (onProjectsPage) {
+            // On projects page: highlight all projects links (desktop + mobile)
+            document.querySelectorAll('a[href="projects.html"]').forEach(link => {
+                if (link.classList.contains('btn-explore-universe')) return;
+                link.classList.add('active-page', 'transition-none', 'font-bold');
+            });
+        }
+        // On index page: only highlight the desktop nav link (not mobile menu)
         const projectsLink = document.getElementById('nav-projects-link');
         if (projectsLink) {
             projectsLink.classList.add('active-page', 'transition-none', 'font-bold');
@@ -2314,6 +2318,20 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
+        // Align image vertical center with h3 title center
+        const alignImageToTitle = () => {
+            const dates = overlay.querySelector('.project-modal-dates');
+            const image = overlay.querySelector('.project-modal-image');
+            if (!dates || !image) return;
+            const datesH = dates.offsetHeight;
+            const datesGap = parseFloat(getComputedStyle(dates).marginBottom) || 0;
+            const offset = (datesH + datesGap) / 2;
+            image.style.transform = `translateY(${offset}px)`;
+        };
+
+        // Run after layout settles
+        requestAnimationFrame(() => alignImageToTitle());
+
         // Scroll listener: toggle compact header with hysteresis to prevent jitter
         const modalBody = overlay.querySelector('.project-modal-body');
         const modalHeader = overlay.querySelector('.project-modal-header');
@@ -2322,8 +2340,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const st = modalBody.scrollTop;
                 if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');
+                    requestAnimationFrame(() => alignImageToTitle());
                 } else if (st <= 15 && modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.remove('is-scrolled');
+                    requestAnimationFrame(() => alignImageToTitle());
                 }
             };
         }
@@ -2454,8 +2474,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.addEventListener('click', (event) => {
                     // Don't intercept if user tapped a link/button directly
                     if (event.target.closest('a, button')) return;
-                    // Don't open modal for filtered/dimmed cards
-                    if (card.classList.contains('fun-filter-dim')) return;
+                    // Don't open modal for greyed-out or hidden filtered cards
+                    if (card.classList.contains('fun-filter-dim') || card.classList.contains('fun-filter-hidden')) return;
                     const project = parseProjectPayload(card);
                     if (!project) return;
                     const link = card.querySelector('.view-link');

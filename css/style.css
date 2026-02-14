@@ -5622,7 +5622,7 @@ body.project-modal-open .fun-lab-panel {
     overflow: hidden;
     background: #111827;
     border: 1px solid rgba(148, 163, 184, 0.25);
-    transition: width 0.4s ease, border-radius 0.4s ease;
+    transition: width 0.4s ease, border-radius 0.4s ease, transform 0.4s ease;
 }
 
 .project-modal-image img {
@@ -5663,7 +5663,8 @@ body.project-modal-open .fun-lab-panel {
     font-weight: 700;
     margin-bottom: 0.6rem;
     color: #111827;
-    transition: font-size 0.35s ease, margin 0.35s ease;
+    padding-left: 0.5rem;
+    transition: font-size 0.35s ease, margin 0.35s ease, padding 0.35s ease;
 }
 
 .project-modal-summary {
