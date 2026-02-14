@@ -2319,23 +2319,26 @@ document.addEventListener('DOMContentLoaded', function() {
         delete overlay.dataset.closing;
 
         // Align image vertical center with h3 title center
+        // Uses position:relative + top (not transform) because the mobile CSS
+        // animation with forwards fill overrides inline transform values.
         const alignImageToTitle = (instant) => {
             const h3 = overlay.querySelector('.project-modal-intro h3');
-            const intro = overlay.querySelector('.project-modal-intro');
             const image = overlay.querySelector('.project-modal-image');
-            if (!h3 || !intro || !image) return;
-            const introRect = intro.getBoundingClientRect();
+            if (!h3 || !image) return;
+            // Subtract current top offset to get the base (un-shifted) image center
+            const currentTop = parseFloat(image.style.top) || 0;
             const h3Rect = h3.getBoundingClientRect();
-            const introCenterY = introRect.top + introRect.height / 2;
+            const imageRect = image.getBoundingClientRect();
             const h3CenterY = h3Rect.top + h3Rect.height / 2;
-            const offset = h3CenterY - introCenterY;
+            const baseImageCenterY = (imageRect.top - currentTop) + imageRect.height / 2;
+            const offset = Math.max(0, h3CenterY - baseImageCenterY);
             if (instant) {
                 image.style.transition = 'none';
-                image.style.transform = `translateY(${offset}px)`;
+                image.style.top = `${offset}px`;
                 image.offsetHeight; // force reflow
                 image.style.transition = '';
             } else {
-                image.style.transform = `translateY(${offset}px)`;
+                image.style.top = `${offset}px`;
             }
         };
 
@@ -2407,10 +2410,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const morphDuration = prefersReducedMotion ? 0 : 420;
         setTimeout(() => {
             if (sourceCard) sourceCard.classList.remove('project-card--morphing');
-            // Align image after morph completes — measurements need scale(1)
+        }, morphDuration);
+
+        // Align image after ALL animations complete (morph + CSS entrance animations)
+        // Mobile entrance animations: image 0.15s delay+0.5s=650ms, intro 0.25s+0.5s=750ms
+        const alignDelay = prefersReducedMotion ? 50 : Math.max(morphDuration + 30, 800);
+        setTimeout(() => {
             alignImageToTitle(true);
             headerShrinkEnabled = checkHeaderShrinkEligibility();
-        }, morphDuration + 30);
+        }, alignDelay);
     };
 
     const closeProjectModal = () => {
