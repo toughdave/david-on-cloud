@@ -1,3 +1,7 @@
+## v4.1.31 — 2026-02-13 22:46:07
+- ✅ Update data-analysis-mtd image reference from .jpg to .png
+- ✅ Bumped version to v4.1.31
+
 ## v4.1.30 — 2026-02-13 22:14:15
 - ✅ Further reduce Updated date pill size relative to Posted pill on all screens
 - ✅ Bumped version to v4.1.30
