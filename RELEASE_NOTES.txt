@@ -1,3 +1,7 @@
+## v4.1.30 — 2026-02-13 22:14:15
+- ✅ Further reduce Updated date pill size relative to Posted pill on all screens
+- ✅ Bumped version to v4.1.30
+
 ## v4.1.29 — 2026-02-13 21:51:34
 - ✅ Align image with full intro container (dates+title), increase experience-inset height on tablets
 - ✅ Bumped version to v4.1.29
