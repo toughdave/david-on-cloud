@@ -7729,3 +7729,10 @@ body.fun-mode .analyst-insight-card:hover {
         background-position: center 40%;
     }
 }
+
+/* Tablet: give inset images more height so photos aren't too cropped */
+@media (min-width: 769px) and (max-width: 960px) {
+    .experience-inset {
+        height: 360px;
+    }
+}

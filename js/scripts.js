@@ -2318,20 +2318,20 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
-        // Align image vertical center with h3 title center
+        // Align image vertical center with intro container (dates + title)
         // Uses position:relative + top (not transform) because the mobile CSS
         // animation with forwards fill overrides inline transform values.
         const alignImageToTitle = (instant) => {
-            const h3 = overlay.querySelector('.project-modal-intro h3');
+            const intro = overlay.querySelector('.project-modal-intro');
             const image = overlay.querySelector('.project-modal-image');
-            if (!h3 || !image) return;
+            if (!intro || !image) return;
             // Subtract current top offset to get the base (un-shifted) image center
             const currentTop = parseFloat(image.style.top) || 0;
-            const h3Rect = h3.getBoundingClientRect();
+            const introRect = intro.getBoundingClientRect();
             const imageRect = image.getBoundingClientRect();
-            const h3CenterY = h3Rect.top + h3Rect.height / 2;
+            const introCenterY = introRect.top + introRect.height / 2;
             const baseImageCenterY = (imageRect.top - currentTop) + imageRect.height / 2;
-            const offset = Math.max(0, h3CenterY - baseImageCenterY);
+            const offset = Math.max(0, introCenterY - baseImageCenterY);
             if (instant) {
                 image.style.transition = 'none';
                 image.style.top = `${offset}px`;
