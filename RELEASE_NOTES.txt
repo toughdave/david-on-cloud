@@ -1,3 +1,7 @@
+## v4.1.33 — 2026-02-14 21:30:00
+- ✅ Pin modal dates on desktop and align image to title
+- ✅ Bumped version to v4.1.33
+
 ## v4.1.32 — 2026-02-14 21:16:19
 - ✅ Restore modal title vertical centering
 - ✅ Pin modal timestamps to top and stage updated images
