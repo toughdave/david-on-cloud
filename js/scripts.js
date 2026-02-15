@@ -2422,7 +2422,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mobile entrance animations: image 0.15s delay+0.5s=650ms, intro 0.25s+0.5s=750ms
         const alignDelay = prefersReducedMotion ? 50 : Math.max(morphDuration + 30, 800);
         setTimeout(() => {
-            alignImageToTitle(true);
+            alignImageToTitle(prefersReducedMotion);
             headerShrinkEnabled = checkHeaderShrinkEligibility();
         }, alignDelay);
     };
