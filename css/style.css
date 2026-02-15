@@ -5552,7 +5552,7 @@ body.project-modal-open .fun-lab-panel {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: 1.4rem 1.8rem;
     padding: 2.8rem 2.8rem 1.6rem;
-    align-items: start;
+    align-items: center;
     transition: grid-template-columns 0.4s ease, gap 0.4s ease, padding 0.4s ease;
 }
 
@@ -5635,7 +5635,6 @@ body.project-modal-open .fun-lab-panel {
 }
 
 .project-modal-intro {
-    align-self: start;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
