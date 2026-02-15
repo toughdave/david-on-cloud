@@ -1,17 +1,27 @@
 {
   "sectionTitle": "Scripts Library",
   "subtitle": "First-wave automation assets translated from real academic operations workflows: SQL checks, ETL pipelines, spreadsheet validation, Power Query templates, and scheduled run orchestration.",
+  "filterLabels": {
+    "sql": "SQL",
+    "python": "Python",
+    "sheets": "Sheets",
+    "bi": "Power BI",
+    "workflow": "Workflow"
+  },
   "cta": {
     "text": "Explore Full Script Repository",
     "href": "https://github.com/toughdave/scripting"
   },
   "entries": [
     {
+      "category": "sql",
       "icon": "database",
       "title": "SQL Integrity Validation",
       "summary": "Cross-check admissions and results records before publication windows.",
       "stack": ["MySQL", "PostgreSQL", "SQLite"],
       "path": "scripts/sql/",
+      "repoUrl": "https://github.com/toughdave/scripting/tree/main/scripts/sql",
+      "sampleUrl": "https://github.com/toughdave/scripting/blob/main/scripts/sql/mysql/mysql_validate_results_integrity.sql",
       "highlights": [
         "Missing and out-of-range score detection",
         "Duplicate student-id checks",
@@ -19,11 +29,14 @@
       ]
     },
     {
+      "category": "python",
       "icon": "cpu",
       "title": "Python ETL Pipelines",
       "summary": "Config-driven extract, transform, validate, and load flow for CSV-based academic datasets.",
       "stack": ["Python", "CSV", "JSON config"],
       "path": "scripts/python/etl/",
+      "repoUrl": "https://github.com/toughdave/scripting/tree/main/scripts/python/etl",
+      "sampleUrl": "https://github.com/toughdave/scripting/blob/main/scripts/python/etl/etl_runner.py",
       "highlights": [
         "Date normalization routines",
         "Validation-first processing",
@@ -31,11 +44,14 @@
       ]
     },
     {
+      "category": "sheets",
       "icon": "grid",
       "title": "Google Sheets Validation",
       "summary": "Apps Script templates to enforce sheet-level data rules and export sanitized datasets.",
       "stack": ["Apps Script", "Google Sheets"],
       "path": "google-sheets/apps-script/",
+      "repoUrl": "https://github.com/toughdave/scripting/tree/main/google-sheets/apps-script",
+      "sampleUrl": "https://github.com/toughdave/scripting/blob/main/google-sheets/apps-script/apps_script_validation_rules.gs",
       "highlights": [
         "Column-aware validation rules",
         "Automated cleanup safeguards",
@@ -43,11 +59,14 @@
       ]
     },
     {
+      "category": "bi",
       "icon": "bar-chart-2",
       "title": "Power Query Quality Templates",
       "summary": "Reusable M-query patterns for data-quality flags and reporting-stage transformations.",
       "stack": ["Power BI", "Power Query (M)"],
       "path": "powerbi/powerquery/",
+      "repoUrl": "https://github.com/toughdave/scripting/tree/main/powerbi/powerquery",
+      "sampleUrl": "https://github.com/toughdave/scripting/blob/main/powerbi/powerquery/powerquery_data_quality_template.pq",
       "highlights": [
         "Typed schema enforcement",
         "DQ flag calculations",
@@ -55,11 +74,14 @@
       ]
     },
     {
+      "category": "workflow",
       "icon": "clock",
       "title": "Workflow Scheduling",
       "summary": "Daily run shell workflows for repeatable execution, logging, and reporting handoff.",
       "stack": ["Bash", "Cron", "Log files"],
       "path": "scripts/workflow/",
+      "repoUrl": "https://github.com/toughdave/scripting/tree/main/scripts/workflow",
+      "sampleUrl": "https://github.com/toughdave/scripting/blob/main/scripts/workflow/schedule_daily_run.sh",
       "highlights": [
         "Timestamped run logs",
         "Step-by-step orchestration",

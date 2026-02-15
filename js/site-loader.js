@@ -98,26 +98,100 @@
         if (subtitle && data.subtitle) subtitle.textContent = data.subtitle;
 
         const grid = section.querySelector('#scriptLibraryGrid');
-        if (grid && Array.isArray(data.entries)) {
-            grid.innerHTML = data.entries.map((entry, i) => `
-                <article data-aos="fade-up" ${i > 0 ? `data-aos-delay="${Math.min(i * 80, 320)}"` : ''} class="script-library-card">
-                    <header class="script-library-card-header">
-                        <span class="script-library-icon" aria-hidden="true"><i data-feather="${escapeHTML(entry.icon || 'code')}"></i></span>
-                        <div>
-                            <h3>${escapeHTML(entry.title || '')}</h3>
-                            <p class="script-library-summary">${escapeHTML(entry.summary || '')}</p>
-                        </div>
-                    </header>
-                    <div class="script-library-stack">
-                        ${(entry.stack || []).map(item => `<span class="script-library-stack-item">${escapeHTML(item)}</span>`).join('')}
-                    </div>
-                    <p class="script-library-path">${escapeHTML(entry.path || '')}</p>
-                    <ul class="script-library-highlights">
-                        ${(entry.highlights || []).map(item => `<li>${escapeHTML(item)}</li>`).join('')}
-                    </ul>
-                </article>
-            `).join('');
+        const filtersHost = section.querySelector('#scriptLibraryFilters');
+        const countEl = section.querySelector('#scriptLibraryCount');
+        const entries = Array.isArray(data.entries) ? data.entries : [];
+        const filterLabels = (data.filterLabels && typeof data.filterLabels === 'object') ? data.filterLabels : {};
+        const getCategory = (entry) => String(entry.category || 'other').toLowerCase();
+        const categories = Array.from(new Set(entries.map(getCategory)));
+        let activeFilter = 'all';
+
+        const formatFilterLabel = (key) => {
+            if (!key) return 'Other';
+            if (filterLabels[key]) return String(filterLabels[key]);
+            return key.charAt(0).toUpperCase() + key.slice(1);
+        };
+
+        if (filtersHost) {
+            const filterButtons = [
+                `<button type="button" class="scripts-library-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>`,
+                ...categories.map((key) => `<button type="button" class="scripts-library-filter-btn" data-filter="${escapeHTML(key)}" role="tab" aria-selected="false">${escapeHTML(formatFilterLabel(key))}</button>`)
+            ];
+            filtersHost.innerHTML = filterButtons.join('');
         }
+
+        const renderCards = (filter) => {
+            const filtered = entries.filter((entry) => filter === 'all' || getCategory(entry) === filter);
+
+            if (grid) {
+                if (!filtered.length) {
+                    grid.innerHTML = '<div class="scripts-library-loading">No script families in this view yet.</div>';
+                } else {
+                    grid.innerHTML = filtered.map((entry, i) => {
+                        const category = getCategory(entry);
+                        const repoAction = entry.repoUrl
+                            ? `<a href="${escapeHTML(entry.repoUrl)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--repo">Family folder <i data-feather="folder" class="w-4 h-4"></i></a>`
+                            : '';
+                        const sampleAction = entry.sampleUrl
+                            ? `<a href="${escapeHTML(entry.sampleUrl)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--sample">View sample <i data-feather="external-link" class="w-4 h-4"></i></a>`
+                            : '';
+                        const actionsHtml = (repoAction || sampleAction)
+                            ? `<div class="script-library-actions">${repoAction}${sampleAction}</div>`
+                            : '';
+
+                        return `
+                            <article data-aos="fade-up" ${i > 0 ? `data-aos-delay="${Math.min(i * 80, 320)}"` : ''} class="script-library-card" data-script-category="${escapeHTML(category)}">
+                                <header class="script-library-card-header">
+                                    <span class="script-library-icon" aria-hidden="true"><i data-feather="${escapeHTML(entry.icon || 'code')}"></i></span>
+                                    <div>
+                                        <h3>${escapeHTML(entry.title || '')}</h3>
+                                        <p class="script-library-summary">${escapeHTML(entry.summary || '')}</p>
+                                    </div>
+                                </header>
+                                <div class="script-library-stack">
+                                    ${(entry.stack || []).map(item => `<span class="script-library-stack-item">${escapeHTML(item)}</span>`).join('')}
+                                </div>
+                                <p class="script-library-path">${escapeHTML(entry.path || '')}</p>
+                                <ul class="script-library-highlights">
+                                    ${(entry.highlights || []).map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                                </ul>
+                                ${actionsHtml}
+                            </article>
+                        `;
+                    }).join('');
+                }
+            }
+
+            if (countEl) {
+                const prefix = filter === 'all'
+                    ? 'All categories'
+                    : `${formatFilterLabel(filter)} category`;
+                countEl.textContent = `${prefix}: ${filtered.length} of ${entries.length} script families`;
+            }
+
+            if (typeof feather !== 'undefined') feather.replace();
+        };
+
+        if (filtersHost && !filtersHost.dataset.bound) {
+            filtersHost.dataset.bound = 'true';
+            filtersHost.addEventListener('click', (event) => {
+                const button = event.target.closest('.scripts-library-filter-btn');
+                if (!button) return;
+                const nextFilter = button.getAttribute('data-filter') || 'all';
+                if (nextFilter === activeFilter) return;
+                activeFilter = nextFilter;
+
+                filtersHost.querySelectorAll('.scripts-library-filter-btn').forEach((btn) => {
+                    const isActive = btn === button;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
+                renderCards(activeFilter);
+            });
+        }
+
+        renderCards(activeFilter);
 
         const cta = section.querySelector('.scripts-library-cta');
         if (cta && data.cta) {
