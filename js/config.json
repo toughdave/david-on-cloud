@@ -24,6 +24,7 @@
       "hero": true,
       "about": true,
       "skills": true,
+      "scriptLibrary": true,
       "experience": true,
       "projects": true,
       "process": true,

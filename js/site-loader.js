@@ -7,6 +7,7 @@
         hero:         '#intro',
         about:        '#about',
         skills:       '#skills',
+        scriptLibrary:'#script-library',
         experience:   '#experience',
         projects:     '#projects',
         process:      '#process',
@@ -18,6 +19,7 @@
         hero:         ['index.html', 'index.html#intro', '#intro', '#'],
         about:        ['index.html#about', '#about'],
         skills:       ['index.html#skills', '#skills'],
+        scriptLibrary:['index.html#script-library', '#script-library'],
         experience:   ['index.html#experience', '#experience'],
         projects:     ['projects.html', 'index.html#projects', '#projects'],
         process:      ['index.html#process', '#process'],
@@ -81,6 +83,50 @@
         } else {
             document.documentElement.style.setProperty('--vanta-opacity', String(vanta.opacity));
         }
+    }
+
+    /* ── Scripts Library Renderer ── */
+    function renderScriptLibrary(data) {
+        if (!data) return;
+        const section = document.querySelector('#script-library');
+        if (!section) return;
+
+        const title = section.querySelector('.section-title-container h2');
+        if (title) title.textContent = data.sectionTitle || 'Scripts Library';
+
+        const subtitle = section.querySelector('.scripts-library-subtitle');
+        if (subtitle && data.subtitle) subtitle.textContent = data.subtitle;
+
+        const grid = section.querySelector('#scriptLibraryGrid');
+        if (grid && Array.isArray(data.entries)) {
+            grid.innerHTML = data.entries.map((entry, i) => `
+                <article data-aos="fade-up" ${i > 0 ? `data-aos-delay="${Math.min(i * 80, 320)}"` : ''} class="script-library-card">
+                    <header class="script-library-card-header">
+                        <span class="script-library-icon" aria-hidden="true"><i data-feather="${escapeHTML(entry.icon || 'code')}"></i></span>
+                        <div>
+                            <h3>${escapeHTML(entry.title || '')}</h3>
+                            <p class="script-library-summary">${escapeHTML(entry.summary || '')}</p>
+                        </div>
+                    </header>
+                    <div class="script-library-stack">
+                        ${(entry.stack || []).map(item => `<span class="script-library-stack-item">${escapeHTML(item)}</span>`).join('')}
+                    </div>
+                    <p class="script-library-path">${escapeHTML(entry.path || '')}</p>
+                    <ul class="script-library-highlights">
+                        ${(entry.highlights || []).map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                    </ul>
+                </article>
+            `).join('');
+        }
+
+        const cta = section.querySelector('.scripts-library-cta');
+        if (cta && data.cta) {
+            if (data.cta.href) cta.setAttribute('href', data.cta.href);
+            const ctaText = escapeHTML(data.cta.text || 'Explore Full Script Repository');
+            cta.innerHTML = `${ctaText} <i data-feather="arrow-up-right" class="w-4 h-4"></i>`;
+        }
+
+        if (typeof feather !== 'undefined') feather.replace();
     }
 
     /* ── Hero Renderer ── */
@@ -414,11 +460,12 @@
         const isIndex = !window.location.pathname.includes('projects.html');
         if (!isIndex) return;
 
-        const [config, hero, about, skills, experience, process, testimonials, contact, footerData] = await Promise.all([
+        const [config, hero, about, skills, scriptLibrary, experience, process, testimonials, contact, footerData] = await Promise.all([
             fetchJSON('js/config.json'),
             fetchJSON('js/hero.json'),
             fetchJSON('js/about.json'),
             fetchJSON('js/skills.json'),
+            fetchJSON('js/script-library.json'),
             fetchJSON('js/experience.json'),
             fetchJSON('js/process.json'),
             fetchJSON('js/testimonials.json'),
@@ -435,6 +482,7 @@
         renderHero(hero);
         renderAbout(about);
         renderSkills(skills);
+        renderScriptLibrary(scriptLibrary);
         renderExperience(experience);
         renderProcess(process);
         renderTestimonials(testimonials);

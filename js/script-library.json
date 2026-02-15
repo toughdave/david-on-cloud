@@ -1,0 +1,70 @@
+{
+  "sectionTitle": "Scripts Library",
+  "subtitle": "First-wave automation assets translated from real academic operations workflows: SQL checks, ETL pipelines, spreadsheet validation, Power Query templates, and scheduled run orchestration.",
+  "cta": {
+    "text": "Explore Full Script Repository",
+    "href": "https://github.com/toughdave/scripting"
+  },
+  "entries": [
+    {
+      "icon": "database",
+      "title": "SQL Integrity Validation",
+      "summary": "Cross-check admissions and results records before publication windows.",
+      "stack": ["MySQL", "PostgreSQL", "SQLite"],
+      "path": "scripts/sql/",
+      "highlights": [
+        "Missing and out-of-range score detection",
+        "Duplicate student-id checks",
+        "Required field and status validation"
+      ]
+    },
+    {
+      "icon": "cpu",
+      "title": "Python ETL Pipelines",
+      "summary": "Config-driven extract, transform, validate, and load flow for CSV-based academic datasets.",
+      "stack": ["Python", "CSV", "JSON config"],
+      "path": "scripts/python/etl/",
+      "highlights": [
+        "Date normalization routines",
+        "Validation-first processing",
+        "Report-ready structured outputs"
+      ]
+    },
+    {
+      "icon": "grid",
+      "title": "Google Sheets Validation",
+      "summary": "Apps Script templates to enforce sheet-level data rules and export sanitized datasets.",
+      "stack": ["Apps Script", "Google Sheets"],
+      "path": "google-sheets/apps-script/",
+      "highlights": [
+        "Column-aware validation rules",
+        "Automated cleanup safeguards",
+        "CSV export for downstream ETL"
+      ]
+    },
+    {
+      "icon": "bar-chart-2",
+      "title": "Power Query Quality Templates",
+      "summary": "Reusable M-query patterns for data-quality flags and reporting-stage transformations.",
+      "stack": ["Power BI", "Power Query (M)"],
+      "path": "powerbi/powerquery/",
+      "highlights": [
+        "Typed schema enforcement",
+        "DQ flag calculations",
+        "Staging model for dashboard feeds"
+      ]
+    },
+    {
+      "icon": "clock",
+      "title": "Workflow Scheduling",
+      "summary": "Daily run shell workflows for repeatable execution, logging, and reporting handoff.",
+      "stack": ["Bash", "Cron", "Log files"],
+      "path": "scripts/workflow/",
+      "highlights": [
+        "Timestamped run logs",
+        "Step-by-step orchestration",
+        "Production-friendly execution pattern"
+      ]
+    }
+  ]
+}
