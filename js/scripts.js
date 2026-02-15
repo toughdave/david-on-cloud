@@ -91,6 +91,10 @@ const loadProjects = () => {
                                 <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="p-8 flex flex-col flex-1 justify-start">
+                                <div class="project-times-row project-times-row--top">
+                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}"></time>` : ''}
+                                </div>
                                 <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
                                 <p class="text-gray-600 card-body" id="${uniqueId}">
                                     ${summary}
@@ -108,10 +112,6 @@ const loadProjects = () => {
                                             View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                                         </a>
                                     </div>
-                                    <div class="project-times-row">
-                                        <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                    </div>
-                                    ${project.modified ? `<time data-modified="${project.modified}" datetime="${project.modified}" style="display:none;" aria-hidden="true"></time>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -156,6 +156,10 @@ const loadProjects = () => {
                             ${publishedStickerC}
                             <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async">
                             <div class="project-card-content">
+                                <div class="project-times-row project-times-row--top">
+                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}"></time>` : ''}
+                                </div>
                                 <h3>${project.title}</h3>
                                 <p>${summary}</p>
                                 <div class="project-tags">

@@ -6340,35 +6340,25 @@ body.fun-mode .project-list-card:hover {
 }
 
 .project-time-updated {
-    display: none !important;
+    font-weight: 500;
+    color: #16a34a;
 }
 
 .project-times-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.15rem 0.6rem;
+    gap: 0.2rem 0.6rem;
     align-items: center;
     padding: 0;
     border-top: none;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
-}
-
-.project-card:hover .project-times-row,
-.project-list-card:hover .project-times-row,
-#projectsList > div:hover .project-times-row {
-    max-height: 2.5rem;
+    margin: 0 0 0.65rem;
     opacity: 1;
-    padding: 0.3rem 0 0;
+    max-height: none;
+    overflow: visible;
 }
 
-.project-card:hover .project-time-posted,
-.project-list-card:hover .project-time-posted,
-#projectsList > div:hover .project-time-posted {
-    color: #818cf8;
-    filter: brightness(1.2);
+.project-times-row--top {
+    align-self: flex-start;
 }
 
 [data-theme="dark"] .project-times-row {
