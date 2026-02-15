@@ -5552,7 +5552,7 @@ body.project-modal-open .fun-lab-panel {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: 1.4rem 1.8rem;
     padding: 2.8rem 2.8rem 1.6rem;
-    align-items: center;
+    align-items: start;
     transition: grid-template-columns 0.4s ease, gap 0.4s ease, padding 0.4s ease;
 }
 
@@ -5587,7 +5587,7 @@ body.project-modal-open .fun-lab-panel {
 }
 
 .project-modal-header.is-scrolled .project-modal-dates {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.45rem;
 }
 
 .project-modal-header.is-scrolled .project-modal-date {
@@ -5634,6 +5634,13 @@ body.project-modal-open .fun-lab-panel {
     object-fit: cover;
 }
 
+.project-modal-intro {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .project-modal-date {
     font-size: 0.62rem;
     text-transform: uppercase;
@@ -5651,7 +5658,7 @@ body.project-modal-open .fun-lab-panel {
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.8rem;
     align-items: center;
 }
 
@@ -5666,7 +5673,7 @@ body.project-modal-open .fun-lab-panel {
 .project-modal-intro h3 {
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.6rem;
+    margin: 0 0 0.6rem;
     color: #111827;
     padding-left: 0.5rem;
     transition: font-size 0.35s ease, margin 0.35s ease, padding 0.35s ease;
@@ -5963,7 +5970,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-dates {
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.55rem;
     }
 
     .project-modal-date {
@@ -6123,7 +6130,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-header.is-scrolled .project-modal-dates {
-        margin-bottom: 0.15rem;
+        margin-bottom: 0.35rem;
     }
 
     .project-modal-header.is-scrolled .project-modal-date {
