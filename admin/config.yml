@@ -150,10 +150,10 @@ collections:
   # ──────────────────────────────────────────────
   # 4B. SCRIPTS LIBRARY
   # ──────────────────────────────────────────────
-  - name: "script_library"
-    label: "4b · Scripts Library"
+  - name: "scripts_library"
+    label: "4.5 · Scripts Library"
     files:
-      - name: "script_library_content"
+      - name: "scripts_library_content"
         label: "Scripts Library Section"
         file: "js/script-library.json"
         fields:
@@ -179,21 +179,21 @@ collections:
             name: "entries"
             widget: "list"
             fields:
-              - {label: "Category", name: "category", widget: "select", options: ["sql", "python", "sheets", "bi", "workflow", "other"]}
+              - {label: "Category", name: "category", widget: "string", hint: "Use: sql, python, sheets, bi, workflow, or other"}
               - {label: "Icon", name: "icon", widget: "string", hint: "Feather icon name (database, cpu, grid, bar-chart-2, clock)"}
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Summary", name: "summary", widget: "text"}
               - label: "Tech Stack"
                 name: "stack"
                 widget: "list"
-                field: {label: "Stack Item", name: "stackItem", widget: "string"}
+                field: {label: "Stack Item", name: "item", widget: "string"}
               - {label: "Library Path", name: "path", widget: "string"}
               - {label: "Repository URL", name: "repoUrl", widget: "string", required: false}
               - {label: "Sample URL", name: "sampleUrl", widget: "string", required: false}
               - label: "Highlights"
                 name: "highlights"
                 widget: "list"
-                field: {label: "Highlight", name: "highlight", widget: "string"}
+                field: {label: "Highlight", name: "item", widget: "string"}
 
   # ──────────────────────────────────────────────
   # 5. WORK EXPERIENCE

@@ -5973,10 +5973,12 @@ body.project-modal-open .fun-lab-panel {
     letter-spacing: 0.12em;
     color: #1f2937;
     position: sticky;
-    top: 0;
+    top: -0.15rem;
     z-index: 2;
     background: #ffffff;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.75rem;
+    padding: 0.45rem 0 0.5rem;
+    line-height: 1.25;
 }
 
 .project-modal-details p {
@@ -6304,9 +6306,9 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-section h4 {
         font-size: 0.78rem;
         position: sticky;
-        top: 0;
+        top: -0.2rem;
         z-index: 2;
-        padding: 0.6rem 0 0.4rem 0.6rem;
+        padding: 0.72rem 0 0.42rem 0.6rem;
         margin: 0;
     }
 
