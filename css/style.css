@@ -5625,7 +5625,7 @@ body.project-modal-open .fun-lab-panel {
     border: 1px solid rgba(148, 163, 184, 0.25);
     position: relative;
     top: 0;
-    transition: width 0.4s ease, border-radius 0.4s ease, transform 0.4s ease, top 0.4s ease;
+    transition: width 0.4s ease, border-radius 0.4s ease, transform 0.4s ease;
 }
 
 .project-modal-image img {

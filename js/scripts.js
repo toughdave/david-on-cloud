@@ -2322,32 +2322,6 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
-        // Align image vertical center with the project title so dates can stay pinned above.
-        // Uses position:relative + top (not transform) because the mobile CSS
-        // animation with forwards fill overrides inline transform values.
-        const alignImageToTitle = (instant) => {
-            const intro = overlay.querySelector('.project-modal-intro');
-            const title = overlay.querySelector('#project-modal-title');
-            const image = overlay.querySelector('.project-modal-image');
-            const anchor = title || intro;
-            if (!anchor || !image) return;
-            // Subtract current top offset to get the base (un-shifted) image center
-            const currentTop = parseFloat(image.style.top) || 0;
-            const anchorRect = anchor.getBoundingClientRect();
-            const imageRect = image.getBoundingClientRect();
-            const anchorCenterY = anchorRect.top + anchorRect.height / 2;
-            const baseImageCenterY = (imageRect.top - currentTop) + imageRect.height / 2;
-            const offset = Math.max(0, anchorCenterY - baseImageCenterY);
-            if (instant) {
-                image.style.transition = 'none';
-                image.style.top = `${offset}px`;
-                image.offsetHeight; // force reflow
-                image.style.transition = '';
-            } else {
-                image.style.top = `${offset}px`;
-            }
-        };
-
         // Scroll listener: toggle compact header with hysteresis to prevent jitter
         const modalBody = overlay.querySelector('.project-modal-body');
         const modalHeader = overlay.querySelector('.project-modal-header');
@@ -2363,17 +2337,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (modalBody && modalHeader) {
-            // Re-align image after header transition completes (not mid-animation)
-            let alignPending = false;
-            modalHeader.addEventListener('transitionend', (e) => {
-                if (e.target !== modalHeader || alignPending) return;
-                alignPending = true;
-                requestAnimationFrame(() => {
-                    alignImageToTitle();
-                    alignPending = false;
-                });
-            });
-
             modalBody.onscroll = () => {
                 if (!headerShrinkEnabled) return;
                 const st = modalBody.scrollTop;
@@ -2418,11 +2381,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (sourceCard) sourceCard.classList.remove('project-card--morphing');
         }, morphDuration);
 
-        // Align image after ALL animations complete (morph + CSS entrance animations)
-        // Mobile entrance animations: image 0.15s delay+0.5s=650ms, intro 0.25s+0.5s=750ms
+        // Measure header after open animations complete before enabling shrink-on-scroll.
         const alignDelay = prefersReducedMotion ? 50 : Math.max(morphDuration + 30, 800);
         setTimeout(() => {
-            alignImageToTitle(prefersReducedMotion);
             headerShrinkEnabled = checkHeaderShrinkEligibility();
         }, alignDelay);
     };
