@@ -5,7 +5,8 @@
         "Consolidated fragmented results data from admissions portals, examination records, and departmental grade submissions into a unified reporting layer, applying SQL-driven validation checks to identify discrepancies such as missing scores, duplicate entries, and eligibility mismatches before official publication.",
         "Designed interactive KPI panels in Power BI with drill-down capabilities across student cohorts, academic sessions, and departments, enabling leadership to monitor processing timelines, flag anomaly rates in real-time, and compare performance trends across admission intakes.",
         "Developed automated data quality flags using conditional logic and formula-driven validation in Excel and Google Sheets, reducing the manual effort required to identify outliers and formatting inconsistencies across thousands of records each cycle.",
-        "Delivered export-ready dashboards and audit-trail reports formatted for leadership reviews, accreditation audits, and departmental briefings, directly supporting executive planning decisions and resource allocation across academic programs."
+        "Delivered export-ready dashboards and audit-trail reports formatted for leadership reviews, accreditation audits, and departmental briefings, directly supporting executive planning decisions and resource allocation across academic programs.",
+        "The same validation flow is now captured in reusable GitHub assets (for example `scripts/sql/mysql/mysql_validate_results_integrity.sql`, `scripts/sql/postgres/postgres_validate_results_integrity.sql`, and `powerbi/powerquery/powerquery_data_quality_template.pq`) so each dashboard refresh starts from the same repeatable quality checks."
       ],
       "impact": [
         {
@@ -34,8 +35,11 @@
         "Excel",
         "SQL",
         "Data Validation",
-        "Reporting"
+        "Reporting",
+        "Scripted QA"
       ],
+      "link": "https://github.com/toughdave/scripting/tree/main/scripts/sql",
+      "linkText": "View SQL Validation Scripts",
       "id": "academic-results-analytics-dashboard",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -46,7 +50,8 @@
         "Designed and implemented spreadsheet-based validation workflows using advanced lookup formulas, deduplication rules, and eligibility logic to systematically cross-reference applicant submissions against institutional admission criteria, flagging inconsistencies in identity documents, qualification records, and program eligibility.",
         "Leveraged the institution's Gradent data processing platform alongside Excel and Google Sheets to extract audit exports, reconcile discrepancies between portal submissions and backend records, and deliver clean, verified rosters to admissions committees for final sign-off.",
         "Built variance summary reports and sign-off documentation packets that provided department heads with clear visibility into correction actions taken, residual error rates, and data quality metrics, supporting transparent and accountable admissions decisions.",
-        "Established repeatable audit procedures that standardized how incoming applicant data was reviewed across multiple intake cycles, reducing manual re-checking and improving turnaround time for final admissions roster publication."
+        "Established repeatable audit procedures that standardized how incoming applicant data was reviewed across multiple intake cycles, reducing manual re-checking and improving turnaround time for final admissions roster publication.",
+        "Those admission checks are now represented in reusable scripts (`scripts/python/data_quality/config_rules_validator.py` and `data/sample/validation_rules.json`) so required fields, score limits, and conditional status rules can be re-run consistently across intake windows."
       ],
       "impact": [
         {
@@ -74,8 +79,11 @@
         "Google Sheets",
         "SQL",
         "Data Validation",
-        "Admissions Audit"
+        "Admissions Audit",
+        "Rules Engine"
       ],
+      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/data_quality",
+      "linkText": "View Data Quality Scripts",
       "id": "admissions-data-quality-audit",
       "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -278,7 +286,8 @@
         "Developed Python ETL scripts to extract raw data from academic information systems and MySQL databases, applying automated cleansing routines to handle missing fields, formatting inconsistencies, and duplicate records before loading validated datasets into reporting-ready structures.",
         "Implemented quality assurance checkpoints within each pipeline stage — extraction validation, transformation rule verification, and output integrity checks — ensuring that data anomalies were caught and flagged before reports reached leadership, significantly reducing post-publication corrections.",
         "Standardized report templates and data visualizations across recurring deliverables including weekly KPI summaries, session progress updates, and variance analyses, eliminating the manual formatting and rework that previously consumed significant preparation time each reporting cycle.",
-        "Delivered scheduled, automated reporting outputs that provided university leadership with timely insights into admissions throughput, examination processing status, and results publication readiness, directly supporting planning decisions and resource allocation across departments."
+        "Delivered scheduled, automated reporting outputs that provided university leadership with timely insights into admissions throughput, examination processing status, and results publication readiness, directly supporting planning decisions and resource allocation across departments.",
+        "The production pattern from this work is mirrored in the scripting repository through `scripts/python/etl/etl_runner.py` and `scripts/workflow/schedule_daily_run.sh`, where config-driven ETL runs and timestamped logs replicate the same operational cadence used for reporting cycles."
       ],
       "impact": [
         {
@@ -307,8 +316,11 @@
         "SQL",
         "ETL Automation",
         "Reporting",
-        "Workflow Automation"
+        "Workflow Automation",
+        "Scheduled Jobs"
       ],
+      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/etl",
+      "linkText": "View ETL Runner Scripts",
       "id": "operational-reporting-automation-pipeline",
       "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "automation",
@@ -319,7 +331,8 @@
         "Mapped incoming data from admissions portals, enrollment management systems, and departmental results submissions to consistent student identifiers, systematically highlighting records with missing fields, mismatched personal information, or inconsistent enrollment status across sources.",
         "Developed correction queues and status dashboards in Excel and Google Sheets that provided departmental coordinators with clear, actionable lists of records requiring verification, enabling distributed resolution of issues without disrupting the overall processing timeline.",
         "Partnered with department leads and academic coordinators to reconcile complex eligibility cases — including transfer students, readmission candidates, and students with incomplete records — ensuring that final published rosters accurately reflected each student's academic standing.",
-        "Maintained lifecycle data integrity from initial application intake through graduation processing, applying SQL queries and formula-driven validation to ensure that records remained consistent and audit-ready across multiple academic sessions and reporting cycles."
+        "Maintained lifecycle data integrity from initial application intake through graduation processing, applying SQL queries and formula-driven validation to ensure that records remained consistent and audit-ready across multiple academic sessions and reporting cycles.",
+        "I translated this reconciliation workflow into reusable assets (`scripts/python/reconciliation/reconcile_students.py` plus `scripts/sql/templates/sql_reconciliation_diff_template.sql`) to keep source-vs-target checks, mismatch columns, and summary counts consistent across teams."
       ],
       "impact": [
         {
@@ -348,8 +361,11 @@
         "Excel",
         "Data Validation",
         "Record Management",
-        "Reconciliation"
+        "Reconciliation",
+        "Mismatch Reporting"
       ],
+      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/reconciliation",
+      "linkText": "View Reconciliation Scripts",
       "id": "student-records-reconciliation-hub",
       "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -360,7 +376,8 @@
         "Centralized examination readiness data from multiple operational streams — device inventory and compliance status, invigilation personnel assignments, venue preparation checklists, and technology setup verification — into a single unified dashboard providing real-time visibility into overall exam preparedness.",
         "Designed SLA threshold indicators and automated alerting logic to flag checkpoints at risk of breaching target deadlines, enabling operations leads to prioritize escalation actions and allocate resources to the most critical preparation gaps before each examination cycle.",
         "Produced daily SLA health snapshots shared with examination coordinators and operations leads, providing concise status summaries that highlighted items requiring immediate attention and tracking the resolution progress of previously flagged issues across 120+ tracked devices per cycle.",
-        "Improved overall SLA adherence to 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations."
+        "Improved overall SLA adherence to 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.",
+        "The same at-risk logic now exists as reusable code in `scripts/python/reporting/sla_at_risk_report.py` with `data/sample/exam_tasks.csv`, allowing the dashboard thresholds and escalation queues to be tested outside the reporting tool before each exam window."
       ],
       "impact": [
         {
@@ -389,8 +406,11 @@
         "Google Sheets",
         "SLA Tracking",
         "Operations",
-        "Reporting"
+        "Reporting",
+        "At-Risk Alerts"
       ],
+      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/reporting",
+      "linkText": "View SLA Reporting Scripts",
       "id": "exam-operations-sla-tracker",
       "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",

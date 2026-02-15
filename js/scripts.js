@@ -28,6 +28,22 @@ fetch('js/config.json?v=' + Date.now())
     })
     .catch(err => console.log('Using default config'));
 
+const MODIFIED_MATCH_TOLERANCE_MS = 60 * 1000;
+
+const parseDateValue = (value) => {
+    if (!value) return null;
+    const date = value instanceof Date ? value : new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const hasMeaningfulModification = (postedValue, modifiedValue) => {
+    const modifiedDate = parseDateValue(modifiedValue);
+    if (!modifiedDate) return false;
+    const postedDate = parseDateValue(postedValue);
+    if (!postedDate) return true;
+    return Math.abs(modifiedDate.getTime() - postedDate.getTime()) > MODIFIED_MATCH_TOLERANCE_MS;
+};
+
 // Load and render projects dynamically
 const loadProjects = () => {
     fetch('js/projects.json?v=' + Date.now())
@@ -93,7 +109,6 @@ const loadProjects = () => {
                             <div class="p-8 flex flex-col flex-1 justify-start">
                                 <div class="project-times-row project-times-row--top">
                                     <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                    ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}"></time>` : ''}
                                 </div>
                                 <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
                                 <p class="text-gray-600 card-body" id="${uniqueId}">
@@ -158,7 +173,6 @@ const loadProjects = () => {
                             <div class="project-card-content">
                                 <div class="project-times-row project-times-row--top">
                                     <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
-                                    ${project.modified ? `<time class="project-time project-time-updated" data-modified="${project.modified}" datetime="${project.modified}"></time>` : ''}
                                 </div>
                                 <h3>${project.title}</h3>
                                 <p>${summary}</p>
@@ -2063,36 +2077,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!textSpan.dataset.originalText) {
             textSpan.dataset.originalText = textSpan.textContent.trim();
         }
-        
-        // Calculate modification date text
+
         let revealText = "No modifications yet";
         const card = link.closest('.project-card') || link.closest('.project-list-card');
         if (card) {
-            const timeEl = card.querySelector('time[data-modified]');
-            const postedEl = card.querySelector('time[data-posted]');
-            if (timeEl) {
-                const dateStr = timeEl.getAttribute('data-modified') || timeEl.getAttribute('datetime');
-                if (dateStr) {
-                    try {
-                        const date = new Date(dateStr);
-                        if (!Number.isNaN(date.getTime())) {
-                            let isUnmodified = false;
-                            if (postedEl) {
-                                const postedStr = postedEl.getAttribute('data-posted') || postedEl.getAttribute('datetime');
-                                const postedDate = postedStr ? new Date(postedStr) : null;
-                                if (postedDate && !Number.isNaN(postedDate.getTime())) {
-                                    isUnmodified = Math.abs(date - postedDate) < 60000;
-                                }
-                            }
-                            revealText = isUnmodified
-                                ? 'No modifications yet'
-                                : `Modified: ${timeAgo(date)}`;
-                        }
-                    } catch (e) {}
-                }
+            const project = parseProjectPayload(card);
+            if (project && hasMeaningfulModification(project.posted, project.modified)) {
+                revealText = `Modified: ${timeAgo(project.modified)}`;
             }
         }
-        
+
         link.setAttribute('data-reveal-text', revealText);
     };
 
@@ -2216,6 +2210,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return tags.map(tag => `<span class="project-modal-tag">${tag}</span>`).join('');
     };
 
+    const syncModalDateSpacing = (modalHeader) => {
+        if (!modalHeader) return;
+        const intro = modalHeader.querySelector('.project-modal-intro');
+        const dates = intro?.querySelector('.project-modal-dates');
+        if (!intro || !dates) return;
+        const requiredSpace = Math.ceil(dates.getBoundingClientRect().height) + 8;
+        intro.style.setProperty('--modal-dates-space', `${requiredSpace}px`);
+    };
+
     const ensureProjectModal = () => {
         if (modalState.overlay) return modalState.overlay;
         const overlay = document.createElement('div');
@@ -2256,7 +2259,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = ensureProjectModal();
         const content = overlay.querySelector('.project-modal-content');
         const postedText = project.posted ? `Posted · ${timeAgo(project.posted)}` : 'Posted recently';
-        const modifiedText = project.modified ? `Updated · ${timeAgo(project.modified)}` : '';
+        const modifiedText = hasMeaningfulModification(project.posted, project.modified)
+            ? `Updated · ${timeAgo(project.modified)}`
+            : '';
         content.innerHTML = `
             <div class="project-modal-header">
                 <div class="project-modal-image">
@@ -2304,6 +2309,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!img.dataset.lightSrc) img.dataset.lightSrc = lightSrc;
             if (isDark && darkSrc) img.src = darkSrc;
         });
+
+        const modalHeader = content.querySelector('.project-modal-header');
+        syncModalDateSpacing(modalHeader);
+        requestAnimationFrame(() => syncModalDateSpacing(modalHeader));
+        const headerImage = content.querySelector('.project-modal-image img');
+        if (headerImage && !headerImage.complete) {
+            headerImage.addEventListener('load', () => syncModalDateSpacing(modalHeader), { once: true });
+        }
     };
 
     const openProjectModal = (project, trigger) => {
@@ -2340,10 +2353,16 @@ document.addEventListener('DOMContentLoaded', function() {
             modalBody.onscroll = () => {
                 if (!headerShrinkEnabled) return;
                 const st = modalBody.scrollTop;
+                let headerStateChanged = false;
                 if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');
+                    headerStateChanged = true;
                 } else if (st <= 15 && modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.remove('is-scrolled');
+                    headerStateChanged = true;
+                }
+                if (headerStateChanged) {
+                    requestAnimationFrame(() => syncModalDateSpacing(modalHeader));
                 }
             };
         }
@@ -2360,6 +2379,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.classList.add('project-modal-open');
         overlay.classList.add('is-active');
         overlay.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => syncModalDateSpacing(modalHeader));
 
         // Crossfade: source card fades out, modal fades in + morphs to center
         requestAnimationFrame(() => {
@@ -2385,6 +2405,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const alignDelay = prefersReducedMotion ? 50 : Math.max(morphDuration + 30, 800);
         setTimeout(() => {
             headerShrinkEnabled = checkHeaderShrinkEligibility();
+            syncModalDateSpacing(modalHeader);
         }, alignDelay);
     };
 
@@ -2453,6 +2474,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.closeProjectModal = closeProjectModal;
+
+    window.addEventListener('resize', () => {
+        if (!modalState.overlay || !modalState.overlay.classList.contains('is-active')) return;
+        const openHeader = modalState.overlay.querySelector('.project-modal-header');
+        syncModalDateSpacing(openHeader);
+    });
 
     const setupProjectCardReveal = () => {
         ensureProjectModal();

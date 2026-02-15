@@ -6150,7 +6150,7 @@ body.project-modal-open .fun-lab-panel {
         position: relative;
         align-self: stretch;
         justify-content: center;
-        padding-top: 1.8rem;
+        padding-top: var(--modal-dates-space, 1.8rem);
     }
 
     .project-modal-dates {
@@ -6162,7 +6162,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-header.is-scrolled .project-modal-intro {
-        padding-top: 1.35rem;
+        padding-top: var(--modal-dates-space, 1.35rem);
     }
 
     .project-modal-header.is-scrolled .project-modal-dates {
@@ -6200,7 +6200,7 @@ body.project-modal-open .fun-lab-panel {
         align-self: stretch;
         justify-content: center;
         position: relative;
-        padding-top: 1.05rem;
+        padding-top: var(--modal-dates-space, 1.05rem);
     }
 
     @keyframes modal-intro-enter {
@@ -6344,7 +6344,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-header.is-scrolled .project-modal-intro {
-        padding-top: 0.9rem;
+        padding-top: var(--modal-dates-space, 0.9rem);
     }
 
     .project-modal-header.is-scrolled .project-modal-image {
@@ -6617,6 +6617,27 @@ body.fun-mode .project-list-card:hover {
 
 .project-times-row--top {
     align-self: flex-start;
+}
+
+@media (min-width: 768px) and (hover: hover) {
+    .project-card .project-times-row--top {
+        opacity: 0;
+        transform: translateY(-8px);
+        max-height: 0;
+        margin: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: opacity 0.26s ease, transform 0.26s ease, max-height 0.26s ease, margin 0.26s ease;
+    }
+
+    .project-card:hover .project-times-row--top,
+    .project-card:focus-within .project-times-row--top {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 2rem;
+        margin: 0 0 0.65rem;
+        pointer-events: auto;
+    }
 }
 
 [data-theme="dark"] .project-times-row {
