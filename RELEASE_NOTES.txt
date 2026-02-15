@@ -1,3 +1,7 @@
+## v4.1.40 — 2026-02-15 02:09:34
+- ✅ Fix modal date spacing and align project cards with meaningful update state
+- ✅ Bumped version to v4.1.40
+
 ## v4.1.39 — 2026-02-15 00:59:30
 - ✅ Restore modal date stack spacing, tighten links, and recenter mobile modal header
 - ✅ Bumped version to v4.1.39
