@@ -1,3 +1,7 @@
+## v4.1.37 — 2026-02-15 00:10:24
+- ✅ Add scripts library section and tighten modal header link spacing
+- ✅ Bumped version to v4.1.37
+
 ## v4.1.36 — 2026-02-14 23:50:42
 - ✅ Stop post-open modal image repositioning
 - ✅ Bumped version to v4.1.36
