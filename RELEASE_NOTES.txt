@@ -1,3 +1,7 @@
+## v4.1.38 — 2026-02-15 00:27:51
+- ✅ Refine modal spacing and add script library filters/actions
+- ✅ Bumped version to v4.1.38
+
 ## v4.1.37 — 2026-02-15 00:10:24
 - ✅ Add scripts library section and tighten modal header link spacing
 - ✅ Bumped version to v4.1.37
