@@ -1,3 +1,7 @@
+## v4.1.39 — 2026-02-15 00:59:30
+- ✅ Restore modal date stack spacing, tighten links, and recenter mobile modal header
+- ✅ Bumped version to v4.1.39
+
 ## v4.1.38 — 2026-02-15 00:27:51
 - ✅ Refine modal spacing and add script library filters/actions
 - ✅ Bumped version to v4.1.38
