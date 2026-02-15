@@ -2215,7 +2215,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const intro = modalHeader.querySelector('.project-modal-intro');
         const dates = intro?.querySelector('.project-modal-dates');
         if (!intro || !dates) return;
-        const requiredSpace = Math.ceil(dates.getBoundingClientRect().height) + 8;
+        const dateHeight = Math.ceil(dates.getBoundingClientRect().height);
+        if (dateHeight <= 0) return;
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
+        const baseOffset = isMobile ? 10 : 8;
+        const fallbackSpace = isMobile
+            ? (modalHeader.classList.contains('is-scrolled') ? 40 : 48)
+            : (modalHeader.classList.contains('is-scrolled') ? 22 : 29);
+        const requiredSpace = Math.max(dateHeight + baseOffset, fallbackSpace);
+        const currentSpace = parseFloat(intro.style.getPropertyValue('--modal-dates-space'));
+        if (Number.isFinite(currentSpace) && Math.abs(currentSpace - requiredSpace) < 1) return;
         intro.style.setProperty('--modal-dates-space', `${requiredSpace}px`);
     };
 
@@ -2312,11 +2321,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const modalHeader = content.querySelector('.project-modal-header');
         syncModalDateSpacing(modalHeader);
-        requestAnimationFrame(() => syncModalDateSpacing(modalHeader));
-        const headerImage = content.querySelector('.project-modal-image img');
-        if (headerImage && !headerImage.complete) {
-            headerImage.addEventListener('load', () => syncModalDateSpacing(modalHeader), { once: true });
-        }
     };
 
     const openProjectModal = (project, trigger) => {
@@ -2379,7 +2383,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.classList.add('project-modal-open');
         overlay.classList.add('is-active');
         overlay.setAttribute('aria-hidden', 'false');
-        requestAnimationFrame(() => syncModalDateSpacing(modalHeader));
 
         // Crossfade: source card fades out, modal fades in + morphs to center
         requestAnimationFrame(() => {
@@ -2405,7 +2408,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const alignDelay = prefersReducedMotion ? 50 : Math.max(morphDuration + 30, 800);
         setTimeout(() => {
             headerShrinkEnabled = checkHeaderShrinkEligibility();
-            syncModalDateSpacing(modalHeader);
         }, alignDelay);
     };
 

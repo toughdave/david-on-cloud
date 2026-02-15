@@ -5809,6 +5809,10 @@ body.project-modal-open .fun-lab-panel {
     font-size: 0.55rem;
 }
 
+.project-modal-header.is-scrolled .project-modal-date--updated {
+    font-size: 0.48rem;
+}
+
 .project-modal-header.is-scrolled > .project-modal-summary {
     max-height: 0;
     opacity: 0;
@@ -5866,6 +5870,7 @@ body.project-modal-open .fun-lab-panel {
     border-radius: 4px;
     font-weight: 500;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .project-modal-dates {
@@ -6149,7 +6154,7 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-intro {
         position: relative;
         align-self: stretch;
-        justify-content: center;
+        justify-content: flex-start;
         padding-top: var(--modal-dates-space, 1.8rem);
     }
 
@@ -6198,9 +6203,9 @@ body.project-modal-open .fun-lab-panel {
         transform: translateX(12px);
         animation: modal-intro-enter 0.5s 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         align-self: stretch;
-        justify-content: center;
+        justify-content: flex-start;
         position: relative;
-        padding-top: var(--modal-dates-space, 1.05rem);
+        padding-top: var(--modal-dates-space, 3rem);
     }
 
     @keyframes modal-intro-enter {
@@ -6344,7 +6349,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-header.is-scrolled .project-modal-intro {
-        padding-top: var(--modal-dates-space, 0.9rem);
+        padding-top: var(--modal-dates-space, 2.45rem);
     }
 
     .project-modal-header.is-scrolled .project-modal-image {
@@ -6386,6 +6391,10 @@ body.project-modal-open .fun-lab-panel {
 
     .project-modal-header.is-scrolled .project-modal-date {
         font-size: 0.55rem;
+    }
+
+    .project-modal-header.is-scrolled .project-modal-date--updated {
+        font-size: 0.46rem;
     }
 
     /* Modal top respects navbar, equal bottom spacing */
