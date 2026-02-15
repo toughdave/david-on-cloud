@@ -1,3 +1,7 @@
+## v4.1.42 — 2026-02-15 03:25:44
+- ✅ Stabilize modal date/title behavior and expose Scripts Library in CMS
+- ✅ Bumped version to v4.1.42
+
 ## v4.1.41 — 2026-02-15 02:39:58
 - ✅ Hide project posted time row on desktop cards
 - ✅ Bumped version to v4.1.41
