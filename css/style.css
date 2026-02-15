@@ -5930,7 +5930,7 @@ body.project-modal-open .fun-lab-panel {
     scrollbar-color: rgba(100, 116, 139, 0.5) rgba(30, 41, 59, 0.5);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .project-modal-intro {
         position: relative;
         align-self: stretch;
@@ -5955,7 +5955,7 @@ body.project-modal-open .fun-lab-panel {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     /* Compact side-by-side header: image left, intro right */
     .project-modal-header {
         grid-template-columns: 100px minmax(0, 1fr);
