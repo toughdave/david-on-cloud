@@ -1,3 +1,7 @@
+## v4.1.41 — 2026-02-15 02:39:58
+- ✅ Hide project posted time row on desktop cards
+- ✅ Bumped version to v4.1.41
+
 ## v4.1.40 — 2026-02-15 02:09:34
 - ✅ Fix modal date spacing and align project cards with meaningful update state
 - ✅ Bumped version to v4.1.40
