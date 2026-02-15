@@ -1,3 +1,7 @@
+## v4.1.43 — 2026-02-15 11:58:23
+- ✅ Expose scripts library collection clearly and adjust modal section heading offset
+- ✅ Bumped version to v4.1.43
+
 ## v4.1.42 — 2026-02-15 03:25:44
 - ✅ Stabilize modal date/title behavior and expose Scripts Library in CMS
 - ✅ Bumped version to v4.1.42
