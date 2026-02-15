@@ -6619,24 +6619,9 @@ body.fun-mode .project-list-card:hover {
     align-self: flex-start;
 }
 
-@media (min-width: 768px) and (hover: hover) {
+@media (min-width: 768px) {
     .project-card .project-times-row--top {
-        opacity: 0;
-        transform: translateY(-8px);
-        max-height: 0;
-        margin: 0;
-        overflow: hidden;
-        pointer-events: none;
-        transition: opacity 0.26s ease, transform 0.26s ease, max-height 0.26s ease, margin 0.26s ease;
-    }
-
-    .project-card:hover .project-times-row--top,
-    .project-card:focus-within .project-times-row--top {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 2rem;
-        margin: 0 0 0.65rem;
-        pointer-events: auto;
+        display: none;
     }
 }
 
