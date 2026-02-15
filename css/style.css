@@ -5930,6 +5930,31 @@ body.project-modal-open .fun-lab-panel {
     scrollbar-color: rgba(100, 116, 139, 0.5) rgba(30, 41, 59, 0.5);
 }
 
+@media (min-width: 769px) {
+    .project-modal-intro {
+        position: relative;
+        align-self: stretch;
+        justify-content: center;
+        padding-top: 1.8rem;
+    }
+
+    .project-modal-dates {
+        position: absolute;
+        top: 0;
+        left: 0.5rem;
+        right: 0;
+        margin: 0;
+    }
+
+    .project-modal-header.is-scrolled .project-modal-intro {
+        padding-top: 1.35rem;
+    }
+
+    .project-modal-header.is-scrolled .project-modal-dates {
+        margin: 0;
+    }
+}
+
 @media (max-width: 768px) {
     /* Compact side-by-side header: image left, intro right */
     .project-modal-header {

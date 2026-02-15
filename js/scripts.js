@@ -2322,20 +2322,22 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
-        // Align image vertical center with intro container (dates + title)
+        // Align image vertical center with the project title so dates can stay pinned above.
         // Uses position:relative + top (not transform) because the mobile CSS
         // animation with forwards fill overrides inline transform values.
         const alignImageToTitle = (instant) => {
             const intro = overlay.querySelector('.project-modal-intro');
+            const title = overlay.querySelector('#project-modal-title');
             const image = overlay.querySelector('.project-modal-image');
-            if (!intro || !image) return;
+            const anchor = title || intro;
+            if (!anchor || !image) return;
             // Subtract current top offset to get the base (un-shifted) image center
             const currentTop = parseFloat(image.style.top) || 0;
-            const introRect = intro.getBoundingClientRect();
+            const anchorRect = anchor.getBoundingClientRect();
             const imageRect = image.getBoundingClientRect();
-            const introCenterY = introRect.top + introRect.height / 2;
+            const anchorCenterY = anchorRect.top + anchorRect.height / 2;
             const baseImageCenterY = (imageRect.top - currentTop) + imageRect.height / 2;
-            const offset = Math.max(0, introCenterY - baseImageCenterY);
+            const offset = Math.max(0, anchorCenterY - baseImageCenterY);
             if (instant) {
                 image.style.transition = 'none';
                 image.style.top = `${offset}px`;
