@@ -1,3 +1,8 @@
+## v4.1.44 — 2026-02-15 23:46:34
+- ✅ Simplify modal alignment JS: make sync functions no-ops since CSS grid handles centering
+- ✅ Refine modal alignment: fix mobile scrolled left alignment and tighten image/title spacing
+- ✅ Bumped version to v4.1.44
+
 ## v4.1.43 — 2026-02-15 11:58:23
 - ✅ Expose scripts library collection clearly and adjust modal section heading offset
 - ✅ Bumped version to v4.1.43
