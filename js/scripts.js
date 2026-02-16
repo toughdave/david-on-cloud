@@ -2210,23 +2210,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return tags.map(tag => `<span class="project-modal-tag">${tag}</span>`).join('');
     };
 
-    const syncModalDateSpacing = (modalHeader) => {
-        if (!modalHeader) return;
-        const intro = modalHeader.querySelector('.project-modal-intro');
-        const dates = intro?.querySelector('.project-modal-dates');
-        if (!intro || !dates) return;
-        const dateHeight = Math.ceil(dates.getBoundingClientRect().height);
-        if (dateHeight <= 0) return;
-        const isMobile = window.matchMedia('(max-width: 767px)').matches;
-        const baseOffset = isMobile ? 10 : 8;
-        const fallbackSpace = isMobile
-            ? (modalHeader.classList.contains('is-scrolled') ? 40 : 48)
-            : (modalHeader.classList.contains('is-scrolled') ? 22 : 29);
-        const requiredSpace = Math.max(dateHeight + baseOffset, fallbackSpace);
-        const currentSpace = parseFloat(intro.style.getPropertyValue('--modal-dates-space'));
-        if (Number.isFinite(currentSpace) && Math.abs(currentSpace - requiredSpace) < 1) return;
-        intro.style.setProperty('--modal-dates-space', `${requiredSpace}px`);
-    };
+    const syncModalHeaderAlignment = () => {};
+
+    const syncModalDateSpacing = () => {};
 
     const ensureProjectModal = () => {
         if (modalState.overlay) return modalState.overlay;
@@ -2273,15 +2259,17 @@ document.addEventListener('DOMContentLoaded', function() {
             : '';
         content.innerHTML = `
             <div class="project-modal-header">
-                <div class="project-modal-image">
-                    <img src="${project.image || ''}" alt="${project.title || 'Project image'}" loading="lazy" decoding="async">
+                <div class="project-modal-dates">
+                    <p class="project-modal-date">${postedText}</p>
+                    ${modifiedText ? `<p class="project-modal-date project-modal-date--updated">${modifiedText}</p>` : ''}
                 </div>
-                <div class="project-modal-intro">
-                    <div class="project-modal-dates">
-                        <p class="project-modal-date">${postedText}</p>
-                        ${modifiedText ? `<p class="project-modal-date project-modal-date--updated">${modifiedText}</p>` : ''}
+                <div class="project-modal-hero">
+                    <div class="project-modal-image">
+                        <img src="${project.image || ''}" alt="${project.title || 'Project image'}" loading="lazy" decoding="async">
                     </div>
-                    <h3 id="project-modal-title">${project.title || 'Project details'}</h3>
+                    <div class="project-modal-intro">
+                        <h3 id="project-modal-title">${project.title || 'Project details'}</h3>
+                    </div>
                 </div>
                 <p class="project-modal-summary">${project.summary || ''}</p>
                 <div class="project-modal-tags">${buildTags(project.tags)}</div>
