@@ -6554,7 +6554,7 @@ body.project-modal-open .fun-lab-panel {
     }
 
     .project-modal-impact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     /* Scrolled state — header shrinks, summary/tags fade, links stay small */
@@ -6621,6 +6621,12 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-card {
         max-height: calc(100vh - 7rem);
         max-height: calc(100dvh - 7rem);
+    }
+}
+
+@media (max-width: 639px) {
+    .project-modal-impact-grid {
+        grid-template-columns: 1fr;
     }
 }
 
