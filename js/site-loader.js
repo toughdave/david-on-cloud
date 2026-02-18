@@ -247,8 +247,18 @@
 
     function getNavItemHref(item, isProjectsPage) {
         if (!item) return '#';
-        if (isProjectsPage && item.projectsHref) return item.projectsHref;
-        return item.indexHref || item.projectsHref || '#';
+        const indexHref = typeof item.indexHref === 'string' ? item.indexHref.trim() : '';
+        const projectsHref = typeof item.projectsHref === 'string' ? item.projectsHref.trim() : '';
+
+        if (isProjectsPage) {
+            const projectsTarget = projectsHref || indexHref;
+            if (projectsTarget.startsWith('#')) {
+                return `index.html${projectsTarget}`;
+            }
+            return projectsTarget || '#';
+        }
+
+        return indexHref || projectsHref || '#';
     }
 
     function buildNavigationCatalog(settings) {
@@ -363,6 +373,30 @@
             } else {
                 child.style.display = 'none';
             }
+        });
+    }
+
+    function getFixedNavOffset() {
+        const nav = document.querySelector('nav[aria-label="Main navigation"]');
+        if (!nav) return 0;
+        const height = nav.getBoundingClientRect().height;
+        return Number.isFinite(height) ? height + 12 : 0;
+    }
+
+    function realignHashTargetForFixedNav() {
+        const hash = window.location.hash || '';
+        if (!hash || hash === '#') return;
+
+        const targetId = decodeURIComponent(hash.slice(1));
+        if (!targetId) return;
+
+        const target = document.getElementById(targetId);
+        if (!target || target.getAttribute('data-section-visible') === 'false') return;
+
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - getFixedNavOffset();
+        window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'auto'
         });
     }
 
@@ -1187,6 +1221,13 @@
 
         if (typeof feather !== 'undefined') feather.replace();
         if (typeof AOS !== 'undefined') setTimeout(() => AOS.refresh(), 150);
+
+        if (window.location.hash) {
+            requestAnimationFrame(() => {
+                realignHashTargetForFixedNav();
+                window.setTimeout(realignHashTargetForFixedNav, 180);
+            });
+        }
     }
 
     if (document.readyState === 'loading') {

@@ -2330,6 +2330,20 @@ document.addEventListener('DOMContentLoaded', function() {
             .replace(/\bCurrent Implementation:/g, '<strong>Current Implementation:</strong>');
     };
 
+    const splitProjectDetailParagraphs = (detail) => {
+        const raw = String(detail || '').trim();
+        if (!raw) return [];
+
+        const marker = /\bCurrent Implementation:/i;
+        const match = marker.exec(raw);
+        if (!match) return [raw];
+
+        const workContextPart = raw.slice(0, match.index).trim();
+        const currentImplementationPart = raw.slice(match.index).trim();
+
+        return [workContextPart, currentImplementationPart].filter(Boolean);
+    };
+
     const buildImpactCards = (impact = []) => {
         if (!impact.length) return '';
         return impact.map(item => `
@@ -2359,7 +2373,14 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         let html = '';
         details.forEach((detail, i) => {
-            html += `<p>${formatProjectDetailText(detail)}</p>`;
+            const paragraphs = splitProjectDetailParagraphs(detail);
+            if (!paragraphs.length) {
+                html += `<p>${formatProjectDetailText(detail)}</p>`;
+            } else {
+                paragraphs.forEach((paragraph) => {
+                    html += `<p>${formatProjectDetailText(paragraph)}</p>`;
+                });
+            }
             if (imagesByIndex[i]) html += imagesByIndex[i].map(buildImg).join('');
         });
         return html;
