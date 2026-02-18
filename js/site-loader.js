@@ -56,6 +56,7 @@
 
     const DEFAULT_PRIMARY_NAV_ORDER = ['hero', 'about', 'experience', 'projects'];
     const DEFAULT_SECONDARY_NAV_ORDER = ['skills', 'toolsPlatforms', 'scriptLibrary', 'process', 'testimonials'];
+    const SCROLL_RESTORE_STORAGE_KEY = 'site-scroll-positions-v1';
 
     const BUILTIN_NAV_ITEMS = {
         hero: {
@@ -383,6 +384,72 @@
         return Number.isFinite(height) ? height + 12 : 0;
     }
 
+    function getNavigationType() {
+        if (typeof performance === 'undefined' || typeof performance.getEntriesByType !== 'function') {
+            return '';
+        }
+        const entry = performance.getEntriesByType('navigation')[0];
+        return entry && typeof entry.type === 'string' ? entry.type : '';
+    }
+
+    function getScrollRestorePageKey() {
+        const path = window.location.pathname || '/';
+        const query = window.location.search || '';
+        return `${path}${query}`;
+    }
+
+    function readScrollRestoreMap() {
+        try {
+            const raw = sessionStorage.getItem(SCROLL_RESTORE_STORAGE_KEY);
+            if (!raw) return {};
+            const parsed = JSON.parse(raw);
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (_) {
+            return {};
+        }
+    }
+
+    function writeScrollRestoreMap(store) {
+        try {
+            sessionStorage.setItem(SCROLL_RESTORE_STORAGE_KEY, JSON.stringify(store));
+        } catch (_) {
+            // Ignore storage quota/privacy-mode failures.
+        }
+    }
+
+    function saveCurrentScrollPosition() {
+        const pageKey = getScrollRestorePageKey();
+        if (!pageKey) return;
+        const top = Math.max(0, Math.round(window.scrollY || window.pageYOffset || 0));
+        const store = readScrollRestoreMap();
+        store[pageKey] = top;
+        writeScrollRestoreMap(store);
+    }
+
+    function shouldRestoreSavedScrollPosition() {
+        if (window.location.hash) return false;
+        const navigationType = getNavigationType();
+        return navigationType === 'reload' || navigationType === 'back_forward';
+    }
+
+    function getSavedScrollPosition() {
+        const pageKey = getScrollRestorePageKey();
+        if (!pageKey) return null;
+        const store = readScrollRestoreMap();
+        const value = store[pageKey];
+        return Number.isFinite(value) ? value : null;
+    }
+
+    function scheduleSavedScrollRestore(top) {
+        if (!Number.isFinite(top)) return;
+        const attempts = [0, 120, 300, 650];
+        attempts.forEach((delay) => {
+            window.setTimeout(() => {
+                window.scrollTo(0, Math.max(0, top));
+            }, delay);
+        });
+    }
+
     function realignHashTargetForFixedNav() {
         const hash = window.location.hash || '';
         if (!hash || hash === '#') return;
@@ -399,6 +466,17 @@
             behavior: 'auto'
         });
     }
+
+    function scheduleHashRealign() {
+        if (!window.location.hash) return;
+        requestAnimationFrame(() => {
+            realignHashTargetForFixedNav();
+            window.setTimeout(realignHashTargetForFixedNav, 180);
+        });
+    }
+
+    window.addEventListener('pagehide', saveCurrentScrollPosition, { capture: true });
+    window.addEventListener('beforeunload', saveCurrentScrollPosition, { capture: true });
 
     function buildSecondaryDropdownLink(item, isProjectsPage, isMobile) {
         const link = document.createElement('a');
@@ -1163,6 +1241,8 @@
     /* ── Main Loader ── */
     async function loadSiteContent() {
         const isIndex = !window.location.pathname.includes('projects.html');
+        const shouldRestoreScroll = shouldRestoreSavedScrollPosition();
+        const savedScrollTop = shouldRestoreScroll ? getSavedScrollPosition() : null;
         const config = await fetchJSON('js/config.json');
 
         if (config && config.settings) {
@@ -1195,6 +1275,8 @@
 
         if (!isIndex) {
             if (typeof feather !== 'undefined') feather.replace();
+            scheduleHashRealign();
+            scheduleSavedScrollRestore(savedScrollTop);
             return;
         }
 
@@ -1224,13 +1306,8 @@
 
         if (typeof feather !== 'undefined') feather.replace();
         if (typeof AOS !== 'undefined') setTimeout(() => AOS.refresh(), 150);
-
-        if (window.location.hash) {
-            requestAnimationFrame(() => {
-                realignHashTargetForFixedNav();
-                window.setTimeout(realignHashTargetForFixedNav, 180);
-            });
-        }
+        scheduleHashRealign();
+        scheduleSavedScrollRestore(savedScrollTop);
     }
 
     if (document.readyState === 'loading') {
