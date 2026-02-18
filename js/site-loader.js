@@ -811,7 +811,10 @@
             const dot = badge.querySelector('.availability-dot');
             badge.textContent = '';
             if (dot) badge.appendChild(dot);
-            badge.appendChild(document.createTextNode(' ' + data.availabilityText));
+            const badgeText = document.createElement('span');
+            badgeText.className = 'availability-text';
+            badgeText.textContent = data.availabilityText || '';
+            badge.appendChild(badgeText);
         }
 
         const resumeLink = section.querySelector('.resume-link');

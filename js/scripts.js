@@ -854,6 +854,16 @@ function randomBetween(min, max) {
     const mobileMenu = document.getElementById('mobile-menu');
     if (!menuToggle || !mobileMenu) return;
 
+    const closeSecondaryDetails = () => {
+        const details = mobileMenu.querySelector('#mobile-secondary-details');
+        if (details) details.open = false;
+    };
+
+    const closeMobileMenu = () => {
+        menuToggle.checked = false;
+        closeSecondaryDetails();
+    };
+
     function isSamePageAnchor(link) {
         try {
             const url = new URL(link.getAttribute('href', 2) || '', window.location.href);
@@ -872,12 +882,17 @@ function randomBetween(min, max) {
         if (!link) return;
 
         if (isSamePageAnchor(link)) {
-            setTimeout(() => { menuToggle.checked = false; }, 0);
+            setTimeout(closeMobileMenu, 0);
         }
 
         if (link.matches('.mobile-secondary-item')) {
-            const details = mobileMenu.querySelector('#mobile-secondary-details');
-            if (details) details.open = false;
+            closeSecondaryDetails();
+        }
+    });
+
+    menuToggle.addEventListener('change', () => {
+        if (!menuToggle.checked) {
+            closeSecondaryDetails();
         }
     });
 
@@ -888,14 +903,14 @@ function randomBetween(min, max) {
             !mobileMenu.contains(e.target) && 
             (!menuLabel || !menuLabel.contains(e.target)) &&
             e.target !== menuToggle) {
-            menuToggle.checked = false;
+            closeMobileMenu();
         }
     });
 
     // Close on scroll
     window.addEventListener('scroll', () => {
         if (menuToggle.checked) {
-            menuToggle.checked = false;
+            closeMobileMenu();
         }
     }, { passive: true });
 })();
@@ -2313,12 +2328,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const raw = String(value || '').trim();
         if (!raw) return '';
 
-        if (/^100%$/.test(raw)) return 'near 100%';
-        if (/^\d+(?:\.\d+)?%$/.test(raw)) return `about ${raw}`;
-        if (/^\d+(?:\.\d+)?K\+$/i.test(raw)) return `about ${raw}`;
-        if (/^\d+\+$/.test(raw)) return `about ${raw}`;
-        if (/^\d+(?:\.\d+)?\s*hrs(?:\/week)?$/i.test(raw)) return `about ${raw}`;
-        if (/^\d+(?:\.\d+)?ms$/i.test(raw)) return `about ${raw}`;
+        if (/^\d+(?:\.\d+)?%$/.test(raw)) return `About ${raw}`;
+
+        const expandCompactThousands = (input) => {
+            const compactMatch = String(input || '').trim().match(/^(\d+(?:\.\d+)?)\s*[Kk]$/);
+            if (!compactMatch) return String(input || '').trim();
+            const baseNumber = Number(compactMatch[1]);
+            if (!Number.isFinite(baseNumber)) return String(input || '').trim();
+            const expanded = Math.round(baseNumber * 1000);
+            return expanded.toLocaleString('en-US');
+        };
+
+        const trailingPlusMatch = raw.match(/^(\d[\d,]*(?:\.\d+)?(?:\s*[Kk])?)\+$/);
+        if (trailingPlusMatch) {
+            const normalized = expandCompactThousands(trailingPlusMatch[1]);
+            return `${normalized}+`;
+        }
+
+        if (/^\d+(?:\.\d+)?\s*[Kk]$/.test(raw)) {
+            return expandCompactThousands(raw);
+        }
+
+        if (/^\d[\d,]*(?:\.\d+)?$/.test(raw)) {
+            const integerLike = /^\d[\d,]*$/.test(raw);
+            if (integerLike) {
+                const plainDigits = raw.replace(/,/g, '');
+                return Number(plainDigits).toLocaleString('en-US');
+            }
+        }
 
         return raw;
     };

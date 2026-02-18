@@ -51,6 +51,20 @@ document.addEventListener('visibilitychange', () => {
 
 // "More" link logic with overflow detection
 const OVERFLOW_RECHECK_DELAY = 120;
+const MOBILE_INTERACTION_REDUCE_QUERY = '(max-width: 768px)';
+let interactionReduceTimer = 0;
+
+const pulseMobileInteractionReduce = (duration = 240) => {
+    if (!window.matchMedia(MOBILE_INTERACTION_REDUCE_QUERY).matches) return;
+    document.body.classList.add('is-interacting');
+    if (interactionReduceTimer) {
+        window.clearTimeout(interactionReduceTimer);
+    }
+    interactionReduceTimer = window.setTimeout(() => {
+        document.body.classList.remove('is-interacting');
+        interactionReduceTimer = 0;
+    }, duration);
+};
 
 const getCardBodyFromLink = (link) => {
     const targetId = link.getAttribute('data-target');
@@ -136,6 +150,9 @@ document.addEventListener('click', (event) => {
     if (!link) return;
     const body = getCardBodyFromLink(link);
     if (!body) return;
+
+    pulseMobileInteractionReduce();
+
     const isExpanded = body.classList.toggle('expanded');
     updateMoreLinkState(link, isExpanded);
     if (!isExpanded) {

@@ -10,7 +10,7 @@
       ],
       "impact": [
         {
-          "value": "4K+",
+          "value": "4,000+",
           "label": "Records audited",
           "detail": "Admissions, exams, and results cycles"
         },
@@ -56,7 +56,7 @@
       ],
       "impact": [
         {
-          "value": "2K+",
+          "value": "2,000+",
           "label": "Applicants reviewed",
           "detail": "Multi-intake audits"
         },
@@ -182,7 +182,7 @@
     },
     {
       "details": [
-        "Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving about 98% verification compliance rates across multiple terms.",
+        "Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving About 98% verification compliance rates across multiple terms.",
         "Established CCTV monitoring workflows with systematic incident logging procedures, ensuring continuous visual documentation of examination proceedings and creating a reliable chain-of-custody for recorded footage used in post-exam reviews and misconduct investigations.",
         "Developed standardized incident documentation templates and escalation procedures aligned with institutional compliance standards, enabling invigilators and support staff to consistently capture and report irregularities with the detail required for disciplinary and audit processes.",
         "Maintained comprehensive audit trails linking biometric verification records, surveillance footage timestamps, and incident reports to individual examination sessions, providing institutional leadership with transparent records for compliance reporting and policy review.",
@@ -351,7 +351,7 @@
       ],
       "impact": [
         {
-          "value": "4K+",
+          "value": "4,000+",
           "label": "Records reviewed",
           "detail": "Each academic cycle"
         },
@@ -392,7 +392,7 @@
         "Centralized examination readiness data from multiple operational streams — device inventory and compliance status, invigilation personnel assignments, venue preparation checklists, and technology setup verification — into a single unified dashboard providing real-time visibility into overall exam preparedness.",
         "Designed SLA threshold indicators and automated alerting logic to flag checkpoints at risk of breaching target deadlines, enabling operations leads to prioritize escalation actions and allocate resources to the most critical preparation gaps before each examination cycle.",
         "Produced daily SLA health snapshots shared with examination coordinators and operations leads, providing concise status summaries that highlighted items requiring immediate attention and tracking the resolution progress of previously flagged issues across 120+ tracked devices per cycle.",
-        "Improved overall SLA adherence to about 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.",
+        "Improved overall SLA adherence to About 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.",
         "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this SLA tracking model was used to coordinate exam readiness and prioritize escalation for at-risk checkpoints. Current Implementation: I now preserve the same threshold logic in reusable assets (`scripts/python/reporting/sla_at_risk_report.py` with `data/sample/exam_tasks.csv`) to test queues before each exam window."
       ],
       "impact": [
@@ -657,7 +657,7 @@
       "details": [
         "Diagnosed and resolved a diverse range of technical issues including hardware failures, OS boot and configuration problems, application installation errors, network connectivity issues, and peripheral device malfunctions across Windows and Linux platforms used in classroom and examination settings.",
         "Built and maintained a known-issues knowledge base documenting recurring problems, root cause analyses, and validated resolution steps, enabling faster incident resolution and reducing escalation rates for common support scenarios encountered across multiple academic terms.",
-        "Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining about 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.",
+        "Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining About 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.",
         "Escalated critical incidents through established channels with comprehensive documentation of troubleshooting steps already attempted, enabling senior support teams to quickly assess the situation and implement fixes while prevention recommendations were documented to reduce future recurrence.",
         "Work Context: At FUTA and Pures College, this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Current Implementation: I continue using the same root-cause and knowledge-base pattern in personal support workflows and lab operations."
       ],

@@ -281,6 +281,11 @@ p {
 .hero-content {
     position: relative;
     z-index: 1;
+    min-width: 0;
+}
+
+.hero-content .grid > div {
+    min-width: 0;
 }
 
 .hero-actions {
@@ -295,6 +300,9 @@ p {
     gap: 0.75rem;
     align-items: flex-start;
     margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .hero-status--light {
@@ -316,6 +324,14 @@ p {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     backdrop-filter: blur(6px);
+    max-width: 100%;
+    min-width: 0;
+}
+
+.availability-text {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .availability-dot {
@@ -340,6 +356,14 @@ p {
     text-decoration: none;
     background: rgba(15, 23, 42, 0.25);
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.resume-link-text {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .resume-link svg {
@@ -7012,8 +7036,8 @@ body.fun-mode #projectsList > div:hover {
     .project-list-card,
     .testimonial-card {
         will-change: auto;
-        transform: translateZ(0);
-        backface-visibility: hidden;
+        transform: none !important;
+        backface-visibility: visible;
     }
 
     /* Disable 3D hover lift/rotation on mobile — prevents hit-target misalignment */
@@ -7038,33 +7062,63 @@ body.fun-mode #projectsList > div:hover {
         margin-bottom: 0.25rem !important;
     }
 
-    /* ===== MOBILE HERO H2 + BADGES SINGLE LINE ===== */
+    /* ===== MOBILE HERO H2 + BADGES WRAP SAFETY ===== */
     #hero h2,
     #intro h2 {
         font-size: 1.05rem !important;
-        white-space: nowrap;
+        line-height: 1.35;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
     }
 
     .availability-badge,
     .availability-badge--light {
-        font-size: 0.5rem !important;
+        font-size: 0.58rem !important;
         padding: 0.3rem 0.65rem !important;
-        white-space: nowrap;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        align-items: flex-start;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        line-height: 1.35;
+        text-align: left;
         gap: 0.35rem !important;
+    }
+
+    .availability-badge .availability-dot,
+    .availability-badge--light .availability-dot {
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .resume-link,
+    .resume-link--light {
+        max-width: 100%;
+        white-space: normal;
     }
 
     .hero-status {
         margin-bottom: 1.5rem !important;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 
     .hero-status--light {
         align-items: center !important;
         text-align: center;
+        width: 100%;
     }
 
     .hero-status--light .availability-badge,
     .hero-status--light .resume-link {
         justify-content: center;
+        text-align: center;
+    }
+
+    .hero-status--light .availability-badge {
+        align-items: center;
     }
 
     /* ===== MOBILE PROJECT LIST CARD TAGS ===== */
@@ -7224,21 +7278,40 @@ body.fun-mode #projectsList > div:hover {
 
     /* ===== MOBILE SCROLL PERFORMANCE ===== */
     body.is-scrolling .fun-star-overlay,
+    body.is-interacting .fun-star-overlay,
     body.is-scrolling .fun-star-scatter::before,
+    body.is-interacting .fun-star-scatter::before,
     body.is-scrolling .fun-star-scatter::after,
+    body.is-interacting .fun-star-scatter::after,
     body.is-scrolling .fun-shooting-star,
+    body.is-interacting .fun-shooting-star,
     body.is-scrolling .fun-rover-buddy .rover-wheel,
+    body.is-interacting .fun-rover-buddy .rover-wheel,
     body.is-scrolling .fun-rover-buddy .rover-glow,
+    body.is-interacting .fun-rover-buddy .rover-glow,
     body.is-scrolling .fun-rover-buddy .rover-fin,
-    body.is-scrolling .fun-rover-buddy .rover-headlight {
+    body.is-interacting .fun-rover-buddy .rover-fin,
+    body.is-scrolling .fun-rover-buddy .rover-headlight,
+    body.is-interacting .fun-rover-buddy .rover-headlight {
         animation-play-state: paused !important;
     }
-    body.is-scrolling .fun-console::before {
+
+    body.is-scrolling .fun-console::before,
+    body.is-interacting .fun-console::before {
         animation: none !important;
     }
+
     body.is-scrolling #vanta-bg,
-    body.is-scrolling #vanta-bg canvas {
+    body.is-interacting #vanta-bg,
+    body.is-scrolling #vanta-bg canvas,
+    body.is-interacting #vanta-bg canvas {
         opacity: 0.4 !important;
+    }
+
+    body.is-interacting .card-body,
+    body.is-interacting .more-link,
+    body.is-interacting .more-link .more-link-icon {
+        transition: none !important;
     }
 
     /* ===== MOBILE STATIC STARS ===== */
@@ -7503,9 +7576,9 @@ html {
 @media (max-width: 639px) {
     .hero-primary-btn,
     .hero-secondary-btn {
-        flex: 1 1 0 !important;
-        width: auto;
-        max-width: none;
+        flex: 1 1 auto !important;
+        width: 100%;
+        max-width: 100%;
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -7513,30 +7586,29 @@ html {
         min-height: 40px;
         line-height: 1.2;
         font-size: 0.8rem;
-        white-space: nowrap;
+        white-space: normal;
     }
     .hero-actions {
-        flex-direction: row !important;
-        flex-wrap: nowrap;
-        gap: 0.5rem;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column !important;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
     }
     .hero-tags {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 0.5rem;
         font-size: 0.65rem;
         letter-spacing: 0.08em;
-        overflow-x: auto;
+        overflow-x: visible;
         padding-bottom: 0.15rem;
-        scrollbar-width: none;
-    }
-    .hero-tags::-webkit-scrollbar {
-        display: none;
+        width: 100%;
     }
     .hero-tags span {
         padding: 0.2rem 0.45rem;
-        white-space: nowrap;
+        white-space: normal;
+        max-width: 100%;
     }
 }
 
