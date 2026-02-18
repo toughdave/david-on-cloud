@@ -1,3 +1,7 @@
+## v5.1.1 — 2026-02-18 12:50:11
+- ✅ Update location with relocation availability and align related UI/content updates
+- ✅ Bumped version to v5.1.1
+
 ## v5.1.0 — 2026-02-18 02:42:23
 - ✅ Add case study markdown files for 8 projects, enrich existing case studies, update projects.json 
 - ✅ Bumped version to v5.1.0
