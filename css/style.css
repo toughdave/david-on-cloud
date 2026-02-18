@@ -6174,8 +6174,17 @@ body.project-modal-open .fun-lab-panel {
     overflow-y: auto;
     flex: 1;
     min-height: 0;
+    min-width: 0;
     display: grid;
     gap: 1.8rem;
+}
+
+.project-modal-section,
+.project-modal-details,
+.project-modal-impact-grid,
+.project-modal-impact-card {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .project-modal-section h4 {
@@ -6196,6 +6205,8 @@ body.project-modal-open .fun-lab-panel {
     color: #475569;
     line-height: 1.7;
     margin-bottom: 0.9rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .project-detail-figure {
@@ -6252,6 +6263,8 @@ body.project-modal-open .fun-lab-panel {
     font-size: 0.95rem;
     font-weight: 700;
     color: #1f2937;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .project-modal-impact-card .impact-label {
@@ -6259,11 +6272,15 @@ body.project-modal-open .fun-lab-panel {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #475569;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .project-modal-impact-card .impact-detail {
     font-size: 0.68rem;
     color: #64748b;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 [data-theme="dark"] .project-modal-card {
@@ -6481,6 +6498,7 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-body {
         padding: 0 1.2rem 1.6rem;
         gap: 1.2rem;
+        min-width: 0;
         opacity: 0;
         transform: translateY(16px);
         animation: modal-body-enter 0.5s 0.4s ease forwards;
@@ -6497,6 +6515,8 @@ body.project-modal-open .fun-lab-panel {
         z-index: 2;
         padding: 0.72rem 0 0.42rem 0.6rem;
         margin: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     .project-modal-section:not(:first-child) h4 {
@@ -6526,6 +6546,15 @@ body.project-modal-open .fun-lab-panel {
     .project-modal-details p {
         font-size: 0.85rem;
         line-height: 1.55;
+    }
+
+    .project-detail-figure {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .project-modal-impact-grid {
+        grid-template-columns: 1fr;
     }
 
     /* Scrolled state — header shrinks, summary/tags fade, links stay small */
