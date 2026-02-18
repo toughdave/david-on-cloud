@@ -6,15 +6,15 @@
 - [Projects (JSON)](https://www.davidoncloud.com/js/projects.json): Canonical CMS-managed project records used by the website UI.
 
 ## Professional Summary
-- Information Systems and Systems Analyst with a Master’s degree in Computer Science and proven experience supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows.
-- Strong background in analyzing existing systems, improving data processes, supporting system implementations, and maintaining operational reliability across Windows and Linux platforms. Known for structured documentation, data accuracy, and supporting high-volume institutional systems aligned with organizational standards.
+- I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science, supporting academic IT environments, data operations, and enterprise-style reporting workflows.
+- I analyze existing systems, improve data processes, support implementations, and maintain operational reliability across Windows and Linux platforms. I focus on clear documentation, data accuracy, and steady support for high-volume institutional workflows.
 
 ## Education
 - M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
 - B.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2014)
 
 ## Additional Practical Experience
-- Hands-on systems and networking experimentation through a personal home lab using enterprise switching equipment like the Cisco Catalyst 3850 WS-C3850-48U-S, Routing, VLAN configuration, IP addressing, DNS & DHCP, and isolated test environments.
+- In my personal home lab, I run systems and networking experiments using enterprise switching equipment like the Cisco Catalyst 3850 WS-C3850-48U-S, plus routing, VLAN configuration, IP addressing, DNS & DHCP, and isolated test environments.
 
 ## My Skills
 ### Systems Implementation & Support

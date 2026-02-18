@@ -129,6 +129,8 @@
         "Switching",
         "Routing"
       ],
+      "link": "docs/case-studies/vlan-ip-addressing-lab.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "vlan-ip-addressing-lab",
       "image": "/img/Enterprise-LAN-Simulation.png",
       "category": "networking",
@@ -171,6 +173,8 @@
         "VirtualBox/VMware",
         "Lab Deployment"
       ],
+      "link": "docs/case-studies/virtual-lab-deployment-active-directory.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "virtual-lab-deployment-active-directory",
       "image": "https://images.unsplash.com/photo-1600267185393-e158a98703de?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "systems",
@@ -213,6 +217,8 @@
         "Incident Response",
         "Audit Trails"
       ],
+      "link": "docs/case-studies/examination-integrity-monitoring.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "examination-integrity-monitoring",
       "image": "/img/Network-Security-&-Surveillance.png",
       "category": "systems",
@@ -464,6 +470,8 @@
         "Process Improvement",
         "Change Management"
       ],
+      "link": "docs/case-studies/systems-implementation-qa-playbooks.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "systems-implementation-qa-playbooks",
       "image": "/img/Cloud-Migration-Tool.png",
       "category": "systems",
@@ -506,6 +514,8 @@
         "Troubleshooting",
         "Network Design"
       ],
+      "link": "docs/case-studies/routing-vpn-basics-lab.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "routing-vpn-basics-lab",
       "image": "/img/WAN-Simulation-with-SD-WAN.png",
       "category": "networking",
@@ -548,6 +558,8 @@
         "Linux",
         "Network Services"
       ],
+      "link": "docs/case-studies/dns-dhcp-services-lab.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "dns-dhcp-services-lab",
       "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "networking",
@@ -590,6 +602,8 @@
         "Troubleshooting",
         "Operations"
       ],
+      "link": "docs/case-studies/operational-readiness-checks.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "operational-readiness-checks",
       "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "systems",
@@ -632,6 +646,8 @@
         "Process Improvement",
         "Knowledge Base"
       ],
+      "link": "docs/case-studies/technical-documentation-end-user-training.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "technical-documentation-end-user-training",
       "image": "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "systems",
@@ -674,6 +690,8 @@
         "Linux",
         "Service Desk"
       ],
+      "link": "docs/case-studies/systems-support-troubleshooting.md",
+      "linkText": "View Case Summary (Markdown)",
       "id": "systems-support-troubleshooting",
       "image": "/img/PuTTy-2.png",
       "category": "systems",

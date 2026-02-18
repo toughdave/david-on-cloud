@@ -9,8 +9,8 @@
 - Posted: 2026-02-02
 - Updated: 2026-02-03
 - Tags: Power BI, Google Sheets, SLA Tracking, Operations, Reporting, At-Risk Alerts
-- Deliverable Link: [View SLA Reporting Scripts](https://github.com/toughdave/scripting/tree/main/scripts/python/reporting)
-- PDF: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/exam-operations-sla-tracker.md)
+- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/exam-operations-sla-tracker.pdf)
 
 ### Project Summary
 Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.
@@ -19,7 +19,7 @@ Built a Power BI and Google Sheets-based SLA tracking system to centralize exami
 - Centralized examination readiness data from multiple operational streams — device inventory and compliance status, invigilation personnel assignments, venue preparation checklists, and technology setup verification — into a single unified dashboard providing real-time visibility into overall exam preparedness.
 - Designed SLA threshold indicators and automated alerting logic to flag checkpoints at risk of breaching target deadlines, enabling operations leads to prioritize escalation actions and allocate resources to the most critical preparation gaps before each examination cycle.
 - Produced daily SLA health snapshots shared with examination coordinators and operations leads, providing concise status summaries that highlighted items requiring immediate attention and tracking the resolution progress of previously flagged issues across 120+ tracked devices per cycle.
-- Improved overall SLA adherence to 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.
+- Improved overall SLA adherence to about 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.
 - Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this SLA tracking model was used to coordinate exam readiness and prioritize escalation for at-risk checkpoints. Current Implementation: I now preserve the same threshold logic in reusable assets (`scripts/python/reporting/sla_at_risk_report.py` with `data/sample/exam_tasks.csv`) to test queues before each exam window.
 
 ### Results and Impact
@@ -32,8 +32,8 @@ Built a Power BI and Google Sheets-based SLA tracking system to centralize exami
 - Posted: 2026-01-28
 - Updated: 2026-01-31
 - Tags: SQL, Excel, Data Validation, Record Management, Reconciliation, Mismatch Reporting
-- Deliverable Link: [View Reconciliation Scripts](https://github.com/toughdave/scripting/tree/main/scripts/python/reconciliation)
-- PDF: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/student-records-reconciliation-hub.md)
+- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/student-records-reconciliation-hub.pdf)
 
 ### Project Summary
 Built and operated a centralized records reconciliation process at a federal university, systematically cross-referencing admissions, enrollment, and results data from multiple source systems to identify and resolve duplicates, eligibility gaps, and data mismatches before official publication for 4,000+ student records each cycle.
@@ -55,8 +55,8 @@ Built and operated a centralized records reconciliation process at a federal uni
 - Posted: 2026-01-15
 - Updated: 2026-01-31
 - Tags: Power BI, Excel, SQL, Data Validation, Reporting, Scripted QA
-- Deliverable Link: [View SQL Validation Scripts](https://github.com/toughdave/scripting/tree/main/scripts/sql)
-- PDF: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/academic-results-analytics-dashboard.md)
+- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/academic-results-analytics-dashboard.pdf)
 
 ### Project Summary
 Built a comprehensive Power BI and Excel analytics suite to centralize results processing tracking, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles at a university serving 4,000+ students.
@@ -78,8 +78,8 @@ Built a comprehensive Power BI and Excel analytics suite to centralize results p
 - Posted: 2025-12-12
 - Updated: 2025-12-20
 - Tags: Python, SQL, ETL Automation, Reporting, Workflow Automation, Scheduled Jobs
-- Deliverable Link: [View ETL Runner Scripts](https://github.com/toughdave/scripting/tree/main/scripts/python/etl)
-- PDF: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/operational-reporting-automation-pipeline.md)
+- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/operational-reporting-automation-pipeline.pdf)
 
 ### Project Summary
 Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting at a federal university from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles.
@@ -101,8 +101,8 @@ Designed and deployed automated data processing pipelines using Python and SQL t
 - Posted: 2025-12-05
 - Updated: 2025-12-18
 - Tags: Excel, Google Sheets, SQL, Data Validation, Admissions Audit, Rules Engine
-- Deliverable Link: [View Data Quality Scripts](https://github.com/toughdave/scripting/tree/main/scripts/python/data_quality)
-- PDF: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/admissions-data-quality-audit.md)
+- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/admissions-data-quality-audit.pdf)
 
 ### Project Summary
 Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status to ensure data integrity before final approvals for 2,000+ applicants per cycle.
@@ -124,7 +124,7 @@ Conducted systematic audits of multi-intake admissions datasets at a federal uni
 - Posted: 2025-11-20
 - Updated: 2025-11-27
 - Tags: Preventative Maintenance, Compliance, Windows Support, Troubleshooting, Operations
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/operational-readiness-checks.md)
 - PDF: N/A
 
 ### Project Summary
@@ -147,7 +147,7 @@ Performed systematic preventative maintenance and operational readiness verifica
 - Posted: 2025-10-04
 - Updated: 2025-10-04
 - Tags: VLAN, TCP/IP, IP Addressing, Switching, Routing
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/vlan-ip-addressing-lab.md)
 - PDF: N/A
 
 ### Project Summary
@@ -170,7 +170,7 @@ Built and maintained a hands-on networking lab environment using enterprise-grad
 - Posted: 2025-10-02
 - Updated: 2025-10-02
 - Tags: Windows Server, Active Directory, Group Policy, VirtualBox/VMware, Lab Deployment
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/virtual-lab-deployment-active-directory.md)
 - PDF: N/A
 
 ### Project Summary
@@ -193,14 +193,14 @@ Provisioned and maintained standardized Windows Server and Active Directory lab 
 - Posted: 2025-09-30
 - Updated: 2025-10-01
 - Tags: Biometric Verification, CCTV Monitoring, Compliance, Incident Response, Audit Trails
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/examination-integrity-monitoring.md)
 - PDF: N/A
 
 ### Project Summary
 Designed and implemented a multi-layered examination integrity monitoring workflow at a federal university, integrating biometric identity verification, CCTV-based monitoring records, and structured incident reporting procedures to strengthen compliance and audit readiness across 12+ high-stakes examination cycles.
 
 ### Technical Notes
-- Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving 98% verification compliance rates across multiple terms.
+- Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving about 98% verification compliance rates across multiple terms.
 - Established CCTV monitoring workflows with systematic incident logging procedures, ensuring continuous visual documentation of examination proceedings and creating a reliable chain-of-custody for recorded footage used in post-exam reviews and misconduct investigations.
 - Developed standardized incident documentation templates and escalation procedures aligned with institutional compliance standards, enabling invigilators and support staff to consistently capture and report irregularities with the detail required for disciplinary and audit processes.
 - Maintained comprehensive audit trails linking biometric verification records, surveillance footage timestamps, and incident reports to individual examination sessions, providing institutional leadership with transparent records for compliance reporting and policy review.
@@ -216,7 +216,7 @@ Designed and implemented a multi-layered examination integrity monitoring workfl
 - Posted: 2025-09-29
 - Updated: 2025-09-29
 - Tags: Documentation, QA Support, Implementation, Process Improvement, Change Management
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/systems-implementation-qa-playbooks.md)
 - PDF: N/A
 
 ### Project Summary
@@ -239,7 +239,7 @@ Created comprehensive implementation checklists, quality assurance scripts, and 
 - Posted: 2025-09-26
 - Updated: 2025-10-04
 - Tags: Routing, VPN Basics, TCP/IP, Troubleshooting, Network Design
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/routing-vpn-basics-lab.md)
 - PDF: N/A
 
 ### Project Summary
@@ -262,7 +262,7 @@ Designed and operated a multi-site network simulation lab to practice routing fu
 - Posted: 2025-09-19
 - Updated: 2025-09-19
 - Tags: DNS, DHCP, Windows, Linux, Network Services
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/dns-dhcp-services-lab.md)
 - PDF: N/A
 
 ### Project Summary
@@ -285,7 +285,7 @@ Configured and validated DNS and DHCP infrastructure services in a mixed Windows
 - Posted: 2025-09-14
 - Updated: 2025-09-14
 - Tags: Documentation, End-User Training, Stakeholder Communication, Process Improvement, Knowledge Base
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/technical-documentation-end-user-training.md)
 - PDF: N/A
 
 ### Project Summary
@@ -308,7 +308,7 @@ Produced comprehensive standard operating procedures, technical runbooks, and ha
 - Posted: 2025-09-06
 - Updated: 2025-09-12
 - Tags: Systems Support, Troubleshooting, Windows, Linux, Service Desk
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/systems-support-troubleshooting.md)
 - PDF: N/A
 
 ### Project Summary
@@ -317,7 +317,7 @@ Provided frontline Windows and Linux systems support across academic IT environm
 ### Technical Notes
 - Diagnosed and resolved a diverse range of technical issues including hardware failures, OS boot and configuration problems, application installation errors, network connectivity issues, and peripheral device malfunctions across Windows and Linux platforms used in classroom and examination settings.
 - Built and maintained a known-issues knowledge base documenting recurring problems, root cause analyses, and validated resolution steps, enabling faster incident resolution and reducing escalation rates for common support scenarios encountered across multiple academic terms.
-- Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.
+- Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining about 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.
 - Escalated critical incidents through established channels with comprehensive documentation of troubleshooting steps already attempted, enabling senior support teams to quickly assess the situation and implement fixes while prevention recommendations were documented to reduce future recurrence.
 - Work Context: At FUTA and Pures College, this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Current Implementation: I continue using the same root-cause and knowledge-base pattern in personal support workflows and lab operations.
 

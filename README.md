@@ -1,95 +1,103 @@
 # David On Cloud — Professional CV & Portfolio Website
 
-**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 1.3.3
+**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 5.0.0
 
-A modern, responsive portfolio website showcasing my expertise as a Cisco networking engineer with extensive hands-on experience in enterprise network design, implementation, and troubleshooting.
+A modern, responsive portfolio website showcasing professional experience in information systems, data analysis, reporting automation, and IT operations across academic and enterprise environments.
 
-## 👨‍💻 About David
+## About David
 
-I'm a **Cisco Networking Engineer** with B.Tech and M.Tech degrees in Computer Science, currently based in **Toronto, ON**. My passion lies in building, securing, and troubleshooting enterprise-grade networks through dedicated hands-on practice in my comprehensive home lab environment.
+Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, currently based in Toronto, ON. Professional background spans academic information systems, data quality assurance, reporting automation, and operational reliability across roles at a federal university and a private college.
 
-### 🏠 Home Lab Infrastructure
+## Website Features
 
-- **Cisco Catalyst Switches** (Layer 2/3)
-- **Cisco Routers** with advanced routing protocols
-- **Cisco Wireless Controllers (WLC)** and Access Points
-- **Cisco IP Phones** and CUCM telephony systems
-- **Network Security Cameras** and surveillance systems
-- **Cisco Firewalls** and security appliances
+### Responsive Design
 
-## 🚀 Website Features
-
-### 📱 **Responsive Design**
-
-- Mobile-first approach with hamburger navigation
+- Mobile-first layout with grouped navigation (primary + secondary dropdown)
 - Smooth animations using AOS (Animate On Scroll)
-- Interactive Vanta.js 3D background animations
+- Interactive Vanta.js 3D background with theme support (dark/light)
 - Optimized for all device sizes
 
-### 🎯 **Professional Sections**
+### Professional Sections
 
-- **Hero Section**: Dynamic introduction with animated background
-- **About**: Educational background and professional summary
-- **Skills**: Cisco certifications, web development, and networking technologies
-- **Experience**: Detailed work history with timeline visualization
-- **Projects**: 8+ networking projects (home lab + Packet Tracer simulations)
+- **Hero**: Dynamic introduction with availability badge and CTA buttons
+- **About**: Professional summary, education, and additional experience
+- **Skills**: Seven skill categories covering systems, data, automation, and networking
+- **Tools & Platforms**: Practical tool usage organized by delivery category
+- **Scripts Library**: Curated script families linked to the scripting repository
+- **Experience**: Work history with key outcomes and timeline
+- **Projects**: 13 project cards with case study links, impact metrics, and modal details
+- **Process & Services**: Structured delivery methodology
+- **Testimonials**: Professional endorsements
 - **Contact**: Functional contact form with Formspree integration
 
-### 🛠 **Technical Features**
+### Technical Features
 
+- **CMS-Managed Content**: Decap CMS (admin/config.yml) with JSON data files
+- **LLM-Friendly Docs**: Generated llms.txt, index.html.md, and projects.html.md
 - **Version Control**: Automated version bumping with Git integration
-- **Back-to-Top Button**: Smooth scroll enhancement
-- **Dynamic Version Display**: Real-time version fetching from VERSION file
-- **Active Navigation States**: Smart highlighting based on current section
-- **Project Carousel**: Horizontal scrolling with snap points
-- **Mobile Menu**: Smooth hamburger menu with click-away functionality
+- **Validation Pipeline**: HTML, CSS, JS, and JSON validation via CI/CD
+- **Grouped Navigation**: CMS-managed primary and secondary menu composition
+- **Project Modals**: Detailed views with Work Context and Current Implementation continuity
 
-## 🏗️ Built With
+## Built With
 
-### **Frontend Technologies**
+### Frontend Technologies
 
 - **HTML5** - Semantic markup
 - **CSS3** - Custom animations and responsive design
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **JavaScript (ES6+)** - Interactive functionality
+- **JavaScript (ES6+)** - Interactive functionality and dynamic content loading
 
-### **Libraries & Frameworks**
+### Libraries & Frameworks
 
 - **[AOS](https://michalsnik.github.io/aos/)** - Animate On Scroll library
 - **[Vanta.js](https://www.vantajs.com/)** - 3D animated backgrounds
-- **[Feather Icons](https://feathericons.com/)** - Beautiful icon set
+- **[Feather Icons](https://feathericons.com/)** - Icon set
 - **[Formspree](https://formspree.io/)** - Contact form backend
+- **[Decap CMS](https://decapcms.org/)** - Git-based content management
 
-<!-- Last Update section removed; see RELEASE_NOTES.txt for update history -->
+### Content & Data
 
-## 🎯 Featured Projects
+- **CMS JSON Files**: about, skills, tools-platforms, script-library, experience, process, testimonials, contact, footer, hero, config
+- **Projects JSON**: 13 project entries with case study markdown and PDF deliverables
+- **LLM Docs Generator**: Node.js script producing markdown pages from CMS data
 
-### **Home Lab Projects**
+## Featured Projects
 
-1. **Enterprise LAN Simulation** - Multi-VLAN network with Cisco Catalyst switches
-2. **VoIP & IP Telephony Lab** - CUCM deployment with IP phones
-3. **Network Security & Surveillance** - Integrated security cameras and firewalls
+### Data & Reporting
 
-### **Packet Tracer Simulations**
+- **Academic Results Analytics Dashboard** - Power BI and Excel analytics for results processing and anomaly detection
+- **Admissions Data Quality Audit** - Config-driven validation of multi-intake admissions datasets
+- **Student Records Reconciliation Hub** - Centralized source-vs-target reconciliation across 3 systems
+- **Exam Operations SLA Tracker** - SLA monitoring with at-risk flags for exam readiness checkpoints
 
-1. **SD-WAN Implementation** - Multi-branch WAN simulation
-2. **Wireless Network Design** - Campus wireless with guest VLANs
-3. **Cloud Migration Tools** - Network automation projects
+### Automation
 
-## 📞 Contact & Social
+- **Operational Reporting Automation Pipeline** - Python/SQL ETL with scheduled quality-checked workflows
 
-- **Email**: [info@davidoncloud.com](mailto:info@davidoncloud.com)
+### Systems
+
+- **Virtual Lab Deployment & Active Directory** - Standardized VM labs for 250+ students
+- **Examination Integrity Monitoring** - Biometric verification, CCTV, and incident reporting
+- **A Secured System for Internet-Enabled Host Devices** - Peer-reviewed published research (CCSE, 2020)
+- **Systems Implementation & QA Playbooks** - Deployment checklists and rollback procedures
+- **Operational Readiness Checks** - Pre-exam device compliance and remediation tracking
+- **Technical Documentation & End-User Training** - SOPs, runbooks, and onboarding packages
+- **Systems Support & Troubleshooting** - Frontline Windows/Linux support with SLA compliance
+
+### Networking
+
+- **VLAN & IP Addressing Lab** - Enterprise switching with VLAN segmentation and IP planning
+- **Routing & VPN Basics Lab** - Multi-site routing and VPN tunnel configuration
+- **DNS & DHCP Services Lab** - Cross-platform name resolution and IP management
+
+## Contact
+
+- **Email**: [matthewtopedavid@gmail.com](mailto:matthewtopedavid@gmail.com)
 - **Location**: Toronto, ON, Canada
 - **LinkedIn**: [tope-david-m-48076969](https://www.linkedin.com/in/tope-david-m-48076969)
 - **GitHub**: [toughdave](https://github.com/toughdave)
-- **Twitter**: [@toughdave](https://x.com/toughdave)
 
-## 📜 License
+## License
 
-© 2025 David on Cloud. All rights reserved.
-
----
-
-### Built With ❤️ by David | Networking Engineer, Cloud & Web Developer
-
-[davidoncloud.com](https://davidoncloud.com)
+All rights reserved. David on Cloud.
