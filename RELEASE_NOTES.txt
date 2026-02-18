@@ -1,3 +1,7 @@
+## v5.1.2 — 2026-02-18 14:01:33
+- ✅ Fix metric formatting and mobile status wrapping
+- ✅ Bumped version to v5.1.2
+
 ## v5.1.1 — 2026-02-18 12:50:11
 - ✅ Update location with relocation availability and align related UI/content updates
 - ✅ Bumped version to v5.1.1
