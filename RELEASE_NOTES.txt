@@ -1,3 +1,7 @@
+## v5.1.0 — 2026-02-18 02:42:23
+- ✅ Add case study markdown files for 8 projects, enrich existing case studies, update projects.json 
+- ✅ Bumped version to v5.1.0
+
 ## v5.0.0 — 2026-02-18 02:19:23
 - ✅ Implement grouped CMS navigation and refresh portfolio content
 - ✅ Bumped version to v5.0.0
