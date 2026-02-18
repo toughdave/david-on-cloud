@@ -6,7 +6,7 @@
         "Designed interactive KPI panels in Power BI with drill-down capabilities across student cohorts, academic sessions, and departments, enabling leadership to monitor processing timelines, flag anomaly rates in real-time, and compare performance trends across admission intakes.",
         "Developed automated data quality flags using conditional logic and formula-driven validation in Excel and Google Sheets, reducing the manual effort required to identify outliers and formatting inconsistencies across thousands of records each cycle.",
         "Delivered export-ready dashboards and audit-trail reports formatted for leadership reviews, accreditation audits, and departmental briefings, directly supporting executive planning decisions and resource allocation across academic programs.",
-        "The same validation flow is now captured in reusable GitHub assets (for example `scripts/sql/mysql/mysql_validate_results_integrity.sql`, `scripts/sql/postgres/postgres_validate_results_integrity.sql`, and `powerbi/powerquery/powerquery_data_quality_template.pq`) so each dashboard refresh starts from the same repeatable quality checks."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this validation workflow was used to protect admissions and results reporting accuracy before publication. Current Implementation: I now maintain the same quality checks in personal GitHub assets (`scripts/sql/mysql/mysql_validate_results_integrity.sql`, `scripts/sql/postgres/postgres_validate_results_integrity.sql`, and `powerbi/powerquery/powerquery_data_quality_template.pq`) so each dashboard refresh starts with repeatable controls."
       ],
       "impact": [
         {
@@ -38,8 +38,9 @@
         "Reporting",
         "Scripted QA"
       ],
-      "link": "https://github.com/toughdave/scripting/tree/main/scripts/sql",
-      "linkText": "View SQL Validation Scripts",
+      "link": "docs/case-studies/academic-results-analytics-dashboard.md",
+      "linkText": "View Case Summary (Markdown)",
+      "pdf": "docs/case-studies/academic-results-analytics-dashboard.pdf",
       "id": "academic-results-analytics-dashboard",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -51,7 +52,7 @@
         "Leveraged the institution's Gradent data processing platform alongside Excel and Google Sheets to extract audit exports, reconcile discrepancies between portal submissions and backend records, and deliver clean, verified rosters to admissions committees for final sign-off.",
         "Built variance summary reports and sign-off documentation packets that provided department heads with clear visibility into correction actions taken, residual error rates, and data quality metrics, supporting transparent and accountable admissions decisions.",
         "Established repeatable audit procedures that standardized how incoming applicant data was reviewed across multiple intake cycles, reducing manual re-checking and improving turnaround time for final admissions roster publication.",
-        "Those admission checks are now represented in reusable scripts (`scripts/python/data_quality/config_rules_validator.py` and `data/sample/validation_rules.json`) so required fields, score limits, and conditional status rules can be re-run consistently across intake windows."
+        "Work Context: In my FUTA role (Systems & Data Analyst / System Programmer, 2017–2023), this audit pattern was used to verify admissions rosters before committee sign-off each intake cycle. Current Implementation: I now run the same rules through personal assets (`scripts/python/data_quality/config_rules_validator.py` and `data/sample/validation_rules.json`) so field completeness, score thresholds, and eligibility logic stay consistent."
       ],
       "impact": [
         {
@@ -71,6 +72,7 @@
         }
       ],
       "summary": "Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status to ensure data integrity before final approvals for 2,000+ applicants per cycle.",
+      "mobileSummary": "Audited multi-intake admissions data to reconcile identity, eligibility, and enrollment records for 2,000+ applicants per cycle.",
       "modified": "2025-12-18T14:30:00.000Z",
       "featured": false,
       "title": "Admissions Data Quality Audit",
@@ -82,8 +84,9 @@
         "Admissions Audit",
         "Rules Engine"
       ],
-      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/data_quality",
-      "linkText": "View Data Quality Scripts",
+      "link": "docs/case-studies/admissions-data-quality-audit.md",
+      "linkText": "View Case Summary (Markdown)",
+      "pdf": "docs/case-studies/admissions-data-quality-audit.pdf",
       "id": "admissions-data-quality-audit",
       "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -94,7 +97,8 @@
         "Configured trunk ports, access ports, and inter-VLAN routing scenarios on managed switches to create isolated network segments, simulating enterprise LAN environments where different departments or services operate on dedicated VLANs with controlled inter-segment communication.",
         "Developed structured IP addressing plans covering subnetting, CIDR notation, and address allocation strategies for multiple VLAN segments, documenting each scheme to mirror production-grade network planning methodologies used in enterprise environments.",
         "Created repeatable lab scenarios covering trunking configuration, VLAN assignment, static and dynamic routing integration, and basic failover testing, providing a consistent practice environment for validating networking concepts and troubleshooting common connectivity issues.",
-        "Used Cisco Packet Tracer alongside physical equipment and a Cisco network switch to bridge simulation with real-world configuration experience, reinforcing concepts such as switch port security, VLAN pruning, and spanning tree behavior in a controlled lab setting."
+        "Used Cisco Packet Tracer alongside physical equipment and a Cisco network switch to bridge simulation with real-world configuration experience, reinforcing concepts such as switch port security, VLAN pruning, and spanning tree behavior in a controlled lab setting.",
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used this VLAN and addressing workflow to coach students through practical troubleshooting in structured lab sessions. Current Implementation: I continue extending the same scenarios in my personal home lab for repeatable segmentation, routing, and failover testing."
       ],
       "impact": [
         {
@@ -135,7 +139,8 @@
         "Built baseline virtual machine images for Windows Server 2019/2022 and Windows 10/11 client systems in both Oracle VirtualBox and VMware Workstation Pro, pre-configuring Active Directory Domain Services, DNS, and Group Policy to provide students with ready-to-use lab environments from the first day of each term.",
         "Developed comprehensive setup playbooks and reset procedures to maintain consistency across 250+ student lab seats, enabling rapid redeployment of clean environments between terms and ensuring every student worked with identical baseline configurations regardless of their host machine.",
         "Guided students through the complete lifecycle of domain controller deployment — from initial server role installation and domain creation through user and group management, Organizational Unit structuring, and Group Policy Object configuration — coaching structured troubleshooting techniques for common AD, DNS resolution, and GPO application issues.",
-        "Documented repeatable onboarding procedures covering hypervisor installation, virtual network adapter configuration, shared folder setup, and snapshot management, reducing first-week setup failures and allowing instructional time to focus on core systems administration concepts."
+        "Documented repeatable onboarding procedures covering hypervisor installation, virtual network adapter configuration, shared folder setup, and snapshot management, reducing first-week setup failures and allowing instructional time to focus on core systems administration concepts.",
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), these standardized virtual lab builds were used to support classroom delivery for systems administration practicals. Current Implementation: I continue refining the same baseline images and reset playbooks in personal projects for repeatable Active Directory and policy testing."
       ],
       "impact": [
         {
@@ -173,10 +178,11 @@
     },
     {
       "details": [
-        "Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving 98% verification compliance rates across multiple terms.",
-        "Established CCTV monitoring workflows with systematic evidence logging procedures, ensuring continuous visual documentation of examination proceedings and creating a reliable chain-of-custody for recorded footage used in post-exam reviews and misconduct investigations.",
+        "Coordinated end-to-end device readiness for examination periods, including the setup, calibration, and testing of biometric fingerprint verification devices used to authenticate student identities before entry into examination halls, achieving about 98% verification compliance rates across multiple terms.",
+        "Established CCTV monitoring workflows with systematic incident logging procedures, ensuring continuous visual documentation of examination proceedings and creating a reliable chain-of-custody for recorded footage used in post-exam reviews and misconduct investigations.",
         "Developed standardized incident documentation templates and escalation procedures aligned with institutional compliance standards, enabling invigilators and support staff to consistently capture and report irregularities with the detail required for disciplinary and audit processes.",
-        "Maintained comprehensive audit trails linking biometric verification records, surveillance footage timestamps, and incident reports to individual examination sessions, providing institutional leadership with transparent evidence for compliance reporting and policy review."
+        "Maintained comprehensive audit trails linking biometric verification records, surveillance footage timestamps, and incident reports to individual examination sessions, providing institutional leadership with transparent records for compliance reporting and policy review.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this integrity workflow supported high-stakes exam operations with biometric checks, CCTV monitoring, and incident logging. Current Implementation: I now maintain the same control flow as checklist-driven templates in personal operations projects for readiness drills and audit reporting."
       ],
       "impact": [
         {
@@ -195,7 +201,8 @@
           "detail": "Incident handling standards"
         }
       ],
-      "summary": "Designed and implemented a multi-layered examination integrity monitoring workflow at a federal university, integrating biometric identity verification, CCTV-based evidence capture, and structured incident reporting procedures to strengthen compliance and audit readiness across 12+ high-stakes examination cycles.",
+      "summary": "Designed and implemented a multi-layered examination integrity monitoring workflow at a federal university, integrating biometric identity verification, CCTV-based monitoring records, and structured incident reporting procedures to strengthen compliance and audit readiness across 12+ high-stakes examination cycles.",
+      "mobileSummary": "Implemented biometric verification, CCTV monitoring, and incident reporting workflows to strengthen compliance across 12+ examination cycles.",
       "modified": "2025-10-01T11:21:41.056Z",
       "featured": false,
       "title": "Examination Integrity Monitoring",
@@ -218,7 +225,8 @@
         "Applied the Elliptic-Curve Diffie-Hellman (ECDH) algorithm for mutual device authentication, implementing secure key exchange where random prime number generation, public key encryption, and shared secret computation ensured that paired devices could cryptographically verify each other's identity before establishing trusted connections. Central to this process was the Capability structure illustrated in Fig. 2, where each device's Access Right was combined with its Device Identifier to form a capability token processed through the Identity and Capability-based Access Control Protocol (ICAP) — determining whether a subject device was authorized to access an object device based on context-aware policies.",
         "Designed a three-tier system architecture (Server, Controller, Client) where the server managed engine connectivity, device authorization, and pairing operations; smartphone controllers handled remote device management with assigned capability tokens and access rights (Read, Write, or NULL); and client machines processed authenticated instruction signals. Fig. 3 demonstrates the controller management interface, where administrators could view registered smartphone controllers, see their last-seen timestamps, and perform granular actions including assigning machines to controllers, viewing paired machines, configuring permissions, or revoking access — all governed by the capability-based access control policies enforcing least-privilege principles.",
         "Validated the CCAAC model against existing authentication solutions, demonstrating effectiveness against Denial of Service, Man-in-the-Middle, and Replay attacks. The Identity and Capability-based Access Control (IACAC) protocol achieved mutual authentication in 14.02ms — substantially outperforming competing schemes including IoT Auth (1,604ms) and HBQ (2,413ms) — while also addressing post-authentication access control that other schemes neglected.",
-        "Documented the complete research methodology, system framework, and experimental validation results for academic peer review, culminating in publication in the Network and Communication Technologies journal (Vol. 5, No. 1, 2020, ISSN 1927-064X), contributing to the body of knowledge on IoT security and access control models for connected device environments."
+        "Documented the complete research methodology, system framework, and experimental validation results for academic peer review, culminating in publication in the Network and Communication Technologies journal (Vol. 5, No. 1, 2020, ISSN 1927-064X), contributing to the body of knowledge on IoT security and access control models for connected device environments.",
+        "Work Context: This research and implementation work was completed during my FUTA tenure, where secure device access and policy enforcement were active operational concerns. Current Implementation: I continue applying the same access-control and secure-authentication principles in personal systems and automation projects."
       ],
       "impact": [
         {
@@ -287,7 +295,7 @@
         "Implemented quality assurance checkpoints within each pipeline stage — extraction validation, transformation rule verification, and output integrity checks — ensuring that data anomalies were caught and flagged before reports reached leadership, significantly reducing post-publication corrections.",
         "Standardized report templates and data visualizations across recurring deliverables including weekly KPI summaries, session progress updates, and variance analyses, eliminating the manual formatting and rework that previously consumed significant preparation time each reporting cycle.",
         "Delivered scheduled, automated reporting outputs that provided university leadership with timely insights into admissions throughput, examination processing status, and results publication readiness, directly supporting planning decisions and resource allocation across departments.",
-        "The production pattern from this work is mirrored in the scripting repository through `scripts/python/etl/etl_runner.py` and `scripts/workflow/schedule_daily_run.sh`, where config-driven ETL runs and timestamped logs replicate the same operational cadence used for reporting cycles."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this pipeline pattern supported recurring admissions, examination, and results reporting with tighter turnaround times. Current Implementation: I mirror the same production cadence in the scripting repository through `scripts/python/etl/etl_runner.py` and `scripts/workflow/schedule_daily_run.sh`, using config-driven runs and timestamped logs."
       ],
       "impact": [
         {
@@ -319,8 +327,9 @@
         "Workflow Automation",
         "Scheduled Jobs"
       ],
-      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/etl",
-      "linkText": "View ETL Runner Scripts",
+      "link": "docs/case-studies/operational-reporting-automation-pipeline.md",
+      "linkText": "View Case Summary (Markdown)",
+      "pdf": "docs/case-studies/operational-reporting-automation-pipeline.pdf",
       "id": "operational-reporting-automation-pipeline",
       "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "automation",
@@ -332,7 +341,7 @@
         "Developed correction queues and status dashboards in Excel and Google Sheets that provided departmental coordinators with clear, actionable lists of records requiring verification, enabling distributed resolution of issues without disrupting the overall processing timeline.",
         "Partnered with department leads and academic coordinators to reconcile complex eligibility cases — including transfer students, readmission candidates, and students with incomplete records — ensuring that final published rosters accurately reflected each student's academic standing.",
         "Maintained lifecycle data integrity from initial application intake through graduation processing, applying SQL queries and formula-driven validation to ensure that records remained consistent and audit-ready across multiple academic sessions and reporting cycles.",
-        "I translated this reconciliation workflow into reusable assets (`scripts/python/reconciliation/reconcile_students.py` plus `scripts/sql/templates/sql_reconciliation_diff_template.sql`) to keep source-vs-target checks, mismatch columns, and summary counts consistent across teams."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this reconciliation flow was used to align admissions, enrollment, and results records before publication windows. Current Implementation: I now keep the same source-vs-target checks in reusable assets (`scripts/python/reconciliation/reconcile_students.py` and `scripts/sql/templates/sql_reconciliation_diff_template.sql`) for consistent mismatch tracking."
       ],
       "impact": [
         {
@@ -364,8 +373,9 @@
         "Reconciliation",
         "Mismatch Reporting"
       ],
-      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/reconciliation",
-      "linkText": "View Reconciliation Scripts",
+      "link": "docs/case-studies/student-records-reconciliation-hub.md",
+      "linkText": "View Case Summary (Markdown)",
+      "pdf": "docs/case-studies/student-records-reconciliation-hub.pdf",
       "id": "student-records-reconciliation-hub",
       "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -376,8 +386,8 @@
         "Centralized examination readiness data from multiple operational streams — device inventory and compliance status, invigilation personnel assignments, venue preparation checklists, and technology setup verification — into a single unified dashboard providing real-time visibility into overall exam preparedness.",
         "Designed SLA threshold indicators and automated alerting logic to flag checkpoints at risk of breaching target deadlines, enabling operations leads to prioritize escalation actions and allocate resources to the most critical preparation gaps before each examination cycle.",
         "Produced daily SLA health snapshots shared with examination coordinators and operations leads, providing concise status summaries that highlighted items requiring immediate attention and tracking the resolution progress of previously flagged issues across 120+ tracked devices per cycle.",
-        "Improved overall SLA adherence to 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.",
-        "The same at-risk logic now exists as reusable code in `scripts/python/reporting/sla_at_risk_report.py` with `data/sample/exam_tasks.csv`, allowing the dashboard thresholds and escalation queues to be tested outside the reporting tool before each exam window."
+        "Improved overall SLA adherence to about 95% by replacing ad-hoc tracking methods with a structured, metric-driven approach that established clear accountability for each readiness checkpoint and provided historical trend data to support continuous process improvement across examination operations.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this SLA tracking model was used to coordinate exam readiness and prioritize escalation for at-risk checkpoints. Current Implementation: I now preserve the same threshold logic in reusable assets (`scripts/python/reporting/sla_at_risk_report.py` with `data/sample/exam_tasks.csv`) to test queues before each exam window."
       ],
       "impact": [
         {
@@ -409,8 +419,9 @@
         "Reporting",
         "At-Risk Alerts"
       ],
-      "link": "https://github.com/toughdave/scripting/tree/main/scripts/python/reporting",
-      "linkText": "View SLA Reporting Scripts",
+      "link": "docs/case-studies/exam-operations-sla-tracker.md",
+      "linkText": "View Case Summary (Markdown)",
+      "pdf": "docs/case-studies/exam-operations-sla-tracker.pdf",
       "id": "exam-operations-sla-tracker",
       "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=680&h=384&q=80",
       "category": "data",
@@ -421,7 +432,8 @@
         "Defined structured testing gates, compatibility verification steps, and rollback procedures for each phase of software and system deployments, ensuring that new installations were validated against baseline requirements before being released to production or classroom environments.",
         "Developed step-by-step QA scripts covering pre-deployment environment checks, installation verification, post-deployment functional testing, and user acceptance criteria, reducing the likelihood of configuration drift and inconsistent setups across multiple machines.",
         "Aligned documentation standards with institutional procedures so that support staff and instructors could execute repeatable installations independently, following consistent handoff checklists that captured configuration details, version information, and known-issue workarounds.",
-        "Maintained a living library of deployment playbooks covering common scenarios — including development tool installation (Eclipse, VS Code, MySQL), operating system configuration, virtual machine setup, and network service provisioning — with version tracking to keep procedures current as software updates were released."
+        "Maintained a living library of deployment playbooks covering common scenarios — including development tool installation (Eclipse, VS Code, MySQL), operating system configuration, virtual machine setup, and network service provisioning — with version tracking to keep procedures current as software updates were released.",
+        "Work Context: Across FUTA (2017–2023) and Pures College (2024–2025), these implementation and QA playbooks were used to stabilize rollouts and reduce configuration drift across teams. Current Implementation: I continue maintaining the same checklist-first model in personal projects to keep deployments repeatable and auditable."
       ],
       "impact": [
         {
@@ -462,7 +474,8 @@
         "Configured multi-branch network topologies simulating enterprise WAN connectivity, including static routing paths for predictable traffic patterns and dynamic routing protocol scenarios that demonstrated how networks adapt to link failures and topology changes in production environments.",
         "Implemented VPN tunnel configurations across isolated network segments, practicing split-tunnel, full-tunnel, and failover scenarios to understand how encrypted connectivity is established and maintained between geographically separated sites.",
         "Captured detailed troubleshooting logs, packet traces, and failover behavior records for each lab scenario, building a documented reference library of common routing and VPN issues along with validated resolution steps for repeatable lab exercises.",
-        "Bridged theoretical networking concepts with practical implementation by systematically working through real-world scenarios such as routing table convergence, asymmetric path detection, and VPN re-establishment after link failures, using both Packet Tracer simulations and physical lab equipment."
+        "Bridged theoretical networking concepts with practical implementation by systematically working through real-world scenarios such as routing table convergence, asymmetric path detection, and VPN re-establishment after link failures, using both Packet Tracer simulations and physical lab equipment.",
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used these routing and VPN exercises to guide learners through structured troubleshooting and network behavior analysis. Current Implementation: I continue extending these scenarios in my personal lab to test failover handling and connectivity recovery patterns."
       ],
       "impact": [
         {
@@ -482,6 +495,7 @@
         }
       ],
       "summary": "Designed and operated a multi-site network simulation lab to practice routing fundamentals, VPN tunnel configuration, and connectivity troubleshooting, reinforcing Cisco networking concepts through hands-on experimentation with both static and dynamic routing protocols.",
+      "mobileSummary": "Ran a multi-site routing and VPN lab to practice connectivity design, failover behavior, and troubleshooting workflows.",
       "modified": "2025-10-04T05:25:37.056Z",
       "featured": false,
       "title": "Routing & VPN Basics Lab",
@@ -502,7 +516,8 @@
         "Built forward and reverse DNS lookup zones with properly configured records (A, AAAA, PTR, CNAME, MX), establishing reliable name resolution services that client machines across multiple VLANs could use for both internal resource discovery and external connectivity.",
         "Configured DHCP server scopes with appropriate address ranges, lease durations, and reservation policies to provide automated IP assignment for 50+ mixed client devices, including both Windows and Linux systems operating across different network segments.",
         "Validated DHCP lease lifecycle behavior including initial allocation, renewal timing, and failover scenarios, documenting the troubleshooting steps for common issues such as IP conflicts, scope exhaustion, and relay agent misconfiguration in multi-segment environments.",
-        "Tested cross-platform client connectivity to ensure consistent DNS resolution and DHCP address acquisition across Windows and Linux operating systems, verifying that network services functioned correctly regardless of client platform and documenting platform-specific configuration requirements."
+        "Tested cross-platform client connectivity to ensure consistent DNS resolution and DHCP address acquisition across Windows and Linux operating systems, verifying that network services functioned correctly regardless of client platform and documenting platform-specific configuration requirements.",
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), this DNS/DHCP workflow supported practical networking lessons on name resolution, lease behavior, and service troubleshooting. Current Implementation: I continue validating the same service patterns in my personal lab across segmented environments."
       ],
       "impact": [
         {
@@ -522,6 +537,7 @@
         }
       ],
       "summary": "Configured and validated DNS and DHCP infrastructure services in a mixed Windows and Linux lab environment, building foundational network service skills for reliable name resolution, automated IP address management, and cross-platform client connectivity troubleshooting.",
+      "mobileSummary": "Configured DNS and DHCP lab services to validate name resolution, lease management, and cross-platform connectivity.",
       "modified": "2025-09-19T05:44:00.056Z",
       "featured": false,
       "title": "DNS & DHCP Services Lab",
@@ -542,7 +558,8 @@
         "Conducted comprehensive pre-examination readiness assessments covering operating system patch levels, antivirus definition currency, application version compliance, and hardware functionality across laptops and desktop systems used in examination environments.",
         "Tracked remediation status for identified deficiencies using structured checklists and status dashboards, coordinating with IT support teams to prioritize and resolve critical issues within a 24-hour turnaround target before examination commencement.",
         "Verified security baseline adherence including user account configurations, access control settings, and network connectivity requirements to ensure that examination systems met institutional security standards and could not be exploited for unauthorized activities during testing periods.",
-        "Logged detailed readiness outcomes and compliance status reports for each examination cycle, building historical records that supported trend analysis, resource planning, and continuous improvement of the pre-exam technology verification process."
+        "Logged detailed readiness outcomes and compliance status reports for each examination cycle, building historical records that supported trend analysis, resource planning, and continuous improvement of the pre-exam technology verification process.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this readiness process was used before high-stakes examinations to enforce baseline compliance and rapid issue resolution. Current Implementation: I continue applying the same pre-flight verification model in personal operations checklists and lab maintenance routines."
       ],
       "impact": [
         {
@@ -562,6 +579,7 @@
         }
       ],
       "summary": "Performed systematic preventative maintenance and operational readiness verification on examination technology infrastructure before high-stakes testing periods at a federal university, ensuring device compliance, software currency, and security baseline adherence across 150+ systems each exam cycle.",
+      "mobileSummary": "Ran pre-exam readiness checks across 150+ devices to verify compliance, patch status, and operational reliability.",
       "modified": "2025-11-27T15:40:00.000Z",
       "featured": false,
       "title": "Operational Readiness Checks",
@@ -582,7 +600,8 @@
         "Authored detailed step-by-step installation guides, configuration runbooks, and quick-reference materials covering common system administration tasks, software deployment procedures, and troubleshooting workflows used by support staff and instructors across classroom and examination environments.",
         "Facilitated hands-on training workshops for technical and non-technical staff, translating complex system workflows into practical, actionable instructions and ensuring alignment on standard operating procedures, escalation paths, and documentation expectations across teams.",
         "Maintained a centralized knowledge base of documented solutions, known issues, and configuration templates that reduced repeat support tickets by providing staff with self-service access to verified resolution steps for frequently encountered problems.",
-        "Developed onboarding documentation packages for new team members covering system access procedures, tool configurations, institutional workflows, and key contacts, enabling faster ramp-up and consistent adherence to operational standards from day one."
+        "Developed onboarding documentation packages for new team members covering system access procedures, tool configurations, institutional workflows, and key contacts, enabling faster ramp-up and consistent adherence to operational standards from day one.",
+        "Work Context: At FUTA and Pures College, these documentation assets were central to onboarding, support consistency, and smoother handoffs between technical teams. Current Implementation: I keep building the same runbook-first approach in personal projects to preserve repeatable setup and troubleshooting workflows."
       ],
       "impact": [
         {
@@ -622,8 +641,9 @@
       "details": [
         "Diagnosed and resolved a diverse range of technical issues including hardware failures, OS boot and configuration problems, application installation errors, network connectivity issues, and peripheral device malfunctions across Windows and Linux platforms used in classroom and examination settings.",
         "Built and maintained a known-issues knowledge base documenting recurring problems, root cause analyses, and validated resolution steps, enabling faster incident resolution and reducing escalation rates for common support scenarios encountered across multiple academic terms.",
-        "Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.",
-        "Escalated critical incidents through established channels with comprehensive documentation of troubleshooting steps already attempted, enabling senior support teams to quickly assess the situation and implement fixes while prevention recommendations were documented to reduce future recurrence."
+        "Tracked all support requests with detailed incident logs capturing symptoms, diagnostic steps taken, resolution actions, and time-to-resolution metrics, maintaining about 95% SLA compliance for response and resolution targets across multiple academic terms and examination cycles.",
+        "Escalated critical incidents through established channels with comprehensive documentation of troubleshooting steps already attempted, enabling senior support teams to quickly assess the situation and implement fixes while prevention recommendations were documented to reduce future recurrence.",
+        "Work Context: At FUTA and Pures College, this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Current Implementation: I continue using the same root-cause and knowledge-base pattern in personal support workflows and lab operations."
       ],
       "impact": [
         {

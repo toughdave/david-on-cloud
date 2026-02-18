@@ -3,6 +3,9 @@ window.siteConfig = {
     settings: {
         shootingStarInterval: 25000,
         defaultFunMode: true,
+        primaryNavOrder: ['hero', 'about', 'experience', 'projects'],
+        secondaryNavOrder: ['skills', 'toolsPlatforms', 'scriptLibrary', 'process', 'testimonials'],
+        customNavItems: [],
         vanta: {
             dark: { color: "#7c3aed", color2: "#6366f1", backgroundColor: "#0f172a" },
             light: { color: "#667eea", color2: "#f8fafc", backgroundColor: "#f8fafc" }
@@ -53,7 +56,7 @@ const loadProjects = () => {
             
             const projectsList = document.getElementById('projectsList');
             const projectsCarousel = document.getElementById('projectsCarousel');
-            const allProjects = Array.isArray(data.projects) ? data.projects : [];
+            const allProjects = (Array.isArray(data.projects) ? data.projects : []).filter(project => project && project.hidden !== true);
             const getProjectSummary = (project) => project.summary || project.description || '';
             const isMobileCarousel = window.matchMedia('(max-width: 768px)').matches;
             const getCarouselSummary = (project) => {
@@ -517,11 +520,122 @@ if (typeof AOS !== 'undefined') {
     });
 
     /* ===== NAVIGATION FUNCTIONALITY ===== */
+const SECTION_KEY_TO_ID = {
+    hero: 'intro',
+    about: 'about',
+    experience: 'experience',
+    projects: 'projects',
+    skills: 'skills',
+    toolsPlatforms: 'tools-platforms',
+    scriptLibrary: 'script-library',
+    process: 'process',
+    testimonials: 'testimonials',
+    contact: 'contact'
+};
+
+const SECTION_ID_TO_KEY = Object.entries(SECTION_KEY_TO_ID).reduce((acc, [key, id]) => {
+    acc[id] = key;
+    return acc;
+}, {});
+
+const DEFAULT_SECONDARY_NAV_KEYS = ['skills', 'toolsPlatforms', 'scriptLibrary', 'process', 'testimonials'];
+
+const DEFAULT_SCROLL_SPY_SECTION_IDS = [
+    'intro',
+    'about',
+    'experience',
+    'projects',
+    'skills',
+    'tools-platforms',
+    'script-library',
+    'process',
+    'testimonials',
+    'contact'
+];
+
+let navScrollObserver = null;
+
+const getSecondaryNavKeys = () => {
+    if (Array.isArray(window.__siteSecondaryNavOrder) && window.__siteSecondaryNavOrder.length) {
+        return window.__siteSecondaryNavOrder;
+    }
+    return DEFAULT_SECONDARY_NAV_KEYS;
+};
+
+const getDefaultSecondaryNavKey = () => {
+    const secondaryKeys = getSecondaryNavKeys();
+    if (!secondaryKeys.length) return '';
+    const configuredDefault = window.__siteSecondaryNavDefaultKey;
+    if (configuredDefault && secondaryKeys.includes(configuredDefault)) {
+        return configuredDefault;
+    }
+    return secondaryKeys[0];
+};
+
+const setSecondaryNavCurrent = (nextKey, options = {}) => {
+    if (typeof window.__setSecondaryNavCurrentKey !== 'function') return false;
+    return window.__setSecondaryNavCurrentKey(nextKey, options);
+};
+
+const syncSecondaryNavForSection = (sectionId, animate = true) => {
+    const secondaryKeys = getSecondaryNavKeys();
+    if (!secondaryKeys.length) return;
+
+    const key = SECTION_ID_TO_KEY[sectionId] || '';
+    if (key && secondaryKeys.includes(key)) {
+        setSecondaryNavCurrent(key, { animate });
+        return;
+    }
+
+    const defaultKey = getDefaultSecondaryNavKey();
+    if (defaultKey) {
+        setSecondaryNavCurrent(defaultKey, { animate: false });
+    }
+};
+
+const isSectionVisible = (section) => {
+    if (!section) return false;
+    if (section.getAttribute('data-section-visible') === 'false') return false;
+    if (section.style.display === 'none') return false;
+    return true;
+};
+
+const isFeaturedProjectsSectionVisible = () => {
+    const projectsSection = document.getElementById('projects');
+    return isSectionVisible(projectsSection);
+};
+
+const ensureProjectsNavDefaultState = () => {
+    const projectsContainer = document.querySelector('.nav-item-projects');
+    const projectsLink = document.getElementById('nav-projects-link');
+
+    if (projectsContainer) {
+        projectsContainer.classList.remove('mode-featured');
+    }
+
+    if (projectsLink) {
+        const projectsText = projectsLink.querySelector('.nav-link-text');
+        projectsLink.setAttribute('href', 'projects.html');
+        if (projectsText) {
+            projectsText.classList.remove('morphing');
+            projectsText.textContent = 'Projects';
+        } else {
+            projectsLink.textContent = 'Projects';
+        }
+    }
+};
+
 const setActiveNavLink = (targetId) => {
     const cleanedId = (targetId || '').replace('#', '').trim();
     const normalized = cleanedId === 'intro' || cleanedId === 'home' || cleanedId === ''
         ? 'home'
         : cleanedId;
+
+    if (normalized === 'home') {
+        syncSecondaryNavForSection('intro', false);
+    } else {
+        syncSecondaryNavForSection(normalized, true);
+    }
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active-page', 'transition-none', 'font-bold');
@@ -540,6 +654,8 @@ const setActiveNavLink = (targetId) => {
                 if (link.classList.contains('btn-explore-universe')) return;
                 link.classList.add('active-page', 'transition-none', 'font-bold');
             });
+        } else if (!isFeaturedProjectsSectionVisible()) {
+            ensureProjectsNavDefaultState();
         }
         // On index page: only highlight the desktop nav link (not mobile menu)
         const projectsLink = document.getElementById('nav-projects-link');
@@ -584,11 +700,21 @@ function updateActiveNavStates() {
 }
 
 const setupScrollSpy = () => {
+    if (navScrollObserver) {
+        navScrollObserver.disconnect();
+        navScrollObserver = null;
+    }
+
     if (window.location.pathname.includes('projects.html')) return;
-    const sectionIds = ['intro', 'about', 'skills', 'experience', 'projects', 'contact'];
+
+    const configuredSectionIds = Array.isArray(window.__siteSectionOrder)
+        ? window.__siteSectionOrder.map((key) => SECTION_KEY_TO_ID[key]).filter(Boolean)
+        : [];
+    const sectionIds = [...new Set([...configuredSectionIds, ...DEFAULT_SCROLL_SPY_SECTION_IDS])];
+
     const sections = sectionIds
         .map((id) => document.getElementById(id))
-        .filter(Boolean);
+        .filter((section) => section && isSectionVisible(section));
     if (!sections.length) return;
 
     const visibilityMap = new Map();
@@ -635,6 +761,12 @@ const setupScrollSpy = () => {
             };
             
             if (projectsContainer && projectsLink) {
+                const featuredSectionVisible = isFeaturedProjectsSectionVisible();
+                if (!featuredSectionVisible) {
+                    ensureProjectsNavDefaultState();
+                    return;
+                }
+
                 const projectsText = getProjectTextSpan();
                 
                 // FLIP animation helper: smoothly slide ALL sibling nav items
@@ -706,6 +838,7 @@ const setupScrollSpy = () => {
     });
 
     sections.forEach((section) => observer.observe(section));
+    navScrollObserver = observer;
 };
 
 function randomBetween(min, max) {
@@ -734,12 +867,18 @@ function randomBetween(min, max) {
         } catch { return false; }
     }
 
-    mobileMenu.querySelectorAll('a, button').forEach(link => {
-        link.addEventListener('click', () => {
-            if (isSamePageAnchor(link)) {
-                setTimeout(() => { menuToggle.checked = false; }, 0);
-            }
-        });
+    mobileMenu.addEventListener('click', (event) => {
+        const link = event.target.closest('a, button');
+        if (!link) return;
+
+        if (isSamePageAnchor(link)) {
+            setTimeout(() => { menuToggle.checked = false; }, 0);
+        }
+
+        if (link.matches('.mobile-secondary-item')) {
+            const details = mobileMenu.querySelector('#mobile-secondary-details');
+            if (details) details.open = false;
+        }
     });
 
     // Close on click outside
@@ -2170,11 +2309,32 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.setProperty('--modal-scrollbar-width', value);
     };
 
+    const formatImpactValueDisplay = (value) => {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+
+        if (/^100%$/.test(raw)) return 'near 100%';
+        if (/^\d+(?:\.\d+)?%$/.test(raw)) return `about ${raw}`;
+        if (/^\d+(?:\.\d+)?K\+$/i.test(raw)) return `about ${raw}`;
+        if (/^\d+\+$/.test(raw)) return `about ${raw}`;
+        if (/^\d+(?:\.\d+)?\s*hrs(?:\/week)?$/i.test(raw)) return `about ${raw}`;
+        if (/^\d+(?:\.\d+)?ms$/i.test(raw)) return `about ${raw}`;
+
+        return raw;
+    };
+
+    const formatProjectDetailText = (detail) => {
+        const raw = String(detail || '');
+        return raw
+            .replace(/\bWork Context:/g, '<strong>Work Context:</strong>')
+            .replace(/\bCurrent Implementation:/g, '<strong>Current Implementation:</strong>');
+    };
+
     const buildImpactCards = (impact = []) => {
         if (!impact.length) return '';
         return impact.map(item => `
             <div class="project-modal-impact-card">
-                <span class="impact-value">${item.value || ''}</span>
+                <span class="impact-value">${formatImpactValueDisplay(item.value)}</span>
                 <span class="impact-label">${item.label || ''}</span>
                 ${item.detail ? `<span class="impact-detail">${item.detail}</span>` : ''}
             </div>
@@ -2199,7 +2359,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         let html = '';
         details.forEach((detail, i) => {
-            html += `<p>${detail}</p>`;
+            html += `<p>${formatProjectDetailText(detail)}</p>`;
             if (imagesByIndex[i]) html += imagesByIndex[i].map(buildImg).join('');
         });
         return html;
@@ -2828,3 +2988,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Navigation state updates
 window.addEventListener('hashchange', updateActiveNavStates);
 window.addEventListener('load', updateActiveNavStates);
+document.addEventListener('site-settings-applied', () => {
+    updateActiveNavStates();
+    setupScrollSpy();
+});

@@ -1,0 +1,94 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 1559 >>
+stream
+BT
+/F1 11 Tf
+72 760 Td
+(ADMISSIONS DATA QUALITY AUDIT) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Project Summary) Tj
+0 -15 Td
+(Standardized admissions intake checks across identity, qualification, and eligibility fields) Tj
+0 -15 Td
+(to reduce correction loops before committee sign-off.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Work Context) Tj
+0 -15 Td
+(At FUTA \(Systems & Data Analyst / System Programmer, 2017-2023\), this process was used each) Tj
+0 -15 Td
+(intake cycle to validate submitted applicant records and prepare clean rosters for review.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Current Implementation) Tj
+0 -15 Td
+(I now maintain the same rules in script-driven validation assets and reusable configuration) Tj
+0 -15 Td
+(files for consistent execution across cycles.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Results and Impact) Tj
+0 -15 Td
+(- Applicants reviewed: 2K+) Tj
+0 -15 Td
+(- Residual error rate after cleanup: 0.8%) Tj
+0 -15 Td
+(- Validation rule sets: 4) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Deliverables) Tj
+0 -15 Td
+(- Data quality scripts:) Tj
+0 -15 Td
+(  https://github.com/toughdave/scripting/tree/main/scripts/python/data_quality) Tj
+0 -15 Td
+(- Rules validator: `scripts/python/data_quality/config_rules_validator.py`) Tj
+0 -15 Td
+(- Validation rule sample: `data/sample/validation_rules.json`) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Technical Notes) Tj
+0 -15 Td
+(- Rule categories: required fields, score thresholds, duplicate identity checks, eligibility) Tj
+0 -15 Td
+(  conditions.) Tj
+0 -15 Td
+(- Outputs include issue queues for manual review and sign-off summaries.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001851 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1921
+%%EOF

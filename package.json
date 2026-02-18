@@ -7,6 +7,7 @@
     "start": "npx http-server . -p 8080",
     "build": "npm run lint && npm run build:copy",
     "build:copy": "mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git",
+    "generate:llm-docs": "node scripts/generate_llm_docs.js",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "htmlhint \"*.html\" --config .htmlhintrc",
     "lint:css": "stylelint \"css/**/*.css\" --config .stylelintrc.json",

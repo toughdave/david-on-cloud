@@ -1,0 +1,114 @@
+{
+  "sectionTitle": "Tools & Platforms",
+  "subtitle": "I use these practical tools to deliver data quality, reporting, systems operations, and implementation workflows across projects.",
+  "categories": [
+    {
+      "icon": "bar-chart-2",
+      "title": "Data & Analytics Tools",
+      "items": [
+        {
+          "name": "Power BI",
+          "usage": "Build KPI dashboards, trend analysis views, and operational scorecards for leadership reporting."
+        },
+        {
+          "name": "Excel",
+          "usage": "Run validation formulas, reconciliation checks, and structured data review before publication."
+        },
+        {
+          "name": "Google Sheets",
+          "usage": "Coordinate shared review queues and live status tracking with distributed teams."
+        }
+      ]
+    },
+    {
+      "icon": "database",
+      "title": "Databases & Query Tools",
+      "items": [
+        {
+          "name": "SQL (MySQL/PostgreSQL)",
+          "usage": "Audit records, detect anomalies, and reconcile source-vs-target datasets with repeatable query templates."
+        },
+        {
+          "name": "MySQL Workbench",
+          "usage": "Inspect schema structures, validate query outputs, and manage reporting datasets during analysis cycles."
+        },
+        {
+          "name": "Gradent Platform",
+          "usage": "Extract admissions and academic processing exports for institutional data cleanup and reporting workflows."
+        }
+      ]
+    },
+    {
+      "icon": "cpu",
+      "title": "Automation & Scripting Tools",
+      "items": [
+        {
+          "name": "Python",
+          "usage": "Automate ETL, quality checks, reconciliation routines, and scheduled report generation tasks."
+        },
+        {
+          "name": "Bash",
+          "usage": "Orchestrate repeatable execution steps, scheduled runs, and lightweight operational workflows."
+        },
+        {
+          "name": "GitHub",
+          "usage": "Version script libraries, track workflow improvements, and publish reusable technical assets."
+        }
+      ]
+    },
+    {
+      "icon": "server",
+      "title": "Systems & Infrastructure Tools",
+      "items": [
+        {
+          "name": "Windows Server",
+          "usage": "Configure Active Directory, policy baselines, and lab-ready system administration environments."
+        },
+        {
+          "name": "Active Directory",
+          "usage": "Manage user/group structures, access policy testing, and organizational unit setup in lab deployments."
+        },
+        {
+          "name": "VirtualBox & VMware",
+          "usage": "Provision repeatable virtual labs for systems implementation, testing, and training delivery."
+        }
+      ]
+    },
+    {
+      "icon": "activity",
+      "title": "Networking & Security Tools",
+      "items": [
+        {
+          "name": "Cisco Packet Tracer",
+          "usage": "Model VLAN, routing, and VPN scenarios before applying configurations in practical labs."
+        },
+        {
+          "name": "Managed Cisco Switches",
+          "usage": "Practice trunking, segmentation, and troubleshooting for enterprise-style network workflows."
+        },
+        {
+          "name": "Biometric & CCTV Operations Stack",
+          "usage": "Support exam integrity workflows through identity verification checks and monitored incident logging."
+        }
+      ]
+    },
+    {
+      "icon": "users",
+      "title": "Delivery & Collaboration Tools",
+      "items": [
+        {
+          "name": "Issue & SLA Tracker (Excel/Google Sheets)",
+          "usage": "Track incident queues, assign owners, monitor response timelines, and report service performance across operations cycles."
+        },
+        {
+          "name": "Deployment & UAT Checklists",
+          "usage": "Coordinate pre-deployment validation, user acceptance testing, and go-live sign-off for systems updates."
+        },
+        {
+          "name": "Implementation Handover Playbooks",
+          "usage": "Standardize transition notes, support escalation paths, and user guidance for stable post-rollout operations."
+        }
+      ]
+    }
+  ]
+}

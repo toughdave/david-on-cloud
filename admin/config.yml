@@ -52,17 +52,88 @@ collections:
               - label: "Section Visibility"
                 name: "sections"
                 widget: "object"
-                hint: "Toggle entire sections on/off. Hidden sections also hide their nav links."
+                hint: "Toggle entire sections on/off. Hidden sections hide matching nav links (Projects still keeps a link to the full Projects page)."
                 fields:
                   - {label: "Hero / Intro", name: "hero", widget: "boolean", default: true}
                   - {label: "About Me", name: "about", widget: "boolean", default: true}
                   - {label: "Skills", name: "skills", widget: "boolean", default: true}
+                  - {label: "Tools & Platforms", name: "toolsPlatforms", widget: "boolean", default: true}
                   - {label: "Scripts Library", name: "scriptLibrary", widget: "boolean", default: true}
                   - {label: "Experience", name: "experience", widget: "boolean", default: true}
                   - {label: "Featured Projects", name: "projects", widget: "boolean", default: true}
                   - {label: "Process & Services", name: "process", widget: "boolean", default: true}
                   - {label: "Testimonials", name: "testimonials", widget: "boolean", default: true}
                   - {label: "Contact", name: "contact", widget: "boolean", default: true}
+              - label: "Homepage Section Order"
+                name: "sectionOrder"
+                widget: "list"
+                required: false
+                hint: "Arrange homepage sections in display order. Include each section once."
+                field:
+                  label: "Section"
+                  name: "section"
+                  widget: "select"
+                  options:
+                    - {label: "Hero / Intro", value: "hero"}
+                    - {label: "About Me", value: "about"}
+                    - {label: "Experience", value: "experience"}
+                    - {label: "Featured Projects", value: "projects"}
+                    - {label: "Skills", value: "skills"}
+                    - {label: "Tools & Platforms", value: "toolsPlatforms"}
+                    - {label: "Scripts Library", value: "scriptLibrary"}
+                    - {label: "Process & Services", value: "process"}
+                    - {label: "Testimonials", value: "testimonials"}
+                    - {label: "Contact", value: "contact"}
+              - label: "Navigation Order"
+                name: "navOrder"
+                widget: "list"
+                required: false
+                hint: "Arrange menu sequence. Unused sections are ignored automatically."
+                field:
+                  label: "Menu Item"
+                  name: "item"
+                  widget: "select"
+                  options:
+                    - {label: "Hero / Home", value: "hero"}
+                    - {label: "About Me", value: "about"}
+                    - {label: "Experience", value: "experience"}
+                    - {label: "Projects", value: "projects"}
+                    - {label: "Skills", value: "skills"}
+                    - {label: "Tools & Platforms", value: "toolsPlatforms"}
+                    - {label: "Scripts Library", value: "scriptLibrary"}
+                    - {label: "Process & Services", value: "process"}
+                    - {label: "Testimonials", value: "testimonials"}
+                    - {label: "Contact", value: "contact"}
+              - label: "Primary Navigation"
+                name: "primaryNavOrder"
+                widget: "list"
+                required: false
+                hint: "Desktop primary links shown directly in the top bar. Built-ins: hero, about, experience, projects. Custom keys are allowed."
+                field:
+                  label: "Primary Key"
+                  name: "key"
+                  widget: "string"
+              - label: "Secondary Navigation"
+                name: "secondaryNavOrder"
+                widget: "list"
+                required: false
+                hint: "Secondary links used in the dropdown. Built-ins: skills, toolsPlatforms, scriptLibrary, process, testimonials. Custom keys are allowed."
+                field:
+                  label: "Secondary Key"
+                  name: "key"
+                  widget: "string"
+              - label: "Custom Navigation Items"
+                name: "customNavItems"
+                widget: "list"
+                required: false
+                hint: "Add extra menu items not tied to built-in sections. Use unique keys and assign each item to primary or secondary."
+                fields:
+                  - {label: "Key", name: "key", widget: "string", hint: "Unique key used in primaryNavOrder or secondaryNavOrder"}
+                  - {label: "Label", name: "label", widget: "string"}
+                  - {label: "Index Page Link", name: "indexHref", widget: "string", hint: "Example: index.html#contact or https://example.com"}
+                  - {label: "Projects Page Link", name: "projectsHref", widget: "string", required: false, hint: "Optional override used when viewing projects.html"}
+                  - {label: "Menu Group", name: "group", widget: "select", options: ["primary", "secondary"], default: "secondary"}
+                  - {label: "Open in New Tab", name: "openInNewTab", widget: "boolean", default: false, required: false}
 
   # ──────────────────────────────────────────────
   # 2. HERO / INTRODUCTION
@@ -75,8 +146,8 @@ collections:
         file: "js/hero.json"
         fields:
           - {label: "Title", name: "title", widget: "string", default: "Hi, I'm David"}
-          - {label: "Subtitle / Role", name: "subtitle", widget: "string", default: "Systems & Data Analyst"}
-          - {label: "Availability Badge Text", name: "availabilityText", widget: "string", default: "Open to Information Systems/Systems Analyst roles"}
+          - {label: "Subtitle / Role", name: "subtitle", widget: "string", default: "Information Systems, Data Analyst & IT Administrator"}
+          - {label: "Availability Badge Text", name: "availabilityText", widget: "string", default: "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles"}
           - {label: "Resume PDF", name: "resumePath", widget: "file", hint: "Upload or select the resume PDF from docs/ folder"}
           - {label: "Profile Picture", name: "profileImage", widget: "image", hint: "Hero portrait photo"}
           - {label: "Introduction Paragraph", name: "introText", widget: "text", hint: "The main introductory paragraph below the subtitle"}
@@ -148,10 +219,35 @@ collections:
                 field: {label: "Skill", name: "skill", widget: "string"}
 
   # ──────────────────────────────────────────────
-  # 4B. SCRIPTS LIBRARY
+  # 4B. TOOLS & PLATFORMS
+  # ──────────────────────────────────────────────
+  - name: "tools_platforms"
+    label: "4.5 · Tools & Platforms"
+    files:
+      - name: "tools_platforms_content"
+        label: "Tools & Platforms Section"
+        file: "js/tools-platforms.json"
+        fields:
+          - {label: "Section Title", name: "sectionTitle", widget: "string", default: "Tools & Platforms"}
+          - {label: "Subtitle", name: "subtitle", widget: "text", hint: "Short overview of practical tool usage"}
+          - label: "Tool Categories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - {label: "Icon", name: "icon", widget: "string", hint: "Feather icon name (e.g. bar-chart-2, database, cpu, server, activity, users)"}
+              - {label: "Category Title", name: "title", widget: "string"}
+              - label: "Tools"
+                name: "items"
+                widget: "list"
+                fields:
+                  - {label: "Tool Name", name: "name", widget: "string"}
+                  - {label: "Practical Usage", name: "usage", widget: "text", hint: "Explain how this tool is used in project delivery"}
+
+  # ──────────────────────────────────────────────
+  # 4C. SCRIPTS LIBRARY
   # ──────────────────────────────────────────────
   - name: "scripts_library"
-    label: "4.5 · Scripts Library"
+    label: "4.6 · Scripts Library"
     files:
       - name: "scripts_library_content"
         label: "Scripts Library Section"
@@ -347,9 +443,11 @@ collections:
               - {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]}
               - {label: "Cover Image", name: "image", widget: "image"}
               - {label: "Summary", name: "summary", widget: "text"}
+              - {label: "Mobile Summary", name: "mobileSummary", widget: "text", required: false, hint: "Short version used in compact/mobile views"}
               - label: "Detailed Paragraphs"
                 name: "details"
                 widget: "list"
+                hint: "Include Work Context (then) and Current Implementation (now) in this section"
                 field: {label: "Paragraph", name: "paragraph", widget: "text"}
               - label: "Impact Metrics"
                 name: "impact"

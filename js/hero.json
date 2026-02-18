@@ -1,5 +1,5 @@
 {
-  "availabilityText": "Open to Information Systems/Systems Analyst roles",
+  "availabilityText": "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles",
   "primaryCTA": {
     "text": "Get In Touch",
     "href": "#contact"
@@ -12,9 +12,9 @@
     "Process Improvement",
     "IT Support"
   ],
-  "subtitle": "Information Systems & Data Analyst",
+  "subtitle": "Information Systems, Data Analyst & IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "Systems & Data Analyst with a Master’s degree in Computer Science and 9+ years supporting IT environments, data-driven operations, and enterprise-style reporting workflows. Experienced in system analysis, data process improvement, and operational reliability across Windows and Linux platforms. Hands-on experimentation in a personal home lab with enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments.",
+  "introText": "I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows. I lead system analysis, data process improvements, and operational reliability work across Windows and Linux platforms. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.",
   "secondaryCTA": {
     "text": "Projects Brief",
     "href": "#projects"

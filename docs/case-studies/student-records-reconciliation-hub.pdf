@@ -1,0 +1,94 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 1559 >>
+stream
+BT
+/F1 11 Tf
+72 760 Td
+(STUDENT RECORDS RECONCILIATION HUB) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Project Summary) Tj
+0 -15 Td
+(Built a centralized reconciliation workflow to align admissions, enrollment, and results) Tj
+0 -15 Td
+(records before publication windows.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Work Context) Tj
+0 -15 Td
+(At FUTA \(Systems & Data Analyst / System Programmer, 2017-2023\), this process reduced) Tj
+0 -15 Td
+(mismatch carryover between systems and improved publication accuracy for each cycle.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Current Implementation) Tj
+0 -15 Td
+(I now maintain reusable reconciliation scripts and SQL comparison templates for repeatable) Tj
+0 -15 Td
+(source-versus-target checks.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Results and Impact) Tj
+0 -15 Td
+(- Records reviewed per cycle: 4K+) Tj
+0 -15 Td
+(- Duplicates flagged and resolved pre-publish: 1.2%) Tj
+0 -15 Td
+(- Source systems reconciled: 3) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Deliverables) Tj
+0 -15 Td
+(- Reconciliation scripts:) Tj
+0 -15 Td
+(  https://github.com/toughdave/scripting/tree/main/scripts/python/reconciliation) Tj
+0 -15 Td
+(- Reconcile workflow: `scripts/python/reconciliation/reconcile_students.py`) Tj
+0 -15 Td
+(- SQL diff template: `scripts/sql/templates/sql_reconciliation_diff_template.sql`) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Technical Notes) Tj
+0 -15 Td
+(- Matching controls include ID alignment, cross-field validation, and mismatch) Tj
+0 -15 Td
+(  classification.) Tj
+0 -15 Td
+(- Output queues support distributed correction and final release readiness checks.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001851 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1921
+%%EOF

@@ -1,0 +1,92 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 1529 >>
+stream
+BT
+/F1 11 Tf
+72 760 Td
+(OPERATIONAL REPORTING AUTOMATION PIPELINE) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Project Summary) Tj
+0 -15 Td
+(Replaced manual recurring report preparation with a scheduled Python and SQL pipeline for) Tj
+0 -15 Td
+(cleaner inputs, repeatable transforms, and predictable delivery windows.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Work Context) Tj
+0 -15 Td
+(At FUTA \(Systems & Data Analyst / System Programmer, 2017-2023\), this pipeline model) Tj
+0 -15 Td
+(supported recurring leadership updates for admissions throughput, examination operations,) Tj
+0 -15 Td
+(and results readiness.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Current Implementation) Tj
+0 -15 Td
+(I continue the same model with config-driven runs and scheduled workflow wrappers to) Tj
+0 -15 Td
+(maintain timing and output consistency.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Results and Impact) Tj
+0 -15 Td
+(- Time saved: 8 hours per week) Tj
+0 -15 Td
+(- Recurring reports generated: 40+) Tj
+0 -15 Td
+(- On-time delivery for scheduled runs: 100%) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Deliverables) Tj
+0 -15 Td
+(- ETL scripts: https://github.com/toughdave/scripting/tree/main/scripts/python/etl) Tj
+0 -15 Td
+(- ETL runner: `scripts/python/etl/etl_runner.py`) Tj
+0 -15 Td
+(- Workflow scheduler: `scripts/workflow/schedule_daily_run.sh`) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Technical Notes) Tj
+0 -15 Td
+(- Pipeline checkpoints: extract validation, transform checks, output integrity checks.) Tj
+0 -15 Td
+(- Artifacts are timestamped to support run tracking and operational handoff.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001821 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1891
+%%EOF

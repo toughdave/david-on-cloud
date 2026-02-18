@@ -1,0 +1,19 @@
+# David On Cloud Portfolio
+> Systems and Data Analyst portfolio with project summaries, work context, current implementation notes, and impact records.
+
+Primary content is maintained in CMS-managed JSON files and rendered into website sections. Use the Markdown pages below for efficient retrieval, and use JSON sources for canonical structured values.
+
+## Core Markdown Pages
+- [Home (Markdown)](https://www.davidoncloud.com/index.html.md): Portfolio summary, skills, tools and platforms, work experience, and contact details.
+- [Projects (Markdown)](https://www.davidoncloud.com/projects.html.md): Full project index with project summary, technical notes, impact, tags, and deliverables.
+
+## Structured Data Sources
+- [Projects JSON](https://www.davidoncloud.com/js/projects.json): Canonical project records (summary, details, impact, tags, links, posted, modified).
+- [Skills JSON](https://www.davidoncloud.com/js/skills.json): Skills categories and items.
+- [Tools and Platforms JSON](https://www.davidoncloud.com/js/tools-platforms.json): Tool categories and usage notes.
+- [Experience JSON](https://www.davidoncloud.com/js/experience.json): Work history and key outcomes.
+- [About JSON](https://www.davidoncloud.com/js/about.json): Professional summary, education, and contact metadata.
+
+## Optional
+- [Home (HTML)](https://www.davidoncloud.com/): Full interactive website view.
+- [Projects (HTML)](https://www.davidoncloud.com/projects.html): Full interactive projects page.

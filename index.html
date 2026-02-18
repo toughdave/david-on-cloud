@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>David | Systems & Data Analyst</title>
+    <title>David | Systems & Data Analyst & IT Administrator</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script>
         (function() {
@@ -19,24 +19,25 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" defer></script>
     
     <!-- Structured data and meta tags -->
-    <meta name="description" content="Systems & Data Analyst focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
+    <meta name="description" content="Systems & Data Analyst and IT Administrator focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
     <link rel="canonical" href="https://www.davidoncloud.com/">
-    <meta property="og:title" content="David On Cloud - Systems & Data Analyst">
-    <meta property="og:description" content="Systems & Data Analyst focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
+    <link rel="alternate" type="text/markdown" href="https://www.davidoncloud.com/index.html.md">
+    <meta property="og:title" content="David On Cloud - Systems & Data Analyst & IT Administrator">
+    <meta property="og:description" content="Systems & Data Analyst and IT Administrator focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.davidoncloud.com/">
     <meta property="og:image" content="https://www.davidoncloud.com/img/OG-MTD.png">
     <meta property="og:image:alt" content="David On Cloud portfolio preview">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="David On Cloud - Systems & Data Analyst">
-    <meta name="twitter:description" content="Systems & Data Analyst focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
+    <meta name="twitter:title" content="David On Cloud - Systems & Data Analyst & IT Administrator">
+    <meta name="twitter:description" content="Systems & Data Analyst and IT Administrator focused on academic information systems, data accuracy, reporting automation, and reliable operations.">
     <meta name="twitter:image" content="https://www.davidoncloud.com/img/OG-MTD.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "David",
-      "jobTitle": "Systems & Data Analyst"
+      "jobTitle": "Systems & Data Analyst and IT Administrator"
     }
     </script>
 
@@ -59,24 +60,35 @@
                     </span>
                 </div>
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center nav-links">
-                    <a href="index.html" class="nav-link text-gray-700 font-bold transition relative">Home</a>
-                    <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
-                    <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
-                    <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                    
-                    <!-- Projects Nav with Dropdown -->
-                    <div class="relative nav-item-projects group h-full flex items-center">
-                        <a href="projects.html" id="nav-projects-link" class="nav-link text-gray-700 transition relative"><span class="nav-link-text">Projects</span></a>
-                        <!-- Dropdown: Only shown when parent has 'mode-featured' class and is hovered -->
-                        <div id="nav-projects-dropdown" class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-48 bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-xl py-2 opacity-0 invisible transition-all duration-300 origin-top scale-95 border border-indigo-100">
-                            <a href="projects.html" class="flex items-center justify-center gap-1 px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition-colors rounded-lg mx-2">
-                                View all projects <i data-feather="arrow-right" class="inline w-3 h-3 ml-1"></i>
-                            </a>
+                <div id="desktop-nav-links" class="hidden md:flex items-center nav-links">
+                    <div id="desktop-primary-nav" class="flex items-center nav-primary-track">
+                        <a href="index.html" data-nav-key="hero" class="nav-link text-gray-700 font-bold transition relative">Home</a>
+                        <a href="index.html#about" data-nav-key="about" class="nav-link text-gray-700 transition relative">About</a>
+                        <a href="index.html#experience" data-nav-key="experience" class="nav-link text-gray-700 transition relative">Experience</a>
+
+                        <!-- Projects Nav with Dropdown -->
+                        <div data-nav-key="projects" class="relative nav-item-projects group h-full flex items-center">
+                            <a href="projects.html" id="nav-projects-link" class="nav-link text-gray-700 transition relative"><span class="nav-link-text">Projects</span></a>
+                            <!-- Dropdown: Only shown when parent has 'mode-featured' class and is hovered -->
+                            <div id="nav-projects-dropdown" class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-48 bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-xl py-2 opacity-0 invisible transition-all duration-300 origin-top scale-95 border border-indigo-100">
+                                <a href="projects.html" class="flex items-center justify-center gap-1 px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition-colors rounded-lg mx-2">
+                                    View all projects <i data-feather="arrow-right" class="inline w-3 h-3 ml-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <a href="index.html#contact" id="nav-contact-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn ml-4">Contact</a>
+                    <div id="desktop-secondary-nav" data-nav-key="secondaryMenu" class="relative nav-item-secondary group h-full flex items-center">
+                        <a href="index.html#skills" id="nav-secondary-primary-link" data-nav-key="skills" data-secondary-current-key="skills" class="nav-link text-gray-700 transition relative secondary-nav-primary">
+                            <span class="nav-link-text nav-secondary-link-text" id="nav-secondary-primary-text">Skills</span>
+                            <i data-feather="chevron-down" class="w-4 h-4 nav-secondary-caret" aria-hidden="true"></i>
+                        </a>
+                        <div id="nav-secondary-dropdown" class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-56 bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-xl py-2 opacity-0 invisible transition-all duration-300 origin-top scale-95 border border-indigo-100">
+                            <div id="nav-secondary-dropdown-list" class="py-1"></div>
+                        </div>
+                    </div>
+
+                    <a href="index.html#contact" id="nav-contact-btn" data-nav-key="contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn ml-4">Contact</a>
                 </div>
                 <!-- Theme Toggle -->
                 <div class="flex items-center ml-4 gap-3">
@@ -102,16 +114,31 @@
                         </span>
                     </label>
                     <!-- Mobile menu with enhanced closing behavior -->
-                    <div id="mobile-menu" class="mobile-menu absolute right-4 top-16 w-56 bg-white shadow-lg border-t border-gray-200 z-50 rounded-xl
+                    <div id="mobile-menu" class="mobile-menu absolute right-4 top-16 w-64 bg-white shadow-lg border-t border-gray-200 z-50 rounded-xl
                         opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
-                        <div class="flex flex-col py-4 px-4 space-y-2">
-                            <!-- Links will have active states applied by JavaScript -->
-                            <a href="index.html" class="nav-link text-gray-700 transition relative">Home</a>
-                            <a href="index.html#about" class="nav-link text-gray-700 transition relative">About</a>
-                            <a href="index.html#skills" class="nav-link text-gray-700 transition relative">Skills</a>
-                            <a href="index.html#experience" class="nav-link text-gray-700 transition relative">Experience</a>
-                            <a href="projects.html" class="nav-link text-gray-700 transition relative">Projects</a>
-                            <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn text-center">Contact</a>
+                        <div id="mobile-nav-list" class="flex flex-col py-4 px-4 space-y-2">
+                            <div id="mobile-primary-nav" class="flex flex-col space-y-2">
+                                <!-- Primary links are managed by JavaScript -->
+                                <a href="index.html" data-nav-key="hero" class="nav-link text-gray-700 transition relative">Home</a>
+                                <a href="index.html#about" data-nav-key="about" class="nav-link text-gray-700 transition relative">About</a>
+                                <a href="index.html#experience" data-nav-key="experience" class="nav-link text-gray-700 transition relative">Experience</a>
+                                <a href="projects.html" data-nav-key="projects" class="nav-link text-gray-700 transition relative">Projects</a>
+                            </div>
+
+                            <div id="mobile-secondary-nav" class="mobile-secondary-nav flex flex-col space-y-2">
+                                <a href="index.html#skills" id="mobile-secondary-primary-link" data-nav-key="skills" data-secondary-current-key="skills" class="nav-link text-gray-700 transition relative">
+                                    <span id="mobile-secondary-primary-text" class="nav-secondary-link-text">Skills</span>
+                                </a>
+                                <details id="mobile-secondary-details" class="mobile-secondary-details">
+                                    <summary class="mobile-secondary-summary">
+                                        <span>More sections</span>
+                                        <i data-feather="chevron-down" class="w-4 h-4" aria-hidden="true"></i>
+                                    </summary>
+                                    <div id="mobile-secondary-dropdown-list" class="mobile-secondary-dropdown-list"></div>
+                                </details>
+                            </div>
+
+                            <a href="index.html#contact" data-nav-key="contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md transition contact-btn text-center">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -130,18 +157,18 @@
                         <span id="typing-text" class="typing-text" data-text="Hi, I'm David" data-force-typing="true">Hi, I'm David</span>
                         <span class="typing-cursor typing-cursor-underscore force-blink" aria-hidden="true"></span>
                     </h1>
-                    <h2 class="text-2xl md:text-2xl lg:text-3xl font-semibold mb-6">Systems & Data Analyst</h2>
+                    <h2 class="text-2xl md:text-2xl lg:text-3xl font-semibold mb-6">Information Systems, Data Analyst &amp; IT Administrator</h2>
                     <div class="hero-status">
                         <span class="availability-badge">
                             <span class="availability-dot" aria-hidden="true"></span>
-                            Open to Information Systems/Systems Analyst roles
+                            Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles
                         </span>
                         <a href="docs/T-David-Matthew-Resume--Informaton-System-Analyst.pdf" class="resume-link" target="_blank" rel="noopener" download>
                             <i data-feather="download" aria-hidden="true"></i>
                             Download Resume
                         </a>
                     </div>
-                    <p class="text-lg opacity-90 mb-8">Systems & Data Analyst with a Master’s degree in Computer Science and 9+ years supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows. Experienced in system analysis, data process improvement, and operational reliability across Windows and Linux platforms. Hands-on experimentation in a personal home lab with enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments.</p>
+                    <p class="text-lg opacity-90 mb-8">I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows. I lead system analysis, data process improvements, and operational reliability work across Windows and Linux platforms. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.</p>
 
                     <div class="hero-tags flex flex-wrap gap-3 text-xs sm:text-sm uppercase tracking-wider text-indigo-100 mb-6">
                         <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Systems Analysis</span>
@@ -174,9 +201,9 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
                     <h3 class="text-2xl font-semibold mb-4">Professional Summary</h3>
-                    <p class="text-gray-600 mb-4">Information Systems and Systems Analyst with a Master’s degree in Computer Science and proven experience supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows.</p>
+                    <p class="text-gray-600 mb-4">I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science, supporting academic IT environments, data operations, and enterprise-style reporting workflows.</p>
 
-                    <p class="text-gray-600 mb-6">Strong background in analyzing existing systems, improving data processes, supporting system implementations, and maintaining operational reliability across Windows and Linux platforms. Known for structured documentation, data accuracy, and supporting high-volume institutional systems aligned with organizational standards.</p>
+                    <p class="text-gray-600 mb-6">I analyze existing systems, improve data processes, support implementations, and maintain operational reliability across Windows and Linux platforms. I focus on clear documentation, data accuracy, and steady support for high-volume institutional workflows.</p>
                     <div class="flex flex-wrap gap-4">
                         <div class="flex items-center">
                             <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
@@ -205,7 +232,7 @@
                         </div>
                         <div class="mt-8 border-t border-gray-200 pt-6">
                             <h4 class="font-medium text-gray-800 mb-3">Additional Practical Experience</h4>
-                            <p class="text-gray-600">Hands-on systems and networking experimentation through a personal home lab using enterprise switching equipment, VLAN configuration, IP addressing, and isolated test environments.</p>
+                            <p class="text-gray-600">In my personal home lab, I run systems and networking experiments using enterprise switching equipment, plus routing, VLAN configuration, IP addressing, DNS &amp; DHCP, and isolated test environments.</p>
                         </div>
                     </div>
                 </div>
@@ -357,6 +384,28 @@
         </div>
     </section>
 
+    <!-- Tools & Platforms Section -->
+    <section id="tools-platforms" class="snap-section fun-galaxy-section py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-title-container sticky-section-title text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tools &amp; Platforms</h2>
+                <div class="section-title-underline"></div>
+            </div>
+            <p class="tools-platforms-subtitle text-gray-600 text-center max-w-3xl mx-auto" data-aos="fade-up">Loading tools I use in delivery workflows...</p>
+            <div class="tools-platforms-grid mt-12 grid md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="80">
+                <article class="tools-platform-card bg-white p-6 rounded-xl shadow-md transition duration-300">
+                    <header class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 rounded-full mr-4">
+                            <i data-feather="tool" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Loading category...</h3>
+                    </header>
+                    <p class="text-sm text-gray-600">Preparing tools and usage details.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     
     <!-- Experience Section -->
     <section id="experience" class="snap-section fun-galaxy-section py-20 bg-white">
@@ -407,7 +456,7 @@
                                         <li>Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.</li>
                                         <li>Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.</li>
                                         <li>Produced executive performance reports and analytical insights to guide planning decisions.</li>
-                                        <li>Managed exam operations tools (biometric verification, CCTV workflows) and secure evidence handling procedures.</li>
+                                        <li>Managed exam operations tools (biometric verification, CCTV workflows) and secure incident record handling procedures.</li>
                                         <li>Automated recurring data preparation with Python and performed readiness checks on exam systems.</li>
                                     </ul>
                                     <div class="experience-log" data-fun-element aria-hidden="true">
@@ -485,11 +534,11 @@
                 </div>
             </div>
             
-            <p class="text-gray-600 text-center max-w-3xl mx-auto mt-14 mb-10" data-aos="fade-up">Impact snapshot across reporting, systems support, and academic data operations.</p>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mt-14 mb-10" data-aos="fade-up">A quick snapshot of work I've delivered across reporting, systems support, and academic data operations.</p>
             <div class="analyst-insights grid md:grid-cols-3 gap-6" data-aos="fade-up">
                 <div class="analyst-insight-card">
                     <div class="analyst-metric">
-                        <span class="analyst-metric-value">4K+</span>
+                        <span class="analyst-metric-value">about 4,000</span>
                         <span class="analyst-metric-label">Student Records Processed</span>
                     </div>
                     <p class="analyst-metric-note">Semester results, admissions, and graduation audits.</p>
@@ -503,7 +552,7 @@
                 </div>
                 <div class="analyst-insight-card">
                     <div class="analyst-metric">
-                        <span class="analyst-metric-value">250+</span>
+                        <span class="analyst-metric-value">about 250</span>
                         <span class="analyst-metric-label">Reports Delivered Per Cycle</span>
                     </div>
                     <p class="analyst-metric-note">Executive-ready summaries and data integrity checks.</p>
@@ -517,7 +566,7 @@
                 </div>
                 <div class="analyst-insight-card">
                     <div class="analyst-metric">
-                        <span class="analyst-metric-value">6+</span>
+                        <span class="analyst-metric-value">about 6+</span>
                         <span class="analyst-metric-label">Academic Cycles Supported</span>
                     </div>
                     <p class="analyst-metric-note">Operational continuity across exams and admissions.</p>
@@ -568,7 +617,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Process &amp; Services</h2>
                 <div class="section-title-underline"></div>
             </div>
-            <p class="text-gray-600 text-center max-w-3xl mx-auto" data-aos="fade-up">A structured approach to stabilize data, streamline reporting, and keep systems reliable from discovery through handoff.</p>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto" data-aos="fade-up">This is how I stabilize data, streamline reporting, and keep systems reliable from discovery through handoff.</p>
             <div class="process-grid mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div data-aos="fade-up" class="process-card">
                     <div class="process-icon" aria-hidden="true">
@@ -632,7 +681,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Testimonials</h2>
                 <div class="section-title-underline"></div>
             </div>
-            <p class="text-gray-600 text-center max-w-3xl mx-auto" data-aos="fade-up">Trusted by academic teams to keep systems stable, data accurate, and reporting on schedule.</p>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto" data-aos="fade-up">Feedback from academic teams I supported to keep systems stable, data accurate, and reporting on schedule.</p>
             <div class="testimonial-grid mt-12 grid md:grid-cols-2 gap-8">
                 <figure data-aos="fade-up" class="testimonial-card">
                     <div class="testimonial-quote">
@@ -673,8 +722,8 @@
             </div>
             <div class="grid md:grid-cols-2 gap-12">
                 <div data-aos="fade-right">
-                    <h3 class="text-2xl font-semibold mb-6">Let's Talk About Your Systems &amp; Data Goals</h3>
-                    <p class="text-gray-600 mb-8">I'm available for full-time, contract, or consulting roles focused on systems analysis, reporting, and data operations. If you need help improving workflows, dashboards, or data integrity, let's connect.</p>
+                    <h3 class="text-2xl font-semibold mb-6">Let's Talk About Your Systems, Data, and IT Operations Goals</h3>
+                    <p class="text-gray-600 mb-8">I'm available for full-time, contract, or consulting roles in systems analysis, reporting, data operations, and IT administration. If you need help improving workflows, support operations, dashboards, or data integrity, let's connect.</p>
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="p-3 bg-indigo-100 rounded-full mr-4">

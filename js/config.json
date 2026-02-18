@@ -20,10 +20,49 @@
     "roverStyle": "rover",
     "immersiveEffects": false,
     "defaultFunVantaMode": "dim",
+    "sectionOrder": [
+      "hero",
+      "about",
+      "experience",
+      "projects",
+      "skills",
+      "toolsPlatforms",
+      "scriptLibrary",
+      "process",
+      "testimonials",
+      "contact"
+    ],
+    "navOrder": [
+      "hero",
+      "about",
+      "experience",
+      "projects",
+      "skills",
+      "toolsPlatforms",
+      "scriptLibrary",
+      "process",
+      "testimonials",
+      "contact"
+    ],
+    "primaryNavOrder": [
+      "hero",
+      "about",
+      "experience",
+      "projects"
+    ],
+    "secondaryNavOrder": [
+      "skills",
+      "toolsPlatforms",
+      "scriptLibrary",
+      "process",
+      "testimonials"
+    ],
+    "customNavItems": [],
     "sections": {
       "hero": true,
       "about": true,
       "skills": true,
+      "toolsPlatforms": true,
       "scriptLibrary": true,
       "experience": true,
       "projects": true,
