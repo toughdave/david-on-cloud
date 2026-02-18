@@ -1,3 +1,7 @@
+## v5.0.0 — 2026-02-18 02:19:23
+- ✅ Implement grouped CMS navigation and refresh portfolio content
+- ✅ Bumped version to v5.0.0
+
 ## v4.1.44 — 2026-02-15 23:46:34
 - ✅ Simplify modal alignment JS: make sync functions no-ops since CSS grid handles centering
 - ✅ Refine modal alignment: fix mobile scrolled left alignment and tighten image/title spacing
