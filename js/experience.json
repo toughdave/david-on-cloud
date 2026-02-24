@@ -11,7 +11,7 @@
         "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
         "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
       ],
-      "backgroundImage": "img/CN-tower-view-downtown-Toronto-event.png",
+      "backgroundImage": "/img/at-Microsoft-downtown-Toronto-event.png",
       "location": "North York, ON",
       "focus": "Delivering structured IT workflows with production-grade documentation and release control, provisioning, troubleshooting, end-to-end website operations, and enterprise home-lab engineering.",
       "logLine": "ops sync: site + lab + docs aligned • release checks green",
