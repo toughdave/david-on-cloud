@@ -1,3 +1,7 @@
+## v5.4.1 — 2026-02-24 23:53:26
+- ✅ Internal release tooling updates
+- ✅ Bumped version to v5.4.1
+
 ## v5.4.0 — 2026-02-24 18:53:18
 - ✅ Refine experience content and add collapsible outcomes
 - ✅ Auto minor bump version to v5.3.0 with update summary
