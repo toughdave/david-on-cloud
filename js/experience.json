@@ -6,15 +6,17 @@
       "company": "Self-Employed",
       "location": "North York, ON",
       "period": "Aug. 2025 – Present",
+      "backgroundImage": "img/at-Microsoft-downtown-Toronto-event.png",
       "insetImage": "/img/at-Microsoft-downtown-Toronto-event.png",
-      "focus": "\n",
+      "focus": "Delivering end-to-end website operations, enterprise home-lab engineering, and structured IT troubleshooting workflows with production-grade documentation and release control.",
       "outcomes": [
         "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
         "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
         "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
         "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
         "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
-      ]
+      ],
+      "logLine": "ops sync: site + lab + docs aligned • release checks green"
     },
     {
       "period": "Jan. 2024 - Aug. 2025",
