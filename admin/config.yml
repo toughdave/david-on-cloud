@@ -315,7 +315,7 @@ collections:
                 name: "outcomes"
                 widget: "list"
                 field: {label: "Outcome", name: "outcome", widget: "text"}
-              - {label: "Background Image", name: "backgroundImage", widget: "image", required: false, hint: "Upload/select from CMS media library (stored in img/)"}
+              - {label: "Background Image", name: "backgroundImage", widget: "image", required: false, media_folder: "img", public_folder: "/img", choose_url: false, hint: "Upload/select a local image from CMS media library (stored in img/)"}
               - {label: "Inset Photo", name: "insetImage", widget: "image", required: false}
               - {label: "Fun Mode Log Line", name: "logLine", widget: "string", required: false, hint: "e.g. lab sync: 250 endpoints"}
 
