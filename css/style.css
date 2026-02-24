@@ -3707,6 +3707,18 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
     line-height: 1.55;
 }
 
+.experience-list .experience-list-item-extra {
+    display: none;
+}
+
+.experience-list.expanded .experience-list-item-extra {
+    display: block;
+}
+
+.experience-more-link {
+    margin-top: 0.55rem;
+}
+
 .experience-list li::before {
     content: "";
     position: absolute;

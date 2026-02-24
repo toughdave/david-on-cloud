@@ -1038,12 +1038,19 @@
         const section = document.querySelector('#experience');
         if (!section) return;
 
+        const EXPERIENCE_PREVIEW_COUNT = 5;
+
         const title = section.querySelector('.section-title-container h2');
         if (title) title.textContent = data.sectionTitle || 'Work Experience';
 
         const container = section.querySelector('.space-y-8');
         if (container && data.entries) {
-            container.innerHTML = data.entries.map((exp, i) => `
+            container.innerHTML = data.entries.map((exp, i) => {
+                const outcomes = Array.isArray(exp.outcomes) ? exp.outcomes : [];
+                const visibleOutcomes = outcomes.slice(0, EXPERIENCE_PREVIEW_COUNT);
+                const hiddenOutcomes = outcomes.slice(EXPERIENCE_PREVIEW_COUNT);
+                const listId = `experience-outcomes-${i}`;
+                return `
                 <div data-aos="fade-up" ${i > 0 ? `data-aos-delay="${i * 100}"` : ''} class="experience-item relative">
                     <div class="experience-card" style="--experience-image: url('${exp.backgroundImage || ''}'); --experience-inset-image: url('${exp.insetImage || ''}');">
                         <div class="experience-card-content">
@@ -1052,9 +1059,14 @@
                                 <p class="experience-meta">${escapeHTML(exp.company)} - ${escapeHTML(exp.location)} &bull; ${escapeHTML(exp.period)}</p>
                                 <p class="experience-summary"><span class="experience-summary-title">Focus:</span> ${escapeHTML(exp.focus)}</p>
                                 <p class="experience-bullet-title">Key outcomes</p>
-                                <ul class="experience-list">
-                                    ${exp.outcomes.map(o => `<li>${escapeHTML(o)}</li>`).join('')}
+                                <ul class="experience-list" id="${listId}">
+                                    ${visibleOutcomes.map(o => `<li>${escapeHTML(o)}</li>`).join('')}
+                                    ${hiddenOutcomes.map(o => `<li class="experience-list-item-extra">${escapeHTML(o)}</li>`).join('')}
                                 </ul>
+                                ${hiddenOutcomes.length ? `<button type="button" class="more-link experience-more-link" data-target="${listId}" aria-controls="${listId}" aria-expanded="false" data-collapsed-label="Read more..." data-expanded-label="Show less">
+                                    <span class="more-link-text">Read more...</span>
+                                    <span class="more-link-icon" aria-hidden="true"></span>
+                                </button>` : ''}
                                 ${exp.logLine ? `<div class="experience-log" data-fun-element aria-hidden="true">
                                     <span class="log-label">System log</span>
                                     <span class="log-line">${escapeHTML(exp.logLine)}</span>
@@ -1064,7 +1076,8 @@
                         <div class="experience-inset" aria-hidden="true" style="background-image: url('${exp.insetImage || ''}');"></div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
     }
 

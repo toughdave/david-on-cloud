@@ -4,18 +4,18 @@
     {
       "period": "Aug. 2025 – Present",
       "outcomes": [
-        "Managed infrastructure lifecycle tasks including hardware provisioning, firmware/OS updates, IP addressing design, system hardening, and access control configuration across physical and virtual environments",
-        "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
-        "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
-        "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
-        "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
-        "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
+        "Standardized onboarding/offboarding protocols and automated account/device provisioning for day-one readiness while improving SaaS procurement and license spend control.",
+        "Architected high-availability SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, VMware virtualization, and Active Directory governance.",
+        "Directed system hardening, firmware updates, and access-control baselines across physical and virtual environments, sustaining 99.9% service availability.",
+        "Resolved complex network and systems incidents through CLI diagnostics and root-cause analysis, addressing subnet conflicts, firewall restrictions, and DHCP scope reallocations.",
+        "Produced technical runbooks, process maps, and PowerShell/Bash automation for standardized rebuilds, reducing manual configuration effort by an estimated 40%.",
+        "Applied AI-assisted diagnostics with Git/GitHub CI/CD workflows to accelerate analysis, script drafting, and data-informed modernization planning."
       ],
       "backgroundImage": "/img/CN-tower-view-downtown-Toronto-event.png",
       "location": "North York, ON",
-      "focus": "Delivering structured IT workflows with production-grade documentation and release control, provisioning, troubleshooting, end-to-end website operations, and enterprise home-lab engineering.",
-      "logLine": "ops sync: site + lab + docs aligned • release checks green",
-      "title": "Independent IT Systems, Network & Web Engineer",
+      "focus": "Delivering resilient SME infrastructure, secure identity workflows, and automation-led operations with documented controls, incident response discipline, and measurable service reliability.",
+      "logLine": "ops sync: 99.9% uptime • rebuild time down 40%",
+      "title": "IT Systems & Network Consultant (Independent)",
       "company": "Self-Employed",
       "insetImage": "/img/at-Microsoft-downtown-Toronto-event.png"
     },
@@ -39,16 +39,17 @@
     {
       "period": "Mar. 2017 - Aug. 2023",
       "outcomes": [
-        "Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.",
-        "Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.",
-        "Produced executive performance reports and analytical insights to guide planning decisions.",
-        "Managed exam operations tools (biometric verification, CCTV workflows) and secure incident record handling procedures.",
-        "Automated recurring data preparation with Python and performed readiness checks on exam systems."
+        "Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users as sole technical authority to leadership.",
+        "Modernized data workflows, reducing result processing from 3–5 days to same-day and reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.",
+        "Governed onboarding/offboarding for 4,000+ stakeholders by integrating Active Directory and role-based access controls for secure, immediate departmental access.",
+        "Architected integrations between ERP modules and core infrastructure, keeping 4,000+ user profiles synchronized across admissions, examination, and reporting pipelines.",
+        "Delivered advanced technical support for software, authentication, and hardware incidents (remote and onsite), minimizing downtime during high-volume academic cycles.",
+        "Oversaw secure examination technologies, running readiness checks and biometric verification workflows for 300+ candidates per session across multiple annual cycles."
       ],
       "backgroundImage": "https://static.photos/technology/1600x900/45",
       "location": "Nigeria",
-      "focus": "Supported academic information systems, data processing, and reporting workflows across admissions, examinations, and results processing.",
-      "logLine": "record queue: 4,000+ processed • anomaly rate 0.6%",
+      "focus": "Led enterprise academic ERP operations and data automation for 4,000+ users, combining secure identity governance, cross-system integration, and high-volume examination reliability.",
+      "logLine": "erp ops: 4,000+ identities synced • same-day results active",
       "title": "Systems & Data Analyst / System Programmer",
       "company": "Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)",
       "insetImage": "img/data-analysis-mtd.jpg"
