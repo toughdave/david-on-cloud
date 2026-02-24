@@ -1,3 +1,11 @@
+## v5.3.0 — 2026-02-24 18:28:57
+- ✅ Add auto patch bump workflow for CMS-published content
+- ✅ Auto patch bump version to v5.2.3 with update summary
+- ✅ Fix Independent experience background image to use at-Microsoft asset
+- ✅ Merge pull request #8 from toughdave/cms/experience/experience_content
+- ✅ Update 5 · Work Experience “experience_content”
+- ✅ Bumped version to v5.3.0
+
 ## v5.2.3 — 2026-02-24 18:04:37
 - ✅ Fix Independent experience background image to use at-Microsoft asset
 - ✅ Updated CN-tower img
