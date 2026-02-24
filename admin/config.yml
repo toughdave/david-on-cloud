@@ -148,7 +148,7 @@ collections:
           - {label: "Title", name: "title", widget: "string", default: "Hi, I'm David"}
           - {label: "Subtitle / Role", name: "subtitle", widget: "string", default: "Information Systems, Data Analyst & IT Administrator"}
           - {label: "Availability Badge Text", name: "availabilityText", widget: "string", default: "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles"}
-          - {label: "Resume PDF", name: "resumePath", widget: "file", hint: "Upload or select the resume PDF from docs/ folder"}
+          - {label: "Resume PDF", name: "resumePath", widget: "file", media_folder: "docs", public_folder: "/docs", hint: "Upload or select the resume PDF from docs/ folder"}
           - {label: "Profile Picture", name: "profileImage", widget: "image", hint: "Hero portrait photo"}
           - {label: "Introduction Paragraph", name: "introText", widget: "text", hint: "The main introductory paragraph below the subtitle"}
           - label: "Hero Tags"
@@ -315,7 +315,7 @@ collections:
                 name: "outcomes"
                 widget: "list"
                 field: {label: "Outcome", name: "outcome", widget: "text"}
-              - {label: "Background Image URL", name: "backgroundImage", widget: "string", required: false}
+              - {label: "Background Image", name: "backgroundImage", widget: "image", required: false, hint: "Upload/select from CMS media library (stored in img/)"}
               - {label: "Inset Photo", name: "insetImage", widget: "image", required: false}
               - {label: "Fun Mode Log Line", name: "logLine", widget: "string", required: false, hint: "e.g. lab sync: 250 endpoints"}
 
@@ -465,7 +465,7 @@ collections:
               - {label: "Modified Date", name: "modified", widget: "datetime"}
               - {label: "Publication Link", name: "link", widget: "string", required: false}
               - {label: "Link Display Text", name: "linkText", widget: "string", required: false}
-              - {label: "PDF Path", name: "pdf", widget: "file", required: false}
+              - {label: "PDF Path", name: "pdf", widget: "file", required: false, media_folder: "docs/case-studies", public_folder: "/docs/case-studies", hint: "Upload/select case-study PDF from docs/case-studies/"}
               - label: "Inline Images"
                 name: "images"
                 widget: "list"
