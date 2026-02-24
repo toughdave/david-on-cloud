@@ -1,3 +1,7 @@
+## v5.2.0 — 2026-02-24 15:04:30
+- ✅ Align CMS asset selectors and include local experience background image
+- ✅ Bumped version to v5.2.0
+
 ## v5.1.5 — 2026-02-18 15:41:24
 - ✅ Delay modal metric stack at mobile breakpoint
 - ✅ Bumped version to v5.1.5
