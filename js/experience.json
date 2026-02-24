@@ -1,53 +1,68 @@
 {
-    "sectionTitle": "Work Experience",
-    "entries": [
-        {
-            "title": "Computer IT Instructor (Computer Science & Applied Computing)",
-            "company": "Pures College of Technology",
-            "location": "Scarborough, ON",
-            "period": "Jan. 2024 - Aug. 2025",
-            "focus": "Delivered hands-on instruction while managing lab environments, software installations, and networking practicals for 250+ students.",
-            "outcomes": [
-                "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
-                "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory setups.",
-                "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS environments).",
-                "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.",
-                "Processed results and verified student records through Google Classroom workflows."
-            ],
-            "backgroundImage": "img/at-Microsoft-downtown-Toronto-event.png",
-            "insetImage": "img/Pures-College-classroom.jpg",
-            "logLine": "lab sync: 250 endpoints • auth OK • deployment stable"
-        },
-        {
-            "title": "Systems & Data Analyst / System Programmer",
-            "company": "Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)",
-            "location": "Nigeria",
-            "period": "Mar. 2017 - Aug. 2023",
-            "focus": "Supported academic information systems, data processing, and reporting workflows across admissions, examinations, and results processing.",
-            "outcomes": [
-                "Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.",
-                "Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.",
-                "Produced executive performance reports and analytical insights to guide planning decisions.",
-                "Managed exam operations tools (biometric verification, CCTV workflows) and secure incident record handling procedures.",
-                "Automated recurring data preparation with Python and performed readiness checks on exam systems."
-            ],
-            "backgroundImage": "https://static.photos/technology/1600x900/45",
-            "insetImage": "img/data-analysis-mtd.jpg",
-            "logLine": "record queue: 4,000+ processed • anomaly rate 0.6%"
-        },
-        {
-            "title": "Computer Science (ICT) Teacher",
-            "company": "Community Secondary School, Agulu-Awka",
-            "location": "Nigeria",
-            "period": "Dec. 2014 - Aug. 2015",
-            "focus": "Delivered foundational computer science instruction with emphasis on logical reasoning and structured problem solving.",
-            "outcomes": [
-                "Delivered foundational computer science instruction focused on logical reasoning and problem-solving.",
-                "Reviewed and assessed student work to ensure understanding and accuracy."
-            ],
-            "backgroundImage": "https://static.photos/technology/1600x900/102",
-            "insetImage": "img/Teaching-Students-Anambra.jpg",
-            "logLine": "curriculum boot: logic module deployed • comprehension 93%"
-        }
-    ]
+  "sectionTitle": "Work Experience",
+  "entries": [
+    {
+      "period": "Jan. 2024 - Aug. 2025",
+      "outcomes": [
+        "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
+        "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory setups.",
+        "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS environments).",
+        "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.",
+        "Processed results and verified student records through Google Classroom workflows."
+      ],
+      "backgroundImage": "https://static.photos/technology/1600x900/19",
+      "location": "Scarborough, ON",
+      "focus": "Delivered hands-on instruction while managing lab environments, software installations, and networking practicals for 250+ students.",
+      "logLine": "lab sync: 250 endpoints • auth OK • deployment stable",
+      "title": "Computer IT Instructor (Computer Science & Applied Computing)",
+      "company": "Pures College of Technology",
+      "insetImage": "img/Pures-College-classroom.jpg"
+    },
+    {
+      "period": "Mar. 2017 - Aug. 2023",
+      "outcomes": [
+        "Processed and validated admissions, examinations, and results datasets using Excel, Google Sheets, SQL, and Gradent for 4,000+ users.",
+        "Built data-cleaning and validation workflows to improve accuracy, audit readiness, and lifecycle record integrity.",
+        "Produced executive performance reports and analytical insights to guide planning decisions.",
+        "Managed exam operations tools (biometric verification, CCTV workflows) and secure incident record handling procedures.",
+        "Automated recurring data preparation with Python and performed readiness checks on exam systems."
+      ],
+      "backgroundImage": "https://static.photos/technology/1600x900/45",
+      "location": "Nigeria",
+      "focus": "Supported academic information systems, data processing, and reporting workflows across admissions, examinations, and results processing.",
+      "logLine": "record queue: 4,000+ processed • anomaly rate 0.6%",
+      "title": "Systems & Data Analyst / System Programmer",
+      "company": "Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)",
+      "insetImage": "img/data-analysis-mtd.jpg"
+    },
+    {
+      "period": "Dec. 2014 - Aug. 2015",
+      "outcomes": [
+        "Delivered foundational computer science instruction focused on logical reasoning and problem-solving.",
+        "Reviewed and assessed student work to ensure understanding and accuracy."
+      ],
+      "backgroundImage": "https://static.photos/technology/1600x900/102",
+      "location": "Nigeria",
+      "focus": "Delivered foundational computer science instruction with emphasis on logical reasoning and structured problem solving.",
+      "logLine": "curriculum boot: logic module deployed • comprehension 93%",
+      "title": "Computer Science (ICT) Teacher",
+      "company": "Community Secondary School, Agulu-Awka",
+      "insetImage": "img/Teaching-Students-Anambra.jpg"
+    },
+    {
+      "title": "Independent IT Systems, Network & Web Engineer",
+      "company": "Self-Employed",
+      "location": "North York, ON",
+      "period": "Aug. 2025 – Present",
+      "insetImage": "",
+      "focus": "\n",
+      "outcomes": [
+        "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
+        "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
+        "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
+        "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
+        "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
+      ]
+    }
+  ]
 }
