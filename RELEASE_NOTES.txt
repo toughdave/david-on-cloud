@@ -1,3 +1,7 @@
+## v5.2.2 — 2026-02-24 17:44:32
+- ✅ Add CN tower downtown Toronto event image asset
+- ✅ Bumped version to v5.2.2
+
 ## v5.2.1 — 2026-02-24 16:27:54
 - ✅ Restrict experience background image field to local CMS media selection
 - ✅ Bumped version to v5.2.1
