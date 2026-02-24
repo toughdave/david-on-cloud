@@ -1,0 +1,33 @@
+name: CMS Auto Patch Bump
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "js/**/*.json"
+      - "img/**"
+      - "docs/**"
+
+permissions:
+  contents: write
+
+jobs:
+  auto_patch_bump:
+    name: Auto patch +1 after CMS publish
+    if: ${{ github.event.head_commit && !startsWith(github.event.head_commit.message, 'Auto patch bump version to v') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run patch version bump
+        run: |
+          printf 'Y\n' | bash scripts/bump_version.sh --type patch
