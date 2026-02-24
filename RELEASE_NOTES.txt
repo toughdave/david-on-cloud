@@ -1,3 +1,7 @@
+## v5.2.1 — 2026-02-24 16:27:54
+- ✅ Restrict experience background image field to local CMS media selection
+- ✅ Bumped version to v5.2.1
+
 ## v5.2.0 — 2026-02-24 15:04:30
 - ✅ Align CMS asset selectors and include local experience background image
 - ✅ Bumped version to v5.2.0
