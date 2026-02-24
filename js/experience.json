@@ -4,6 +4,7 @@
     {
       "period": "Aug. 2025 – Present",
       "outcomes": [
+        "Managed infrastructure lifecycle tasks including hardware provisioning, firmware/OS updates, IP addressing design, system hardening, and access control configuration across physical and virtual environments",
         "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
         "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
         "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
