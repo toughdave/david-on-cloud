@@ -2,6 +2,21 @@
   "sectionTitle": "Work Experience",
   "entries": [
     {
+      "title": "Independent IT Systems, Network & Web Engineer",
+      "company": "Self-Employed",
+      "location": "North York, ON",
+      "period": "Aug. 2025 – Present",
+      "insetImage": "/img/at-Microsoft-downtown-Toronto-event.png",
+      "focus": "\n",
+      "outcomes": [
+        "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
+        "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
+        "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
+        "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
+        "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
+      ]
+    },
+    {
       "period": "Jan. 2024 - Aug. 2025",
       "outcomes": [
         "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
@@ -48,21 +63,6 @@
       "title": "Computer Science (ICT) Teacher",
       "company": "Community Secondary School, Agulu-Awka",
       "insetImage": "img/Teaching-Students-Anambra.jpg"
-    },
-    {
-      "title": "Independent IT Systems, Network & Web Engineer",
-      "company": "Self-Employed",
-      "location": "North York, ON",
-      "period": "Aug. 2025 – Present",
-      "insetImage": "",
-      "focus": "\n",
-      "outcomes": [
-        "Registered, configured, and maintained professional portfolio website (davidoncloud.com), managing domain registration, DNS records, hosting configuration, Git-based version control, and iterative deployment workflows",
-        "Developed and updated web content using HTML, CSS, and JavaScript fundamentals while maintaining structured repository documentation on GitHub",
-        "Designed and implemented enterprise-style home lab using enterprise tools such as the Cisco Catalyst 3850 WS-C3850-48U-S and ASUS ROG STRIX AX3000 (GS-AX3000), configuring VLAN segmentation, IP addressing, and DHCP services",
-        "Built multi-machine virtualized environments using VirtualBox and VMware Workstation Pro, deploying Windows Server and implementing Active Directory to simulate identity management and access control",
-        "Documented troubleshooting cases and configuration changes using structured root-cause analysis; concurrently pursued CCNA and cloud certification studies while supporting family care-giving responsibilities"
-      ]
     }
   ]
 }
