@@ -1,3 +1,13 @@
+## v5.2.3 — 2026-02-24 18:04:37
+- ✅ Fix Independent experience background image to use at-Microsoft asset
+- ✅ Updated CN-tower img
+- ✅ Auto patch bump version to v5.2.2 with update summary
+- ✅ Add CN tower downtown Toronto event image asset
+- ✅ Merge pull request #7 from toughdave/cms/experience/experience_content
+- ✅ Update 5 · Work Experience “experience_content”
+- ✅ Provision in-review experience fields and enforce local background image media selection
+- ✅ Bumped version to v5.2.3
+
 ## v5.2.2 — 2026-02-24 17:44:32
 - ✅ Add CN tower downtown Toronto event image asset
 - ✅ Bumped version to v5.2.2
