@@ -25,7 +25,7 @@
       "title": "Databases & Query Tools",
       "items": [
         {
-          "name": "SQL (MySQL/PostgreSQL)",
+          "name": "SQL",
           "usage": "Audit records, detect anomalies, and reconcile source-vs-target datasets with repeatable query templates."
         },
         {
@@ -65,10 +65,6 @@
       "title": "Systems & Infrastructure Tools",
       "items": [
         {
-          "name": "Microsoft Entra ID",
-          "usage": "Manage directory synchronization, access assignments, and identity lifecycle controls across distributed systems."
-        },
-        {
           "name": "Windows Server",
           "usage": "Configure Active Directory, policy baselines, and lab-ready system administration environments."
         },
@@ -83,6 +79,10 @@
         {
           "name": "Microsoft Azure",
           "usage": "Apply cloud-connected identity, access control, and service governance patterns in lab and operational workflows."
+        },
+        {
+          "name": "Microsoft Entra ID",
+          "usage": "Manage directory synchronization, access assignments, and identity lifecycle controls across distributed systems."
         }
       ]
     },
