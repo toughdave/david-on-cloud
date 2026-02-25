@@ -1,3 +1,8 @@
+## v5.4.2 — 2026-02-24 20:24:49
+- ✅ Increase experience inset image height on mobile and tablet
+- ✅ Updated Resume pdf
+- ✅ Bumped version to v5.4.2
+
 ## v5.4.1 — 2026-02-24 23:53:26
 - ✅ Internal release tooling updates
 - ✅ Bumped version to v5.4.1
