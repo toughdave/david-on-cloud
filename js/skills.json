@@ -4,7 +4,7 @@
         {
             "icon": "settings",
             "title": "Systems Implementation & Support",
-            "items": ["Systems Analysis", "ERP Administration", "Dynamics 365 Workflow Support", "Implementation & Testing", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
+            "items": ["Systems Analysis", "ERP Administration", "Business Application Workflow Support", "Implementation & Testing", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
         },
         {
             "icon": "pie-chart",
@@ -24,7 +24,7 @@
         {
             "icon": "server",
             "title": "Infrastructure & Virtualization",
-            "items": ["Windows Server", "Active Directory", "Microsoft Entra ID", "Microsoft Azure", "VirtualBox", "VMware", "Lab Deployment"]
+            "items": ["Windows Server", "Active Directory", "Identity & Access Administration", "Microsoft Azure", "VirtualBox", "VMware", "Lab Deployment"]
         },
         {
             "icon": "share-2",

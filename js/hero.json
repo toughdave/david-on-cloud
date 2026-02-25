@@ -1,5 +1,5 @@
 {
-  "availabilityText": "Open to Information Systems, ERP Systems Analyst, Data Analyst, and IT Administrator roles",
+  "availabilityText": "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles",
   "primaryCTA": {
     "text": "Get In Touch",
     "href": "#contact"
@@ -7,14 +7,14 @@
   "profileImage": "img/protrait-mtd-flip.jpg",
   "resumePath": "docs/T-David-Matthew-Resume--Informaton-System-Analyst.pdf",
   "heroTags": [
-    "ERP Operations",
-    "Dynamics 365",
-    "Azure IAM",
-    "Systems Automation"
+    "Systems Analysis",
+    "Data Accuracy",
+    "Process Improvement",
+    "IT Support"
   ],
-  "subtitle": "Information Systems, ERP & Data Analyst",
+  "subtitle": "Information Systems, Data Analyst & IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, ERP-backed operations, and enterprise reporting workflows. I lead system analysis, data process improvements, and operational reliability delivery across Windows and Linux platforms, with practical experience in Microsoft Dynamics 365, Active Directory, and Azure-enabled identity controls. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.",
+  "introText": "I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, operational reporting workflows, and enterprise service delivery. I lead system analysis, data process improvements, and operational reliability across Windows and Linux platforms, with practical experience in business applications, Active Directory, and identity/access controls. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.",
   "secondaryCTA": {
     "text": "Projects Brief",
     "href": "#projects"

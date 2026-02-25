@@ -4,17 +4,17 @@
     {
       "period": "Aug. 2025 – Present",
       "outcomes": [
-        "Standardized onboarding/offboarding protocols with automated account and device provisioning in Active Directory and Microsoft Entra ID for day-one readiness.",
-        "Architected high-availability SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, VMware virtualization, and Azure-connected identity controls.",
-        "Supported Microsoft Dynamics 365 operational workflows by aligning role-based access, endpoint readiness, and secure data handling across business processes.",
+        "Standardized onboarding/offboarding protocols with automated account and device provisioning in Active Directory and Entra ID for day-one readiness.",
+        "Architected high-availability SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, VMware virtualization, and secure identity controls.",
+        "Supported operational business workflows by aligning role-based access, endpoint readiness, and secure data handling across teams.",
         "Directed system hardening, firmware updates, and access-control baselines across physical and virtual environments, sustaining 99.9% service availability.",
         "Resolved complex network and systems incidents through CLI diagnostics and root-cause analysis, addressing subnet conflicts, firewall restrictions, and DHCP scope reallocations.",
         "Produced technical runbooks plus PowerShell/Bash automation for standardized rebuilds, reducing manual configuration effort by an estimated 40%."
       ],
       "backgroundImage": "/img/CN-tower-view-downtown-Toronto-event.png",
       "location": "North York, ON",
-      "focus": "Delivering resilient SME infrastructure with Azure-enabled identity governance, Dynamics 365 workflow support, and automation-led operations backed by measurable reliability controls.",
-      "logLine": "ops sync: 99.9% uptime • Azure IAM + Dynamics workflows aligned",
+      "focus": "Delivering resilient SME infrastructure, secure identity operations, and automation-led support backed by measurable reliability controls.",
+      "logLine": "ops sync: 99.9% uptime • identity and workflow controls aligned",
       "title": "IT Systems & Network Consultant (Independent)",
       "company": "Self-Employed",
       "insetImage": "/img/at-Microsoft-downtown-Toronto-event.png"
@@ -23,15 +23,15 @@
       "period": "Jan. 2024 - Aug. 2025",
       "outcomes": [
         "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
-        "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory and Microsoft Azure identity basics.",
-        "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus Azure-connected collaboration and access workflows.",
+        "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory and Microsoft Azure.",
+        "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus collaboration and access workflows.",
         "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.",
         "Processed results and verified student records through Google Classroom workflows."
       ],
       "backgroundImage": "https://static.photos/technology/1600x900/19",
       "location": "Scarborough, ON",
-      "focus": "Delivered hands-on instruction while managing lab environments, software installations, networking practicals, and Active Directory/Azure identity basics for 250+ students.",
-      "logLine": "lab sync: 250 endpoints • AD/Azure identity drills stable",
+      "focus": "Delivered hands-on instruction while managing lab environments, software installations, networking practicals, and Active Directory/Azure identity for 250+ students.",
+      "logLine": "lab sync: 250 endpoints • identity drills stable",
       "title": "Computer IT Instructor (Computer Science & Applied Computing)",
       "company": "Pures College of Technology",
       "insetImage": "img/Pures-College-classroom.jpg"
@@ -39,17 +39,17 @@
     {
       "period": "Mar. 2017 - Aug. 2023",
       "outcomes": [
-        "Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users, including Microsoft Dynamics 365-aligned workflows.",
+        "Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users, using tools such as Microsoft Dynamics 365 where required.",
         "Modernized data workflows, reducing result processing from 3–5 days to same-day and reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.",
-        "Governed onboarding/offboarding for 4,000+ stakeholders by integrating Active Directory, Azure identity controls, and role-based access for secure, immediate departmental access.",
-        "Architected integrations between ERP modules, Dynamics 365 processes, and core infrastructure, keeping 4,000+ user profiles synchronized across admissions, examination, and reporting pipelines.",
+        "Governed onboarding/offboarding for 4,000+ stakeholders by integrating Active Directory, identity controls, and role-based access for secure, immediate departmental access.",
+        "Architected integrations between ERP modules and core infrastructure, keeping 4,000+ user profiles synchronized across admissions, examination, and reporting pipelines.",
         "Delivered advanced technical support for software, authentication, and hardware incidents (remote and onsite), minimizing downtime during high-volume academic cycles.",
         "Oversaw secure examination technologies, running readiness checks and biometric verification workflows for 300+ candidates per session across multiple annual cycles."
       ],
       "backgroundImage": "https://static.photos/technology/1600x900/45",
       "location": "Nigeria",
-      "focus": "Led enterprise academic ERP operations and data automation for 4,000+ users, combining Dynamics 365 process alignment, Azure-backed identity governance, cross-system integration, and examination reliability.",
-      "logLine": "erp ops: 4,000+ identities synced • Dynamics/Azure controls live",
+      "focus": "Led enterprise academic ERP operations and data automation for 4,000+ users, combining identity governance, cross-system integration, and examination reliability.",
+      "logLine": "erp ops: 4,000+ identities synced • controls and workflows stable",
       "title": "Systems & Data Analyst / System Programmer (Head, System Programmer’s Office)",
       "company": "Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)",
       "insetImage": "img/data-analysis-mtd.jpg"
