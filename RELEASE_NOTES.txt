@@ -1,3 +1,7 @@
+## v5.5.0 — 2026-02-24 21:24:54
+- ✅ Update ERP, Dynamics 365, and Azure portfolio content
+- ✅ Bumped version to v5.5.0
+
 ## v5.4.2 — 2026-02-24 20:24:49
 - ✅ Increase experience inset image height on mobile and tablet
 - ✅ Updated Resume pdf
