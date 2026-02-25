@@ -34,7 +34,7 @@
         "Power BI",
         "Excel",
         "SQL",
-        "Dynamics 365",
+        "Business Applications",
         "Data Validation",
         "Reporting",
         "Scripted QA"
@@ -81,7 +81,7 @@
         "Excel",
         "Google Sheets",
         "SQL",
-        "Dynamics 365",
+        "Admissions Systems",
         "Data Validation",
         "Admissions Audit",
         "Rules Engine"
@@ -171,7 +171,7 @@
       "tags": [
         "Windows Server",
         "Active Directory",
-        "Azure IAM",
+        "Identity & Access",
         "Group Policy",
         "VirtualBox/VMware",
         "Lab Deployment"
