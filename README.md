@@ -2,11 +2,11 @@
 
 **Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 5.5.0
 
-A modern, responsive portfolio website showcasing professional experience in information systems, ERP operations, data analysis, reporting automation, and IT operations across academic and enterprise environments.
+A modern, responsive portfolio website showcasing professional experience in information systems, system optimization, data analysis, reporting automation, and IT operations across academic and enterprise environments.
 
 ## About David
 
-Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, currently based in Toronto, ON (open to relocate elsewhere). Professional background spans academic information systems, Microsoft Dynamics 365-aligned workflows, Azure-connected identity operations, data quality assurance, reporting automation, and operational reliability across roles at a federal university and a private college.
+Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, currently based in Toronto, ON (open to relocate elsewhere). Professional background spans academic information systems, business application workflows, cloud-connected identity operations, system optimization, data quality assurance, reporting automation, and operational reliability across roles at a federal university and a private college.
 
 ## Website Features
 
@@ -26,7 +26,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 - **Scripts Library**: Curated script families linked to the scripting repository
 - **Experience**: Work history with key outcomes and timeline
 - **Projects**: 13 project cards with case study links, impact metrics, and modal details
-- **Process & Services**: Structured delivery methodology
+- **Process & Services**: Structured delivery methodology centered on system optimization and reliable handover
 - **Testimonials**: Professional endorsements
 - **Contact**: Functional contact form with Formspree integration
 

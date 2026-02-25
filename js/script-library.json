@@ -1,6 +1,6 @@
 {
   "sectionTitle": "Scripts Library",
-  "subtitle": "These are first-wave automation assets I built from my day-to-day academic operations workflows: SQL checks, ETL pipelines, spreadsheet validation, Power Query templates, and scheduled run orchestration.",
+  "subtitle": "These are first-wave automation assets I built from my day-to-day operations workflows: SQL checks, ETL pipelines, spreadsheet validation, Power Query templates, and scheduled run orchestration.",
   "filterLabels": {
     "sql": "SQL",
     "python": "Python",
