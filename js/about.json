@@ -1,8 +1,8 @@
 {
   "sectionTitle": "About Me",
   "professionalSummary": [
-    "I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science, supporting academic IT environments, data operations, and enterprise-style reporting workflows.",
-    "I analyze existing systems, improve data processes, support implementations, and maintain operational reliability across Windows and Linux platforms. I focus on clear documentation, data accuracy, and steady support for high-volume institutional workflows."
+    "I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, Microsoft Dynamics 365 process alignment, and data governance.",
+    "I analyze systems, improve data processes, and maintain operational reliability across Windows and Linux platforms using Active Directory, Microsoft Azure, and structured automation practices. I focus on clear documentation, data accuracy, and cross-department delivery support for high-volume institutional workflows."
   ],
   "location": "Toronto, ON (open to relocate elsewhere)",
   "email": "matthewtopedavid@gmail.com",
@@ -18,5 +18,5 @@
       "year": "2014"
     }
   ],
-  "additionalExperience": "In my personal home lab, I run systems and networking experiments using enterprise switching equipment like the Cisco Catalyst 3850 WS-C3850-48U-S, plus routing, VLAN configuration, IP addressing, DNS & DHCP, and isolated test environments."
+  "additionalExperience": "In my personal home lab, I run enterprise-style systems and networking scenarios using Cisco Catalyst switching, VMware/VirtualBox virtualization, Azure-connected identity controls, Dynamics-oriented process mapping, plus routing, VLAN configuration, IP addressing, DNS & DHCP in isolated test environments."
 }

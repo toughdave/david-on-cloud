@@ -1,6 +1,6 @@
 {
   "sectionTitle": "Tools & Platforms",
-  "subtitle": "I use these practical tools to deliver data quality, reporting, systems operations, and implementation workflows across projects.",
+  "subtitle": "I use these practical tools to deliver ERP operations, data quality, identity governance, and implementation workflows across projects.",
   "categories": [
     {
       "icon": "bar-chart-2",
@@ -24,6 +24,10 @@
       "icon": "database",
       "title": "Databases & Query Tools",
       "items": [
+        {
+          "name": "Microsoft Dynamics 365",
+          "usage": "Support ERP-style workflows across admissions, reporting, identity alignment, and departmental process coordination."
+        },
         {
           "name": "SQL (MySQL/PostgreSQL)",
           "usage": "Audit records, detect anomalies, and reconcile source-vs-target datasets with repeatable query templates."
@@ -61,6 +65,14 @@
       "title": "Systems & Infrastructure Tools",
       "items": [
         {
+          "name": "Microsoft Azure",
+          "usage": "Apply cloud-connected identity, access control, and service governance patterns in lab and operational workflows."
+        },
+        {
+          "name": "Microsoft Entra ID",
+          "usage": "Manage directory synchronization, access assignments, and identity lifecycle controls across distributed systems."
+        },
+        {
           "name": "Windows Server",
           "usage": "Configure Active Directory, policy baselines, and lab-ready system administration environments."
         },
@@ -96,6 +108,10 @@
       "icon": "users",
       "title": "Delivery & Collaboration Tools",
       "items": [
+        {
+          "name": "Microsoft 365 & Monday.com",
+          "usage": "Coordinate implementation tasks, status tracking, stakeholder communication, and handover checkpoints across delivery cycles."
+        },
         {
           "name": "Issue & SLA Tracker (Excel/Google Sheets)",
           "usage": "Track incident queues, assign owners, monitor response timelines, and report service performance across operations cycles."

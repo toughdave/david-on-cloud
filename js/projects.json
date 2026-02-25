@@ -2,11 +2,11 @@
   "projects": [
     {
       "details": [
-        "Consolidated fragmented results data from admissions portals, examination records, and departmental grade submissions into a unified reporting layer, applying SQL-driven validation checks to identify discrepancies such as missing scores, duplicate entries, and eligibility mismatches before official publication.",
+        "Consolidated fragmented results data from ERP-linked admissions portals, Dynamics 365-aligned records, examination datasets, and departmental grade submissions into a unified reporting layer, applying SQL-driven validation checks before official publication.",
         "Designed interactive KPI panels in Power BI with drill-down capabilities across student cohorts, academic sessions, and departments, enabling leadership to monitor processing timelines, flag anomaly rates in real-time, and compare performance trends across admission intakes.",
         "Developed automated data quality flags using conditional logic and formula-driven validation in Excel and Google Sheets, reducing the manual effort required to identify outliers and formatting inconsistencies across thousands of records each cycle.",
         "Delivered export-ready dashboards and audit-trail reports formatted for leadership reviews, accreditation audits, and departmental briefings, directly supporting executive planning decisions and resource allocation across academic programs.",
-        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this validation workflow was used to protect admissions and results reporting accuracy before publication. Current Implementation: I now maintain the same quality checks in personal GitHub assets (`scripts/sql/mysql/mysql_validate_results_integrity.sql`, `scripts/sql/postgres/postgres_validate_results_integrity.sql`, and `powerbi/powerquery/powerquery_data_quality_template.pq`) so each dashboard refresh starts with repeatable controls."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this validation workflow protected ERP and Dynamics 365-aligned admissions/results reporting accuracy before publication. Current Implementation: I now maintain the same quality checks in personal GitHub assets (`scripts/sql/mysql/mysql_validate_results_integrity.sql`, `scripts/sql/postgres/postgres_validate_results_integrity.sql`, and `powerbi/powerquery/powerquery_data_quality_template.pq`) so each dashboard refresh starts with repeatable controls."
       ],
       "impact": [
         {
@@ -25,8 +25,8 @@
           "detail": "Power BI, Excel, Sheets"
         }
       ],
-      "summary": "Built a comprehensive Power BI and Excel analytics suite to centralize results processing tracking, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles at a university serving 4,000+ students.",
-      "mobileSummary": "Built a Power BI and Excel analytics suite that centralized results processing, anomaly detection, and cohort performance tracking for 4,000+ students across multiple exam cycles.",
+      "summary": "Built a Power BI and Excel analytics suite to centralize ERP-backed results processing, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles serving 4,000+ students.",
+      "mobileSummary": "Built a Power BI and Excel analytics suite that centralized ERP-backed results processing and anomaly tracking for 4,000+ students.",
       "modified": "2026-01-31T14:45:00.000Z",
       "featured": true,
       "title": "Academic Results Analytics Dashboard",
@@ -34,6 +34,7 @@
         "Power BI",
         "Excel",
         "SQL",
+        "Dynamics 365",
         "Data Validation",
         "Reporting",
         "Scripted QA"
@@ -49,10 +50,10 @@
     {
       "details": [
         "Designed and implemented spreadsheet-based validation workflows using advanced lookup formulas, deduplication rules, and eligibility logic to systematically cross-reference applicant submissions against institutional admission criteria, flagging inconsistencies in identity documents, qualification records, and program eligibility.",
-        "Leveraged the institution's Gradent data processing platform alongside Excel and Google Sheets to extract audit exports, reconcile discrepancies between portal submissions and backend records, and deliver clean, verified rosters to admissions committees for final sign-off.",
+        "Leveraged the institution's Gradent platform, Dynamics 365-aligned exports, and Excel/Google Sheets to reconcile discrepancies between portal submissions and backend records for clean admissions rosters.",
         "Built variance summary reports and sign-off documentation packets that provided department heads with clear visibility into correction actions taken, residual error rates, and data quality metrics, supporting transparent and accountable admissions decisions.",
         "Established repeatable audit procedures that standardized how incoming applicant data was reviewed across multiple intake cycles, reducing manual re-checking and improving turnaround time for final admissions roster publication.",
-        "Work Context: In my FUTA role (Systems & Data Analyst / System Programmer, 2017–2023), this audit pattern was used to verify admissions rosters before committee sign-off each intake cycle. Current Implementation: I now run the same rules through personal assets (`scripts/python/data_quality/config_rules_validator.py` and `data/sample/validation_rules.json`) so field completeness, score thresholds, and eligibility logic stay consistent."
+        "Work Context: In my FUTA role (Systems & Data Analyst / System Programmer, 2017–2023), this audit pattern verified ERP-backed admissions rosters before committee sign-off each intake cycle. Current Implementation: I now run the same rules through personal assets (`scripts/python/data_quality/config_rules_validator.py` and `data/sample/validation_rules.json`) so field completeness, score thresholds, and eligibility logic stay consistent."
       ],
       "impact": [
         {
@@ -71,8 +72,8 @@
           "detail": "ID, eligibility, duplicates, missing fields"
         }
       ],
-      "summary": "Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status to ensure data integrity before final approvals for 2,000+ applicants per cycle.",
-      "mobileSummary": "Audited multi-intake admissions data to reconcile identity, eligibility, and enrollment records for 2,000+ applicants per cycle.",
+      "summary": "Conducted systematic audits of ERP-backed multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status for 2,000+ applicants per cycle.",
+      "mobileSummary": "Audited ERP-backed admissions data to reconcile identity, eligibility, and enrollment records for 2,000+ applicants per cycle.",
       "modified": "2025-12-18T14:30:00.000Z",
       "featured": false,
       "title": "Admissions Data Quality Audit",
@@ -80,6 +81,7 @@
         "Excel",
         "Google Sheets",
         "SQL",
+        "Dynamics 365",
         "Data Validation",
         "Admissions Audit",
         "Rules Engine"
@@ -138,11 +140,11 @@
     },
     {
       "details": [
-        "Built baseline virtual machine images for Windows Server 2019/2022 and Windows 10/11 client systems in both Oracle VirtualBox and VMware Workstation Pro, pre-configuring Active Directory Domain Services, DNS, and Group Policy to provide students with ready-to-use lab environments from the first day of each term.",
+        "Built baseline virtual machine images for Windows Server 2019/2022 and Windows 10/11 client systems in both Oracle VirtualBox and VMware Workstation Pro, pre-configuring Active Directory Domain Services, DNS, Group Policy, and Azure identity lab baselines.",
         "Developed comprehensive setup playbooks and reset procedures to maintain consistency across 250+ student lab seats, enabling rapid redeployment of clean environments between terms and ensuring every student worked with identical baseline configurations regardless of their host machine.",
-        "Guided students through the complete lifecycle of domain controller deployment — from initial server role installation and domain creation through user and group management, Organizational Unit structuring, and Group Policy Object configuration — coaching structured troubleshooting techniques for common AD, DNS resolution, and GPO application issues.",
+        "Guided students through the complete lifecycle of domain controller deployment — from server role installation and domain creation through user/group management, Organizational Unit structuring, Group Policy configuration, and Azure-connected identity concepts.",
         "Documented repeatable onboarding procedures covering hypervisor installation, virtual network adapter configuration, shared folder setup, and snapshot management, reducing first-week setup failures and allowing instructional time to focus on core systems administration concepts.",
-        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), these standardized virtual lab builds were used to support classroom delivery for systems administration practicals. Current Implementation: I continue refining the same baseline images and reset playbooks in personal projects for repeatable Active Directory and policy testing."
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), these standardized virtual lab builds supported classroom systems administration practicals with AD and Azure identity basics. Current Implementation: I continue refining the same baseline images and reset playbooks in personal projects for repeatable identity and policy testing."
       ],
       "impact": [
         {
@@ -161,14 +163,15 @@
           "detail": "VirtualBox and VMware"
         }
       ],
-      "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students over multiple academic terms, ensuring consistent and reliable virtual infrastructure for hands-on systems administration coursework.",
-      "mobileSummary": "Provisioned standardized Windows Server and Active Directory labs in VirtualBox and VMware for 250+ students, ensuring reliable, repeatable environments.",
+      "summary": "Provisioned and maintained standardized Windows Server, Active Directory, and Azure identity lab environments across VirtualBox and VMware for 250+ students over multiple academic terms.",
+      "mobileSummary": "Provisioned standardized Windows Server, Active Directory, and Azure identity labs in VirtualBox/VMware for 250+ students.",
       "modified": "2025-10-02T07:51:09.056Z",
       "featured": true,
       "title": "Virtual Lab Deployment & Active Directory",
       "tags": [
         "Windows Server",
         "Active Directory",
+        "Azure IAM",
         "Group Policy",
         "VirtualBox/VMware",
         "Lab Deployment"
@@ -297,11 +300,11 @@
     },
     {
       "details": [
-        "Developed Python ETL scripts to extract raw data from academic information systems and MySQL databases, applying automated cleansing routines to handle missing fields, formatting inconsistencies, and duplicate records before loading validated datasets into reporting-ready structures.",
+        "Developed Python ETL scripts to extract raw data from ERP modules, Dynamics 365-aligned exports, and MySQL databases, applying automated cleansing routines before loading reporting-ready datasets.",
         "Implemented quality assurance checkpoints within each pipeline stage — extraction validation, transformation rule verification, and output integrity checks — ensuring that data anomalies were caught and flagged before reports reached leadership, significantly reducing post-publication corrections.",
         "Standardized report templates and data visualizations across recurring deliverables including weekly KPI summaries, session progress updates, and variance analyses, eliminating the manual formatting and rework that previously consumed significant preparation time each reporting cycle.",
-        "Delivered scheduled, automated reporting outputs that provided university leadership with timely insights into admissions throughput, examination processing status, and results publication readiness, directly supporting planning decisions and resource allocation across departments.",
-        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this pipeline pattern supported recurring admissions, examination, and results reporting with tighter turnaround times. Current Implementation: I mirror the same production cadence in the scripting repository through `scripts/python/etl/etl_runner.py` and `scripts/workflow/schedule_daily_run.sh`, using config-driven runs and timestamped logs."
+        "Delivered scheduled, automated reporting outputs that provided leadership with timely insights into admissions throughput, examination processing status, and results publication readiness across ERP-aligned workflows.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this pipeline pattern supported recurring ERP and admissions/examination reporting with tighter turnaround times. Current Implementation: I mirror the same production cadence in the scripting repository through `scripts/python/etl/etl_runner.py` and `scripts/workflow/schedule_daily_run.sh`, using config-driven runs and timestamped logs."
       ],
       "impact": [
         {
@@ -320,14 +323,15 @@
           "detail": "Scheduled pipeline runs"
         }
       ],
-      "summary": "Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting at a federal university from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles.",
-      "mobileSummary": "Built Python and SQL pipelines that automated recurring reporting, replacing manual spreadsheets with scheduled, quality-checked outputs.",
+      "summary": "Designed and deployed automated Python/SQL pipelines that transformed recurring ERP-linked operational reporting from manual spreadsheets into scheduled, quality-checked workflows for leadership updates.",
+      "mobileSummary": "Built Python and SQL pipelines that automated recurring ERP-linked reporting with scheduled, quality-checked outputs.",
       "modified": "2025-12-20T10:15:00.000Z",
       "featured": true,
       "title": "Operational Reporting Automation Pipeline",
       "tags": [
         "Python",
         "SQL",
+        "Dynamics 365",
         "ETL Automation",
         "Reporting",
         "Workflow Automation",
@@ -343,11 +347,11 @@
     },
     {
       "details": [
-        "Mapped incoming data from admissions portals, enrollment management systems, and departmental results submissions to consistent student identifiers, systematically highlighting records with missing fields, mismatched personal information, or inconsistent enrollment status across sources.",
+        "Mapped incoming data from ERP admissions modules, Dynamics 365-aligned enrollment systems, and departmental results submissions to consistent student identifiers, highlighting mismatches across sources.",
         "Developed correction queues and status dashboards in Excel and Google Sheets that provided departmental coordinators with clear, actionable lists of records requiring verification, enabling distributed resolution of issues without disrupting the overall processing timeline.",
         "Partnered with department leads and academic coordinators to reconcile complex eligibility cases — including transfer students, readmission candidates, and students with incomplete records — ensuring that final published rosters accurately reflected each student's academic standing.",
         "Maintained lifecycle data integrity from initial application intake through graduation processing, applying SQL queries and formula-driven validation to ensure that records remained consistent and audit-ready across multiple academic sessions and reporting cycles.",
-        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this reconciliation flow was used to align admissions, enrollment, and results records before publication windows. Current Implementation: I now keep the same source-vs-target checks in reusable assets (`scripts/python/reconciliation/reconcile_students.py` and `scripts/sql/templates/sql_reconciliation_diff_template.sql`) for consistent mismatch tracking."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this reconciliation flow aligned ERP admissions, enrollment, and results records before publication windows. Current Implementation: I now keep the same source-vs-target checks in reusable assets (`scripts/python/reconciliation/reconcile_students.py` and `scripts/sql/templates/sql_reconciliation_diff_template.sql`) for consistent mismatch tracking."
       ],
       "impact": [
         {
@@ -366,14 +370,15 @@
           "detail": "Admissions, enrollment, results"
         }
       ],
-      "summary": "Built and operated a centralized records reconciliation process at a federal university, systematically cross-referencing admissions, enrollment, and results data from multiple source systems to identify and resolve duplicates, eligibility gaps, and data mismatches before official publication for 4,000+ student records each cycle.",
-      "mobileSummary": "Ran a centralized records reconciliation hub that cross-checked admissions, enrollment, and results data to resolve duplicates and eligibility gaps for 4,000+ records.",
+      "summary": "Built and operated a centralized ERP records reconciliation process, cross-referencing admissions, enrollment, and results data to resolve duplicates, eligibility gaps, and mismatches before publication for 4,000+ records each cycle.",
+      "mobileSummary": "Ran a centralized ERP records reconciliation hub to resolve duplicates and eligibility gaps for 4,000+ records each cycle.",
       "modified": "2026-01-31T14:20:00.000Z",
       "featured": true,
       "title": "Student Records Reconciliation Hub",
       "tags": [
         "SQL",
         "Excel",
+        "ERP Integration",
         "Data Validation",
         "Record Management",
         "Reconciliation",

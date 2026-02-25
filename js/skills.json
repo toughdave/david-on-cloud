@@ -4,17 +4,17 @@
         {
             "icon": "settings",
             "title": "Systems Implementation & Support",
-            "items": ["Systems Analysis", "Implementation & Testing", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
+            "items": ["Systems Analysis", "ERP Administration", "Dynamics 365 Workflow Support", "Implementation & Testing", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
         },
         {
             "icon": "pie-chart",
             "title": "Data Analysis & Reporting",
-            "items": ["Excel", "Power BI", "Google Sheets", "SQL / MySQL", "Data Validation", "Reporting Dashboards"]
+            "items": ["Excel", "Power BI", "Microsoft Fabric", "Google Sheets", "SQL / MySQL", "Data Validation", "Reporting Dashboards"]
         },
         {
             "icon": "code",
             "title": "Automation & Collaboration",
-            "items": ["Python", "PHP", "ETL Automation", "Workflow Automation", "Git / GitHub", "End-User Training", "Stakeholder Communication"]
+            "items": ["Python", "PowerShell", "Bash", "PHP", "ETL Automation", "Workflow Automation", "Git / GitHub", "End-User Training", "Stakeholder Communication"]
         },
         {
             "icon": "monitor",
@@ -24,7 +24,7 @@
         {
             "icon": "server",
             "title": "Infrastructure & Virtualization",
-            "items": ["Windows Server", "Active Directory", "VirtualBox", "VMware", "Lab Deployment"]
+            "items": ["Windows Server", "Active Directory", "Microsoft Entra ID", "Microsoft Azure", "VirtualBox", "VMware", "Lab Deployment"]
         },
         {
             "icon": "share-2",
@@ -34,7 +34,7 @@
         {
             "icon": "globe",
             "title": "Web & Deployment",
-            "items": ["HTML / CSS / JS", "Tailwind CSS", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
+            "items": ["HTML / CSS / JS", "Tailwind CSS", "Microsoft 365", "Monday.com", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
         }
     ]
 }
