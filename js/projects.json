@@ -43,7 +43,7 @@
       "linkText": "View Case Summary (Markdown)",
       "pdf": "docs/case-studies/academic-results-analytics-dashboard.pdf",
       "id": "academic-results-analytics-dashboard",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/data/Academic-Results-Analytics-Dashboard.jpg",
       "category": "data",
       "posted": "2026-01-15T09:20:00.000Z"
     },
@@ -90,7 +90,7 @@
       "linkText": "View Case Summary (Markdown)",
       "pdf": "docs/case-studies/admissions-data-quality-audit.pdf",
       "id": "admissions-data-quality-audit",
-      "image": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/data/Admissions-Data-Quality-Audit.jpg",
       "category": "data",
       "posted": "2025-12-05T08:10:00.000Z"
     },
@@ -307,7 +307,7 @@
       "link": "docs/case-studies/examination-integrity-monitoring.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "examination-integrity-monitoring",
-      "image": "/img/projects/systems/Network-Security-&-Surveillance.png",
+      "image": "/img/projects/systems/Examination-Integrity-Monitoring.png",
       "category": "systems",
       "posted": "2025-09-30T05:55:05.056Z"
     },
@@ -378,7 +378,7 @@
       "published": true,
       "showRibbon": true,
       "ribbonText": "Published",
-      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/research/Secured-System-IoT-Access-Control.jpg",
       "category": "systems",
       "posted": "2019-06-12T16:00:00.000-04:00"
     },
@@ -425,7 +425,7 @@
       "linkText": "View Case Summary (Markdown)",
       "pdf": "docs/case-studies/operational-reporting-automation-pipeline.pdf",
       "id": "operational-reporting-automation-pipeline",
-      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/automation/Operational-Reporting-Automation-Pipeline.jpg",
       "category": "automation",
       "posted": "2025-12-12T07:30:00.000Z"
     },
@@ -472,7 +472,7 @@
       "linkText": "View Case Summary (Markdown)",
       "pdf": "docs/case-studies/student-records-reconciliation-hub.pdf",
       "id": "student-records-reconciliation-hub",
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/data/Student-Records-Reconciliation-Hub.jpg",
       "category": "data",
       "posted": "2026-01-28T09:10:00.000Z"
     },
@@ -518,7 +518,7 @@
       "linkText": "View Case Summary (Markdown)",
       "pdf": "docs/case-studies/exam-operations-sla-tracker.pdf",
       "id": "exam-operations-sla-tracker",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/data/Exam-Operations-SLA-Tracker.jpg",
       "category": "data",
       "posted": "2026-02-02T14:20:00.000Z"
     },
@@ -562,7 +562,7 @@
       "link": "docs/case-studies/systems-implementation-qa-playbooks.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "systems-implementation-qa-playbooks",
-      "image": "/img/projects/systems/Cloud-Migration-Tool.png",
+      "image": "/img/projects/systems/Cloud-Migration-Tool.jpg",
       "category": "systems",
       "posted": "2025-09-29T02:11:14.056Z"
     },
@@ -650,7 +650,7 @@
       "link": "docs/case-studies/dns-dhcp-services-lab.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "dns-dhcp-services-lab",
-      "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/networking/DNS-DHCP-Services-Lab.jpg",
       "category": "networking",
       "posted": "2025-09-19T05:44:05.056Z"
     },
@@ -694,7 +694,7 @@
       "link": "docs/case-studies/operational-readiness-checks.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "operational-readiness-checks",
-      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/systems/Operational-Readiness-Checks.jpg",
       "category": "systems",
       "posted": "2025-11-20T09:05:00.000Z"
     },
@@ -738,7 +738,7 @@
       "link": "docs/case-studies/technical-documentation-end-user-training.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "technical-documentation-end-user-training",
-      "image": "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=680&h=384&q=80",
+      "image": "/img/projects/systems/Technical-Documentation.png",
       "category": "systems",
       "posted": "2025-09-14T05:15:24.056Z"
     },
