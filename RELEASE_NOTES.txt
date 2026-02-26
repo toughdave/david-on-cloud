@@ -1,3 +1,9 @@
+## v5.6.0 — 2026-02-25 23:02:46
+- ✅ Refine project content and reorganize site image assets
+- ✅ Auto patch bump version to v5.5.8 with update summary
+- ✅ Add Cisco Catalyst 3850 troubleshooting project card and case-study evidence images
+- ✅ Bumped version to v5.6.0
+
 ## v5.5.8 — 2026-02-25 20:15:02
 - ✅ Add Cisco Catalyst 3850 troubleshooting project card and case-study evidence images
 - ✅ Update project content and resolve git divergence
