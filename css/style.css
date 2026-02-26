@@ -3694,7 +3694,7 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
 .experience-summary-title,
 .experience-bullet-title {
     font-weight: 600;
-    color: #1f2937;
+    color: #4f46e5;
 }
 
 .experience-bullet-title {
@@ -7897,10 +7897,13 @@ html:not([data-theme="dark"]) body.fun-mode .contact-social-btn:hover {
 
 [data-theme="dark"] .experience-title,
 [data-theme="dark"] .experience-summary,
-[data-theme="dark"] .experience-list,
+[data-theme="dark"] .experience-list {
+    color: #e2e8f0 !important;
+}
+
 [data-theme="dark"] .experience-summary-title,
 [data-theme="dark"] .experience-bullet-title {
-    color: #e2e8f0 !important;
+    color: #a5b4fc !important;
 }
 
 [data-theme="dark"] .experience-meta {

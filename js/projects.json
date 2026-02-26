@@ -744,31 +744,39 @@
     },
     {
       "details": [
-        "Designed and maintained a CMS-managed portfolio platform with responsive layouts, reusable content components, and release-ready structure across homepage and project views.",
-        "Managed end-to-end domain operations for davidoncloud.com, including DNS record lifecycle updates, routing validation, SSL continuity checks, and hosting alignment for stable public availability.",
-        "Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering account lifecycle updates, role assignments, and access troubleshooting.",
-        "Standardized deployment and validation routines with checklist-driven releases plus Docker-based support checks to keep updates consistent and rollback-aware.",
-        "Work Context: At FUTA and Pures College, I handled implementation handovers, post-deployment support, and operational stabilization across high-visibility systems. Current Implementation: I now apply the same release discipline to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation."
+        "Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.",
+        "Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.",
+        "Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.",
+        "Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.",
+        "Standardized deployment validation with a Node.js-based pre-flight check script that verifies HTML structure, CSS feature usage, JavaScript syntax, image asset integrity, favicon presence, and version consistency before each release, catching configuration issues before they reach production.",
+        "Containerized recurring support utilities and validation checks with Docker to keep troubleshooting scripts, environment tests, and deployment verifications portable and consistent across local development and production environments.",
+        "Localized all runtime frontend dependencies (Tailwind CDN, AOS, Three.js, Vanta, Feather Icons, Decap CMS) and font assets to the repository to eliminate external CDN calls, improving page load reliability, offline development capability, and production resilience.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation."
       ],
       "impact": [
         {
           "value": "1",
           "label": "Production domain",
-          "detail": "davidoncloud.com managed end-to-end"
+          "detail": "davidoncloud.com — DNS, SSL, email, hosting"
         },
         {
-          "value": "3",
+          "value": "50+",
+          "label": "Releases shipped",
+          "detail": "Versioned, tagged, and validated"
+        },
+        {
+          "value": "5",
           "label": "Core service layers",
-          "detail": "Web delivery, DNS routing, identity administration"
+          "detail": "Web, DNS, identity, CMS, CI/CD"
         },
         {
-          "value": "1",
-          "label": "Release workflow",
-          "detail": "Validation and rollback-aware updates"
+          "value": "9",
+          "label": "Pre-flight checks",
+          "detail": "Automated validation gates per release"
         }
       ],
-      "summary": "Built and operated my portfolio website as a production-style web and domain operations project covering CMS delivery, DNS administration, Microsoft 365 service governance, and release validation.",
-      "mobileSummary": "Run my portfolio as a production web/domain operations project with CMS delivery, DNS admin, and Microsoft 365 governance.",
+      "summary": "Built and operated my portfolio website as a production-style web and domain operations project, combining CMS-managed content delivery, DNS record administration, Microsoft 365 identity governance, scripted release automation, and pre-flight validation checks across 50+ versioned releases.",
+      "mobileSummary": "Run my portfolio as a production web/domain operations project with CMS delivery, DNS admin, Microsoft 365 governance, and scripted release validation.",
       "modified": "2026-02-26T03:40:00.000Z",
       "featured": true,
       "title": "Portfolio Web Operations & Domain Administration",
@@ -777,7 +785,10 @@
         "Domain & DNS",
         "Microsoft 365",
         "CMS",
-        "Deployment"
+        "Deployment",
+        "Release Automation",
+        "Docker",
+        "Validation"
       ],
       "link": "docs/case-studies/portfolio-web-operations-domain-administration.md",
       "linkText": "View Case Summary (Markdown)",
@@ -788,31 +799,38 @@
     },
     {
       "details": [
-        "Diagnosed and resolved hardware, operating system, application, and network incidents across Windows and Linux environments using structured triage, root-cause analysis, and command-level verification.",
-        "Maintained a known-issues knowledge base with tested fixes, escalation notes, and prevention actions, reducing repeat incident cycles and improving first-response consistency.",
-        "Tracked service requests with detailed symptom logs, diagnostic actions, and time-to-resolution metrics, sustaining About 95% SLA compliance across recurring operations windows.",
-        "Escalated high-impact incidents with reproducible diagnostics and clear handover notes so senior teams could execute corrective actions without delay.",
-        "Work Context: At FUTA and Pures College, this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Current Implementation: I apply the same support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes."
+        "Diagnosed and resolved hardware, operating system, application, and network incidents across Windows and Linux environments using structured triage workflows, command-level diagnostics (Event Viewer, PowerShell, journalctl, ping/traceroute, ipconfig/ifconfig), and root-cause verification before closing each ticket.",
+        "Supported classroom and examination environments with rapid-response troubleshooting during high-pressure periods, resolving boot failures, driver conflicts, peripheral malfunctions, projection system issues, and network drops that directly impacted scheduled sessions and exam timelines.",
+        "Maintained a known-issues knowledge base organized by category (hardware, OS, network, application) with tested resolution steps, escalation notes, and prevention recommendations, reducing repeat incident cycles and improving first-response consistency across support staff.",
+        "Tracked service requests with detailed symptom logs, diagnostic actions, resolution steps, and time-to-resolution metrics in structured spreadsheets, sustaining About 95% SLA compliance across recurring academic operations windows.",
+        "Performed remote and onsite support across distributed environments, adapting diagnostic approach based on access constraints and coordinating with departmental contacts to minimize disruption during active academic and administrative workflows.",
+        "Escalated high-impact incidents with reproducible diagnostics, annotated screenshots, and clear handover notes so senior teams or vendor contacts could execute corrective actions without repeating initial triage steps.",
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I handled incidents across the examination, admissions, and departmental IT systems serving 4,000+ users, coordinating with operations leads to keep services stable during peak cycles. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab workstations and resolved software/hardware issues across classroom environments for 250+ students. Current Implementation: I apply the same structured support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes."
       ],
       "impact": [
         {
           "value": "200+",
           "label": "Incidents resolved",
-          "detail": "Tracked support requests"
+          "detail": "Hardware, OS, network, application"
         },
         {
           "value": "95%",
           "label": "SLA compliance",
-          "detail": "Response and resolution"
+          "detail": "Response and resolution targets"
         },
         {
-          "value": "1",
-          "label": "Knowledge base",
-          "detail": "Documented recurring fixes"
+          "value": "4,000+",
+          "label": "Users supported",
+          "detail": "Across FUTA, Pures, and consulting"
+        },
+        {
+          "value": "24 hrs",
+          "label": "Target turnaround",
+          "detail": "Critical incident resolution"
         }
       ],
-      "summary": "Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests.",
-      "mobileSummary": "Delivered frontline Windows/Linux support with structured triage, root-cause tracking, and SLA-aligned incident handling.",
+      "summary": "Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests spanning hardware, OS, network, and application issues for 4,000+ users.",
+      "mobileSummary": "Delivered frontline Windows/Linux support with structured triage, root-cause tracking, and SLA-aligned incident handling for 4,000+ users.",
       "modified": "2026-02-26T03:25:00.000Z",
       "featured": true,
       "title": "Systems Support & Troubleshooting",

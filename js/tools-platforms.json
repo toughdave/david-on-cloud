@@ -121,6 +121,14 @@
       "title": "Delivery & Collaboration Tools",
       "items": [
         {
+          "name": "Monday.com",
+          "usage": "Coordinate task boards, delivery timelines, and team status updates across implementation and operations cycles."
+        },
+        {
+          "name": "GoHighLevel",
+          "usage": "Manage client communication workflows, appointment scheduling, and operational follow-up sequences for service delivery."
+        },
+        {
           "name": "Issue & SLA Tracker (Excel/Google Sheets)",
           "usage": "Track incident queues, assign owners, monitor response timelines, and report service performance across operations cycles."
         },
