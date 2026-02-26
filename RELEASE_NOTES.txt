@@ -1,3 +1,7 @@
+## v5.7.4 — 2026-02-26 12:02:27
+- ✅ Revert Pures experience inset image to prior asset
+- ✅ Bumped version to v5.7.4
+
 ## v5.7.3 — 2026-02-26 03:51:27
 - ✅ Clean legacy favicon file and update Pures experience image
 - ✅ Bumped version to v5.7.3
