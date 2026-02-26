@@ -1,3 +1,7 @@
+## v5.8.1 — 2026-02-26 21:43:29
+- ✅ Internal release tooling updates
+- ✅ Bumped version to v5.8.1
+
 ## v5.8.0 — 2026-02-26 16:43:19
 - ✅ Flesh out project details, rewrite testimonials, add Monday.com/GoHighLevel, style Focus/Key 
 - ✅ Bumped version to v5.8.0
