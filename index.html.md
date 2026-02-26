@@ -72,7 +72,6 @@
 
 ### Web & Deployment
 - HTML / CSS / JS
-- Tailwind CSS
 - Domain & DNS Management
 - Netlify
 - Vercel

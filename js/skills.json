@@ -34,7 +34,7 @@
         {
             "icon": "globe",
             "title": "Web & Deployment",
-            "items": ["HTML / CSS / JS", "Tailwind CSS", "Domain & DNS Management", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
+            "items": ["HTML / CSS / JS", "Domain & DNS Management", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
         }
     ]
 }

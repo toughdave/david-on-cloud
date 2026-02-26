@@ -208,10 +208,10 @@ function validateAssets() {
     }
     
     // Check for favicon
-    if (fs.existsSync('static/favicon.ico')) {
+    if (fs.existsSync('favicon.ico') || fs.existsSync('static/favicon.ico')) {
         success('Favicon found');
     } else {
-        warning('Favicon not found in static/favicon.ico');
+        warning('Favicon not found in favicon.ico or static/favicon.ico');
     }
     
     return isValid;
