@@ -49,6 +49,21 @@ function validateFileExists(filePath, description) {
     }
 }
 
+function listFilesRecursive(dirPath) {
+    if (!fs.existsSync(dirPath)) return [];
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    const files = [];
+    entries.forEach((entry) => {
+        const fullPath = path.join(dirPath, entry.name);
+        if (entry.isDirectory()) {
+            files.push(...listFilesRecursive(fullPath));
+        } else {
+            files.push(fullPath);
+        }
+    });
+    return files;
+}
+
 function validateHtmlStructure() {
     info('Validating HTML structure...');
     let isValid = true;
@@ -175,16 +190,18 @@ function validateAssets() {
     
     // Check for image directory
     if (fs.existsSync('img')) {
-        const images = fs.readdirSync('img');
-        success(`Found ${images.length} images in img/ directory`);
-        
-        // Check image formats
         const supportedFormats = ['.png', '.jpg', '.jpeg', '.svg', '.webp'];
-        images.forEach(image => {
-            const ext = path.extname(image).toLowerCase();
-            if (!supportedFormats.includes(ext)) {
-                warning(`Unsupported image format: ${image}`);
-            }
+        const allFiles = listFilesRecursive('img');
+        const imageFiles = allFiles.filter((filePath) => supportedFormats.includes(path.extname(filePath).toLowerCase()));
+        success(`Found ${imageFiles.length} images in img/ directory`);
+
+        const unsupportedFiles = allFiles.filter((filePath) => {
+            const ext = path.extname(filePath).toLowerCase();
+            return ext && !supportedFormats.includes(ext) && !filePath.endsWith(':Zone.Identifier');
+        });
+
+        unsupportedFiles.forEach((filePath) => {
+            warning(`Unsupported image format: ${path.relative('img', filePath)}`);
         });
     } else {
         warning('No img/ directory found');
@@ -259,17 +276,17 @@ function validatePerformance() {
     
     // Check for image optimization opportunities
     if (fs.existsSync('img')) {
-        const images = fs.readdirSync('img');
+        const images = listFilesRecursive('img');
         const largeImageExts = ['.png', '.jpg', '.jpeg'];
         
-        images.forEach(image => {
-            const ext = path.extname(image).toLowerCase();
+        images.forEach(imagePath => {
+            const ext = path.extname(imagePath).toLowerCase();
             if (largeImageExts.includes(ext)) {
-                const stats = fs.statSync(path.join('img', image));
+                const stats = fs.statSync(imagePath);
                 const sizeInMB = stats.size / (1024 * 1024);
                 
                 if (sizeInMB > 1) {
-                    warning(`Large image file: ${image} (${sizeInMB.toFixed(2)}MB). Consider optimization.`);
+                    warning(`Large image file: ${path.relative('img', imagePath)} (${sizeInMB.toFixed(2)}MB). Consider optimization.`);
                 }
             }
         });

@@ -1,6 +1,6 @@
 # David On Cloud — Professional CV & Portfolio Website
 
-**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: 5.5.0
+**Live Portfolio**: [davidoncloud.com](https://davidoncloud.com) | **Version**: see `VERSION`
 
 A modern, responsive portfolio website showcasing professional experience in information systems, system optimization, data analysis, reporting automation, and IT operations across academic and enterprise environments.
 
@@ -38,6 +38,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 - **Validation Pipeline**: HTML, CSS, JS, and JSON validation via CI/CD
 - **Grouped Navigation**: CMS-managed primary and secondary menu composition
 - **Project Modals**: Detailed views with Work Context and Current Implementation continuity
+- **Local Vendor Hosting**: Runtime frontend libraries served from `/static/vendor` and local font assets
 
 ## Built With
 
@@ -59,7 +60,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 ### Content & Data
 
 - **CMS JSON Files**: about, skills, tools-platforms, script-library, experience, process, testimonials, contact, footer, hero, config
-- **Projects JSON**: 13 project entries with case study markdown and PDF deliverables
+- **Projects JSON**: 14 project entries with case study markdown and PDF deliverables
 - **LLM Docs Generator**: Node.js script producing markdown pages from CMS data
 
 ## Featured Projects
