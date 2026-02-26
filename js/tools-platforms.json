@@ -1,6 +1,6 @@
 {
   "sectionTitle": "Tools & Platforms",
-  "subtitle": "I use these practical tools to deliver ERP operations, data quality, identity governance, and implementation workflows across projects.",
+  "subtitle": "I use these practical tools to deliver systems operations, data quality, identity governance, and implementation workflows across projects.",
   "categories": [
     {
       "icon": "bar-chart-2",
@@ -77,12 +77,20 @@
           "usage": "Provision repeatable virtual labs for systems implementation, testing, and training delivery."
         },
         {
-          "name": "Microsoft Azure",
-          "usage": "Apply cloud-connected identity, access control, and service governance patterns in lab and operational workflows."
+          "name": "Docker",
+          "usage": "Package repeatable troubleshooting utilities and deployment checks for consistent execution across environments."
+        },
+        {
+          "name": "Domain & DNS Operations",
+          "usage": "Manage domain records, routing validation, and service continuity controls for web and email operations."
         },
         {
           "name": "Microsoft Entra ID",
           "usage": "Manage directory synchronization, access assignments, and identity lifecycle controls across distributed systems."
+        },
+        {
+          "name": "Microsoft 365 Admin Center",
+          "usage": "Handle user provisioning, licensing, and service-access administration for day-to-day operations support."
         }
       ]
     },

@@ -25,7 +25,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 - **Tools & Platforms**: Practical tool usage organized by delivery category
 - **Scripts Library**: Curated script families linked to the scripting repository
 - **Experience**: Work history with key outcomes and timeline
-- **Projects**: 13 project cards with case study links, impact metrics, and modal details
+- **Projects**: 14 project cards with case study links, impact metrics, and modal details
 - **Process & Services**: Structured delivery methodology centered on system optimization and reliable handover
 - **Testimonials**: Professional endorsements
 - **Contact**: Functional contact form with Formspree integration
@@ -79,6 +79,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 
 - **Virtual Lab Deployment & Active Directory** - Standardized VM labs for 250+ students
 - **Examination Integrity Monitoring** - Biometric verification, CCTV, and incident reporting
+- **Portfolio Web Operations & Domain Administration** - CMS delivery, DNS routing, and Microsoft 365 operations support
 - **A Secured System for Internet-Enabled Host Devices** - Peer-reviewed published research (CCSE, 2020)
 - **Systems Implementation & QA Playbooks** - Deployment checklists and rollback procedures
 - **Operational Readiness Checks** - Pre-exam device compliance and remediation tracking

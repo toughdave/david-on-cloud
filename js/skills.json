@@ -4,7 +4,7 @@
         {
             "icon": "settings",
             "title": "Systems Implementation & Support",
-            "items": ["Systems Analysis", "ERP Administration", "Business Application Workflow Support", "Implementation & Testing", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
+            "items": ["Systems Analysis", "ERP Administration", "Business Application Workflow Support", "Implementation & Testing", "Go-Live & Cutover Support", "Troubleshooting", "QA Support", "Documentation", "Process Improvement"]
         },
         {
             "icon": "pie-chart",
@@ -24,7 +24,7 @@
         {
             "icon": "server",
             "title": "Infrastructure & Virtualization",
-            "items": ["Windows Server", "Active Directory", "Identity & Access Administration", "Microsoft Azure", "VirtualBox", "VMware", "Lab Deployment"]
+            "items": ["Windows Server", "Active Directory", "Identity & Access Administration", "Microsoft 365 Admin Center", "Docker", "VirtualBox", "VMware", "Lab Deployment"]
         },
         {
             "icon": "share-2",
@@ -34,7 +34,7 @@
         {
             "icon": "globe",
             "title": "Web & Deployment",
-            "items": ["HTML / CSS / JS", "Tailwind CSS", "Microsoft 365", "Monday.com", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
+            "items": ["HTML / CSS / JS", "Tailwind CSS", "Domain & DNS Management", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
         }
     ]
 }

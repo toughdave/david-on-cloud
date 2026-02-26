@@ -1,7 +1,7 @@
 # Operational Reporting Automation Pipeline
 
 ## Project Summary
-Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles. The pipeline extracted raw data from academic information systems and MySQL databases, applied automated cleansing routines, and loaded validated datasets into reporting-ready structures.
+Designed and deployed automated data processing pipelines using Python and SQL to transform recurring operational reporting from manual, error-prone spreadsheet work into scheduled, quality-checked workflows delivering consistent leadership updates across academic cycles. The pipeline pulled raw data from academic information systems and MySQL databases, applied automated cleansing routines, and loaded validated datasets into reporting-ready structures.
 
 ## Work Context
 At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), this pipeline pattern supported recurring admissions, examination, and results reporting with tighter turnaround times. Quality assurance checkpoints at each pipeline stage — extraction validation, transformation rule verification, and output integrity checks — ensured data anomalies were caught before reports reached leadership. Standardized report templates eliminated manual formatting and rework that previously consumed significant preparation time each cycle.

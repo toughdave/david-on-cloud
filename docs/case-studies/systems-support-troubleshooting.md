@@ -1,13 +1,13 @@
 # Systems Support & Troubleshooting
 
 ## Project Summary
-Provided frontline Windows and Linux systems support across academic IT environments, diagnosing and resolving hardware, operating system, and application issues while maintaining structured incident documentation and SLA compliance for 200+ tracked support requests.
+Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests.
 
 ## Work Context
 At FUTA (Systems & Data Analyst / System Programmer, 2017–2023) and Pures College (Computer IT Instructor, 2024–2025), this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Issues ranged from hardware failures and OS boot problems to network connectivity and peripheral malfunctions across Windows and Linux platforms.
 
 ## Current Implementation
-I continue using the same root-cause and knowledge-base pattern in personal support workflows and lab operations, tracking resolution steps and building documented references for recurring issues.
+I apply the same support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, Docker-based validation utilities, and documented handover notes for recurring issues.
 
 ## Results and Impact
 - Incidents resolved: 200+
