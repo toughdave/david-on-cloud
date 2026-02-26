@@ -122,7 +122,7 @@
       "summary": "Built and maintained a hands-on networking lab environment using enterprise-grade switching equipment and Cisco Packet Tracer to practice VLAN segmentation, IP addressing schemes, and structured network troubleshooting aligned with Cisco networking fundamentals.",
       "mobileSummary": "Created a hands-on networking lab with enterprise switches and Cisco Packet Tracer to practice VLAN segmentation, IP addressing plans, and structured troubleshooting.",
       "modified": "2025-10-04T05:25:37.056Z",
-      "featured": true,
+      "featured": false,
       "title": "VLAN & IP Addressing Lab",
       "tags": [
         "VLAN",
@@ -137,6 +137,106 @@
       "image": "/img/Enterprise-LAN-Simulation.png",
       "category": "networking",
       "posted": "2025-10-04T01:04:57.056Z"
+    },
+    {
+      "details": [
+        "Built and executed a structured Cisco Catalyst 3850 troubleshooting lab using two endpoints, console access, and switched Ethernet links to validate baseline reachability, segmented VLAN behavior, and DHCP lease handling under real hardware conditions.",
+        "Diagnosed end-to-end connectivity blockers by validating host firewall policy, adapter sharing behavior, VLAN interface addressing, and SVI activation state, then applying targeted corrective changes with command-level verification after each fix.",
+        "Documented each issue as an evidence-backed troubleshooting record, preserving screenshots, observed symptoms, root causes, commands used, and validation outcomes so the lab can be replayed as a repeatable networking operations reference.",
+        "Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used this same troubleshooting workflow to coach students through practical switch diagnostics and stepwise fault isolation. Current Implementation: I now run and document the same process in my personal home lab and publish the artifacts in the networking-labs GitHub repository for ongoing project continuity."
+      ],
+      "impact": [
+        {
+          "value": "5",
+          "label": "Issues resolved",
+          "detail": "Connectivity, subnet, VLAN, and DHCP fixes"
+        },
+        {
+          "value": "9",
+          "label": "Evidence screenshots",
+          "detail": "Extracted from troubleshooting log"
+        },
+        {
+          "value": "3",
+          "label": "Physical devices",
+          "detail": "Catalyst switch and two endpoints"
+        }
+      ],
+      "summary": "Completed a hands-on Cisco Catalyst 3850 troubleshooting lab and resolved five real network issues across ICMP reachability, NIC sharing, VLAN subnet alignment, SVI state, and DHCP binding conflicts with screenshot-backed evidence.",
+      "mobileSummary": "Resolved five Cisco Catalyst 3850 lab issues across reachability, VLAN routing, and DHCP with screenshot-backed evidence.",
+      "modified": "2026-02-25T20:15:00.000Z",
+      "featured": true,
+      "title": "Cisco Catalyst 3850 Troubleshooting Lab (Phase 1)",
+      "tags": [
+        "Cisco Catalyst 3850",
+        "Switch Troubleshooting",
+        "VLAN",
+        "DHCP",
+        "ICMP",
+        "Documentation"
+      ],
+      "link": "https://github.com/toughdave/networking-labs#readme",
+      "linkText": "View GitHub Repository README",
+      "id": "cisco-catalyst-3850-troubleshooting-phase-1",
+      "image": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-01.png",
+      "images": [
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-01.png",
+          "alt": "Issue 1 troubleshooting screenshot from Cisco Catalyst 3850 lab",
+          "caption": "Issue 1 evidence: ICMP/firewall troubleshooting and reachability checks.",
+          "afterDetail": 0
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-02.png",
+          "alt": "Issue 2 troubleshooting screenshot showing temporary internet sharing setup",
+          "caption": "Issue 2 evidence: temporary internet sharing path through desktop NIC.",
+          "afterDetail": 1
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-03.png",
+          "alt": "Issue 3 troubleshooting screenshot showing VLAN interface subnet alignment",
+          "caption": "Issue 3 evidence: VLAN 1 subnet realignment to active segment.",
+          "afterDetail": 1
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-04.png",
+          "alt": "Issue 4 troubleshooting screenshot showing VLAN 30 state correction",
+          "caption": "Issue 4 evidence: VLAN 30 interface corrected with no shutdown.",
+          "afterDetail": 2
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-05.png",
+          "alt": "Issue 5 troubleshooting screenshot showing DHCP conflict handling",
+          "caption": "Issue 5 evidence: DHCP binding and reservation conflict cleanup.",
+          "afterDetail": 2
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-06.png",
+          "alt": "Additional troubleshooting screenshot 6 from Cisco Catalyst 3850 lab",
+          "caption": "Additional lab evidence screenshot 6.",
+          "afterDetail": 2
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-07.png",
+          "alt": "Additional troubleshooting screenshot 7 from Cisco Catalyst 3850 lab",
+          "caption": "Additional lab evidence screenshot 7.",
+          "afterDetail": 2
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-08.png",
+          "alt": "Additional troubleshooting screenshot 8 from Cisco Catalyst 3850 lab",
+          "caption": "Additional lab evidence screenshot 8.",
+          "afterDetail": 2
+        },
+        {
+          "src": "/img/networking/cisco-catalyst-3850-troubleshooting-phase-1/issue-09.png",
+          "alt": "Additional troubleshooting screenshot 9 from Cisco Catalyst 3850 lab",
+          "caption": "Additional lab evidence screenshot 9.",
+          "afterDetail": 2
+        }
+      ],
+      "category": "networking",
+      "posted": "2026-02-25T20:00:00.000Z"
     },
     {
       "details": [
