@@ -1,3 +1,7 @@
+## v5.8.0 — 2026-02-26 16:43:19
+- ✅ Flesh out project details, rewrite testimonials, add Monday.com/GoHighLevel, style Focus/Key 
+- ✅ Bumped version to v5.8.0
+
 ## v5.7.4 — 2026-02-26 12:02:27
 - ✅ Revert Pures experience inset image to prior asset
 - ✅ Bumped version to v5.7.4
