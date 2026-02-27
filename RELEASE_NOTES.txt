@@ -1,3 +1,7 @@
+## v5.10.0 — 2026-02-27 15:44:24
+- ✅ Refine project cards, fun-lab toggle UX, and contact map
+- ✅ Bumped version to v5.10.0
+
 ## v5.9.0 — 2026-02-27 06:54:40
 - ✅ Refine portfolio UX behavior, themes, and local image mappings
 - ✅ Bumped version to v5.9.0
