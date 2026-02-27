@@ -2831,7 +2831,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (button.type === 'checkbox') {
             button.addEventListener('change', handler);
         } else {
-            button.addEventListener('click', handler);
+            button.addEventListener('click', (event) => {
+                handler();
+                if (event.detail > 0) {
+                    button.blur();
+                }
+            });
         }
     });
 

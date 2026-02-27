@@ -1180,9 +1180,11 @@
         if (data.location) {
             const locEl = section.querySelector('.flex.items-center:last-of-type .contact-location-text');
             if (locEl) {
-                const q = encodeURIComponent(data.location + ', Canada');
+                const locationLabel = String(data.location).trim();
+                const mapQueryLabel = locationLabel.replace(/\s*\(.*\)\s*/g, '').trim();
+                const q = encodeURIComponent((mapQueryLabel || locationLabel) + ', Canada');
                 locEl.href = 'https://www.google.com/maps/search/' + q;
-                locEl.textContent = data.location;
+                locEl.textContent = locationLabel;
             }
         }
 

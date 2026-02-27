@@ -178,11 +178,11 @@
       "link": "https://github.com/toughdave/networking-labs#readme",
       "linkText": "View GitHub Lab Documentation",
       "id": "cisco-catalyst-3850-troubleshooting-lab",
-      "image": "/img/projects/networking/cisco-catalyst-3850-troubleshooting-lab/Cisco-network-switches.png",
+      "image": "/img/projects/networking/cisco-catalyst-3850-troubleshooting-lab/Cisco-switch-router.jpg",
       "images": [
         {
-          "src": "/img/projects/networking/cisco-catalyst-3850-troubleshooting-lab/Cisco-network-switches.png",
-          "alt": "Physical Cisco Catalyst switching rack used for troubleshooting validation",
+          "src": "/img/projects/networking/cisco-catalyst-3850-troubleshooting-lab/Cisco-switch-router.jpg",
+          "alt": "Physical Cisco switch and router lab setup used for troubleshooting validation",
           "caption": "Lab hardware baseline used for staged troubleshooting and command validation.",
           "afterDetail": 0
         },
