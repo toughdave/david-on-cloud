@@ -116,8 +116,8 @@
 - **Implementation Handover Playbooks**: Standardize transition notes, support escalation paths, and user guidance for stable post-rollout operations.
 
 ## Work Experience
-### IT Systems & Network Consultant (Independent)
-- Organization: Self-Employed
+### IT Systems & Network Consultant
+- Organization: Consulting Practice
 - Location: North York, ON
 - Period: Aug. 2025 – Present
 - Work Context: Delivering resilient SME infrastructure, domain and identity operations, plus automation-led support backed by measurable reliability controls.

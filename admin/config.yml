@@ -23,7 +23,7 @@ collections:
             name: "settings"
             widget: "object"
             fields:
-              - {label: "Default Theme", name: "defaultTheme", widget: "select", options: ["dark", "light"], default: "dark"}
+              - {label: "Default Theme", name: "defaultTheme", widget: "select", options: ["dark", "light"], default: "light"}
               - {label: "Fun Mode", name: "defaultFunMode", widget: "boolean", default: true, hint: "Enable the 'fun mode' interactive effects"}
               - {label: "Shooting Star Interval (ms)", name: "shootingStarInterval", widget: "number", default: 25000, hint: "Milliseconds between shooting star animations"}
               - {label: "Rover Style", name: "roverStyle", widget: "select", options: ["rover", "hopper", "skimmer", "orb", "drone", "squad", "none"], default: "rover", hint: "Pick the floor buddy in Fun Mode"}

@@ -3,6 +3,7 @@ window.siteConfig = {
     settings: {
         shootingStarInterval: 25000,
         defaultFunMode: true,
+        defaultTheme: 'light',
         primaryNavOrder: ['hero', 'about', 'experience', 'projects'],
         secondaryNavOrder: ['skills', 'toolsPlatforms', 'scriptLibrary', 'process', 'testimonials'],
         customNavItems: [],
@@ -19,6 +20,13 @@ fetch('js/config.json?v=' + Date.now())
     .then(data => {
         if (data && data.settings) {
             window.siteConfig.settings = { ...window.siteConfig.settings, ...data.settings };
+
+            const storedTheme = localStorage.getItem('theme');
+            if (!storedTheme) {
+                const configuredTheme = window.siteConfig.settings.defaultTheme === 'dark' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', configuredTheme);
+            }
+
             if (typeof document !== 'undefined') {
                 document.dispatchEvent(new Event('siteconfig:loaded'));
             }
@@ -240,8 +248,9 @@ const loadProjects = () => {
 /* ===== DARK MODE THEME SWITCHER ===== */
 // Initialize theme before page renders to prevent flash
 (function() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    const savedTheme = localStorage.getItem('theme') || window.siteConfig?.settings?.defaultTheme || 'light';
+    const normalizedTheme = savedTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', normalizedTheme);
 })();
 
 /* ===== INITIALIZATION ===== */
@@ -633,7 +642,7 @@ const setActiveNavLink = (targetId) => {
 
     if (normalized === 'home') {
         syncSecondaryNavForSection('intro', false);
-    } else {
+    } else if (normalized !== 'contact') {
         syncSecondaryNavForSection(normalized, true);
     }
 
@@ -2549,6 +2558,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalBody = overlay.querySelector('.project-modal-body');
         const modalHeader = overlay.querySelector('.project-modal-header');
         let headerShrinkEnabled = false;
+        const shrinkActivateThreshold = 130;
+        const shrinkDeactivateThreshold = 32;
 
         // Determine if body content is long enough for header shrink to fully complete.
         const checkHeaderShrinkEligibility = () => {
@@ -2556,7 +2567,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrollable = modalBody.scrollHeight - modalBody.clientHeight;
             const headerH = modalHeader.offsetHeight;
             const estimatedGain = headerH * 0.45;
-            return scrollable > (80 + estimatedGain);
+            return scrollable > (shrinkActivateThreshold + estimatedGain);
         };
 
         if (modalBody && modalHeader) {
@@ -2564,10 +2575,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!headerShrinkEnabled) return;
                 const st = modalBody.scrollTop;
                 let headerStateChanged = false;
-                if (st > 80 && !modalHeader.classList.contains('is-scrolled')) {
+                if (st > shrinkActivateThreshold && !modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.add('is-scrolled');
                     headerStateChanged = true;
-                } else if (st <= 15 && modalHeader.classList.contains('is-scrolled')) {
+                } else if (st <= shrinkDeactivateThreshold && modalHeader.classList.contains('is-scrolled')) {
                     modalHeader.classList.remove('is-scrolled');
                     headerStateChanged = true;
                 }

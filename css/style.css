@@ -603,6 +603,7 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
         height: 18px !important;
         min-width: 14px;
         align-self: center;
+        opacity: 1;
     }
 
     .fun-lab-settings-btn svg {
@@ -725,8 +726,11 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.5rem 0.9rem;
+    justify-content: center;
+    gap: 0;
+    width: 48px;
+    min-width: 48px;
+    padding: 0.45rem 0.55rem;
     border-radius: 999px 0 0 999px;
     border: 2px solid rgba(148, 163, 184, 0.5);
     border-right: 1px solid rgba(148, 163, 184, 0.3);
@@ -738,7 +742,10 @@ html:not([data-theme="dark"]) body.fun-mode .hero-portrait-img {
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
     background: rgba(15, 23, 42, 0.75);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.82;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s cubic-bezier(0.4, 0, 0.2, 1), gap 0.3s ease, opacity 0.25s ease, color 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
     cursor: pointer;
 }
 
@@ -801,13 +808,20 @@ body.fun-mode .fun-lab-toggle-knob {
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(12px);
     cursor: pointer;
-    transition: all 0.3s ease;
+    opacity: 0.62;
+    transition: all 0.3s ease, opacity 0.25s ease;
     height: 100%;
 }
 
 .fun-lab-settings-btn:hover {
     color: #e2e8f0;
     background: rgba(100, 116, 139, 0.4);
+}
+
+.fun-lab-button-wrap:hover .fun-lab-settings-btn,
+.fun-lab-button-wrap:focus-within .fun-lab-settings-btn,
+.fun-lab-settings-btn[aria-expanded="true"] {
+    opacity: 1;
 }
 
 .fun-lab-settings-btn svg {
@@ -817,6 +831,15 @@ body.fun-mode .fun-lab-toggle-knob {
 /* Rotate chevron when panel is open */
 .fun-lab-settings-btn[aria-expanded="true"] svg {
     transform: rotate(180deg);
+}
+
+.fun-lab-button-wrap:hover .fun-lab-button,
+.fun-lab-button-wrap:focus-within .fun-lab-button {
+    width: 168px;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    padding-right: 0.9rem;
+    opacity: 1;
 }
 
 .fun-lab-button:hover {
@@ -845,9 +868,40 @@ body.fun-mode .fun-lab-settings-btn:hover {
     color: #fff;
 }
 
+.fun-lab-icon,
+.fun-lab-label {
+    display: inline-flex;
+    align-items: center;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-8px);
+    transition: max-width 0.32s ease, opacity 0.24s ease, transform 0.28s ease;
+    pointer-events: none;
+}
+
 .fun-lab-icon {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     color: #a5b4fc;
+}
+
+.fun-lab-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+}
+
+.fun-lab-button-wrap:hover .fun-lab-icon,
+.fun-lab-button-wrap:focus-within .fun-lab-icon {
+    max-width: 1rem;
+    opacity: 0.9;
+    transform: translateX(0);
+}
+
+.fun-lab-button-wrap:hover .fun-lab-label,
+.fun-lab-button-wrap:focus-within .fun-lab-label {
+    max-width: 5rem;
+    opacity: 0.96;
+    transform: translateX(0);
 }
 
 .fun-lab-panel {
@@ -2915,15 +2969,6 @@ body.fun-mode .contact-submit {
     text-decoration-color: currentColor;
 }
 
-.contact-email-line--secondary .contact-email-text {
-    font-weight: 500;
-    color: #6366f1;
-}
-
-.contact-email-line--secondary .contact-email-text:hover {
-    color: #4f46e5;
-}
-
 .contact-email-dropdown {
     position: absolute;
     left: 0;
@@ -2986,14 +3031,6 @@ body.fun-mode .contact-submit {
 
 [data-theme="dark"] .contact-email-text:hover {
     background: rgba(129, 140, 248, 0.15);
-    color: #c7d2fe;
-}
-
-[data-theme="dark"] .contact-email-line--secondary .contact-email-text {
-    color: #818cf8;
-}
-
-[data-theme="dark"] .contact-email-line--secondary .contact-email-text:hover {
     color: #c7d2fe;
 }
 
@@ -4187,6 +4224,10 @@ html:not([data-theme="dark"]) body.fun-mode .skill-card::before {
 .testimonial-avatar {
     width: 46px;
     height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
     border-radius: 50%;
     background: linear-gradient(135deg, #4f46e5, #0ea5e9);
     color: #ffffff;

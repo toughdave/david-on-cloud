@@ -12,7 +12,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
     </script>
@@ -222,7 +222,7 @@
     <div class="fun-lab-button-wrap">
         <button type="button" class="fun-lab-button" data-fun-toggle aria-pressed="false" aria-label="Toggle fun mode">
             <span class="fun-lab-toggle-track" aria-hidden="true"><span class="fun-lab-toggle-knob"></span></span>
-            <span class="fun-lab-icon" aria-hidden="true">⬡</span>
+            <span class="fun-lab-icon" aria-hidden="true">⚙</span>
             <span class="fun-lab-label">Fun Lab</span>
         </button>
         <button type="button" class="fun-lab-settings-btn" data-fun-lab-toggle aria-expanded="false" aria-controls="funLabPanel" aria-label="Open Fun Lab settings">
