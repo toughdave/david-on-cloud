@@ -185,7 +185,7 @@ collections:
             widget: "list"
             hint: "Each item is one paragraph"
             field: {label: "Paragraph", name: "paragraph", widget: "text"}
-          - {label: "Location", name: "location", widget: "string", default: "Toronto, ON (open to relocate elsewhere)"}
+          - {label: "Location", name: "location", widget: "string", default: "Toronto, ON (open to relocate)"}
           - {label: "Email", name: "email", widget: "string", default: "matthewtopedavid@gmail.com"}
           - label: "Education"
             name: "education"
@@ -388,7 +388,7 @@ collections:
             fields:
               - {label: "Label", name: "label", widget: "string", hint: "e.g. Primary, Secondary, Work"}
               - {label: "Email Address", name: "address", widget: "string"}
-          - {label: "Location", name: "location", widget: "string", default: "Toronto, ON (open to relocate elsewhere)"}
+          - {label: "Location", name: "location", widget: "string", default: "Toronto, ON (open to relocate)"}
           - label: "Social Links"
             name: "socialLinks"
             widget: "list"

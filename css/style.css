@@ -2919,6 +2919,12 @@ body.fun-mode .contact-submit {
     background: linear-gradient(135deg, #4338ca, #7c3aed);
 }
 
+@media (min-width: 768px) {
+    #contactForm #message {
+        min-height: 14rem;
+    }
+}
+
 .contact-email-block {
     display: grid;
     gap: 0.2rem;
@@ -6345,6 +6351,17 @@ body.project-modal-open .fun-lab-panel {
     word-break: break-word;
 }
 
+.project-modal-details .project-detail-inline-link {
+    color: #4338ca;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.project-modal-details .project-detail-inline-link:hover {
+    color: #312e81;
+}
+
 .project-detail-figure {
     margin: 1.2rem auto;
     border-radius: 0.75rem;
@@ -6440,6 +6457,14 @@ body.project-modal-open .fun-lab-panel {
 [data-theme="dark"] .project-modal-details p,
 [data-theme="dark"] .project-modal-impact-card .impact-detail {
     color: #cbd5e1;
+}
+
+[data-theme="dark"] .project-modal-details .project-detail-inline-link {
+    color: #a5b4fc;
+}
+
+[data-theme="dark"] .project-modal-details .project-detail-inline-link:hover {
+    color: #c7d2fe;
 }
 
 [data-theme="dark"] .project-modal-section h4 {
@@ -7518,7 +7543,8 @@ body.fun-mode #projectsList > div:hover {
     /* ===== MOBILE CONTACT TEXT ===== */
     .contact-email-text,
     .contact-location-text {
-        font-size: 0.75rem !important;
+        font-size: 1rem !important;
+        line-height: 1.5;
     }
 
     .contact-location-wrapper,

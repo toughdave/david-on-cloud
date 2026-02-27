@@ -167,4 +167,4 @@
 
 ## Contact
 - Email: matthewtopedavid@gmail.com
-- Location: Toronto, ON (open to relocate elsewhere)
+- Location: Toronto, ON (open to relocate)

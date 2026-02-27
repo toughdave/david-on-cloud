@@ -6,7 +6,7 @@ A modern, responsive portfolio website showcasing professional experience in inf
 
 ## About David
 
-Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, currently based in Toronto, ON (open to relocate elsewhere). Professional background spans academic information systems, business application workflows, cloud-connected identity operations, system optimization, data quality assurance, reporting automation, and operational reliability across roles at a federal university and a private college.
+Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, currently based in Toronto, ON (open to relocate). Professional background spans academic information systems, business application workflows, cloud-connected identity operations, system optimization, data quality assurance, reporting automation, and operational reliability across roles at a federal university and a private college.
 
 ## Website Features
 
@@ -96,7 +96,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 ## Contact
 
 - **Email**: [matthewtopedavid@gmail.com](mailto:matthewtopedavid@gmail.com)
-- **Location**: Toronto, ON, Canada (open to relocate elsewhere)
+- **Location**: Toronto, ON, Canada (open to relocate)
 - **LinkedIn**: [tope-david-m-48076969](https://www.linkedin.com/in/tope-david-m-48076969)
 - **GitHub**: [toughdave](https://github.com/toughdave)
 

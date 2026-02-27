@@ -2369,11 +2369,42 @@ document.addEventListener('DOMContentLoaded', function() {
         return raw;
     };
 
+    const PROJECT_DETAIL_REPO_BASES = [
+        { prefix: 'scripts/', base: 'https://github.com/toughdave/scripting/blob/main/' },
+        { prefix: 'data/', base: 'https://github.com/toughdave/scripting/blob/main/' },
+        { prefix: 'powerbi/', base: 'https://github.com/toughdave/scripting/blob/main/' }
+    ];
+
+    const buildProjectDetailRepoUrl = (reference) => {
+        const normalizedRef = String(reference || '').trim().replace(/^\.\//, '');
+        if (!normalizedRef) return '';
+
+        const baseEntry = PROJECT_DETAIL_REPO_BASES.find((entry) => normalizedRef.toLowerCase().startsWith(entry.prefix));
+        if (!baseEntry) return '';
+
+        const encodedPath = normalizedRef
+            .split('/')
+            .map((segment) => encodeURIComponent(segment))
+            .join('/');
+
+        return `${baseEntry.base}${encodedPath}`;
+    };
+
+    const linkifyProjectDetailReferences = (text) => {
+        return String(text || '').replace(/`([^`]+)`/g, (_match, reference) => {
+            const label = String(reference || '').trim();
+            const href = buildProjectDetailRepoUrl(label);
+            if (!href) return `<code>${label}</code>`;
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="project-detail-inline-link">${label}</a>`;
+        });
+    };
+
     const formatProjectDetailText = (detail) => {
         const raw = String(detail || '');
-        return raw
+        const highlighted = raw
             .replace(/\bWork Context:/g, '<strong>Work Context:</strong>')
             .replace(/\bCurrent Implementation:/g, '<strong>Current Implementation:</strong>');
+        return linkifyProjectDetailReferences(highlighted);
     };
 
     const splitProjectDetailParagraphs = (detail) => {

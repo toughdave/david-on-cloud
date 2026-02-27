@@ -948,6 +948,26 @@
             });
         }
 
+        if (summaryContainer && data.location) {
+            const locationLink = summaryContainer.querySelector('.contact-location-text');
+            if (locationLink) {
+                const locationLabel = String(data.location).trim();
+                const mapQueryLabel = locationLabel.replace(/\s*\(.*\)\s*/g, '').trim();
+                const q = encodeURIComponent((mapQueryLabel || locationLabel) + ', Canada');
+                locationLink.href = 'https://www.google.com/maps/search/' + q;
+                locationLink.textContent = locationLabel;
+            }
+        }
+
+        if (summaryContainer && data.email) {
+            const emailLink = summaryContainer.querySelector('.contact-email-text');
+            if (emailLink) {
+                const emailLabel = String(data.email).trim();
+                emailLink.href = `mailto:${emailLabel}`;
+                emailLink.textContent = emailLabel;
+            }
+        }
+
         const eduContainer = section.querySelector('.space-y-6');
         if (eduContainer && data.education) {
             eduContainer.innerHTML = data.education.map(e => `
