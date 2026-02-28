@@ -14,6 +14,14 @@ window.siteConfig = {
     }
 };
 
+const DEBUG_MODE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const debugLog = (...args) => {
+    if (DEBUG_MODE) console.log(...args);
+};
+const debugWarn = (...args) => {
+    if (DEBUG_MODE) console.warn(...args);
+};
+
 // Load external config
 fetch('js/config.json?v=' + Date.now())
     .then(response => response.json())
@@ -37,9 +45,53 @@ fetch('js/config.json?v=' + Date.now())
             }
         }
     })
-    .catch(err => console.log('Using default config'));
+    .catch(() => debugLog('Using default config'));
 
 const MODIFIED_MATCH_TOLERANCE_MS = 60 * 1000;
+
+const escapeHTML = (value) => {
+    const node = document.createElement('div');
+    node.textContent = String(value ?? '');
+    return node.innerHTML;
+};
+
+const decodeHTMLEntities = (value) => {
+    const node = document.createElement('textarea');
+    node.innerHTML = String(value ?? '');
+    return node.value;
+};
+
+const sanitizeUrl = (value, options = {}) => {
+    const {
+        allowHash = true,
+        allowMailto = true,
+        allowRelative = true,
+        fallback = '#'
+    } = options;
+    const raw = String(value ?? '').trim();
+    if (!raw) return fallback;
+
+    if (allowHash && raw.startsWith('#')) return raw;
+
+    const hasScheme = /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(raw);
+    const isProtocolRelative = raw.startsWith('//');
+    const isRelativePath = /^(\/(?!\/)|\.\/|\.\.\/)/.test(raw) || (!hasScheme && !isProtocolRelative);
+
+    if (allowRelative && isRelativePath) {
+        return raw;
+    }
+
+    try {
+        const parsed = new URL(raw, window.location.origin);
+        const protocol = parsed.protocol.toLowerCase();
+        const allowedProtocols = ['https:', 'http:'];
+        if (allowMailto) allowedProtocols.push('mailto:');
+        if (!allowedProtocols.includes(protocol)) return fallback;
+        return raw;
+    } catch (_err) {
+        return fallback;
+    }
+};
 
 const parseDateValue = (value) => {
     if (!value) return null;
@@ -105,25 +157,35 @@ const loadProjects = () => {
                     const uniqueId = `body-dyn-${index}`;
                     const summary = getProjectSummary(project);
                     const projectPayload = encodeProjectPayload(project);
+                    const safeProjectPayload = escapeHTML(projectPayload);
+                    const safeCategory = escapeHTML(project.category || 'other');
+                    const safeImage = escapeHTML(sanitizeUrl(project.image || '', {
+                        allowHash: false,
+                        allowMailto: false,
+                        fallback: ''
+                    }));
+                    const safeTitle = escapeHTML(project.title || '');
+                    const safePosted = escapeHTML(project.posted || '');
+                    const safeSummary = escapeHTML(summary);
                     const tagsHtml = (project.tags || []).map(tag => 
-                        `<span class="px-2 py-1 bg-gray-100 rounded-full text-xs">${tag}</span>`
+                        `<span class="px-2 py-1 bg-gray-100 rounded-full text-xs">${escapeHTML(tag)}</span>`
                     ).join('');
 
-                    const stickerText = project.ribbonText || 'Published';
+                    const stickerText = escapeHTML(project.ribbonText || 'Published');
                     const publishedSticker = (project.published && project.showRibbon !== false) ? `<span class="published-sticker">${stickerText}</span>` : '';
                     const cardHtml = `
-                        <div data-aos="fade-up" class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${project.category || 'other'}" data-project="${projectPayload}" style="position:relative;">
+                        <div data-aos="fade-up" class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 w-full flex flex-col md:flex-row project-card" data-category="${safeCategory}" data-project="${safeProjectPayload}" style="position:relative;">
                             ${publishedSticker}
                             <div class="w-full md:w-1/3 flex-shrink-0">
-                                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                <img src="${safeImage}" alt="${safeTitle}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="p-8 flex flex-col flex-1 justify-start">
                                 <div class="project-times-row project-times-row--top">
-                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    <time class="project-time project-time-posted" data-posted="${safePosted}" datetime="${safePosted}"></time>
                                 </div>
-                                <h3 class="text-xl font-semibold mb-2">${project.title}</h3>
+                                <h3 class="text-xl font-semibold mb-2">${safeTitle}</h3>
                                 <p class="text-gray-600 card-body" id="${uniqueId}">
-                                    ${summary}
+                                    ${safeSummary}
                                 </p>
                                 <button type="button" class="more-link" data-target="${uniqueId}" aria-controls="${uniqueId}" aria-expanded="false" data-collapsed-label="Read more..." data-expanded-label="Show less">
                                     <span class="more-link-text">Read more...</span>
@@ -171,22 +233,32 @@ const loadProjects = () => {
                 featuredProjects.forEach((project) => {
                     const summary = getCarouselSummary(project);
                     const projectPayload = encodeProjectPayload(project);
+                    const safeProjectPayload = escapeHTML(projectPayload);
+                    const safeCategory = escapeHTML(project.category || 'other');
+                    const safeImage = escapeHTML(sanitizeUrl(project.image || '', {
+                        allowHash: false,
+                        allowMailto: false,
+                        fallback: ''
+                    }));
+                    const safeTitle = escapeHTML(project.title || '');
+                    const safePosted = escapeHTML(project.posted || '');
+                    const safeSummary = escapeHTML(summary);
                     const tagsHtml = (project.tags || []).map(tag => 
-                        `<span class="project-tag">${tag}</span>`
+                        `<span class="project-tag">${escapeHTML(tag)}</span>`
                     ).join('');
 
-                    const stickerTextC = project.ribbonText || 'Published';
+                    const stickerTextC = escapeHTML(project.ribbonText || 'Published');
                     const publishedStickerC = (project.published && project.showRibbon !== false) ? `<span class="published-sticker">${stickerTextC}</span>` : '';
                     const cardHtml = `
-                        <div class="project-card" data-aos="fade-up" data-category="${project.category || 'other'}" data-project="${projectPayload}">
+                        <div class="project-card" data-aos="fade-up" data-category="${safeCategory}" data-project="${safeProjectPayload}">
                             ${publishedStickerC}
-                            <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async">
+                            <img src="${safeImage}" alt="${safeTitle}" loading="lazy" decoding="async">
                             <div class="project-card-content">
                                 <div class="project-times-row project-times-row--top">
-                                    <time class="project-time project-time-posted" data-posted="${project.posted}" datetime="${project.posted}"></time>
+                                    <time class="project-time project-time-posted" data-posted="${safePosted}" datetime="${safePosted}"></time>
                                 </div>
-                                <h3>${project.title}</h3>
-                                <p>${summary}</p>
+                                <h3>${safeTitle}</h3>
+                                <p>${safeSummary}</p>
                                 <div class="project-tags">
                                     ${tagsHtml}
                                 </div>
@@ -264,26 +336,26 @@ if (typeof AOS !== 'undefined') {
         disable: prefersReducedMotion
     });
 } else {
-    console.warn('[AOS] Skipped: AOS library not available.');
+    debugWarn('[AOS] Skipped: AOS library not available.');
 }
 
     // Initialize Vanta.js background
     let vantaEffect = null;
     const initVanta = () => {
         if (prefersReducedMotion) {
-            console.log('[Vanta] Skipped: prefers-reduced-motion is enabled');
+            debugLog('[Vanta] Skipped: prefers-reduced-motion is enabled');
             return;
         }
         if (!document.getElementById('vanta-bg')) {
-            console.warn('[Vanta] Skipped: #vanta-bg element not found');
+            debugWarn('[Vanta] Skipped: #vanta-bg element not found');
             return;
         }
         if (typeof VANTA === 'undefined' || typeof VANTA.GLOBE !== 'function') {
-            console.warn('[Vanta] Skipped: VANTA.GLOBE not available. CDN may have failed to load.');
+            debugWarn('[Vanta] Skipped: VANTA.GLOBE not available. CDN may have failed to load.');
             return;
         }
         if (typeof THREE === 'undefined') {
-            console.warn('[Vanta] Skipped: THREE.js not available. CDN may have failed to load.');
+            debugWarn('[Vanta] Skipped: THREE.js not available. CDN may have failed to load.');
             return;
         }
         try {
@@ -309,7 +381,7 @@ if (typeof AOS !== 'undefined') {
                 size: 0.8,
                 scaleMobile: 1.50
             });
-            console.log('[Vanta] Globe initialized successfully');
+            debugLog('[Vanta] Globe initialized successfully');
             // Fade in vanta after a short delay so page background is visible first
             const vantaEl = document.getElementById('vanta-bg');
             if (vantaEl) {
@@ -992,10 +1064,10 @@ async function loadVersion() {
                 versionElement.textContent = version.trim();
             }
         } else {
-            console.warn('Could not fetch version file');
+            debugWarn('Could not fetch version file');
         }
     } catch (error) {
-        console.warn('Error fetching version:', error);
+        debugWarn('Error fetching version:', error);
     }
 }
 
@@ -2260,7 +2332,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             return JSON.parse(decodeURIComponent(rawPayload));
         } catch (err) {
-            console.warn('Unable to parse project payload', err);
+            debugWarn('Unable to parse project payload', err);
             return null;
         }
     };
@@ -2393,15 +2465,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const linkifyProjectDetailReferences = (text) => {
         return String(text || '').replace(/`([^`]+)`/g, (_match, reference) => {
             const label = String(reference || '').trim();
-            const href = buildProjectDetailRepoUrl(label);
+            const href = buildProjectDetailRepoUrl(decodeHTMLEntities(label));
             if (!href) return `<code>${label}</code>`;
-            return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="project-detail-inline-link">${label}</a>`;
+            const safeHref = sanitizeUrl(href, { allowHash: false, allowMailto: false, fallback: '' });
+            if (!safeHref) return `<code>${label}</code>`;
+            return `<a href="${escapeHTML(safeHref)}" target="_blank" rel="noopener noreferrer" class="project-detail-inline-link">${label}</a>`;
         });
     };
 
     const formatProjectDetailText = (detail) => {
-        const raw = String(detail || '');
-        const highlighted = raw
+        const escaped = escapeHTML(detail || '');
+        const highlighted = escaped
             .replace(/\bWork Context:/g, '<strong>Work Context:</strong>')
             .replace(/\bCurrent Implementation:/g, '<strong>Current Implementation:</strong>');
         return linkifyProjectDetailReferences(highlighted);
@@ -2425,9 +2499,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!impact.length) return '';
         return impact.map(item => `
             <div class="project-modal-impact-card">
-                <span class="impact-value">${formatImpactValueDisplay(item.value)}</span>
-                <span class="impact-label">${item.label || ''}</span>
-                ${item.detail ? `<span class="impact-detail">${item.detail}</span>` : ''}
+                <span class="impact-value">${escapeHTML(formatImpactValueDisplay(item.value))}</span>
+                <span class="impact-label">${escapeHTML(item.label || '')}</span>
+                ${item.detail ? `<span class="impact-detail">${escapeHTML(item.detail)}</span>` : ''}
             </div>
         `).join('');
     };
@@ -2441,10 +2515,12 @@ document.addEventListener('DOMContentLoaded', function() {
             imagesByIndex[idx].push(img);
         });
         const buildImg = (img) => {
-            const darkSrc = img.srcDark ? ` data-dark-src="${img.srcDark}"` : '';
-            const caption = img.caption ? `<figcaption class="project-detail-img-caption">${img.caption}</figcaption>` : '';
+            const safeSrc = escapeHTML(sanitizeUrl(img.src || '', { allowHash: false, allowMailto: false, fallback: '' }));
+            const safeDarkSrc = sanitizeUrl(img.srcDark || '', { allowHash: false, allowMailto: false, fallback: '' });
+            const darkSrc = safeDarkSrc ? ` data-dark-src="${escapeHTML(safeDarkSrc)}"` : '';
+            const caption = img.caption ? `<figcaption class="project-detail-img-caption">${escapeHTML(img.caption)}</figcaption>` : '';
             return `<figure class="project-detail-figure">
-                <img class="project-detail-img${img.srcDark ? ' has-dark-variant' : ''}" src="${img.src}"${darkSrc} alt="${img.alt || ''}" loading="lazy" decoding="async">
+                <img class="project-detail-img${safeDarkSrc ? ' has-dark-variant' : ''}" src="${safeSrc}"${darkSrc} alt="${escapeHTML(img.alt || '')}" loading="lazy" decoding="async">
                 ${caption}
             </figure>`;
         };
@@ -2465,7 +2541,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const buildTags = (tags = []) => {
         if (!tags.length) return '';
-        return tags.map(tag => `<span class="project-modal-tag">${tag}</span>`).join('');
+        return tags.map(tag => `<span class="project-modal-tag">${escapeHTML(tag)}</span>`).join('');
     };
 
     const syncModalHeaderAlignment = () => {};
@@ -2515,26 +2591,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const modifiedText = hasMeaningfulModification(project.posted, project.modified)
             ? `Updated · ${timeAgo(project.modified)}`
             : '';
+        const safePostedText = escapeHTML(postedText);
+        const safeModifiedText = escapeHTML(modifiedText);
+        const safeImageSrc = escapeHTML(sanitizeUrl(project.image || '', { allowHash: false, allowMailto: false, fallback: '' }));
+        const safeImageAlt = escapeHTML(project.title || 'Project image');
+        const safeTitle = escapeHTML(project.title || 'Project details');
+        const safeSummary = escapeHTML(project.summary || '');
+        const safeLinkHref = sanitizeUrl(project.link || '', { allowHash: false, allowMailto: false, fallback: '' });
+        const safePdfHref = sanitizeUrl(project.pdf || '', { allowHash: false, allowMailto: false, fallback: '' });
+        const safeLinkText = escapeHTML(project.linkText || 'View Publication');
         content.innerHTML = `
             <div class="project-modal-header">
                 <div class="project-modal-dates">
-                    <p class="project-modal-date">${postedText}</p>
-                    ${modifiedText ? `<p class="project-modal-date project-modal-date--updated">${modifiedText}</p>` : ''}
+                    <p class="project-modal-date">${safePostedText}</p>
+                    ${safeModifiedText ? `<p class="project-modal-date project-modal-date--updated">${safeModifiedText}</p>` : ''}
                 </div>
                 <div class="project-modal-hero">
                     <div class="project-modal-image">
-                        <img src="${project.image || ''}" alt="${project.title || 'Project image'}" loading="lazy" decoding="async">
+                        <img src="${safeImageSrc}" alt="${safeImageAlt}" loading="lazy" decoding="async">
                     </div>
                     <div class="project-modal-intro">
-                        <h3 id="project-modal-title">${project.title || 'Project details'}</h3>
+                        <h3 id="project-modal-title">${safeTitle}</h3>
                     </div>
                 </div>
-                <p class="project-modal-summary">${project.summary || ''}</p>
+                <p class="project-modal-summary">${safeSummary}</p>
                 <div class="project-modal-tags">${buildTags(project.tags)}</div>
-                ${project.link || project.pdf ? `
+                ${safeLinkHref || safePdfHref ? `
                     <div class="project-modal-links">
-                        ${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${project.linkText || 'View Publication'}</a>` : ''}
-                        ${project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
+                        ${safeLinkHref ? `<a href="${escapeHTML(safeLinkHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${safeLinkText}</a>` : ''}
+                        ${safePdfHref ? `<a href="${escapeHTML(safePdfHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
                     </div>
                 ` : ''}
             </div>

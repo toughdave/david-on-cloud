@@ -145,8 +145,58 @@
         return d.innerHTML;
     }
 
+    function sanitizeUrl(value, options = {}) {
+        const {
+            allowHash = true,
+            allowMailto = true,
+            allowRelative = true,
+            fallback = '#'
+        } = options;
+        const raw = String(value || '').trim();
+        if (!raw) return fallback;
+
+        if (allowHash && raw.startsWith('#')) return raw;
+
+        const hasScheme = /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(raw);
+        const isProtocolRelative = raw.startsWith('//');
+        const isRelativePath = /^(\/(?!\/)|\.\/|\.\.\/)/.test(raw) || (!hasScheme && !isProtocolRelative);
+
+        if (allowRelative && isRelativePath) {
+            return raw;
+        }
+
+        try {
+            const parsed = new URL(raw, window.location.origin);
+            const protocol = parsed.protocol.toLowerCase();
+            const allowedProtocols = ['https:', 'http:'];
+            if (allowMailto) allowedProtocols.push('mailto:');
+            if (!allowedProtocols.includes(protocol)) return fallback;
+            return raw;
+        } catch (_err) {
+            return fallback;
+        }
+    }
+
+    function buildMailtoHref(email) {
+        const normalized = String(email || '').trim();
+        if (!normalized) return '';
+        const encoded = encodeURIComponent(normalized).replace(/%40/g, '@');
+        return sanitizeUrl(`mailto:${encoded}`, {
+            allowHash: false,
+            allowMailto: true,
+            allowRelative: false,
+            fallback: ''
+        });
+    }
+
     function buildEmailLink(email) {
-        return `<a href="mailto:${escapeHTML(email)}" class="contact-email-text">${escapeHTML(email)}</a>`;
+        const emailText = String(email || '').trim();
+        const safeLabel = escapeHTML(emailText);
+        const safeHref = buildMailtoHref(emailText);
+        if (!safeHref) {
+            return `<span class="contact-email-text">${safeLabel}</span>`;
+        }
+        return `<a href="${escapeHTML(safeHref)}" class="contact-email-text">${safeLabel}</a>`;
     }
 
     function buildLocationLink(location) {
@@ -254,12 +304,12 @@
         if (isProjectsPage) {
             const projectsTarget = projectsHref || indexHref;
             if (projectsTarget.startsWith('#')) {
-                return `index.html${projectsTarget}`;
+                return sanitizeUrl(`index.html${projectsTarget}`, { allowMailto: false });
             }
-            return projectsTarget || '#';
+            return sanitizeUrl(projectsTarget || '#', { allowMailto: false });
         }
 
-        return indexHref || projectsHref || '#';
+        return sanitizeUrl(indexHref || projectsHref || '#', { allowMailto: false });
     }
 
     function buildNavigationCatalog(settings) {
@@ -795,11 +845,13 @@
                 } else {
                     grid.innerHTML = filtered.map((entry, i) => {
                         const category = getCategory(entry);
+                        const repoHref = sanitizeUrl(entry.repoUrl || '', { allowHash: false, allowMailto: false, fallback: '' });
+                        const sampleHref = sanitizeUrl(entry.sampleUrl || '', { allowHash: false, allowMailto: false, fallback: '' });
                         const repoAction = entry.repoUrl
-                            ? `<a href="${escapeHTML(entry.repoUrl)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--repo">Family folder <i data-feather="folder" class="w-4 h-4"></i></a>`
+                            ? (repoHref ? `<a href="${escapeHTML(repoHref)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--repo">Family folder <i data-feather="folder" class="w-4 h-4"></i></a>` : '')
                             : '';
                         const sampleAction = entry.sampleUrl
-                            ? `<a href="${escapeHTML(entry.sampleUrl)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--sample">View sample <i data-feather="external-link" class="w-4 h-4"></i></a>`
+                            ? (sampleHref ? `<a href="${escapeHTML(sampleHref)}" target="_blank" rel="noopener noreferrer" class="script-library-action script-library-action--sample">View sample <i data-feather="external-link" class="w-4 h-4"></i></a>` : '')
                             : '';
                         const actionsHtml = (repoAction || sampleAction)
                             ? `<div class="script-library-actions">${repoAction}${sampleAction}</div>`
@@ -861,7 +913,12 @@
 
         const cta = section.querySelector('.scripts-library-cta');
         if (cta && data.cta) {
-            if (data.cta.href) cta.setAttribute('href', data.cta.href);
+            if (data.cta.href) {
+                const safeCtaHref = sanitizeUrl(data.cta.href, { allowHash: false, allowMailto: false, fallback: '' });
+                if (safeCtaHref) {
+                    cta.setAttribute('href', safeCtaHref);
+                }
+            }
             const ctaText = escapeHTML(data.cta.text || 'Explore Full Script Repository');
             cta.innerHTML = `${ctaText} <i data-feather="arrow-up-right" class="w-4 h-4"></i>`;
         }
@@ -896,11 +953,19 @@
         }
 
         const resumeLink = section.querySelector('.resume-link');
-        if (resumeLink && data.resumePath) resumeLink.setAttribute('href', data.resumePath);
+        if (resumeLink && data.resumePath) {
+            const safeResumeHref = sanitizeUrl(data.resumePath, { allowHash: false, allowMailto: false, fallback: '' });
+            if (safeResumeHref) {
+                resumeLink.setAttribute('href', safeResumeHref);
+            }
+        }
 
         const portrait = section.querySelector('.hero-portrait-img');
         if (portrait && data.profileImage) {
-            portrait.setAttribute('src', data.profileImage);
+            const safeProfileImage = sanitizeUrl(data.profileImage, { allowHash: false, allowMailto: false, fallback: '' });
+            if (safeProfileImage) {
+                portrait.setAttribute('src', safeProfileImage);
+            }
         }
 
         const intro = section.querySelector('.hero-content > div > div > p.text-lg');
@@ -923,11 +988,11 @@
         const btns = section.querySelectorAll('.hero-actions a');
         if (btns.length >= 1 && data.primaryCTA) {
             btns[0].textContent = data.primaryCTA.text;
-            btns[0].setAttribute('href', data.primaryCTA.href);
+            btns[0].setAttribute('href', sanitizeUrl(data.primaryCTA.href || '#', { allowMailto: false }));
         }
         if (btns.length >= 2 && data.secondaryCTA) {
             btns[1].textContent = data.secondaryCTA.text;
-            btns[1].setAttribute('href', data.secondaryCTA.href);
+            btns[1].setAttribute('href', sanitizeUrl(data.secondaryCTA.href || '#', { allowMailto: false }));
         }
     }
 
@@ -963,7 +1028,12 @@
             const emailLink = summaryContainer.querySelector('.contact-email-text');
             if (emailLink) {
                 const emailLabel = String(data.email).trim();
-                emailLink.href = `mailto:${emailLabel}`;
+                const safeMailto = buildMailtoHref(emailLabel);
+                if (safeMailto) {
+                    emailLink.href = safeMailto;
+                } else {
+                    emailLink.removeAttribute('href');
+                }
                 emailLink.textContent = emailLabel;
             }
         }
@@ -1211,18 +1281,30 @@
         if (data.socialLinks) {
             const socials = section.querySelector('.contact-socials');
             if (socials) {
-                socials.innerHTML = data.socialLinks.map(s =>
-                    `<a href="${escapeHTML(s.url)}" class="contact-social-btn" aria-label="${escapeHTML(s.label)}">
+                socials.innerHTML = data.socialLinks.map(s => {
+                    const safeHref = sanitizeUrl(s.url || '', { allowHash: false, allowMailto: false, fallback: '' });
+                    if (!safeHref) return '';
+                    return `<a href="${escapeHTML(safeHref)}" class="contact-social-btn" aria-label="${escapeHTML(s.label)}" target="_blank" rel="noopener noreferrer">
                         <i data-feather="${escapeHTML(s.platform)}" class="text-gray-700"></i>
                     </a>`
-                ).join('');
+                }).join('');
                 if (typeof feather !== 'undefined') feather.replace();
             }
         }
 
         if (data.formAction) {
             const form = section.querySelector('#contactForm');
-            if (form) form.setAttribute('action', data.formAction);
+            if (form) {
+                const safeFormAction = sanitizeUrl(data.formAction, {
+                    allowHash: false,
+                    allowMailto: false,
+                    allowRelative: false,
+                    fallback: ''
+                });
+                if (safeFormAction) {
+                    form.setAttribute('action', safeFormAction);
+                }
+            }
         }
     }
 
@@ -1241,11 +1323,13 @@
         if (data.socialLinks) {
             const socialsContainer = footer.querySelector('.flex.justify-center.space-x-6');
             if (socialsContainer) {
-                socialsContainer.innerHTML = data.socialLinks.map(s =>
-                    `<a href="${escapeHTML(s.url)}" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener" aria-label="${escapeHTML(s.label)}">
+                socialsContainer.innerHTML = data.socialLinks.map(s => {
+                    const safeHref = sanitizeUrl(s.url || '', { allowHash: false, allowMailto: false, fallback: '' });
+                    if (!safeHref) return '';
+                    return `<a href="${escapeHTML(safeHref)}" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(s.label)}">
                         <i data-feather="${escapeHTML(s.platform)}"></i>
                     </a>`
-                ).join('');
+                }).join('');
                 if (typeof feather !== 'undefined') feather.replace();
             }
         }

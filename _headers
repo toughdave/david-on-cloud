@@ -1,3 +1,12 @@
+# Global security headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://formspree.io https://api.github.com https://github.com https://david-on-cloud-cms-oauth.vercel.app; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+
 # HTML pages — never cache (ensures browsers always fetch latest ?v= references)
 /
   Cache-Control: no-cache, no-store, must-revalidate
