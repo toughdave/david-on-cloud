@@ -1,3 +1,7 @@
+## v5.12.0 — 2026-02-28 18:01:27
+- ✅ Implement security hardening for rendering, OAuth, and headers
+- ✅ Bumped version to v5.12.0
+
 ## v5.11.1 — 2026-02-28 00:16:24
 - ✅ Internal release tooling updates
 - ✅ Bumped version to v5.11.1
