@@ -14,6 +14,12 @@
     font-display: swap;
 }
 
+/* Enable smooth cross-document navigation in supporting browsers */
+/* stylelint-disable-next-line at-rule-no-unknown */
+@view-transition {
+    navigation: auto;
+}
+
 /* ===== DARK MODE THEME VARIABLES ===== */
 :root {
     /* Light mode (default) */
