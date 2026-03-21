@@ -1,3 +1,7 @@
+## v5.12.5 — 2026-03-21 14:42:55
+- ✅ Hide duplicate Home item in projects mobile menu
+- ✅ Bumped version to v5.12.5
+
 ## v5.12.4 — 2026-03-21 14:22:55
 - ✅ Add custom cross-document page transition animation
 - ✅ Bumped version to v5.12.4
