@@ -221,7 +221,50 @@ env:
 - Monitor security advisories
 - Use signed commits when possible
 
-## 📞 Support
+## �️ Security Hardening Follow-Up (Manual)
+
+These items complete the current hardening rollout and should be done in platform dashboards.
+
+### 1. Enable branch protection on `main` (GitHub)
+
+1. Open: **Repository → Settings → Branches → Add rule**
+2. Set **Branch name pattern** to `main`
+3. Enable:
+   - **Require a pull request before merging**
+   - **Require approvals** (recommended: at least 1)
+   - **Require status checks to pass before merging**
+   - **Require branches to be up to date before merging**
+   - **Do not allow bypassing the above settings**
+   - **Block force pushes**
+   - **Block branch deletion**
+4. Save the rule
+
+### 2. Set OAuth proxy variables in Vercel (`cms-oauth-proxy` project)
+
+Add/update the following environment variables in Vercel:
+
+```bash
+GITHUB_CLIENT_ID=<github-oauth-app-client-id>
+GITHUB_CLIENT_SECRET=<github-oauth-app-client-secret>
+OAUTH_CALLBACK_URL=https://david-on-cloud-cms-oauth.vercel.app/callback
+ALLOWED_ORIGIN=https://www.davidoncloud.com
+```
+
+After saving variables, trigger a redeploy for the proxy project.
+
+### 3. Enable Formspree CAPTCHA (optional but recommended)
+
+1. Open Formspree dashboard for form `mjkedzyv`
+2. Enable CAPTCHA/spam protection for production submissions
+3. Submit a test message from the site contact form to confirm delivery
+
+### 4. Public visibility technical note
+
+- `llms.txt` is intentionally public to support machine-readable documentation.
+- Public contact emails in site content are intentional for reachability.
+- Maintain mailbox filtering/monitoring to reduce spam noise over time.
+
+## �📞 Support
 
 If you encounter issues:
 1. Check the GitHub Actions logs
