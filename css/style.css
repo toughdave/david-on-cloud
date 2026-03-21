@@ -20,6 +20,52 @@
     navigation: auto;
 }
 
+/* Custom page transition for cross-document navigation */
+/* stylelint-disable selector-pseudo-element-no-unknown */
+::view-transition-old(root) {
+    animation: page-transition-out 180ms ease-out both;
+}
+
+::view-transition-new(root) {
+    animation: page-transition-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-transition-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(8px) scale(0.995);
+        filter: blur(2px);
+    }
+}
+
+@keyframes page-transition-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(1.005);
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 1ms;
+        filter: none;
+        transform: none;
+    }
+}
+/* stylelint-enable selector-pseudo-element-no-unknown */
+
 /* ===== DARK MODE THEME VARIABLES ===== */
 :root {
     /* Light mode (default) */
