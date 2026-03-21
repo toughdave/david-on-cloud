@@ -221,7 +221,7 @@ env:
 - Monitor security advisories
 - Use signed commits when possible
 
-## �️ Security Hardening Follow-Up (Manual)
+## Security Hardening Follow-Up (Manual)
 
 These items complete the current hardening rollout and should be done in platform dashboards.
 
@@ -264,7 +264,7 @@ After saving variables, trigger a redeploy for the proxy project.
 - Public contact emails in site content are intentional for reachability.
 - Maintain mailbox filtering/monitoring to reduce spam noise over time.
 
-## �📞 Support
+## Support
 
 If you encounter issues:
 1. Check the GitHub Actions logs
