@@ -389,6 +389,10 @@
     function syncPrimaryNavContainer(container, primaryKeys, catalog, isProjectsPage, isMobile) {
         if (!container) return;
 
+        const hasMobileBackHomeLink = isMobile
+            && isProjectsPage
+            && !!document.getElementById('mobile-back-home-link');
+
         const initialChildren = Array.from(container.children);
         const existingByKey = new Map();
 
@@ -404,6 +408,7 @@
         primaryKeys.forEach((key) => {
             const item = catalog.get(key);
             if (!item) return;
+            if (hasMobileBackHomeLink && key === 'hero') return;
             if (item.sectionKey && !isSectionVisibleForNav(item.sectionKey)) return;
 
             let node = existingByKey.get(key);
