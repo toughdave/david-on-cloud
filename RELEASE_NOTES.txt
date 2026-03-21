@@ -1,3 +1,7 @@
+## v5.12.1 — 2026-03-21 14:10:11
+- ✅ Document remaining manual security hardening follow-up steps
+- ✅ Bumped version to v5.12.1
+
 ## v5.12.0 — 2026-02-28 18:01:27
 - ✅ Implement security hardening for rendering, OAuth, and headers
 - ✅ Bumped version to v5.12.0
