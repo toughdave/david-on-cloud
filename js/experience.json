@@ -9,12 +9,12 @@
         "Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.",
         "Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.",
         "Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.",
-        "Shipped 50+ pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
+        "Shipped 345 merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
       ],
       "backgroundImage": "/img/projects/web/DevOps-Pipeline.png",
       "location": "Remote",
       "focus": "Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.",
-      "logLine": "build sync: 50+ PRs merged • 127 doc chapters CI-verified",
+      "logLine": "build sync: 345 PRs merged • 127 doc chapters CI-verified",
       "title": "IT Administrator and Full-Stack Developer",
       "company": "Anchor Coaching (www.theanchorcoach.com)",
       "insetImage": "/img/projects/web/website-hero-intro-blurred-.png"
@@ -35,7 +35,7 @@
       "insetImage": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg"
     },
     {
-      "period": "Aug. 2025 – July 2026",
+      "period": "Aug. 2025 – Present",
       "outcomes": [
         "Standardized onboarding/offboarding with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center.",
         "Architected SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, and VMware/VirtualBox virtualization, sustaining 99.9% availability.",

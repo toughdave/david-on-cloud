@@ -8,7 +8,7 @@
 ## Professional Summary
 - I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
 - I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.
-- Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 50+ pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
+- Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 345 merged pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
 
 ## Education
 - M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
@@ -163,7 +163,7 @@
 - Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.
 - Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.
 - Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.
-- Shipped 50+ pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning.
+- Shipped 345 merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning.
 
 ### AI Training Data Scientist / Data Analyst
 - Organization: Outlier (OpenClaw Atlas Program)
@@ -178,7 +178,7 @@
 ### IT Systems & Network Consultant
 - Organization: Consulting Practice
 - Location: North York, ON
-- Period: Aug. 2025 – July 2026
+- Period: Aug. 2025 – Present
 - Work Context: Delivering resilient SME infrastructure, domain and identity operations, plus automation-led support backed by measurable reliability controls.
 - Key Outcomes:
 - Standardized onboarding/offboarding with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center.
