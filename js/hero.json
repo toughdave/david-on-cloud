@@ -10,11 +10,13 @@
     "Systems Analysis",
     "Data Accuracy",
     "Process Improvement",
-    "IT Support"
+    "IT Support",
+    "Full-Stack Delivery",
+    "AI/Data Evaluation"
   ],
   "subtitle": "Information Systems, Data Analyst & IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, operational reporting workflows, and enterprise service delivery. I lead system analysis, data process improvements, and operational reliability across Windows and Linux platforms, with practical experience in business applications, Active Directory, and identity/access controls. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.",
+  "introText": "I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, operational reporting workflows, and enterprise service delivery. I lead system analysis, data process improvements, and operational reliability across Windows and Linux platforms, with practical experience in business applications, Active Directory, and identity/access controls. More recently I've carried that same systems discipline into contract work: shipping production full-stack features on a multi-tenant Next.js/PostgreSQL SaaS platform, and evaluating rubric and unit-test data quality for AI model training. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.",
   "secondaryCTA": {
     "text": "Projects Brief",
     "href": "#projects"

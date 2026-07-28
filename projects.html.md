@@ -4,28 +4,120 @@
 ## Source of Truth
 - [Projects JSON](https://www.davidoncloud.com/js/projects.json): Canonical project content managed through CMS data files.
 
+## Booking-Conflict Prevention with PostgreSQL Exclusion Constraints
+- Category: webdev
+- Posted: 2026-07-20
+- Updated: 2026-07-20
+- Tags: PostgreSQL, Next.js, TypeScript, Concurrency, Data Integrity, Automated Testing
+- Deliverable Link: N/A
+- PDF: N/A
+
+### Project Summary
+Closed a double-booking race condition on a multi-tenant coaching platform by enforcing booking integrity with a PostgreSQL btree_gist EXCLUDE constraint, making overlapping reservations impossible at the database layer rather than relying on application-level checks.
+
+### Technical Notes
+- Diagnosed a double-booking race condition in the scheduling system where concurrent requests could both pass an application-level availability check before either committed, producing overlapping bookings that had to be resolved manually by coaches.
+- Moved the guarantee out of application code and into the database using a PostgreSQL btree_gist EXCLUDE constraint over the booking's time range, so any two overlapping intervals for the same resource are rejected by the engine itself regardless of request timing or concurrency.
+- Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.
+- Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform.
+
+### Results and Impact
+- **Overlapping bookings**: 0 (Enforced at the database layer)
+- **EXCLUDE constraint**: btree_gist (Covers every write path)
+
+## Stripe Payment Reconciliation for a Coaching Platform
+- Category: webdev
+- Posted: 2026-07-18
+- Updated: 2026-07-18
+- Tags: Stripe, Payments, Reconciliation, TypeScript, Next.js, Data Validation
+- Deliverable Link: N/A
+- PDF: N/A
+
+### Project Summary
+Built Stripe payment infrastructure for a coaching platform: a PaymentProvider adapter, contractor payout disbursement, and estimated-vs-actual gateway-fee reconciliation so fee variances surface instead of being silently absorbed.
+
+### Technical Notes
+- Structured a PaymentProvider adapter around Stripe so payment operations sit behind a single interface, keeping gateway-specific logic in one place instead of spread through feature code.
+- Built contractor payout disbursement workflows covering the path from a completed coaching session through to the coach receiving funds.
+- Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.
+- Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+
+### Results and Impact
+- **Fee reconciliation**: 2-sided (Estimated vs. actual gateway fees)
+- **Provider adapter**: 1 (Gateway logic behind one interface)
+
+## 127-Chapter Role-Based Documentation System
+- Category: webdev
+- Posted: 2026-07-15
+- Updated: 2026-07-15
+- Tags: Documentation, CI/CD, GitHub Actions, Technical Writing, Quality Assurance
+- Deliverable Link: N/A
+- PDF: N/A
+
+### Project Summary
+Authored and maintained a 127+ chapter role-based documentation system for a multi-tenant SaaS platform, scoped per user role and CI-verified so broken cross-links fail the build rather than reaching users.
+
+### Technical Notes
+- Authored 127+ chapters of role-based platform documentation covering four distinct user types (Super Admin, Staff Coach, Independent Coach, and two client types), so each role reads only the surface it actually operates.
+- Built public documentation surfaces alongside the internal role-scoped material, keeping a single body of content serving both audiences.
+- Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.
+- Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+
+### Results and Impact
+- **Documentation chapters**: 127+ (Role-based, across four user types)
+- **Link verification**: CI (Checked on every pull request)
+
+## Rubric & Unit-Test Validity Analysis for AI Training Data
+- Category: ai
+- Posted: 2026-07-10
+- Updated: 2026-07-10
+- Tags: AI Evaluation, Python, pytest, Data Validation, Ground-Truth Verification, Technical Analysis
+- Deliverable Link: N/A
+- PDF: N/A
+
+### Project Summary
+Evaluated the validity of rubrics and unit tests used to train AI agents, applying a "zero degrees of freedom" standard to surface overfit assertions, self-referential test logic, and scoring errors, and separating machine-verifiable criteria from natural-language judgment.
+
+### Technical Notes
+- Analyzed AI-agent training datasets (rubrics, unit tests, and task specifications) for validity, applying a "zero degrees of freedom" standard: a criterion either has exactly one defensible interpretation, or it is not a valid grading criterion.
+- Identified recurring failure modes in training data including overfit assertions tied to one specific implementation, self-referential test logic that validates itself rather than the behaviour, and reward/penalty scoring errors.
+- Authored structured written analysis reports that explicitly separate deterministic, programmatically-verifiable criteria from criteria requiring natural-language judgment — the distinction that determines whether a rubric item can be machine-scored at all.
+- Cross-validated conclusions against independent AI-generated analysis, using disagreement between the two as a signal for where to look harder rather than treating either as authoritative.
+- Work Context: Delivered as an AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February-July 2026).
+
+### Results and Impact
+- **Degrees of freedom**: 0 (Validity standard applied to each criterion)
+- **Cross-validation**: 2-way (Findings checked against independent analysis)
+
 ## Portfolio Web Operations & Domain Administration
 - Category: systems
 - Posted: 2026-02-26
 - Updated: 2026-02-26
-- Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment
+- Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment, Release Automation, Docker, Validation
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/portfolio-web-operations-domain-administration.md)
 - PDF: N/A
 
 ### Project Summary
-Built and operated my portfolio website as a production-style web and domain operations project covering CMS delivery, DNS administration, Microsoft 365 service governance, and release validation.
+Built and operated my portfolio website as a production-style web and domain operations project, combining CMS-managed content delivery, DNS record administration, Microsoft 365 identity governance, scripted release automation, and pre-flight validation checks across 50+ versioned releases.
 
 ### Technical Notes
-- Designed and maintained a CMS-managed portfolio platform with responsive layouts, reusable content components, and release-ready structure across homepage and project views.
-- Managed end-to-end domain operations for davidoncloud.com, including DNS record lifecycle updates, routing validation, SSL continuity checks, and hosting alignment for stable public availability.
-- Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering account lifecycle updates, role assignments, and access troubleshooting.
-- Standardized deployment and validation routines with checklist-driven releases plus Docker-based support checks to keep updates consistent and rollback-aware.
-- Work Context: At FUTA and Pures College, I handled implementation handovers, post-deployment support, and operational stabilization across high-visibility systems. Current Implementation: I now apply the same release discipline to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.
+- Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.
+- Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.
+- Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.
+- Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.
+- Standardized deployment validation with a Node.js-based pre-flight check script that verifies HTML structure, CSS feature usage, JavaScript syntax, image asset integrity, favicon presence, and version consistency before each release, catching configuration issues before they reach production.
+- Containerized recurring support utilities and validation checks with Docker to keep troubleshooting scripts, environment tests, and deployment verifications portable and consistent across local development and production environments.
+- Localized all runtime frontend dependencies (Tailwind CDN, AOS, Three.js, Vanta, Feather Icons, Decap CMS) and font assets to the repository to eliminate external CDN calls, improving page load reliability, offline development capability, and production resilience.
+- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.
 
 ### Results and Impact
-- **Production domain**: 1 (davidoncloud.com managed end-to-end)
-- **Core service layers**: 3 (Web delivery, DNS routing, identity administration)
-- **Release workflow**: 1 (Validation and rollback-aware updates)
+- **Production domain**: 1 (davidoncloud.com — DNS, SSL, email, hosting)
+- **Releases shipped**: 50+ (Versioned, tagged, and validated)
+- **Core service layers**: 5 (Web, DNS, identity, CMS, CI/CD)
+- **Pre-flight checks**: 9 (Automated validation gates per release)
 
 ## Cisco Catalyst 3850 Troubleshooting Lab - Connectivity Recovery Playbook
 - Category: networking
@@ -357,19 +449,22 @@ Produced comprehensive standard operating procedures, technical runbooks, and ha
 - PDF: N/A
 
 ### Project Summary
-Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests.
+Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests spanning hardware, OS, network, and application issues for 4,000+ users.
 
 ### Technical Notes
-- Diagnosed and resolved hardware, operating system, application, and network incidents across Windows and Linux environments using structured triage, root-cause analysis, and command-level verification.
-- Maintained a known-issues knowledge base with tested fixes, escalation notes, and prevention actions, reducing repeat incident cycles and improving first-response consistency.
-- Tracked service requests with detailed symptom logs, diagnostic actions, and time-to-resolution metrics, sustaining About 95% SLA compliance across recurring operations windows.
-- Escalated high-impact incidents with reproducible diagnostics and clear handover notes so senior teams could execute corrective actions without delay.
-- Work Context: At FUTA and Pures College, this incident-response workflow supported day-to-day system stability with structured diagnostics, logging, and escalation discipline. Current Implementation: I apply the same support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes.
+- Diagnosed and resolved hardware, operating system, application, and network incidents across Windows and Linux environments using structured triage workflows, command-level diagnostics (Event Viewer, PowerShell, journalctl, ping/traceroute, ipconfig/ifconfig), and root-cause verification before closing each ticket.
+- Supported classroom and examination environments with rapid-response troubleshooting during high-pressure periods, resolving boot failures, driver conflicts, peripheral malfunctions, projection system issues, and network drops that directly impacted scheduled sessions and exam timelines.
+- Maintained a known-issues knowledge base organized by category (hardware, OS, network, application) with tested resolution steps, escalation notes, and prevention recommendations, reducing repeat incident cycles and improving first-response consistency across support staff.
+- Tracked service requests with detailed symptom logs, diagnostic actions, resolution steps, and time-to-resolution metrics in structured spreadsheets, sustaining About 95% SLA compliance across recurring academic operations windows.
+- Performed remote and onsite support across distributed environments, adapting diagnostic approach based on access constraints and coordinating with departmental contacts to minimize disruption during active academic and administrative workflows.
+- Escalated high-impact incidents with reproducible diagnostics, annotated screenshots, and clear handover notes so senior teams or vendor contacts could execute corrective actions without repeating initial triage steps.
+- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I handled incidents across the examination, admissions, and departmental IT systems serving 4,000+ users, coordinating with operations leads to keep services stable during peak cycles. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab workstations and resolved software/hardware issues across classroom environments for 250+ students. Current Implementation: I apply the same structured support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes.
 
 ### Results and Impact
-- **Incidents resolved**: 200+ (Tracked support requests)
-- **SLA compliance**: 95% (Response and resolution)
-- **Knowledge base**: 1 (Documented recurring fixes)
+- **Incidents resolved**: 200+ (Hardware, OS, network, application)
+- **SLA compliance**: 95% (Response and resolution targets)
+- **Users supported**: 4,000+ (Across FUTA, Pures, and consulting)
+- **Target turnaround**: 24 hrs (Critical incident resolution)
 
 ## A Secured System for Internet-Enabled Host Devices
 - Category: systems

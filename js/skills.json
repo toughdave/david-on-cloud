@@ -34,7 +34,17 @@
         {
             "icon": "globe",
             "title": "Web & Deployment",
-            "items": ["HTML / CSS / JS", "Domain & DNS Management", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines"]
+            "items": ["HTML / CSS / JS", "Domain & DNS Management", "Netlify", "Vercel", "Decap CMS", "CI/CD Pipelines (GitHub Actions)"]
+        },
+        {
+            "icon": "layers",
+            "title": "Full-Stack Development",
+            "items": ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Supabase / InsForge", "TipTap", "Google OAuth", "REST API Integration", "Automated Testing (CI/E2E)"]
+        },
+        {
+            "icon": "check-square",
+            "title": "AI & Data Evaluation",
+            "items": ["Rubric & Test-Design Review", "LLM Evaluation Methodology", "pytest", "Ground-Truth Verification", "Coverage-Gap Analysis", "Dataset Integrity Assessment"]
         }
     ]
 }

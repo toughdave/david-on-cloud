@@ -141,6 +141,58 @@
           "usage": "Standardize transition notes, support escalation paths, and user guidance for stable post-rollout operations."
         }
       ]
+    },
+    {
+      "icon": "layers",
+      "title": "Web & Application Development",
+      "items": [
+        {
+          "name": "Next.js & TypeScript",
+          "usage": "Build and ship production features across a multi-tenant SaaS platform serving four distinct user roles."
+        },
+        {
+          "name": "PostgreSQL",
+          "usage": "Model relational data and enforce integrity at the database layer, including exclusion constraints that prevent overlapping bookings."
+        },
+        {
+          "name": "Stripe",
+          "usage": "Structure payment provider adapters, contractor payout disbursement, and gateway-fee reconciliation workflows."
+        },
+        {
+          "name": "Supabase / InsForge",
+          "usage": "Manage backend data services and authentication for application features."
+        },
+        {
+          "name": "TipTap & Google OAuth",
+          "usage": "Implement rich-text composition for staff mail systems and federated sign-in for platform accounts."
+        },
+        {
+          "name": "GitHub Actions",
+          "usage": "Run CI checks, nightly end-to-end test suites, and documentation link validation on every pull request."
+        }
+      ]
+    },
+    {
+      "icon": "check-square",
+      "title": "AI & Data Evaluation",
+      "items": [
+        {
+          "name": "Rubric & Test-Design Review",
+          "usage": "Assess training-data rubrics and unit tests for overfit assertions, self-referential logic, and scoring errors."
+        },
+        {
+          "name": "pytest",
+          "usage": "Read and evaluate Python test suites used as programmatic verification criteria in AI training tasks."
+        },
+        {
+          "name": "LLM Evaluation Methodology",
+          "usage": "Separate deterministic, programmatically-verifiable criteria from natural-language judgment criteria in written analysis."
+        },
+        {
+          "name": "Ground-Truth Verification",
+          "usage": "Validate dataset integrity through coverage-gap analysis and cross-validation against independent analysis."
+        }
+      ]
     }
   ]
 }

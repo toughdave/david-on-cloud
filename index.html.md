@@ -8,13 +8,14 @@
 ## Professional Summary
 - I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
 - I analyze systems, improve data processes, and maintain operational reliability across Windows and Linux platforms using Active Directory, Microsoft 365 admin controls, domain and DNS operations, and structured automation practices. I focus on clear documentation, data accuracy, and cross-department delivery support for high-volume institutional workflows.
+- Recent contract work has extended that range in two directions. As a contract full-stack developer for Anchor Coaching, I shipped production features on a multi-tenant Next.js/TypeScript/PostgreSQL platform — booking integrity, Stripe payment reconciliation, and 127+ chapters of role-based documentation — across 50+ pull requests. As an AI training data analyst for Outlier, I assessed the validity of rubrics and unit tests used to train AI agents, separating programmatically-verifiable criteria from natural-language judgment. Both engagements run on the same foundation as my systems work: verify the data, document the system, and make the process repeatable.
 
 ## Education
 - M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
 - B.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2014)
 
 ## Additional Practical Experience
-- In my personal home lab and consultant workflows, I run enterprise-style systems and networking scenarios using Cisco Catalyst switching, VMware/VirtualBox virtualization, identity and access controls, Microsoft 365 admin routines, Docker-based support utilities, plus routing, VLAN configuration, IP addressing, DNS, and DHCP in isolated test environments.
+- In my personal home lab and consultant workflows, I run enterprise-style systems and networking scenarios using Cisco Catalyst switching, VMware/VirtualBox virtualization, identity and access controls, Microsoft 365 admin routines, Docker-based support utilities, plus routing, VLAN configuration, IP addressing, DNS, and DHCP in isolated test environments. On the development side, I work in a Git-based, AI-augmented workflow — git worktrees, GitHub Actions CI, and automated test suites — that carried 50+ pull requests into production during my most recent contract engagement.
 
 ## My Skills
 ### Systems Implementation & Support
@@ -76,7 +77,26 @@
 - Netlify
 - Vercel
 - Decap CMS
-- CI/CD Pipelines
+- CI/CD Pipelines (GitHub Actions)
+
+### Full-Stack Development
+- Next.js
+- TypeScript
+- PostgreSQL
+- Stripe
+- Supabase / InsForge
+- TipTap
+- Google OAuth
+- REST API Integration
+- Automated Testing (CI/E2E)
+
+### AI & Data Evaluation
+- Rubric & Test-Design Review
+- LLM Evaluation Methodology
+- pytest
+- Ground-Truth Verification
+- Coverage-Gap Analysis
+- Dataset Integrity Assessment
 
 ## Tools & Platforms
 ### Data & Analytics Tools
@@ -111,15 +131,59 @@
 - **Biometric & CCTV Operations Stack**: Support exam integrity workflows through identity verification checks and monitored incident logging.
 
 ### Delivery & Collaboration Tools
+- **Monday.com**: Coordinate task boards, delivery timelines, and team status updates across implementation and operations cycles.
+- **GoHighLevel**: Manage client communication workflows, appointment scheduling, and operational follow-up sequences for service delivery.
 - **Issue & SLA Tracker (Excel/Google Sheets)**: Track incident queues, assign owners, monitor response timelines, and report service performance across operations cycles.
 - **Deployment & UAT Checklists**: Coordinate pre-deployment validation, user acceptance testing, and go-live sign-off for systems updates.
 - **Implementation Handover Playbooks**: Standardize transition notes, support escalation paths, and user guidance for stable post-rollout operations.
 
+### Web & Application Development
+- **Next.js & TypeScript**: Build and ship production features across a multi-tenant SaaS platform serving four distinct user roles.
+- **PostgreSQL**: Model relational data and enforce integrity at the database layer, including exclusion constraints that prevent overlapping bookings.
+- **Stripe**: Structure payment provider adapters, contractor payout disbursement, and gateway-fee reconciliation workflows.
+- **Supabase / InsForge**: Manage backend data services and authentication for application features.
+- **TipTap & Google OAuth**: Implement rich-text composition for staff mail systems and federated sign-in for platform accounts.
+- **GitHub Actions**: Run CI checks, nightly end-to-end test suites, and documentation link validation on every pull request.
+
+### AI & Data Evaluation
+- **Rubric & Test-Design Review**: Assess training-data rubrics and unit tests for overfit assertions, self-referential logic, and scoring errors.
+- **pytest**: Read and evaluate Python test suites used as programmatic verification criteria in AI training tasks.
+- **LLM Evaluation Methodology**: Separate deterministic, programmatically-verifiable criteria from natural-language judgment criteria in written analysis.
+- **Ground-Truth Verification**: Validate dataset integrity through coverage-gap analysis and cross-validation against independent analysis.
+
 ## Work Experience
+### Contract Full-Stack Developer
+- Organization: Anchor Coaching (www.theanchorcoach.com)
+- Location: Remote
+- Period: May 2026 – July 2026
+- Work Context: Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, backed by CI-verified documentation and automated testing.
+- Key Outcomes:
+- Delivered full-stack features across a multi-tenant Next.js coaching SaaS platform serving four distinct roles (Super Admin, Staff Coach, Independent Coach, and Suite clients), spanning booking/calendar, community, and staff-admin products.
+- Closed a double-booking race condition in the scheduling system using PostgreSQL btree_gist EXCLUDE constraints for overlapping-interval bookings.
+- Structured a PaymentProvider adapter for Stripe, and built contractor payout disbursement plus estimated-vs-actual gateway-fee reconciliation workflows for free-tier coaches.
+- Authored 127+ chapters of role-based platform documentation across four user types, plus public documentation surfaces, kept CI-verified and cross-link-clean.
+- Used git worktrees and parallel AI-agent-assisted development workflows (Claude Code) to ship 50+ pull requests across features, infrastructure, and roadmap research.
+- Built community features including profile-drawer messaging, post-follow/engagement ranking, and moderation of seed content.
+- Developed a coach-facing Certificate Designer with PDF template rendering, and contributed to Storefront, Dashboard Studio, Card Studio, and Content Studio builder tools.
+- Built a TipTap rich-text composer and SMTP-based outbound mail system for staff mailboxes, including a webmail-password flow for shared mailboxes and resolving outbound SMTPS port access with the hosting provider.
+- Implemented Google OAuth integration, a sponsored-books queue with analytics, and an early-tester feedback overlay widget for signups.
+- Diagnosed and resolved production issues (parser/producer key mismatches, dead classifiers, mobile-view regressions, stale build caching) and set up scheduled backup automation with CI/E2E nightly test tuning.
+
+### AI Training Data Scientist / Data Analyst
+- Organization: Outlier (OpenClaw Atlas Program)
+- Location: Remote
+- Period: Feb. 2026 – July 2026
+- Work Context: Evaluating the validity of rubrics and unit tests used to train AI agents, separating programmatically-verifiable criteria from natural-language judgment.
+- Key Outcomes:
+- Performed data-driven quality analysis of AI-agent training datasets (rubrics, unit tests, task specifications), applying a "zero degrees of freedom" validity standard to identify overfit assertions, self-referential test logic, and reward/penalty scoring errors.
+- Authored structured written analysis reports distinguishing deterministic, programmatically-verifiable criteria from natural-language judgment criteria.
+- Cross-validated findings against independent AI-generated analysis to strengthen data quality conclusions.
+- Applied statistical and analytical reasoning — data validation, ground-truth verification, and coverage-gap analysis — to assess dataset integrity for machine learning and AI model training pipelines.
+
 ### IT Systems & Network Consultant
 - Organization: Consulting Practice
 - Location: North York, ON
-- Period: Aug. 2025 – Present
+- Period: Aug. 2025 – July 2026
 - Work Context: Delivering resilient SME infrastructure, domain and identity operations, plus automation-led support backed by measurable reliability controls.
 - Key Outcomes:
 - Standardized onboarding/offboarding workflows with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center for day-one readiness.

@@ -2,6 +2,157 @@
   "projects": [
     {
       "details": [
+        "Diagnosed a double-booking race condition in the scheduling system where concurrent requests could both pass an application-level availability check before either committed, producing overlapping bookings that had to be resolved manually by coaches.",
+        "Moved the guarantee out of application code and into the database using a PostgreSQL btree_gist EXCLUDE constraint over the booking's time range, so any two overlapping intervals for the same resource are rejected by the engine itself regardless of request timing or concurrency.",
+        "Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.",
+        "Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.",
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform."
+      ],
+      "impact": [
+        {
+          "value": "0",
+          "label": "Overlapping bookings",
+          "detail": "Enforced at the database layer"
+        },
+        {
+          "value": "btree_gist",
+          "label": "EXCLUDE constraint",
+          "detail": "Covers every write path"
+        }
+      ],
+      "summary": "Closed a double-booking race condition on a multi-tenant coaching platform by enforcing booking integrity with a PostgreSQL btree_gist EXCLUDE constraint, making overlapping reservations impossible at the database layer rather than relying on application-level checks.",
+      "mobileSummary": "Closed a double-booking race condition using a PostgreSQL btree_gist EXCLUDE constraint enforced at the database layer.",
+      "modified": "2026-07-20T10:00:00.000Z",
+      "featured": true,
+      "title": "Booking-Conflict Prevention with PostgreSQL Exclusion Constraints",
+      "tags": [
+        "PostgreSQL",
+        "Next.js",
+        "TypeScript",
+        "Concurrency",
+        "Data Integrity",
+        "Automated Testing"
+      ],
+      "id": "booking-conflict-prevention-postgresql",
+      "image": "/img/projects/web/Booking-Conflict-Prevention.jpg",
+      "category": "webdev",
+      "posted": "2026-07-20T10:00:00.000Z"
+    },
+    {
+      "details": [
+        "Structured a PaymentProvider adapter around Stripe so payment operations sit behind a single interface, keeping gateway-specific logic in one place instead of spread through feature code.",
+        "Built contractor payout disbursement workflows covering the path from a completed coaching session through to the coach receiving funds.",
+        "Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.",
+        "Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.",
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026)."
+      ],
+      "impact": [
+        {
+          "value": "2-sided",
+          "label": "Fee reconciliation",
+          "detail": "Estimated vs. actual gateway fees"
+        },
+        {
+          "value": "1",
+          "label": "Provider adapter",
+          "detail": "Gateway logic behind one interface"
+        }
+      ],
+      "summary": "Built Stripe payment infrastructure for a coaching platform: a PaymentProvider adapter, contractor payout disbursement, and estimated-vs-actual gateway-fee reconciliation so fee variances surface instead of being silently absorbed.",
+      "mobileSummary": "Built a Stripe PaymentProvider adapter, contractor payouts, and estimated-vs-actual gateway-fee reconciliation.",
+      "modified": "2026-07-18T10:00:00.000Z",
+      "featured": true,
+      "title": "Stripe Payment Reconciliation for a Coaching Platform",
+      "tags": [
+        "Stripe",
+        "Payments",
+        "Reconciliation",
+        "TypeScript",
+        "Next.js",
+        "Data Validation"
+      ],
+      "id": "stripe-payment-reconciliation-coaching-platform",
+      "image": "/img/projects/web/Stripe-Payment-Reconciliation.jpg",
+      "category": "webdev",
+      "posted": "2026-07-18T10:00:00.000Z"
+    },
+    {
+      "details": [
+        "Authored 127+ chapters of role-based platform documentation covering four distinct user types (Super Admin, Staff Coach, Independent Coach, and two client types), so each role reads only the surface it actually operates.",
+        "Built public documentation surfaces alongside the internal role-scoped material, keeping a single body of content serving both audiences.",
+        "Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.",
+        "Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.",
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026)."
+      ],
+      "impact": [
+        {
+          "value": "127+",
+          "label": "Documentation chapters",
+          "detail": "Role-based, across four user types"
+        },
+        {
+          "value": "CI",
+          "label": "Link verification",
+          "detail": "Checked on every pull request"
+        }
+      ],
+      "summary": "Authored and maintained a 127+ chapter role-based documentation system for a multi-tenant SaaS platform, scoped per user role and CI-verified so broken cross-links fail the build rather than reaching users.",
+      "mobileSummary": "Authored 127+ chapters of role-based platform documentation, CI-verified so broken links fail the build.",
+      "modified": "2026-07-15T10:00:00.000Z",
+      "featured": true,
+      "title": "127-Chapter Role-Based Documentation System",
+      "tags": [
+        "Documentation",
+        "CI/CD",
+        "GitHub Actions",
+        "Technical Writing",
+        "Quality Assurance"
+      ],
+      "id": "role-based-documentation-system",
+      "image": "/img/projects/web/Role-Based-Documentation-System.jpg",
+      "category": "webdev",
+      "posted": "2026-07-15T10:00:00.000Z"
+    },
+    {
+      "details": [
+        "Analyzed AI-agent training datasets (rubrics, unit tests, and task specifications) for validity, applying a \"zero degrees of freedom\" standard: a criterion either has exactly one defensible interpretation, or it is not a valid grading criterion.",
+        "Identified recurring failure modes in training data including overfit assertions tied to one specific implementation, self-referential test logic that validates itself rather than the behaviour, and reward/penalty scoring errors.",
+        "Authored structured written analysis reports that explicitly separate deterministic, programmatically-verifiable criteria from criteria requiring natural-language judgment — the distinction that determines whether a rubric item can be machine-scored at all.",
+        "Cross-validated conclusions against independent AI-generated analysis, using disagreement between the two as a signal for where to look harder rather than treating either as authoritative.",
+        "Work Context: Delivered as an AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February-July 2026)."
+      ],
+      "impact": [
+        {
+          "value": "0",
+          "label": "Degrees of freedom",
+          "detail": "Validity standard applied to each criterion"
+        },
+        {
+          "value": "2-way",
+          "label": "Cross-validation",
+          "detail": "Findings checked against independent analysis"
+        }
+      ],
+      "summary": "Evaluated the validity of rubrics and unit tests used to train AI agents, applying a \"zero degrees of freedom\" standard to surface overfit assertions, self-referential test logic, and scoring errors, and separating machine-verifiable criteria from natural-language judgment.",
+      "mobileSummary": "Evaluated rubrics and unit tests for AI training data, separating machine-verifiable criteria from judgment calls.",
+      "modified": "2026-07-10T10:00:00.000Z",
+      "featured": true,
+      "title": "Rubric & Unit-Test Validity Analysis for AI Training Data",
+      "tags": [
+        "AI Evaluation",
+        "Python",
+        "pytest",
+        "Data Validation",
+        "Ground-Truth Verification",
+        "Technical Analysis"
+      ],
+      "id": "rubric-unit-test-validity-analysis",
+      "image": "/img/projects/data/Admissions-Data-Quality-Audit.jpg",
+      "category": "ai",
+      "posted": "2026-07-10T10:00:00.000Z"
+    },
+    {
+      "details": [
         "Consolidated fragmented results data from admissions portals, business application records, examination datasets, and departmental grade submissions into a unified reporting layer, applying SQL-driven validation checks before official publication.",
         "Designed interactive KPI panels in Power BI with drill-down capabilities across student cohorts, academic sessions, and departments, enabling leadership to monitor processing timelines, flag anomaly rates in real-time, and compare performance trends across admission intakes.",
         "Developed automated data quality flags using conditional logic and formula-driven validation in Excel and Google Sheets, reducing the manual effort required to identify outliers and formatting inconsistencies across thousands of records each cycle.",
