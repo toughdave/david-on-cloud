@@ -3057,7 +3057,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Initialize Feather icons
-    feather.replace();
+    if (typeof feather !== 'undefined') feather.replace();
     
     // Global setup
     setupStickySectionTitles();
