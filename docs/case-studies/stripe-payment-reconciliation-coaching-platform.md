@@ -4,7 +4,7 @@
 Built the payment and payout layer for a multi-tenant coaching platform: a provider adapter around Stripe, contractor payout disbursement, and estimated-vs-actual gateway-fee reconciliation so fee variances surface in the ledger instead of being silently absorbed.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, May–July 2026). The public plan structure this work supports — including the free tier and the "zero platform fee on your sales" commitment — is visible at https://www.theanchorcoach.com/suite/pricing.
+Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public plan structure this work supports — including the free tier and the "zero platform fee on your sales" commitment — is visible at https://www.theanchorcoach.com/suite/pricing.
 
 ## The Problem
 A coaching platform that takes money on behalf of coaches has two numbers that must agree and usually don't: the fee **estimated** when a client is charged, and the fee the payment gateway **actually** deducts on settlement. If nothing reconciles the two, the difference quietly comes out of somebody's margin — and on a free tier that advertises no platform fee, that somebody is the platform.

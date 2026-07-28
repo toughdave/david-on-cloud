@@ -8,7 +8,7 @@
 ## Professional Summary
 - I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
 - I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.
-- Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 345 merged pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
+- Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 300+ merged pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
 
 ## Education
 - M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
@@ -155,7 +155,7 @@
 ### IT Administrator and Full-Stack Developer
 - Organization: Anchor Coaching (www.theanchorcoach.com)
 - Location: Remote
-- Period: May 2026 – July 2026
+- Period: Mar. 2026 – Present
 - Work Context: Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.
 - Key Outcomes:
 - Delivered full-stack features across a multi-tenant Next.js platform serving four roles (Super Admin, Staff Coach, Independent Coach, and Suite clients).
@@ -163,7 +163,7 @@
 - Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.
 - Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.
 - Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.
-- Shipped 345 merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning.
+- Shipped 300+ merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning.
 
 ### AI Training Data Scientist / Data Analyst
 - Organization: Outlier (OpenClaw Atlas Program)

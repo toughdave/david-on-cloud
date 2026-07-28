@@ -10,7 +10,7 @@ At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed imp
 I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, Docker-containerized support utilities, and continuous service validation before each production update.
 
 ## Extension: Multi-Tenant Custom Domains at Anchor Coaching
-The same domain-operations skill set was applied at production scale during my contract engagement with Anchor Coaching (www.theanchorcoach.com, Remote, May–July 2026), where the requirement moved from operating one domain to letting many coaches attach their own.
+The same domain-operations skill set was applied at production scale during my contract engagement with Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), where the requirement moved from operating one domain to letting many coaches attach their own.
 
 - Shipped **host-resolved, DNS-verified custom storefront domains**, so an independent coach can point their own domain at their storefront and have ownership verified through DNS records before the domain goes live.
 - Gated the capability behind an explicit environment-variable feature switch, so the rollout could be enabled deliberately per environment rather than shipping on by default.

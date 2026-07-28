@@ -20,7 +20,7 @@ Closed a double-booking race condition on a multi-tenant coaching platform by en
 - Moved the guarantee out of application code and into the database using a PostgreSQL btree_gist EXCLUDE constraint over the booking's time range, so any two overlapping intervals for the same resource are rejected by the engine itself regardless of request timing or concurrency.
 - Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.
 - Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform.
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present) on a multi-tenant Next.js coaching SaaS platform.
 - Live reference: Live platform: The Anchor Coach — https://www.theanchorcoach.com
 
 ### Results and Impact
@@ -43,7 +43,7 @@ Built Stripe payment infrastructure for a coaching platform: a PaymentProvider a
 - Built contractor payout disbursement workflows covering the path from a completed coaching session through to the coach receiving funds.
 - Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.
 - Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
 - Live reference: Live surface: Anchor Suite pricing — https://www.theanchorcoach.com/suite/pricing
 
 ### Results and Impact
@@ -66,7 +66,7 @@ Authored and maintained a 127+ chapter role-based documentation system for a mul
 - Built public documentation surfaces alongside the internal role-scoped material, keeping a single body of content serving both audiences.
 - Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.
 - Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
 - Live reference: Live surface: platform documentation — https://www.theanchorcoach.com/documentation
 
 ### Results and Impact
@@ -109,7 +109,7 @@ Built and operated my portfolio website as a production-style web and domain ope
 ### Technical Notes
 - Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.
 - Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.
-- Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, May–July 2026): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.
+- Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, March 2026 – Present): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.
 - Restored outbound mail delivery on the platform's Hetzner hosting by moving SMTP from port 465 to 587 with STARTTLS after a provider port policy blocked the original path, then added send rate limiting, audit logging, and mailbox access revocation on coach offboarding.
 - Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.
 - Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.

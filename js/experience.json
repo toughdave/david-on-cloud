@@ -2,19 +2,19 @@
   "sectionTitle": "Work Experience",
   "entries": [
     {
-      "period": "May 2026 – July 2026",
+      "period": "Mar. 2026 – Present",
       "outcomes": [
         "Delivered full-stack features across a multi-tenant Next.js platform serving four roles (Super Admin, Staff Coach, Independent Coach, and Suite clients).",
         "Closed a double-booking race condition using PostgreSQL btree_gist EXCLUDE constraints over overlapping booking intervals.",
         "Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.",
         "Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.",
         "Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.",
-        "Shipped 345 merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
+        "Shipped 300+ merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
       ],
       "backgroundImage": "/img/projects/web/DevOps-Pipeline.png",
       "location": "Remote",
       "focus": "Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.",
-      "logLine": "build sync: 345 PRs merged • 127 doc chapters CI-verified",
+      "logLine": "build sync: 300+ PRs merged • 127 doc chapters CI-verified",
       "title": "IT Administrator and Full-Stack Developer",
       "company": "Anchor Coaching (www.theanchorcoach.com)",
       "insetImage": "/img/projects/web/website-hero-intro-blurred-.png"

@@ -4,7 +4,7 @@
 Closed a double-booking race condition on a live multi-tenant coaching platform by moving the booking-integrity guarantee out of application code and into the database, using a PostgreSQL `btree_gist` EXCLUDE constraint over the booking's time range.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, May–July 2026), a multi-tenant Next.js coaching SaaS platform serving Super Admin, Staff Coach, Independent Coach, and Suite client roles.
+Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), a multi-tenant Next.js coaching SaaS platform serving Super Admin, Staff Coach, Independent Coach, and Suite client roles.
 
 ## The Problem
 Concurrent booking requests could both pass an application-level availability check before either committed. Under normal load this was invisible; under simultaneous requests for the same coach slot, two overlapping bookings could be written, and the conflict then had to be untangled manually by a coach — after a client had already been told the slot was theirs.

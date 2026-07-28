@@ -4,7 +4,7 @@
 Authored and maintained a 127+ chapter documentation system for a multi-tenant SaaS platform, scoped per user role and CI-verified so that broken cross-links fail the build rather than reaching users.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, May–July 2026). The public documentation surface is live at https://www.theanchorcoach.com/documentation.
+Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public documentation surface is live at https://www.theanchorcoach.com/documentation.
 
 ## The Problem
 A platform with four distinct user types — Super Admin, Staff Coach, Independent Coach, and two client types — cannot be documented as one undifferentiated manual. A Staff Coach reading Super Admin procedures learns things they cannot act on and misses the ones they can. Meanwhile, documentation that is not validated rots silently: a renamed route leaves dead links that nobody notices until a user hits one.
