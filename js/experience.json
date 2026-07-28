@@ -4,51 +4,44 @@
     {
       "period": "May 2026 – July 2026",
       "outcomes": [
-        "Delivered full-stack features across a multi-tenant Next.js coaching SaaS platform serving four distinct roles (Super Admin, Staff Coach, Independent Coach, and Suite clients), spanning booking/calendar, community, and staff-admin products.",
-        "Closed a double-booking race condition in the scheduling system using PostgreSQL btree_gist EXCLUDE constraints for overlapping-interval bookings.",
-        "Structured a PaymentProvider adapter for Stripe, and built contractor payout disbursement plus estimated-vs-actual gateway-fee reconciliation workflows for free-tier coaches.",
-        "Authored 127+ chapters of role-based platform documentation across four user types, plus public documentation surfaces, kept CI-verified and cross-link-clean.",
-        "Used git worktrees and parallel AI-agent-assisted development workflows (Claude Code) to ship 50+ pull requests across features, infrastructure, and roadmap research.",
-        "Built community features including profile-drawer messaging, post-follow/engagement ranking, and moderation of seed content.",
-        "Developed a coach-facing Certificate Designer with PDF template rendering, and contributed to Storefront, Dashboard Studio, Card Studio, and Content Studio builder tools.",
-        "Built a TipTap rich-text composer and SMTP-based outbound mail system for staff mailboxes, including a webmail-password flow for shared mailboxes and resolving outbound SMTPS port access with the hosting provider.",
-        "Implemented Google OAuth integration, a sponsored-books queue with analytics, and an early-tester feedback overlay widget for signups.",
-        "Diagnosed and resolved production issues (parser/producer key mismatches, dead classifiers, mobile-view regressions, stale build caching) and set up scheduled backup automation with CI/E2E nightly test tuning."
+        "Delivered full-stack features across a multi-tenant Next.js platform serving four roles (Super Admin, Staff Coach, Independent Coach, and Suite clients).",
+        "Closed a double-booking race condition using PostgreSQL btree_gist EXCLUDE constraints over overlapping booking intervals.",
+        "Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.",
+        "Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.",
+        "Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.",
+        "Shipped 50+ pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
       ],
       "backgroundImage": "/img/projects/web/DevOps-Pipeline.png",
       "location": "Remote",
-      "focus": "Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, backed by CI-verified documentation and automated testing.",
+      "focus": "Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.",
       "logLine": "build sync: 50+ PRs merged • 127 doc chapters CI-verified",
-      "title": "Contract Full-Stack Developer",
+      "title": "IT Administrator and Full-Stack Developer",
       "company": "Anchor Coaching (www.theanchorcoach.com)",
       "insetImage": "/img/projects/web/website-hero-intro-blurred-.png"
     },
     {
       "period": "Feb. 2026 – July 2026",
       "outcomes": [
-        "Performed data-driven quality analysis of AI-agent training datasets (rubrics, unit tests, task specifications), applying a \"zero degrees of freedom\" validity standard to identify overfit assertions, self-referential test logic, and reward/penalty scoring errors.",
-        "Authored structured written analysis reports distinguishing deterministic, programmatically-verifiable criteria from natural-language judgment criteria.",
-        "Cross-validated findings against independent AI-generated analysis to strengthen data quality conclusions.",
-        "Applied statistical and analytical reasoning — data validation, ground-truth verification, and coverage-gap analysis — to assess dataset integrity for machine learning and AI model training pipelines."
+        "Analyzed AI-agent training datasets (rubrics, unit tests, task specifications) against a \"zero degrees of freedom\" validity standard, flagging overfit assertions, self-referential test logic, and scoring errors.",
+        "Authored structured analysis reports distinguishing deterministic, programmatically-verifiable criteria from natural-language judgment.",
+        "Cross-validated findings against independent analysis and applied ground-truth verification and coverage-gap checks to assess dataset integrity."
       ],
-      "backgroundImage": "/img/experience/data-analysis-mtd.jpg",
+      "backgroundImage": "/img/projects/ai/ai-evaluation-bg.jpg",
       "location": "Remote",
-      "focus": "Evaluating the validity of rubrics and unit tests used to train AI agents, separating programmatically-verifiable criteria from natural-language judgment.",
+      "focus": "Evaluating the validity of rubrics and unit tests used to train AI agents, separating machine-verifiable criteria from human judgment.",
       "logLine": "eval pass: rubric integrity checked • ground truth verified",
       "title": "AI Training Data Scientist / Data Analyst",
       "company": "Outlier (OpenClaw Atlas Program)",
-      "insetImage": "/img/projects/data/Admissions-Data-Quality-Audit.jpg"
+      "insetImage": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg"
     },
     {
       "period": "Aug. 2025 – July 2026",
       "outcomes": [
-        "Standardized onboarding/offboarding workflows with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center for day-one readiness.",
-        "Architected resilient SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, and VMware/VirtualBox virtualization.",
-        "Managed domain and DNS operations for davidoncloud.com, including record updates, routing validation, and change tracking for stable website and email services.",
-        "Containerized repeatable support utilities and validation checks with Docker to keep troubleshooting and deployment tasks consistent across environments.",
-        "Directed system hardening, firmware updates, and access-control baselines across physical and virtual environments, sustaining 99.9% service availability.",
-        "Resolved complex network and systems incidents through CLI diagnostics and root-cause analysis, addressing subnet conflicts, firewall restrictions, and DHCP scope reallocations.",
-        "Produced technical runbooks plus PowerShell/Bash automation for standardized rebuilds, reducing manual configuration effort by an estimated 40%."
+        "Standardized onboarding/offboarding with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center.",
+        "Architected SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, and VMware/VirtualBox virtualization, sustaining 99.9% availability.",
+        "Managed domain and DNS operations for davidoncloud.com, including record updates, routing validation, and change tracking.",
+        "Resolved network and systems incidents through CLI diagnostics and root-cause analysis across subnet, firewall, and DHCP scope issues.",
+        "Produced technical runbooks plus PowerShell/Bash automation for standardized rebuilds, cutting manual configuration effort by an estimated 40%."
       ],
       "backgroundImage": "/img/experience/CN-tower-view-downtown-Toronto-event.png",
       "location": "North York, ON",
@@ -64,8 +57,7 @@
         "Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.",
         "Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory and identity-access practicals.",
         "Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus collaboration and access workflows.",
-        "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.",
-        "Processed results and verified student records through Google Classroom workflows."
+        "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups."
       ],
       "backgroundImage": "/img/experience/Pures-classroom-3.jpg",
       "location": "Scarborough, ON",
@@ -78,13 +70,11 @@
     {
       "period": "Mar. 2017 - Aug. 2023",
       "outcomes": [
-        "Led production cutover and go-live transition from the legacy Smarty workflow to the Gradent platform, including migration checks, user readiness, and rollback safeguards.",
-        "Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users, using tools such as Microsoft Dynamics 365 where required.",
-        "Modernized data workflows, reducing result processing from 3–5 days to same-day and reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.",
-        "Governed onboarding/offboarding for 4,000+ stakeholders by integrating Active Directory, identity controls, and role-based access for secure, immediate departmental access.",
-        "Architected integrations between ERP modules and core infrastructure, keeping 4,000+ user profiles synchronized across admissions, examination, and reporting pipelines.",
-        "Delivered advanced technical support for software, authentication, and hardware incidents (remote and onsite), minimizing downtime during high-volume academic cycles.",
-        "Oversaw secure examination technologies, running readiness checks and biometric verification workflows for 300+ candidates per session across multiple annual cycles."
+        "Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users.",
+        "Led production cutover from the legacy Smarty workflow to the Gradent platform, with migration checks and rollback safeguards.",
+        "Cut result processing from 3–5 days to same-day, reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.",
+        "Governed onboarding/offboarding for 4,000+ stakeholders via Active Directory and role-based access.",
+        "Oversaw secure examination technologies, running readiness checks and biometric verification for 300+ candidates per session."
       ],
       "backgroundImage": "/img/experience/futa-laptop-bg.jpg",
       "location": "Nigeria",

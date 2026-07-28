@@ -2,8 +2,8 @@
   "sectionTitle": "About Me",
   "professionalSummary": [
     "I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.",
-    "I analyze systems, improve data processes, and maintain operational reliability across Windows and Linux platforms using Active Directory, Microsoft 365 admin controls, domain and DNS operations, and structured automation practices. I focus on clear documentation, data accuracy, and cross-department delivery support for high-volume institutional workflows.",
-    "Recent contract work has extended that range in two directions. As a contract full-stack developer for Anchor Coaching, I shipped production features on a multi-tenant Next.js/TypeScript/PostgreSQL platform — booking integrity, Stripe payment reconciliation, and 127+ chapters of role-based documentation — across 50+ pull requests. As an AI training data analyst for Outlier, I assessed the validity of rubrics and unit tests used to train AI agents, separating programmatically-verifiable criteria from natural-language judgment. Both engagements run on the same foundation as my systems work: verify the data, document the system, and make the process repeatable."
+    "I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.",
+    "Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 50+ pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable."
   ],
   "location": "Toronto, ON (open to relocate)",
   "email": "matthewtopedavid@gmail.com",
@@ -19,5 +19,5 @@
       "year": "2014"
     }
   ],
-  "additionalExperience": "In my personal home lab and consultant workflows, I run enterprise-style systems and networking scenarios using Cisco Catalyst switching, VMware/VirtualBox virtualization, identity and access controls, Microsoft 365 admin routines, Docker-based support utilities, plus routing, VLAN configuration, IP addressing, DNS, and DHCP in isolated test environments. On the development side, I work in a Git-based, AI-augmented workflow — git worktrees, GitHub Actions CI, and automated test suites — that carried 50+ pull requests into production during my most recent contract engagement."
+  "additionalExperience": "In my home lab and consultant workflows I run enterprise-style systems and networking scenarios — Cisco Catalyst switching, VMware/VirtualBox, Docker utilities, routing, VLANs, DNS and DHCP. On the development side I work in a Git-based, AI-augmented workflow with GitHub Actions CI and automated tests."
 }

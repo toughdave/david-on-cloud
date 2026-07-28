@@ -9,7 +9,7 @@
 - Posted: 2026-07-20
 - Updated: 2026-07-20
 - Tags: PostgreSQL, Next.js, TypeScript, Concurrency, Data Integrity, Automated Testing
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Study (Markdown)](docs/case-studies/booking-conflict-prevention-postgresql.md)
 - PDF: N/A
 
 ### Project Summary
@@ -21,6 +21,7 @@ Closed a double-booking race condition on a multi-tenant coaching platform by en
 - Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.
 - Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.
 - Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform.
+- Live reference: Live platform: The Anchor Coach — https://www.theanchorcoach.com
 
 ### Results and Impact
 - **Overlapping bookings**: 0 (Enforced at the database layer)
@@ -31,7 +32,7 @@ Closed a double-booking race condition on a multi-tenant coaching platform by en
 - Posted: 2026-07-18
 - Updated: 2026-07-18
 - Tags: Stripe, Payments, Reconciliation, TypeScript, Next.js, Data Validation
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Study (Markdown)](docs/case-studies/stripe-payment-reconciliation-coaching-platform.md)
 - PDF: N/A
 
 ### Project Summary
@@ -43,6 +44,7 @@ Built Stripe payment infrastructure for a coaching platform: a PaymentProvider a
 - Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.
 - Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.
 - Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+- Live reference: Live surface: Anchor Suite pricing — https://www.theanchorcoach.com/suite/pricing
 
 ### Results and Impact
 - **Fee reconciliation**: 2-sided (Estimated vs. actual gateway fees)
@@ -53,7 +55,7 @@ Built Stripe payment infrastructure for a coaching platform: a PaymentProvider a
 - Posted: 2026-07-15
 - Updated: 2026-07-15
 - Tags: Documentation, CI/CD, GitHub Actions, Technical Writing, Quality Assurance
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Study (Markdown)](docs/case-studies/role-based-documentation-system.md)
 - PDF: N/A
 
 ### Project Summary
@@ -65,6 +67,7 @@ Authored and maintained a 127+ chapter role-based documentation system for a mul
 - Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.
 - Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.
 - Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).
+- Live reference: Live surface: platform documentation — https://www.theanchorcoach.com/documentation
 
 ### Results and Impact
 - **Documentation chapters**: 127+ (Role-based, across four user types)
@@ -75,7 +78,7 @@ Authored and maintained a 127+ chapter role-based documentation system for a mul
 - Posted: 2026-07-10
 - Updated: 2026-07-10
 - Tags: AI Evaluation, Python, pytest, Data Validation, Ground-Truth Verification, Technical Analysis
-- Deliverable Link: N/A
+- Deliverable Link: [View Case Study (Markdown)](docs/case-studies/rubric-unit-test-validity-analysis.md)
 - PDF: N/A
 
 ### Project Summary
@@ -95,23 +98,26 @@ Evaluated the validity of rubrics and unit tests used to train AI agents, applyi
 ## Portfolio Web Operations & Domain Administration
 - Category: systems
 - Posted: 2026-02-26
-- Updated: 2026-02-26
-- Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment, Release Automation, Docker, Validation
+- Updated: 2026-07-22
+- Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment, Release Automation, Docker, Validation, Custom Domains, DNS Verification, SMTP, Hetzner
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/portfolio-web-operations-domain-administration.md)
 - PDF: N/A
 
 ### Project Summary
-Built and operated my portfolio website as a production-style web and domain operations project, combining CMS-managed content delivery, DNS record administration, Microsoft 365 identity governance, scripted release automation, and pre-flight validation checks across 50+ versioned releases.
+Built and operated my portfolio website as a production-style web and domain operations project — CMS-managed delivery, DNS administration, Microsoft 365 identity governance, scripted releases and pre-flight validation — then applied the same practice at production scale by shipping DNS-verified custom storefront domains and fixing outbound SMTP delivery for a multi-tenant coaching platform.
 
 ### Technical Notes
 - Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.
 - Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.
+- Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, May–July 2026): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.
+- Restored outbound mail delivery on the platform's Hetzner hosting by moving SMTP from port 465 to 587 with STARTTLS after a provider port policy blocked the original path, then added send rate limiting, audit logging, and mailbox access revocation on coach offboarding.
 - Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.
 - Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.
 - Standardized deployment validation with a Node.js-based pre-flight check script that verifies HTML structure, CSS feature usage, JavaScript syntax, image asset integrity, favicon presence, and version consistency before each release, catching configuration issues before they reach production.
 - Containerized recurring support utilities and validation checks with Docker to keep troubleshooting scripts, environment tests, and deployment verifications portable and consistent across local development and production environments.
 - Localized all runtime frontend dependencies (Tailwind CDN, AOS, Three.js, Vanta, Feather Icons, Decap CMS) and font assets to the repository to eliminate external CDN calls, improving page load reliability, offline development capability, and production resilience.
 - Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.
+- Source: this site's full source is public at https://github.com/toughdave/david-on-cloud
 
 ### Results and Impact
 - **Production domain**: 1 (davidoncloud.com — DNS, SSL, email, hosting)
@@ -124,7 +130,7 @@ Built and operated my portfolio website as a production-style web and domain ope
 - Posted: 2026-02-25
 - Updated: 2026-02-26
 - Tags: Cisco Catalyst 3850, Switch Troubleshooting, VLAN, DHCP, ICMP, Documentation
-- Deliverable Link: [View GitHub Lab Documentation](https://github.com/toughdave/networking-labs#readme)
+- Deliverable Link: [View Case Study (Markdown)](docs/case-studies/cisco-catalyst-3850-troubleshooting-phase-1.md)
 - PDF: N/A
 
 ### Project Summary

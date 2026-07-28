@@ -140,6 +140,8 @@ const loadProjects = () => {
                     modified: project.modified,
                     link: project.link || '',
                     linkText: project.linkText || '',
+                    sourceUrl: project.sourceUrl || '',
+                    sourceText: project.sourceText || '',
                     pdf: project.pdf || '',
                     images: project.images || []
                 };
@@ -2463,13 +2465,29 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const linkifyProjectDetailReferences = (text) => {
-        return String(text || '').replace(/`([^`]+)`/g, (_match, reference) => {
+        const withRepoRefs = String(text || '').replace(/`([^`]+)`/g, (_match, reference) => {
             const label = String(reference || '').trim();
             const href = buildProjectDetailRepoUrl(decodeHTMLEntities(label));
             if (!href) return `<code>${label}</code>`;
             const safeHref = sanitizeUrl(href, { allowHash: false, allowMailto: false, fallback: '' });
             if (!safeHref) return `<code>${label}</code>`;
             return `<a href="${escapeHTML(safeHref)}" target="_blank" rel="noopener noreferrer" class="project-detail-inline-link">${label}</a>`;
+        });
+
+        // Turn bare http(s) references into links so cited live sources stay clickable.
+        // Runs after the backtick pass and skips anything already inside an href attribute.
+        return withRepoRefs.replace(/(href="[^"]*")|(https?:\/\/[^\s<>"']+)/g, (match, hrefAttr, bareUrl) => {
+            if (hrefAttr || !bareUrl) return match;
+            const trimmed = bareUrl.replace(/[.,;:)]+$/, '');
+            const trailing = bareUrl.slice(trimmed.length);
+            const safeHref = sanitizeUrl(decodeHTMLEntities(trimmed), {
+                allowHash: false,
+                allowMailto: false,
+                allowRelative: false,
+                fallback: ''
+            });
+            if (!safeHref) return match;
+            return `<a href="${escapeHTML(safeHref)}" target="_blank" rel="noopener noreferrer" class="project-detail-inline-link">${trimmed}</a>${trailing}`;
         });
     };
 
@@ -2600,6 +2618,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const safeLinkHref = sanitizeUrl(project.link || '', { allowHash: false, allowMailto: false, fallback: '' });
         const safePdfHref = sanitizeUrl(project.pdf || '', { allowHash: false, allowMailto: false, fallback: '' });
         const safeLinkText = escapeHTML(project.linkText || 'View Publication');
+        const safeSourceHref = sanitizeUrl(project.sourceUrl || '', {
+            allowHash: false,
+            allowMailto: false,
+            allowRelative: false,
+            fallback: ''
+        });
+        const safeSourceText = escapeHTML(project.sourceText || 'View Live Source');
         content.innerHTML = `
             <div class="project-modal-header">
                 <div class="project-modal-dates">
@@ -2616,9 +2641,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <p class="project-modal-summary">${safeSummary}</p>
                 <div class="project-modal-tags">${buildTags(project.tags)}</div>
-                ${safeLinkHref || safePdfHref ? `
+                ${safeLinkHref || safePdfHref || safeSourceHref ? `
                     <div class="project-modal-links">
                         ${safeLinkHref ? `<a href="${escapeHTML(safeLinkHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${safeLinkText}</a>` : ''}
+                        ${safeSourceHref ? `<a href="${escapeHTML(safeSourceHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--source"><i data-feather="globe" class="w-4 h-4"></i> ${safeSourceText}</a>` : ''}
                         ${safePdfHref ? `<a href="${escapeHTML(safePdfHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
                     </div>
                 ` : ''}

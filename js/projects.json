@@ -6,7 +6,8 @@
         "Moved the guarantee out of application code and into the database using a PostgreSQL btree_gist EXCLUDE constraint over the booking's time range, so any two overlapping intervals for the same resource are rejected by the engine itself regardless of request timing or concurrency.",
         "Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.",
         "Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.",
-        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform."
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026) on a multi-tenant Next.js coaching SaaS platform.",
+        "Live reference: Live platform: The Anchor Coach — https://www.theanchorcoach.com"
       ],
       "impact": [
         {
@@ -36,7 +37,11 @@
       "id": "booking-conflict-prevention-postgresql",
       "image": "/img/projects/web/Booking-Conflict-Prevention.jpg",
       "category": "webdev",
-      "posted": "2026-07-20T10:00:00.000Z"
+      "posted": "2026-07-20T10:00:00.000Z",
+      "link": "docs/case-studies/booking-conflict-prevention-postgresql.md",
+      "linkText": "View Case Study (Markdown)",
+      "sourceUrl": "https://www.theanchorcoach.com",
+      "sourceText": "Live platform: The Anchor Coach"
     },
     {
       "details": [
@@ -44,7 +49,8 @@
         "Built contractor payout disbursement workflows covering the path from a completed coaching session through to the coach receiving funds.",
         "Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.",
         "Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.",
-        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026)."
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).",
+        "Live reference: Live surface: Anchor Suite pricing — https://www.theanchorcoach.com/suite/pricing"
       ],
       "impact": [
         {
@@ -74,7 +80,11 @@
       "id": "stripe-payment-reconciliation-coaching-platform",
       "image": "/img/projects/web/Anchor-Suite-Pricing.jpg",
       "category": "webdev",
-      "posted": "2026-07-18T10:00:00.000Z"
+      "posted": "2026-07-18T10:00:00.000Z",
+      "link": "docs/case-studies/stripe-payment-reconciliation-coaching-platform.md",
+      "linkText": "View Case Study (Markdown)",
+      "sourceUrl": "https://www.theanchorcoach.com/suite/pricing",
+      "sourceText": "Live surface: Anchor Suite pricing"
     },
     {
       "details": [
@@ -82,7 +92,8 @@
         "Built public documentation surfaces alongside the internal role-scoped material, keeping a single body of content serving both audiences.",
         "Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.",
         "Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.",
-        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026)."
+        "Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, May-July 2026).",
+        "Live reference: Live surface: platform documentation — https://www.theanchorcoach.com/documentation"
       ],
       "impact": [
         {
@@ -111,7 +122,11 @@
       "id": "role-based-documentation-system",
       "image": "/img/projects/web/Anchor-Platform-Documentation.jpg",
       "category": "webdev",
-      "posted": "2026-07-15T10:00:00.000Z"
+      "posted": "2026-07-15T10:00:00.000Z",
+      "link": "docs/case-studies/role-based-documentation-system.md",
+      "linkText": "View Case Study (Markdown)",
+      "sourceUrl": "https://www.theanchorcoach.com/documentation",
+      "sourceText": "Live surface: platform documentation"
     },
     {
       "details": [
@@ -147,9 +162,11 @@
         "Technical Analysis"
       ],
       "id": "rubric-unit-test-validity-analysis",
-      "image": "/img/projects/data/Admissions-Data-Quality-Audit.jpg",
+      "image": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg",
       "category": "ai",
-      "posted": "2026-07-10T10:00:00.000Z"
+      "posted": "2026-07-10T10:00:00.000Z",
+      "link": "docs/case-studies/rubric-unit-test-validity-analysis.md",
+      "linkText": "View Case Study (Markdown)"
     },
     {
       "details": [
@@ -326,8 +343,8 @@
         "ICMP",
         "Documentation"
       ],
-      "link": "https://github.com/toughdave/networking-labs#readme",
-      "linkText": "View GitHub Lab Documentation",
+      "link": "docs/case-studies/cisco-catalyst-3850-troubleshooting-phase-1.md",
+      "linkText": "View Case Study (Markdown)",
       "id": "cisco-catalyst-3850-troubleshooting-lab",
       "image": "/img/projects/networking/cisco-catalyst-3850-troubleshooting-lab/Cisco-network-switches.png",
       "images": [
@@ -897,12 +914,15 @@
       "details": [
         "Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.",
         "Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.",
+        "Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, May–July 2026): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.",
+        "Restored outbound mail delivery on the platform's Hetzner hosting by moving SMTP from port 465 to 587 with STARTTLS after a provider port policy blocked the original path, then added send rate limiting, audit logging, and mailbox access revocation on coach offboarding.",
         "Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.",
         "Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.",
         "Standardized deployment validation with a Node.js-based pre-flight check script that verifies HTML structure, CSS feature usage, JavaScript syntax, image asset integrity, favicon presence, and version consistency before each release, catching configuration issues before they reach production.",
         "Containerized recurring support utilities and validation checks with Docker to keep troubleshooting scripts, environment tests, and deployment verifications portable and consistent across local development and production environments.",
         "Localized all runtime frontend dependencies (Tailwind CDN, AOS, Three.js, Vanta, Feather Icons, Decap CMS) and font assets to the repository to eliminate external CDN calls, improving page load reliability, offline development capability, and production resilience.",
-        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation."
+        "Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.",
+        "Source: this site's full source is public at https://github.com/toughdave/david-on-cloud"
       ],
       "impact": [
         {
@@ -926,9 +946,9 @@
           "detail": "Automated validation gates per release"
         }
       ],
-      "summary": "Built and operated my portfolio website as a production-style web and domain operations project, combining CMS-managed content delivery, DNS record administration, Microsoft 365 identity governance, scripted release automation, and pre-flight validation checks across 50+ versioned releases.",
+      "summary": "Built and operated my portfolio website as a production-style web and domain operations project — CMS-managed delivery, DNS administration, Microsoft 365 identity governance, scripted releases and pre-flight validation — then applied the same practice at production scale by shipping DNS-verified custom storefront domains and fixing outbound SMTP delivery for a multi-tenant coaching platform.",
       "mobileSummary": "Run my portfolio as a production web/domain operations project with CMS delivery, DNS admin, Microsoft 365 governance, and scripted release validation.",
-      "modified": "2026-02-26T03:40:00.000Z",
+      "modified": "2026-07-22T10:00:00.000Z",
       "featured": true,
       "title": "Portfolio Web Operations & Domain Administration",
       "tags": [
@@ -939,14 +959,20 @@
         "Deployment",
         "Release Automation",
         "Docker",
-        "Validation"
+        "Validation",
+        "Custom Domains",
+        "DNS Verification",
+        "SMTP",
+        "Hetzner"
       ],
       "link": "docs/case-studies/portfolio-web-operations-domain-administration.md",
       "linkText": "View Case Summary (Markdown)",
       "id": "portfolio-web-operations-domain-administration",
       "image": "/img/projects/web/website-hero-intro-blurred-.png",
       "category": "systems",
-      "posted": "2026-02-26T03:35:00.000Z"
+      "posted": "2026-02-26T03:35:00.000Z",
+      "sourceUrl": "https://github.com/toughdave/david-on-cloud",
+      "sourceText": "Source repository (public): toughdave/david-on-cloud"
     },
     {
       "details": [
