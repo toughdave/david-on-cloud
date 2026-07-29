@@ -1,7 +1,7 @@
-# 127-Chapter Role-Based Documentation System
+# 127-Chapter Role-Based User Documentation
 
 ## Project Summary
-Authored and maintained a 127+ chapter documentation system for a multi-tenant SaaS platform, scoped per user role and CI-verified so that broken cross-links fail the build rather than reaching users.
+Wrote and maintained 127+ chapters of user documentation for a coaching platform, organised so each type of user reads only what applies to them, with automated checks that catch broken links before release.
 
 ## Work Context
 Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public documentation surface is live at https://www.theanchorcoach.com/documentation.

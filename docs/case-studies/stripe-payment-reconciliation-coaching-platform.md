@@ -1,7 +1,7 @@
-# Stripe Payment Reconciliation for a Coaching Platform
+# Payments and Payout Reconciliation for a Coaching Platform
 
 ## Project Summary
-Built the payment and payout layer for a multi-tenant coaching platform: a provider adapter around Stripe, contractor payout disbursement, and estimated-vs-actual gateway-fee reconciliation so fee variances surface in the ledger instead of being silently absorbed.
+Built the payments and payouts process for a coaching platform: Stripe card payments, coach payouts, and a reconciliation check confirming the fees charged to clients match the fees the payment provider actually deducted — so any difference is recorded rather than quietly absorbed.
 
 ## Work Context
 Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public plan structure this work supports — including the free tier and the "zero platform fee on your sales" commitment — is visible at https://www.theanchorcoach.com/suite/pricing.
@@ -10,9 +10,9 @@ Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.
 A coaching platform that takes money on behalf of coaches has two numbers that must agree and usually don't: the fee **estimated** when a client is charged, and the fee the payment gateway **actually** deducts on settlement. If nothing reconciles the two, the difference quietly comes out of somebody's margin — and on a free tier that advertises no platform fee, that somebody is the platform.
 
 ## Approach
-- Put gateway-specific logic behind a single payment-provider abstraction rather than letting Stripe calls spread through feature code, so the payment surface stays swappable and testable.
-- Persisted the VAT breakdown and the gateway fee alongside each payment, making the fee a first-class recorded value rather than something recomputed on demand.
-- Wrote the estimated and actual figures into an accounting journal so the variance is an auditable ledger entry, not a discrepancy someone notices later.
+- Kept all payment-provider logic in one place rather than letting it spread through the app, so payments stay testable and the provider could be changed later.
+- Recorded the tax breakdown and the provider's fee against each payment at the time it happened, so historical records stay correct even if fee schedules change later.
+- Wrote both the expected and actual figures into an accounting record, so any difference shows up as an auditable entry instead of a surprise found months later.
 - Built payout disbursement covering the path from a completed coaching session through to a coach receiving funds, including multi-rail payout support and a self-serve earnings view.
 
 ## Results and Impact

@@ -8,7 +8,7 @@
 ## Professional Summary
 - I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
 - I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.
-- Recent contract work extended that range: full-stack delivery for Anchor Coaching (booking integrity, Stripe reconciliation, 127+ documentation chapters, 300+ merged pull requests) and AI training-data evaluation for Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
+- Recent contract work extended that range: building booking, payments, and documentation features for Anchor Coaching's platform (300+ reviewed code changes, 127+ documentation chapters), and reviewing rubric and test quality for AI training data at Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
 
 ## Education
 - M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
@@ -139,8 +139,8 @@
 
 ### Web & Application Development
 - **Next.js & TypeScript**: Build and ship production features across a multi-tenant SaaS platform serving four distinct user roles.
-- **PostgreSQL**: Model relational data and enforce integrity at the database layer, including exclusion constraints that prevent overlapping bookings.
-- **Stripe**: Structure payment provider adapters, contractor payout disbursement, and gateway-fee reconciliation workflows.
+- **PostgreSQL**: Model relational data and enforce rules at the database layer, including a safeguard that prevents overlapping bookings.
+- **Stripe**: Handle client card payments, coach payouts, and reconciliation checks confirming charged fees match fees actually deducted.
 - **Supabase / InsForge**: Manage backend data services and authentication for application features.
 - **TipTap & Google OAuth**: Implement rich-text composition for staff mail systems and federated sign-in for platform accounts.
 - **GitHub Actions**: Run CI checks, nightly end-to-end test suites, and documentation link validation on every pull request.
@@ -152,40 +152,32 @@
 - **Ground-Truth Verification**: Validate dataset integrity through coverage-gap analysis and cross-validation against independent analysis.
 
 ## Work Experience
-### IT Administrator and Full-Stack Developer
-- Organization: Anchor Coaching (www.theanchorcoach.com)
-- Location: Remote
-- Period: Mar. 2026 – Present
-- Work Context: Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.
+### IT Administrator, Full-Stack Developer & Systems Consultant
+- Organization: Independent Practice — client: Anchor Coaching (www.theanchorcoach.com)
+- Location: North York, ON — contract work remote
+- Period: Aug. 2025 – Present
+- Work Context: Running an independent practice covering IT systems administration and full-stack contract delivery — currently building booking, payments, and documentation features for a live coaching platform.
 - Key Outcomes:
-- Delivered full-stack features across a multi-tenant Next.js platform serving four roles (Super Admin, Staff Coach, Independent Coach, and Suite clients).
-- Closed a double-booking race condition using PostgreSQL btree_gist EXCLUDE constraints over overlapping booking intervals.
-- Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.
-- Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.
-- Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.
-- Shipped 300+ merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning.
+- Anchor Coaching (contract, Mar 2026 – present): delivered features for a coaching platform serving four user types — administrators, staff coaches, independent coaches, and clients.
+- Fixed a scheduling fault that could let two clients book the same session, moving the safeguard into the database so it applies to every booking route rather than one screen.
+- Built the payments and payouts process, including coach payouts and a reconciliation check confirming the fees charged match the fees actually deducted.
+- Wrote 127+ chapters of user documentation tailored to each role, with automated checks that catch broken links before release.
+- Administered the platform's infrastructure: custom domain setup and verification, business email delivery, and scheduled backups.
+- Shipped 300+ reviewed code changes using AI-assisted development workflows and automated nightly testing.
+- Independent systems consulting: standardized staff onboarding and offboarding with account controls across Active Directory, Entra ID, and Microsoft 365.
+- Built and maintained small-business network and server infrastructure using Cisco switching, network segmentation, and virtualization, sustaining 99.9% availability.
+- Managed domain and DNS operations for davidoncloud.com, and resolved network and system faults through structured diagnosis and root-cause analysis.
+- Produced technical runbooks and automation scripts for repeatable rebuilds, cutting manual setup effort by an estimated 40%.
 
 ### AI Training Data Scientist / Data Analyst
 - Organization: Outlier (OpenClaw Atlas Program)
 - Location: Remote
 - Period: Feb. 2026 – July 2026
-- Work Context: Evaluating the validity of rubrics and unit tests used to train AI agents, separating machine-verifiable criteria from human judgment.
+- Work Context: Checking whether the rubrics and tests used to train AI models actually measure what they claim to measure.
 - Key Outcomes:
-- Analyzed AI-agent training datasets (rubrics, unit tests, task specifications) against a "zero degrees of freedom" validity standard, flagging overfit assertions, self-referential test logic, and scoring errors.
-- Authored structured analysis reports distinguishing deterministic, programmatically-verifiable criteria from natural-language judgment.
-- Cross-validated findings against independent analysis and applied ground-truth verification and coverage-gap checks to assess dataset integrity.
-
-### IT Systems & Network Consultant
-- Organization: Consulting Practice
-- Location: North York, ON
-- Period: Aug. 2025 – Present
-- Work Context: Delivering resilient SME infrastructure, domain and identity operations, plus automation-led support backed by measurable reliability controls.
-- Key Outcomes:
-- Standardized onboarding/offboarding with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center.
-- Architected SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, and VMware/VirtualBox virtualization, sustaining 99.9% availability.
-- Managed domain and DNS operations for davidoncloud.com, including record updates, routing validation, and change tracking.
-- Resolved network and systems incidents through CLI diagnostics and root-cause analysis across subnet, firewall, and DHCP scope issues.
-- Produced technical runbooks plus PowerShell/Bash automation for standardized rebuilds, cutting manual configuration effort by an estimated 40%.
+- Reviewed the rubrics and automated tests used to grade AI training data, checking each criterion had exactly one defensible interpretation.
+- Flagged tests that only passed for one specific solution, tests that validated their own output, and criteria with incorrect scoring weights.
+- Wrote structured analysis reports separating checks a machine can verify from those needing human judgment, and cross-checked findings against independent analysis.
 
 ### Computer IT Instructor (Computer Science & Applied Computing)
 - Organization: Pures College of Technology

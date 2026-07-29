@@ -152,11 +152,11 @@
         },
         {
           "name": "PostgreSQL",
-          "usage": "Model relational data and enforce integrity at the database layer, including exclusion constraints that prevent overlapping bookings."
+          "usage": "Model relational data and enforce rules at the database layer, including a safeguard that prevents overlapping bookings."
         },
         {
           "name": "Stripe",
-          "usage": "Structure payment provider adapters, contractor payout disbursement, and gateway-fee reconciliation workflows."
+          "usage": "Handle client card payments, coach payouts, and reconciliation checks confirming charged fees match fees actually deducted."
         },
         {
           "name": "Supabase / InsForge",

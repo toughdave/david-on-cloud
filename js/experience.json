@@ -2,54 +2,41 @@
   "sectionTitle": "Work Experience",
   "entries": [
     {
-      "period": "Mar. 2026 – Present",
+      "period": "Aug. 2025 – Present",
       "outcomes": [
-        "Delivered full-stack features across a multi-tenant Next.js platform serving four roles (Super Admin, Staff Coach, Independent Coach, and Suite clients).",
-        "Closed a double-booking race condition using PostgreSQL btree_gist EXCLUDE constraints over overlapping booking intervals.",
-        "Built Stripe payment flows including contractor payout disbursement and estimated-vs-actual gateway-fee reconciliation.",
-        "Authored 127+ chapters of role-based platform documentation, kept CI-verified and cross-link-clean.",
-        "Administered platform infrastructure: custom-domain DNS verification, Hetzner SMTP mail delivery, and scheduled backup automation.",
-        "Shipped 300+ merged pull requests using git worktrees and AI-augmented workflows (Claude Code), with CI/E2E nightly test tuning."
+        "Anchor Coaching (contract, Mar 2026 – present): delivered features for a coaching platform serving four user types — administrators, staff coaches, independent coaches, and clients.",
+        "Fixed a scheduling fault that could let two clients book the same session, moving the safeguard into the database so it applies to every booking route rather than one screen.",
+        "Built the payments and payouts process, including coach payouts and a reconciliation check confirming the fees charged match the fees actually deducted.",
+        "Wrote 127+ chapters of user documentation tailored to each role, with automated checks that catch broken links before release.",
+        "Administered the platform's infrastructure: custom domain setup and verification, business email delivery, and scheduled backups.",
+        "Shipped 300+ reviewed code changes using AI-assisted development workflows and automated nightly testing.",
+        "Independent systems consulting: standardized staff onboarding and offboarding with account controls across Active Directory, Entra ID, and Microsoft 365.",
+        "Built and maintained small-business network and server infrastructure using Cisco switching, network segmentation, and virtualization, sustaining 99.9% availability.",
+        "Managed domain and DNS operations for davidoncloud.com, and resolved network and system faults through structured diagnosis and root-cause analysis.",
+        "Produced technical runbooks and automation scripts for repeatable rebuilds, cutting manual setup effort by an estimated 40%."
       ],
       "backgroundImage": "/img/projects/web/DevOps-Pipeline.png",
-      "location": "Remote",
-      "focus": "Shipping booking, payments, community, and staff-admin features on a live multi-tenant coaching SaaS platform, with CI-verified documentation and automated testing.",
-      "logLine": "build sync: 300+ PRs merged • 127 doc chapters CI-verified",
-      "title": "IT Administrator and Full-Stack Developer",
-      "company": "Anchor Coaching (www.theanchorcoach.com)",
+      "location": "North York, ON — contract work remote",
+      "focus": "Running an independent practice covering IT systems administration and full-stack contract delivery — currently building booking, payments, and documentation features for a live coaching platform.",
+      "logLine": "ops sync: 300+ changes shipped • 99.9% uptime • docs verified",
+      "title": "IT Administrator, Full-Stack Developer & Systems Consultant",
+      "company": "Independent Practice — client: Anchor Coaching (www.theanchorcoach.com)",
       "insetImage": "/img/projects/web/website-hero-intro-blurred-.png"
     },
     {
       "period": "Feb. 2026 – July 2026",
       "outcomes": [
-        "Analyzed AI-agent training datasets (rubrics, unit tests, task specifications) against a \"zero degrees of freedom\" validity standard, flagging overfit assertions, self-referential test logic, and scoring errors.",
-        "Authored structured analysis reports distinguishing deterministic, programmatically-verifiable criteria from natural-language judgment.",
-        "Cross-validated findings against independent analysis and applied ground-truth verification and coverage-gap checks to assess dataset integrity."
+        "Reviewed the rubrics and automated tests used to grade AI training data, checking each criterion had exactly one defensible interpretation.",
+        "Flagged tests that only passed for one specific solution, tests that validated their own output, and criteria with incorrect scoring weights.",
+        "Wrote structured analysis reports separating checks a machine can verify from those needing human judgment, and cross-checked findings against independent analysis."
       ],
       "backgroundImage": "/img/projects/ai/ai-evaluation-bg.jpg",
       "location": "Remote",
-      "focus": "Evaluating the validity of rubrics and unit tests used to train AI agents, separating machine-verifiable criteria from human judgment.",
+      "focus": "Checking whether the rubrics and tests used to train AI models actually measure what they claim to measure.",
       "logLine": "eval pass: rubric integrity checked • ground truth verified",
       "title": "AI Training Data Scientist / Data Analyst",
       "company": "Outlier (OpenClaw Atlas Program)",
       "insetImage": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg"
-    },
-    {
-      "period": "Aug. 2025 – Present",
-      "outcomes": [
-        "Standardized onboarding/offboarding with account lifecycle controls across Active Directory, Entra ID, and Microsoft 365 Admin Center.",
-        "Architected SME infrastructure with Cisco Catalyst switching, VLAN segmentation, inter-VLAN routing, and VMware/VirtualBox virtualization, sustaining 99.9% availability.",
-        "Managed domain and DNS operations for davidoncloud.com, including record updates, routing validation, and change tracking.",
-        "Resolved network and systems incidents through CLI diagnostics and root-cause analysis across subnet, firewall, and DHCP scope issues.",
-        "Produced technical runbooks plus PowerShell/Bash automation for standardized rebuilds, cutting manual configuration effort by an estimated 40%."
-      ],
-      "backgroundImage": "/img/experience/CN-tower-view-downtown-Toronto-event.png",
-      "location": "North York, ON",
-      "focus": "Delivering resilient SME infrastructure, domain and identity operations, plus automation-led support backed by measurable reliability controls.",
-      "logLine": "ops sync: 99.9% uptime • identity and workflow controls aligned",
-      "title": "IT Systems & Network Consultant",
-      "company": "Consulting Practice",
-      "insetImage": "/img/experience/at-Microsoft-downtown-Toronto-event.png"
     },
     {
       "period": "Jan. 2024 - Aug. 2025",

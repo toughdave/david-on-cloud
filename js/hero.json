@@ -16,7 +16,7 @@
   ],
   "subtitle": "Information Systems, Data Analyst & IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "I'm an Information Systems and Data Analyst and IT Administrator with a Master's degree in Computer Science and 9+ years across academic ERP systems, reporting workflows, and infrastructure. Recently I've shipped production full-stack features on a multi-tenant Next.js/PostgreSQL platform and evaluated training-data quality for AI models.",
+  "introText": "I'm an Information Systems and Data Analyst and IT Administrator with a Master's degree in Computer Science and 9+ years across academic ERP systems, reporting workflows, and infrastructure. Recently I've built and shipped features for a live coaching platform and reviewed data quality for AI model training.",
   "secondaryCTA": {
     "text": "Projects Brief",
     "href": "#projects"

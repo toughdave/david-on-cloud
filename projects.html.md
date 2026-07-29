@@ -4,53 +4,56 @@
 ## Source of Truth
 - [Projects JSON](https://www.davidoncloud.com/js/projects.json): Canonical project content managed through CMS data files.
 
-## Booking-Conflict Prevention with PostgreSQL Exclusion Constraints
+## Preventing Double-Booked Coaching Sessions
 - Category: webdev
 - Posted: 2026-07-20
 - Updated: 2026-07-20
-- Tags: PostgreSQL, Next.js, TypeScript, Concurrency, Data Integrity, Automated Testing
+- Tags: Databases, PostgreSQL, Scheduling, Data Integrity, Automated Testing
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/booking-conflict-prevention-postgresql.md)
 - PDF: N/A
 
 ### Project Summary
-Closed a double-booking race condition on a multi-tenant coaching platform by enforcing booking integrity with a PostgreSQL btree_gist EXCLUDE constraint, making overlapping reservations impossible at the database layer rather than relying on application-level checks.
+Fixed a fault that could let two clients book the same coaching slot at the same time. The safeguard now lives in the database rather than in one screen's code, so it applies to every route that creates a booking.
 
 ### Technical Notes
-- Diagnosed a double-booking race condition in the scheduling system where concurrent requests could both pass an application-level availability check before either committed, producing overlapping bookings that had to be resolved manually by coaches.
-- Moved the guarantee out of application code and into the database using a PostgreSQL btree_gist EXCLUDE constraint over the booking's time range, so any two overlapping intervals for the same resource are rejected by the engine itself regardless of request timing or concurrency.
-- Chose an exclusion constraint over optimistic locking or advisory locks because it holds for every write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock.
-- Verified the fix against concurrent-request scenarios and folded the case into the platform's automated test suite so the guarantee is re-checked on every pull request.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present) on a multi-tenant Next.js coaching SaaS platform.
+- Diagnosed a scheduling fault where two booking requests arriving at the same moment could both pass the availability check before either was saved, producing two clients booked into one coaching slot that a coach then had to untangle by hand.
+- Moved the safeguard out of the app's code and into the database, so the rule applies to every route that creates a booking — the app, admin tools, background jobs, and manual data fixes — rather than only the paths a developer remembered to protect.
+- Shipped it in two steps: first blocking exact duplicate slots (the quick, safe win), then blocking partial overlaps such as a 2:00–3:00 session colliding with a 2:30–3:30 one.
+- Added tests covering simultaneous-booking scenarios, re-run automatically on every change, and centralised conflict handling so every part of the app responds to a rejected booking the same way.
+- Technical detail: the rule is a PostgreSQL exclusion constraint using the btree_gist extension, which lets one index combine an exact match (which coach) with a range check (do the times overlap).
+- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), a coaching platform serving administrators, staff coaches, independent coaches, and clients.
 - Live reference: Live platform: The Anchor Coach — https://www.theanchorcoach.com
 
 ### Results and Impact
-- **Overlapping bookings**: 0 (Enforced at the database layer)
-- **EXCLUDE constraint**: btree_gist (Covers every write path)
+- **Double bookings**: 0 (Prevented at the database level)
+- **Booking route covered**: Every (Not just the main screen)
 
-## Stripe Payment Reconciliation for a Coaching Platform
+## Payments and Payout Reconciliation for a Coaching Platform
 - Category: webdev
 - Posted: 2026-07-18
 - Updated: 2026-07-18
-- Tags: Stripe, Payments, Reconciliation, TypeScript, Next.js, Data Validation
+- Tags: Payments, Stripe, Reconciliation, Financial Controls, Data Validation
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/stripe-payment-reconciliation-coaching-platform.md)
 - PDF: N/A
 
 ### Project Summary
-Built Stripe payment infrastructure for a coaching platform: a PaymentProvider adapter, contractor payout disbursement, and estimated-vs-actual gateway-fee reconciliation so fee variances surface instead of being silently absorbed.
+Built the payments and payouts process for a coaching platform, including coach payouts and a reconciliation check that confirms the fees charged to clients match the fees the payment provider actually deducted.
 
 ### Technical Notes
-- Structured a PaymentProvider adapter around Stripe so payment operations sit behind a single interface, keeping gateway-specific logic in one place instead of spread through feature code.
-- Built contractor payout disbursement workflows covering the path from a completed coaching session through to the coach receiving funds.
-- Implemented estimated-vs-actual gateway-fee reconciliation for free-tier coaches, so the fee assumed at booking time is compared against the fee Stripe actually charged, and the difference is surfaced rather than silently absorbed.
-- Applied the same reconciliation discipline used for institutional financial data at FUTA: compare source against target, surface the variance, and make the check repeatable rather than one-off.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
+- Built the payments and payouts process for a coaching platform, covering client card payments through to coaches receiving their money.
+- Kept all payment-provider logic in one place rather than letting it spread through the app, so payments stay testable and the provider could be swapped later without rewriting features.
+- Recorded the tax breakdown and the provider's fee against each payment at the time it happened, so historical records stay correct even if fee schedules change later.
+- Added a reconciliation check comparing the fee expected when a client is charged against the fee the provider actually deducted on settlement, writing any difference into an accounting record instead of letting it quietly reduce someone's margin — which matters on a free tier that advertises no platform fee.
+- Built coach payout disbursement with support for multiple payout methods, a self-serve earnings view, and guards blocking refunds on non-refundable purchases.
+- This is the same reconciliation discipline used for institutional financial data at FUTA — compare source against target, surface the difference, make the check repeatable — applied to payments instead of academic records.
+- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
 - Live reference: Live surface: Anchor Suite pricing — https://www.theanchorcoach.com/suite/pricing
 
 ### Results and Impact
-- **Fee reconciliation**: 2-sided (Estimated vs. actual gateway fees)
-- **Provider adapter**: 1 (Gateway logic behind one interface)
+- **Fees reconciled**: Charged vs. actual (Variance recorded, not absorbed)
+- **Coach payouts**: Multi-rail (Automated disbursement)
 
-## 127-Chapter Role-Based Documentation System
+## 127-Chapter Role-Based User Documentation
 - Category: webdev
 - Posted: 2026-07-15
 - Updated: 2026-07-15
@@ -59,37 +62,41 @@ Built Stripe payment infrastructure for a coaching platform: a PaymentProvider a
 - PDF: N/A
 
 ### Project Summary
-Authored and maintained a 127+ chapter role-based documentation system for a multi-tenant SaaS platform, scoped per user role and CI-verified so broken cross-links fail the build rather than reaching users.
+Wrote and maintained 127+ chapters of user documentation for a coaching platform, tailored so each type of user reads only what applies to them, with automated checks that catch broken links before release.
 
 ### Technical Notes
-- Authored 127+ chapters of role-based platform documentation covering four distinct user types (Super Admin, Staff Coach, Independent Coach, and two client types), so each role reads only the surface it actually operates.
-- Built public documentation surfaces alongside the internal role-scoped material, keeping a single body of content serving both audiences.
-- Kept the documentation CI-verified and cross-link-clean: link integrity is checked automatically on every pull request, so a renamed or removed chapter fails the build instead of silently becoming a dead link.
-- Treated documentation as a delivery artifact with the same validation standards as code, extending the documentation-standards practice established across admissions and examination workflows at FUTA.
-- Work Context: Delivered as a contract full-stack developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
+- Wrote 127+ chapters of user documentation covering four types of platform user — administrators, staff coaches, independent coaches, and two client types — so each audience reads only what applies to their role.
+- A single undifferentiated manual would have made things worse: a staff coach reading administrator procedures learns steps they cannot perform and misses the ones they can.
+- Wrote in plain English with short steps and clear role boundaries, plus action playbooks answering 'how do I do this' rather than only 'what is this'.
+- Added automated link checking so a renamed or removed chapter breaks the build on the change that caused it, instead of leaving dead links for users to find.
+- Built public documentation pages alongside the internal role-scoped material, keeping one body of content serving both audiences.
+- This extends the documentation-standards practice established across admissions and examination workflows at FUTA, where written procedure was what made a one-person office auditable.
+- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
 - Live reference: Live surface: platform documentation — https://www.theanchorcoach.com/documentation
 
 ### Results and Impact
 - **Documentation chapters**: 127+ (Role-based, across four user types)
 - **Link verification**: CI (Checked on every pull request)
 
-## Rubric & Unit-Test Validity Analysis for AI Training Data
+## Reviewing Rubrics and Tests Used to Train AI Models
 - Category: ai
 - Posted: 2026-07-10
 - Updated: 2026-07-10
-- Tags: AI Evaluation, Python, pytest, Data Validation, Ground-Truth Verification, Technical Analysis
+- Tags: AI Evaluation, Data Validation, Python, Quality Analysis, Technical Review
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/rubric-unit-test-validity-analysis.md)
 - PDF: N/A
 
 ### Project Summary
-Evaluated the validity of rubrics and unit tests used to train AI agents, applying a "zero degrees of freedom" standard to surface overfit assertions, self-referential test logic, and scoring errors, and separating machine-verifiable criteria from natural-language judgment.
+Reviewed the rubrics and automated tests used to grade AI training data, checking each criterion had exactly one defensible interpretation and separating checks a machine can verify from those needing human judgment.
 
 ### Technical Notes
-- Analyzed AI-agent training datasets (rubrics, unit tests, and task specifications) for validity, applying a "zero degrees of freedom" standard: a criterion either has exactly one defensible interpretation, or it is not a valid grading criterion.
-- Identified recurring failure modes in training data including overfit assertions tied to one specific implementation, self-referential test logic that validates itself rather than the behaviour, and reward/penalty scoring errors.
-- Authored structured written analysis reports that explicitly separate deterministic, programmatically-verifiable criteria from criteria requiring natural-language judgment — the distinction that determines whether a rubric item can be machine-scored at all.
-- Cross-validated conclusions against independent AI-generated analysis, using disagreement between the two as a signal for where to look harder rather than treating either as authoritative.
-- Work Context: Delivered as an AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February-July 2026).
+- Reviewed the rubrics and automated tests used to grade AI training data, checking that each grading criterion had exactly one defensible interpretation — if it admits two readings, it measures whether the model guessed the author's intent rather than whether it was correct.
+- Flagged three recurring failure patterns: tests that only pass for one specific solution and fail correct alternatives; tests that check their own output rather than the behaviour, so they pass regardless of correctness; and criteria weighted wrongly, teaching the model the wrong lesson even when the check itself is sound.
+- Separated criteria a machine can verify automatically from those needing human judgment — the distinction that decides whether an item can be scored automatically at all.
+- Read the Python test suites directly rather than working from task descriptions, since the test is the real specification, and checked for requirements the tests never exercised.
+- Cross-checked conclusions against independent analysis, treating disagreement between the two as a signal to look harder rather than accepting either as authoritative.
+- The analytical core is the same one used for academic records at FUTA: establish ground truth, verify against it, and document the reasoning so someone else can check the conclusion.
+- Work Context: Delivered as AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February–July 2026).
 
 ### Results and Impact
 - **Degrees of freedom**: 0 (Validity standard applied to each criterion)

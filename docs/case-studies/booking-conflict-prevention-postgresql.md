@@ -1,7 +1,7 @@
-# Booking-Conflict Prevention with PostgreSQL Exclusion Constraints
+# Preventing Double-Booked Coaching Sessions
 
 ## Project Summary
-Closed a double-booking race condition on a live multi-tenant coaching platform by moving the booking-integrity guarantee out of application code and into the database, using a PostgreSQL `btree_gist` EXCLUDE constraint over the booking's time range.
+Fixed a fault on a live coaching platform that could let two clients book the same session at the same time. The safeguard now sits in the database rather than in one screen's code, so it applies to every route that creates a booking.
 
 ## Work Context
 Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), a multi-tenant Next.js coaching SaaS platform serving Super Admin, Staff Coach, Independent Coach, and Suite client roles.
@@ -12,26 +12,26 @@ Concurrent booking requests could both pass an application-level availability ch
 ## Approach
 The fix went in as two layers, in order:
 
-1. **Unique indexes** to close the exact-duplicate slot race first — the narrow, immediately shippable case.
-2. **A `btree_gist` EXCLUDE constraint** over the booking interval to close the harder case: bookings that are not identical but *overlap*. The exclusion constraint rejects any two overlapping intervals for the same coach at the engine level.
+1. **Block exact duplicates first** — the narrow case where two requests ask for the identical slot. This was the quickest safe win, so it shipped on its own.
+2. **Then block overlaps** — the harder case, where two bookings are not identical but still collide (a 2:00–3:00 session against a 2:30–3:30 one). The database now rejects any two bookings for the same coach whose times overlap at all.
 
-An exclusion constraint was chosen over optimistic locking or advisory locks because it holds for **every** write path — application code, admin tooling, background jobs, and manual SQL — rather than only the paths that remember to take the lock. A guarantee that depends on every future caller behaving correctly is not a guarantee.
+The key decision was *where* to put the rule. Putting it in the database means it applies to every route that creates a booking — the app, admin tools, background jobs, and manual data fixes — instead of only the paths a developer remembered to protect. A rule that depends on every future caller behaving correctly is not really a rule.
 
 ## Results and Impact
-- Overlapping bookings possible after the fix: **0**, enforced by the database itself
-- Write paths covered: **all** — the constraint cannot be bypassed by new code
-- Conflict handling centralized behind a single shared sentinel so every call site reacts to a caught conflict the same way
-- Regression coverage added as integration tests, re-run by CI on every pull request
+- Double bookings possible after the fix: **0**, prevented by the database itself
+- Booking routes covered: **all** — the rule cannot be skipped by new code
+- Conflict handling centralized so every part of the app responds to a rejected booking the same way
+- Tests added covering simultaneous-booking scenarios, re-run automatically on every change
 
 ## Deliverables
-- Migration adding the booking-slot conflict unique index
-- Migration adding the `btree_gist` overlap EXCLUDE constraint
-- Shared slot-conflict detection module with unit tests
-- Integration test suite exercising concurrent-booking scenarios
-- Follow-up pass making every call site observe the shared conflict sentinel
+- Database change blocking exact duplicate slots
+- Database change blocking overlapping bookings for the same coach
+- Shared conflict-detection module with unit tests
+- Test suite exercising simultaneous-booking scenarios
+- Follow-up pass making every part of the app handle a rejected booking consistently
 
 ## Technical Notes
-- `btree_gist` is the PostgreSQL extension that lets a GiST index combine scalar equality (the coach identifier) with range overlap (the booking window) inside one exclusion constraint.
-- The constraint expresses the business rule directly: for a given coach, no two active bookings may have overlapping time ranges.
-- Because enforcement is declarative, the rule is visible in the schema rather than buried in service code — it documents itself for whoever maintains the platform next.
-- Shipped across three pull requests, layering the narrow fix first and the general guarantee second, so each step was independently reviewable and revertible.
+For readers who want the specifics: the rule is a PostgreSQL exclusion constraint using the `btree_gist` extension, which lets one index combine an exact match (which coach) with a range check (does the time overlap). In plain terms, the database is told "for any one coach, no two active bookings may overlap in time," and it enforces that on every write.
+
+- Expressing the rule in the schema keeps it visible to whoever maintains the platform next, rather than buried inside service code.
+- Shipped across three changes — narrow fix first, general rule second — so each step could be reviewed and undone independently.

@@ -1,4 +1,4 @@
-# Rubric & Unit-Test Validity Analysis for AI Training Data
+# Reviewing Rubrics and Tests Used to Train AI Models
 
 ## Project Summary
 Evaluated the validity of rubrics and unit tests used to train AI agents, applying a "zero degrees of freedom" standard to surface overfit assertions, self-referential test logic, and reward/penalty scoring errors, and separating machine-verifiable criteria from natural-language judgment.
