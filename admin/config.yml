@@ -440,7 +440,7 @@ collections:
               - {label: "Published (Peer-Reviewed)", name: "published", widget: "boolean", default: false, required: false, hint: "Mark this project as formally published"}
               - {label: "Show Ribbon", name: "showRibbon", widget: "boolean", default: false, required: false, hint: "Display a sticker ribbon on the project card"}
               - {label: "Ribbon Text", name: "ribbonText", widget: "string", default: "Published", required: false, hint: "Text on the ribbon sticker (max 12 chars)", pattern: ['^.{0,12}$', "Max 12 characters"]}
-              - {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking"]}
+              - {label: "Category", name: "category", widget: "select", options: ["data", "automation", "systems", "networking", "webdev", "ai"], hint: "Must match a filter button on the projects page: webdev = Web & App Dev, ai = AI & Evaluation"}
               - {label: "Cover Image", name: "image", widget: "image"}
               - {label: "Summary", name: "summary", widget: "text"}
               - {label: "Mobile Summary", name: "mobileSummary", widget: "text", required: false, hint: "Short version used in compact/mobile views"}
@@ -465,6 +465,8 @@ collections:
               - {label: "Modified Date", name: "modified", widget: "datetime"}
               - {label: "Publication Link", name: "link", widget: "string", required: false}
               - {label: "Link Display Text", name: "linkText", widget: "string", required: false}
+              - {label: "Live Source URL", name: "sourceUrl", widget: "string", required: false, hint: "Public URL backing this project (live site or public GitHub repo). Shown as a second button in the project modal. Leave blank if there is no public source."}
+              - {label: "Live Source Text", name: "sourceText", widget: "string", required: false, hint: "Button label for the Live Source URL, e.g. 'Live surface: Anchor Suite pricing'"}
               - {label: "PDF Path", name: "pdf", widget: "file", required: false, media_folder: "docs/case-studies", public_folder: "/docs/case-studies", hint: "Upload/select case-study PDF from docs/case-studies/"}
               - label: "Inline Images"
                 name: "images"
