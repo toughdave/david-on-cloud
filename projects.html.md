@@ -6,8 +6,8 @@
 
 ## Preventing Double-Booked Coaching Sessions
 - Category: webdev
-- Posted: 2026-07-20
-- Updated: 2026-07-20
+- Posted: 2026-07-29
+- Updated: 2026-07-29
 - Tags: Databases, PostgreSQL, Scheduling, Data Integrity, Automated Testing
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/booking-conflict-prevention-postgresql.md)
 - PDF: N/A
@@ -30,8 +30,8 @@ Fixed a fault that could let two clients book the same coaching slot at the same
 
 ## Payments and Payout Reconciliation for a Coaching Platform
 - Category: webdev
-- Posted: 2026-07-18
-- Updated: 2026-07-18
+- Posted: 2026-07-29
+- Updated: 2026-07-29
 - Tags: Payments, Stripe, Reconciliation, Financial Controls, Data Validation
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/stripe-payment-reconciliation-coaching-platform.md)
 - PDF: N/A
@@ -55,8 +55,8 @@ Built the payments and payouts process for a coaching platform, including coach 
 
 ## 127-Chapter Role-Based User Documentation
 - Category: webdev
-- Posted: 2026-07-15
-- Updated: 2026-07-15
+- Posted: 2026-07-29
+- Updated: 2026-07-29
 - Tags: Documentation, CI/CD, GitHub Actions, Technical Writing, Quality Assurance
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/role-based-documentation-system.md)
 - PDF: N/A
@@ -80,8 +80,8 @@ Wrote and maintained 127+ chapters of user documentation for a coaching platform
 
 ## Reviewing Rubrics and Tests Used to Train AI Models
 - Category: ai
-- Posted: 2026-07-10
-- Updated: 2026-07-10
+- Posted: 2026-07-29
+- Updated: 2026-07-29
 - Tags: AI Evaluation, Data Validation, Python, Quality Analysis, Technical Review
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/rubric-unit-test-validity-analysis.md)
 - PDF: N/A
@@ -105,7 +105,7 @@ Reviewed the rubrics and automated tests used to grade AI training data, checkin
 ## Portfolio Web Operations & Domain Administration
 - Category: systems
 - Posted: 2026-02-26
-- Updated: 2026-07-22
+- Updated: 2026-07-29
 - Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment, Release Automation, Docker, Validation, Custom Domains, DNS Verification, SMTP, Hetzner
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/portfolio-web-operations-domain-administration.md)
 - PDF: N/A
