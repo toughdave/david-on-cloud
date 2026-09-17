@@ -4878,15 +4878,15 @@ html:not([data-theme="dark"]) .sticky-section-title::after {
     z-index: 60;
 }
 
-.peer:checked ~ .mobile-menu {
+#menu-toggle[aria-expanded="true"] ~ .mobile-menu {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
     pointer-events: auto;
 }
 
-#menu-toggle + label { position: relative; z-index: 40; }
-#menu-toggle:checked ~ #mobile-menu { z-index: 60; }
+#menu-toggle { position: relative; z-index: 40; }
+#menu-toggle[aria-expanded="true"] ~ #mobile-menu { z-index: 60; }
 
 /* No JS fallback needed when using pure CSS */
 
@@ -4901,15 +4901,15 @@ html:not([data-theme="dark"]) .sticky-section-title::after {
     transition: all 0.3s;
 }
 
-#menu-toggle:checked + label .hamburger-icon span:nth-child(1) {
+#menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
 
-#menu-toggle:checked + label .hamburger-icon span:nth-child(2) {
+#menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
     opacity: 0;
 }
 
-#menu-toggle:checked + label .hamburger-icon span:nth-child(3) {
+#menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
 
@@ -8621,3 +8621,9 @@ body.fun-mode .analyst-insight-card:hover {
         height: 420px;
     }
 }
+
+/* Keep the portfolio introduction stable and keyboard focus visible. */
+#intro .typing-cursor { display: none; }
+#menu-toggle:focus-visible, .project-modal-card a:focus-visible { outline: 3px solid #6366f1; outline-offset: 4px; }
+#formStatus.text-red-600 { color: #dc2626; }
+#formStatus.text-green-600 { color: #15803d; }

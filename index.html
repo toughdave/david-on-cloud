@@ -8,7 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <meta name="apple-mobile-web-app-title" content="David on Cloud" />
     <link rel="manifest" href="/site.webmanifest" />
     <script>
         (function() {
@@ -16,27 +16,26 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
     </script>
-    <script src="/static/vendor/tailwind/tailwindcss-cdn.js"></script>
+    <link rel="stylesheet" href="css/utilities.css?v=5.13.1">
     <link rel="stylesheet" href="css/style.css?v=5.13.1">
     <link href="/static/vendor/aos/aos.css" rel="stylesheet">
     <script src="/static/vendor/aos/aos.js" defer></script>
-    <script src="/static/vendor/three/three.min.js" defer></script>
-    <script src="/static/vendor/vanta/vanta.globe.min.js" defer></script>
     
     <!-- Structured data and meta tags -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="Systems & Data Analyst and IT Administrator focused on data accuracy, reporting automation, and reliable operations — with recent contract work in full-stack development and AI training-data evaluation.">
-    <link rel="canonical" href="https://www.davidoncloud.com/">
-    <link rel="alternate" type="text/markdown" href="https://www.davidoncloud.com/index.html.md">
+    <link rel="canonical" href="https://davidoncloud.com/">
+    <link rel="alternate" type="text/markdown" href="https://davidoncloud.com/index.html.md">
     <meta property="og:title" content="David On Cloud - Systems & Data Analyst & IT Administrator">
     <meta property="og:description" content="Systems & Data Analyst and IT Administrator focused on data accuracy, reporting automation, and reliable operations — with recent contract work in full-stack development and AI training-data evaluation.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.davidoncloud.com/">
-    <meta property="og:image" content="https://www.davidoncloud.com/img/branding/OG-MTD.png">
+    <meta property="og:url" content="https://davidoncloud.com/">
+    <meta property="og:image" content="https://davidoncloud.com/img/branding/OG-MTD.png">
     <meta property="og:image:alt" content="David On Cloud portfolio preview">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="David On Cloud - Systems & Data Analyst & IT Administrator">
     <meta name="twitter:description" content="Systems & Data Analyst and IT Administrator focused on data accuracy, reporting automation, and reliable operations — with recent contract work in full-stack development and AI training-data evaluation.">
-    <meta name="twitter:image" content="https://www.davidoncloud.com/img/branding/OG-MTD.png">
+    <meta name="twitter:image" content="https://davidoncloud.com/img/branding/OG-MTD.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,7 +48,7 @@
 </head>
 <body class="font-sans antialiased text-gray-800 snap-container pt-16">
     <script>
-        document.body.classList.toggle('fun-mode', localStorage.getItem('fun-mode') !== 'off');
+        document.body.classList.toggle('fun-mode', localStorage.getItem('fun-mode') === 'on');
     </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- Animated Background -->
@@ -110,17 +109,16 @@
                 </div>
                 <!-- Hamburger Menu for Mobile -->
                 <div class="md:hidden flex items-center ml-4">
-                    <input type="checkbox" id="menu-toggle" class="hidden peer" />
-                    <label for="menu-toggle" class="cursor-pointer flex items-center h-16 px-2" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button" id="menu-toggle" aria-label="Open navigation" class="cursor-pointer flex items-center h-16 px-2" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="hamburger-icon flex flex-col justify-center items-center h-8 w-8">
                             <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
                             <span class="block w-6 h-0.5 bg-gray-700 mb-1 rounded transition-all"></span>
                             <span class="block w-6 h-0.5 bg-gray-700 rounded transition-all"></span>
                         </span>
-                    </label>
+                    </button>
                     <!-- Mobile menu with enhanced closing behavior -->
-                    <div id="mobile-menu" class="mobile-menu absolute right-4 top-16 w-64 bg-white shadow-lg border-t border-gray-200 z-50 rounded-xl
-                        opacity-0 invisible scale-95 transition-all duration-300 peer-checked:opacity-100 peer-checked:visible peer-checked:scale-100">
+                    <div id="mobile-menu" inert aria-hidden="true" class="mobile-menu absolute right-4 top-16 w-64 bg-white shadow-lg border-t border-gray-200 z-50 rounded-xl
+                        opacity-0 invisible scale-95 transition-all duration-300 ">
                         <div id="mobile-nav-list" class="flex flex-col py-4 px-4 space-y-2">
                             <div id="mobile-primary-nav" class="flex flex-col space-y-2">
                                 <!-- Primary links are managed by JavaScript -->
@@ -159,21 +157,21 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                        <span id="typing-text" class="typing-text" data-text="Hi, I'm David" data-force-typing="true">Hi, I'm David</span>
-                        <span class="typing-cursor typing-cursor-underscore force-blink" aria-hidden="true"></span>
+                        <span id="typing-text" class="typing-text" data-text="Hi, I'm David" >Hi, I'm David</span>
+                        <span class="typing-cursor typing-cursor-underscore" aria-hidden="true"></span>
                     </h1>
-                    <h2 class="text-2xl md:text-2xl lg:text-3xl font-semibold mb-6">Information Systems, Data Analyst &amp; IT Administrator</h2>
+                    <h2 class="text-2xl md:text-2xl lg:text-3xl font-semibold mb-6">Systems &amp; Data Analyst | IT Administrator</h2>
                     <div class="hero-status">
                         <span class="availability-badge">
                             <span class="availability-dot" aria-hidden="true"></span>
-                            <span class="availability-text">Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles</span>
+                            <span class="availability-text">Open to work · Toronto, ON · Willing to relocate</span>
                         </span>
                         <a href="docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf" class="resume-link" target="_blank" rel="noopener" download>
                             <i data-feather="download" aria-hidden="true"></i>
                             <span class="resume-link-text">Download Resume</span>
                         </a>
                     </div>
-                    <p class="text-lg opacity-90 mb-8">I'm an Information Systems and Data Analyst who also works as an IT Administrator, with a Master’s degree in Computer Science and over 9 years supporting academic IT environments, data-driven operations, and enterprise-style reporting workflows. I lead system analysis, data process improvements, and operational reliability work across Windows and Linux platforms. I also run hands-on home-lab scenarios with enterprise switching, VLAN configuration, IP addressing, and isolated test environments.</p>
+                    <p class="text-lg opacity-90 mb-8">I improve data accuracy, automate reporting, and keep systems reliable. My work spans academic IT, full-stack development, and AI data evaluation.</p>
 
                     <div class="hero-tags flex flex-wrap gap-3 text-xs sm:text-sm uppercase tracking-wider text-indigo-100 mb-6">
                         <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Systems Analysis</span>
@@ -183,7 +181,7 @@
                     </div>
                     <div class="hero-actions flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <a href="#contact" class="hero-primary-btn flex-1 px-4 py-2.5 bg-white text-indigo-600 rounded-md font-medium hover:bg-opacity-90 transition text-center text-sm sm:text-base">Get In Touch</a>
-                        <a href="#projects" class="hero-secondary-btn flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">Projects Brief</a>
+                        <a href="projects.html" class="hero-secondary-btn flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">Explore My Projects</a>
                     </div>
                 </div>
                 <div data-aos="fade-left" class="flex justify-center hero-portrait-wrap">
@@ -902,8 +900,8 @@
                     <small>Designed by David | Version v<span id="version-display">5.13.1</span></small>
                 </div>
                 <div class="footer-ticker" data-fun-element aria-hidden="true">
-                    <span class="footer-ticker-label">system status</span>
-                    <span class="footer-ticker-text fun-message" data-messages="uptime 99.98% • last report 2h ago • queue steady|sync complete • 12 pipelines green • latency 4ms|alerts 0 • audits clean • handshakes stable" aria-live="polite">uptime 99.98% • last report 2h ago • queue steady</span>
+                    <span class="footer-ticker-label">Fun Lab demo</span>
+                    <span class="footer-ticker-text fun-message" data-messages="exploring ideas | building useful things | learning something new" aria-live="off">exploring ideas</span>
                 </div>
             </div>
             <div class="fun-footer-planet" aria-hidden="true"></div>
@@ -992,6 +990,7 @@
     <script src="/static/vendor/feather/feather.min.js" defer></script>
     <script src="js/site-loader.js?v=5.13.1" defer></script>
     <script src="js/project-times.js?v=5.13.1" defer></script>
+    <script src="js/contact-form.js?v=5.13.1" defer></script>
     <script src="js/scripts.js?v=5.13.1" defer></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
 > Systems and Data Analyst portfolio focused on academic information systems, data quality, reporting automation, and operational reliability.
 
 ## Core Pages
-- [Projects (Markdown)](https://www.davidoncloud.com/projects.html.md): Full project index with project summaries, technical notes, impact, and deliverables.
-- [Projects (JSON)](https://www.davidoncloud.com/js/projects.json): Canonical CMS-managed project records used by the website UI.
+- [Projects (Markdown)](https://davidoncloud.com/projects.html.md): Full project index with project summaries, technical notes, impact, and deliverables.
+- [Projects (JSON)](https://davidoncloud.com/js/projects.json): Canonical CMS-managed project records used by the website UI.
 
 ## Professional Summary
 - I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.

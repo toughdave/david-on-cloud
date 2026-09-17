@@ -200,7 +200,7 @@
       "summary": "Built a Power BI and Excel analytics suite to centralize results processing, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles serving 4,000+ students.",
       "mobileSummary": "Built a Power BI and Excel analytics suite that centralized results processing and anomaly tracking for 4,000+ students.",
       "modified": "2026-01-31T14:45:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Academic Results Analytics Dashboard",
       "tags": [
         "Power BI",
@@ -337,7 +337,7 @@
       "summary": "Executed a hands-on Cisco Catalyst 3850 troubleshooting lab and resolved five network issues across ICMP reachability, NIC sharing, VLAN subnet alignment, SVI state, and DHCP binding conflicts using command-level validation.",
       "mobileSummary": "Resolved five Cisco Catalyst 3850 lab issues across reachability, VLAN routing, and DHCP through command-level validation.",
       "modified": "2026-02-26T03:30:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Cisco Catalyst 3850 Troubleshooting Lab - Connectivity Recovery Playbook",
       "tags": [
         "Cisco Catalyst 3850",
@@ -408,7 +408,7 @@
       "summary": "Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware for 250+ students over multiple academic terms.",
       "mobileSummary": "Provisioned standardized Windows Server and Active Directory labs in VirtualBox/VMware for 250+ students.",
       "modified": "2026-02-26T03:28:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Virtual Lab Deployment & Active Directory",
       "tags": [
         "Windows Server",
@@ -514,7 +514,7 @@
       "mobileSummary": "Co-authored a peer-reviewed paper proposing a CCAAC security model for IoT devices, validated through a custom web app using ECDH mutual authentication.",
       "linkText": "Read Published Paper (CCSE Journal)",
       "modified": "2025-10-26T20:06:00.000-04:00",
-      "featured": true,
+      "featured": false,
       "pdf": "docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf",
       "title": "A Secured System for Internet-Enabled Host Devices",
       "images": [
@@ -582,7 +582,7 @@
       "summary": "Designed and deployed automated Python/SQL pipelines that transformed recurring operational reporting from manual spreadsheets into scheduled, quality-checked workflows for leadership updates.",
       "mobileSummary": "Built Python and SQL pipelines that automated recurring reporting with scheduled, quality-checked outputs.",
       "modified": "2025-12-20T10:15:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Operational Reporting Automation Pipeline",
       "tags": [
         "Python",
@@ -629,7 +629,7 @@
       "summary": "Built and operated a centralized records reconciliation process, cross-referencing admissions, enrollment, and results data to resolve duplicates, eligibility gaps, and mismatches before publication for 4,000+ records each cycle.",
       "mobileSummary": "Ran a centralized records reconciliation hub to resolve duplicates and eligibility gaps for 4,000+ records each cycle.",
       "modified": "2026-01-31T14:20:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Student Records Reconciliation Hub",
       "tags": [
         "SQL",
@@ -676,7 +676,7 @@
       "summary": "Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.",
       "mobileSummary": "Built a Power BI and Google Sheets SLA tracker that centralized exam readiness checkpoints and flagged at-risk items before each cycle.",
       "modified": "2026-02-03T10:30:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Exam Operations SLA Tracker",
       "tags": [
         "Power BI",
@@ -722,7 +722,7 @@
       "summary": "Created comprehensive implementation checklists, quality assurance scripts, and standardized documentation to bring consistency and repeatability to software rollouts, lab environment provisioning, and technical deployment workflows across classroom and examination environments.",
       "mobileSummary": "Created implementation checklists and QA scripts that standardized software rollouts and lab deployments across classrooms and exams.",
       "modified": "2025-09-29T12:21:50.056Z",
-      "featured": true,
+      "featured": false,
       "title": "Systems Implementation & QA Playbooks",
       "tags": [
         "Documentation",
@@ -898,7 +898,7 @@
       "summary": "Produced comprehensive standard operating procedures, technical runbooks, and hands-on training materials to support system rollouts, troubleshooting workflows, and staff onboarding across academic IT environments, directly reducing support ticket volume and accelerating new team member productivity.",
       "mobileSummary": "Produced SOPs, runbooks, and training materials that streamlined system rollouts and reduced repeat support tickets.",
       "modified": "2025-09-14T05:15:24.056Z",
-      "featured": true,
+      "featured": false,
       "title": "Technical Documentation & End-User Training",
       "tags": [
         "Documentation",
@@ -953,7 +953,7 @@
       "summary": "Built and operated my portfolio website as a production-style web and domain operations project — CMS-managed delivery, DNS administration, Microsoft 365 identity governance, scripted releases and pre-flight validation — then applied the same practice at production scale by shipping DNS-verified custom storefront domains and fixing outbound SMTP delivery for a multi-tenant coaching platform.",
       "mobileSummary": "Run my portfolio as a production web/domain operations project with CMS delivery, DNS admin, Microsoft 365 governance, and scripted release validation.",
       "modified": "2026-07-29T01:36:25.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Portfolio Web Operations & Domain Administration",
       "tags": [
         "Web Operations",
@@ -1013,7 +1013,7 @@
       "summary": "Delivered frontline Windows and Linux systems support through structured triage, documented root-cause workflows, and SLA-aligned incident handling across 200+ tracked requests spanning hardware, OS, network, and application issues for 4,000+ users.",
       "mobileSummary": "Delivered frontline Windows/Linux support with structured triage, root-cause tracking, and SLA-aligned incident handling for 4,000+ users.",
       "modified": "2026-02-26T03:25:00.000Z",
-      "featured": true,
+      "featured": false,
       "title": "Systems Support & Troubleshooting",
       "tags": [
         "Systems Support",

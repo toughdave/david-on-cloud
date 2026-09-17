@@ -2,7 +2,7 @@
 window.siteConfig = {
     settings: {
         shootingStarInterval: 25000,
-        defaultFunMode: true,
+        defaultFunMode: false,
         defaultTheme: 'light',
         primaryNavOrder: ['hero', 'about', 'experience', 'projects'],
         secondaryNavOrder: ['skills', 'toolsPlatforms', 'scriptLibrary', 'process', 'testimonials'],
@@ -117,6 +117,7 @@ const loadProjects = () => {
             const projectsList = document.getElementById('projectsList');
             const projectsCarousel = document.getElementById('projectsCarousel');
             const allProjects = (Array.isArray(data.projects) ? data.projects : []).filter(project => project && project.hidden !== true);
+            window.portfolioProjects = allProjects;
             const getProjectSummary = (project) => project.summary || project.description || '';
             const isMobileCarousel = window.matchMedia('(max-width: 768px)').matches;
             const getCarouselSummary = (project) => {
@@ -284,6 +285,7 @@ const loadProjects = () => {
             if (typeof window.setupProjectCardReveal === 'function') window.setupProjectCardReveal();
             if (typeof window.setupProjectFilters === 'function') window.setupProjectFilters();
             if (typeof window.updateViewLinks === 'function') window.updateViewLinks();
+            if (typeof window.openRequestedProject === 'function') window.openRequestedProject();
             if (typeof window.refreshProjectOverflow === 'function') window.refreshProjectOverflow();
             if (typeof updateTimes === 'function') updateTimes();
             
@@ -343,7 +345,28 @@ if (typeof AOS !== 'undefined') {
 
     // Initialize Vanta.js background
     let vantaEffect = null;
+    document.addEventListener('vanta:change', () => initVanta());
+    let vantaLoading = null;
+    const loadVanta = () => {
+        if (!vantaLoading) {
+            const load = src => new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+            vantaLoading = load('/static/vendor/three/three.min.js')
+                .then(() => load('/static/vendor/vanta/vanta.globe.min.js'))
+                .catch(error => { vantaLoading = null; throw error; });
+        }
+        return vantaLoading;
+    };
     const initVanta = () => {
+        if (!document.body.classList.contains('fun-mode') || document.body.classList.contains('fun-vanta-off')) {
+            if (vantaEffect) { vantaEffect.destroy(); vantaEffect = null; }
+            return;
+        }
         if (prefersReducedMotion) {
             debugLog('[Vanta] Skipped: prefers-reduced-motion is enabled');
             return;
@@ -353,7 +376,7 @@ if (typeof AOS !== 'undefined') {
             return;
         }
         if (typeof VANTA === 'undefined' || typeof VANTA.GLOBE !== 'function') {
-            debugWarn('[Vanta] Skipped: VANTA.GLOBE not available. CDN may have failed to load.');
+            loadVanta().then(initVanta).catch(() => debugWarn('[Vanta] Optional background could not load.'));
             return;
         }
         if (typeof THREE === 'undefined') {
@@ -928,110 +951,44 @@ function randomBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/* ===== MOBILE MENU FUNCTIONALITY ===== */
-// Use pure CSS via checkbox + label (Tailwind peer utility). No JS needed here.
-
-// Auto-close mobile menu on same-page anchor navigation
+/* ===== MOBILE NAVIGATION ===== */
 (function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (!menuToggle || !mobileMenu) return;
-
-    const closeSecondaryDetails = () => {
-        const details = mobileMenu.querySelector('#mobile-secondary-details');
-        if (details) details.open = false;
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+    const setOpen = (open, restoreFocus = false) => {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        menu.setAttribute('aria-hidden', String(!open));
+        menu.inert = !open;
+        if (!open) {
+            const details = menu.querySelector('details');
+            if (details) details.open = false;
+            if (restoreFocus) toggle.focus();
+        }
     };
-
-    const closeMobileMenu = () => {
-        menuToggle.checked = false;
-        closeSecondaryDetails();
-    };
-
-    function isSamePageAnchor(link) {
-        try {
-            const url = new URL(link.getAttribute('href', 2) || '', window.location.href);
-            if (!url.hash) return false;
-            const normalize = (p) => (p || '/').replace(/\/+$/, '') || '/';
-            const current = normalize(window.location.pathname);
-            const target = normalize(url.pathname || '/');
-            if (target === current) return true;
-            if (target.endsWith('/index.html') && (current === '/' || current.endsWith('/index.html'))) return true;
-            return false;
-        } catch { return false; }
-    }
-
-    mobileMenu.addEventListener('click', (event) => {
-        const link = event.target.closest('a, button');
-        if (!link) return;
-
-        if (isSamePageAnchor(link)) {
-            setTimeout(closeMobileMenu, 0);
-        }
-
-        if (link.matches('.mobile-secondary-item')) {
-            closeSecondaryDetails();
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+    toggle.addEventListener('click', () => setOpen(!isOpen()));
+    menu.addEventListener('click', event => {
+        if (event.target.closest('a[href]')) setOpen(false);
+    });
+    document.addEventListener('click', event => {
+        if (isOpen() && !menu.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && isOpen()) {
+            event.preventDefault();
+            setOpen(false, true);
         }
     });
-
-    menuToggle.addEventListener('change', () => {
-        if (!menuToggle.checked) {
-            closeSecondaryDetails();
-        }
+    document.addEventListener('focusin', event => {
+        if (isOpen() && !menu.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
     });
-
-    // Close on click outside
-    document.addEventListener('click', (e) => {
-        const menuLabel = document.querySelector('label[for="menu-toggle"]');
-        if (menuToggle.checked && 
-            !mobileMenu.contains(e.target) && 
-            (!menuLabel || !menuLabel.contains(e.target)) &&
-            e.target !== menuToggle) {
-            closeMobileMenu();
-        }
+    window.matchMedia('(min-width: 768px)').addEventListener('change', event => {
+        if (event.matches) setOpen(false);
     });
-
-    // Close on scroll
-    window.addEventListener('scroll', () => {
-        if (menuToggle.checked) {
-            closeMobileMenu();
-        }
-    }, { passive: true });
+    setOpen(false);
 })();
-
-/* ===== CONTACT FORM ===== */
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = e.target;
-        const data = {
-            name: form.name.value,
-            email: form.email.value,
-            subject: form.subject.value,
-            message: form.message.value
-        };
-        const endpoint = 'https://formspree.io/f/mjkedzyv';
-        try {
-            const res = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            if (res.ok) {
-                document.getElementById('formStatus').classList.remove('hidden');
-                form.reset();
-            } else {
-                document.getElementById('formStatus').textContent = 'Failed to send. Please try again.';
-                document.getElementById('formStatus').classList.remove('hidden');
-                document.getElementById('formStatus').classList.add('text-red-600');
-            }
-        } catch {
-            document.getElementById('formStatus').textContent = 'Failed to send. Please try again.';
-            document.getElementById('formStatus').classList.remove('hidden');
-            document.getElementById('formStatus').classList.add('text-red-600');
-        }
-    });
-}
 
 /* ===== UTILITY FUNCTIONS ===== */
 // Section title animations
@@ -1338,9 +1295,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const applyVantaMode = (mode, enabled) => {
         document.body.classList.toggle('fun-vanta-dim', enabled && mode === 'dim');
-        document.body.classList.toggle('fun-vanta-off', enabled && mode === 'off');
+        document.body.classList.toggle('fun-vanta-off', !enabled || mode === 'off');
+        document.dispatchEvent(new Event('vanta:change'));
         if (vantaBg) {
-            vantaBg.setAttribute('aria-hidden', enabled && mode === 'off' ? 'true' : 'false');
+            vantaBg.setAttribute('aria-hidden', 'true');
         }
     };
 
@@ -2315,7 +2273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textSpan.dataset.originalText = textSpan.textContent.trim();
         }
 
-        let revealText = "No modifications yet";
+        let revealText = "Read project details";
         const card = link.closest('.project-card') || link.closest('.project-list-card');
         if (card) {
             const project = parseProjectPayload(card);
@@ -2343,7 +2301,8 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay: null,
         activeTrigger: null,
         closeTimer: null,
-        sourceCard: null
+        sourceCard: null,
+        backgroundInert: new Map()
     };
 
     const getSourceCard = (trigger) => {
@@ -2572,7 +2531,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.className = 'project-modal-overlay';
         overlay.setAttribute('aria-hidden', 'true');
         overlay.innerHTML = `
-            <div class="project-modal-card" role="dialog" aria-modal="true" aria-label="Project details" tabindex="-1">
+            <div class="project-modal-card" role="dialog" aria-modal="true" aria-label="Project details" aria-labelledby="project-modal-title" tabindex="-1">
                 <button type="button" class="project-modal-close close-control" aria-label="Close project details">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -2593,8 +2552,22 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.addEventListener('click', () => closeProjectModal());
 
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && document.body.classList.contains('project-modal-open')) {
+            if (!document.body.classList.contains('project-modal-open')) return;
+            if (event.key === 'Escape') {
+                event.preventDefault();
                 closeProjectModal();
+            }
+            if (event.key === 'Tab') {
+                const card = overlay.querySelector('.project-modal-card');
+                const controls = Array.from(card.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')).filter(element => element.getClientRects().length);
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                if (!first) { event.preventDefault(); card.focus(); return; }
+                if (event.shiftKey && (document.activeElement === first || document.activeElement === card)) {
+                    event.preventDefault(); last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault(); first.focus();
+                }
             }
         });
 
@@ -2693,6 +2666,18 @@ document.addEventListener('DOMContentLoaded', function() {
         modalState.sourceCard = sourceCard || null;
 
         renderProjectModal(project);
+        if (project.id) {
+            const url = new URL(window.location.href);
+            if (url.searchParams.get('project') !== project.id) {
+                url.searchParams.set('project', project.id);
+                history.pushState(null, '', url);
+            }
+        }
+        Array.from(document.body.children).forEach(element => {
+            if (element === overlay || element.tagName === 'SCRIPT' || modalState.backgroundInert.has(element)) return;
+            modalState.backgroundInert.set(element, element.inert);
+            element.inert = true;
+        });
         overlay.classList.remove('is-closing');
         delete overlay.dataset.closing;
 
@@ -2785,6 +2770,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         overlay.dataset.closing = 'true';
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('project')) {
+            url.searchParams.delete('project');
+            history.replaceState(null, '', url);
+        }
         const modalCard = overlay.querySelector('.project-modal-card');
         const sourceCard = modalState.sourceCard || getSourceCard(modalState.activeTrigger);
 
@@ -2823,6 +2813,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 sourceCard.classList.remove('project-card--morphing');
                 sourceCard.style.removeProperty('opacity');
             }
+            modalState.backgroundInert.forEach((wasInert, element) => { element.inert = wasInert; });
+            modalState.backgroundInert.clear();
             if (modalState.activeTrigger) {
                 modalState.activeTrigger.setAttribute('aria-expanded', 'false');
                 modalState.activeTrigger.focus({ preventScroll: true });
@@ -2847,7 +2839,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.view-link').forEach((link) => {
             if (link.dataset.funRevealBound) return;
             link.dataset.funRevealBound = 'true';
+            const data = parseProjectPayload(link.closest('.project-card'));
+            if (data?.id) link.href = 'projects.html?project=' + encodeURIComponent(data.id);
             link.addEventListener('click', (event) => {
+                if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
                 event.preventDefault();
                 const card = link.closest('.project-card') || link.closest('.project-list-card') || link.closest('#projectsList > div');
                 if (!card) return;
@@ -2891,6 +2886,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    window.openRequestedProject = () => {
+        const id = new URL(window.location.href).searchParams.get('project');
+        if (!id) {
+            if (modalState.overlay?.classList.contains('is-active')) closeProjectModal();
+            return;
+        }
+        const project = window.portfolioProjects?.find(item => item.id === id);
+        if (project) {
+            const card = Array.from(document.querySelectorAll('.project-card')).find(element => parseProjectPayload(element)?.id === id);
+            openProjectModal(project, card?.querySelector('.view-link'));
+        }
+    };
+    window.addEventListener('popstate', window.openRequestedProject);
     window.setupProjectCardReveal = setupProjectCardReveal;
     window.setupProjectFilters = setupProjectFilters;
     window.updateViewLinks = updateViewLinks;
@@ -3102,65 +3110,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update footer year
     updateFooterYear();
 
-    // Hero typing effect
+    // Keep the primary heading readable while CMS content loads.
     const typingElement = document.getElementById('typing-text');
-    if (typingElement) {
-        const fullText = typingElement.dataset.text || typingElement.textContent.trim();
-        const forceTyping = typingElement.dataset.forceTyping === 'true';
-        if (prefersReducedMotion && !forceTyping) {
-            typingElement.textContent = fullText;
-        } else {
-            let index = 0;
-            let isDeleting = false;
+    if (typingElement) typingElement.textContent = typingElement.dataset.text || typingElement.textContent.trim();
 
-            const typingRange = { min: 70, max: 130 };
-            const deletingRange = { min: 40, max: 90 };
-            const hesitationChance = 0.16;
-            const hesitationDelay = { min: 120, max: 320 };
-            const endPauseRange = { min: 2600, max: 3800 };
-            const decisionPauseRange = { min: 700, max: 1200 };
-            const restartPauseRange = { min: 600, max: 1000 };
-
-            const addHesitation = () => (
-                Math.random() < hesitationChance
-                    ? randomBetween(hesitationDelay.min, hesitationDelay.max)
-                    : 0
-            );
-
-            const tick = () => {
-                if (!isDeleting) {
-                    index = Math.min(index + 1, fullText.length);
-                    typingElement.textContent = fullText.slice(0, index);
-                    if (index === fullText.length) {
-                        const hold = randomBetween(endPauseRange.min, endPauseRange.max);
-                        const decision = randomBetween(decisionPauseRange.min, decisionPauseRange.max);
-                        setTimeout(() => {
-                            isDeleting = true;
-                            setTimeout(tick, decision);
-                        }, hold);
-                        return;
-                    }
-                    const delay = randomBetween(typingRange.min, typingRange.max) + addHesitation();
-                    setTimeout(tick, delay);
-                } else {
-                    index = Math.max(index - 1, 0);
-                    typingElement.textContent = fullText.slice(0, index);
-                    if (index === 0) {
-                        isDeleting = false;
-                        const restart = randomBetween(restartPauseRange.min, restartPauseRange.max);
-                        setTimeout(tick, restart);
-                        return;
-                    }
-                    const delay = randomBetween(deletingRange.min, deletingRange.max) + addHesitation() / 2;
-                    setTimeout(tick, delay);
-                }
-            };
-
-            typingElement.textContent = '';
-            setTimeout(tick, randomBetween(400, 900));
-        }
-    }
-    
     // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');
     if (backToTopButton) {

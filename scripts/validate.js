@@ -153,10 +153,7 @@ function validateJavaScript() {
             try {
                 const content = fs.readFileSync(file, 'utf8');
                 
-                // Basic syntax check - skip for files with async/await
-                if (!content.includes('async function') && !content.includes('await ')) {
-                    new Function(content);
-                }
+                new Function(content);
                 success(`${file}: JavaScript syntax is valid`);
                 
                 // Check for modern JS features

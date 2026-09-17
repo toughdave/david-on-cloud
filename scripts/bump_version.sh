@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-# set -e
+set -e
 
 # Args
 DRY_RUN=0
+LOCAL_ONLY=0
 PRESET_TYPE=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --local-only)
+            LOCAL_ONLY=1
+            shift
+            ;;
         --dry-run)
             DRY_RUN=1
             shift
@@ -186,11 +191,11 @@ IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
 if [ -n "$PRESET_TYPE" ]; then
     case "$PRESET_TYPE" in
         major|Major|MAJOR|1)
-            ((MAJOR++)); MINOR=0; PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="major"; echo "🔥 Selected: Major version bump (from --type)";;
+            ((++MAJOR)); MINOR=0; PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="major"; echo "🔥 Selected: Major version bump (from --type)";;
         minor|Minor|MINOR|2)
-            ((MINOR++)); PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="minor"; echo "✨ Selected: Minor version bump (from --type)";;
+            ((++MINOR)); PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="minor"; echo "✨ Selected: Minor version bump (from --type)";;
         patch|Patch|PATCH|3)
-            ((PATCH++)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Selected: Patch version bump (from --type)";;
+            ((++PATCH)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Selected: Patch version bump (from --type)";;
         *)
             echo "❌ Invalid --type value: $PRESET_TYPE (use major|minor|patch)"; exit 1;;
     esac
@@ -206,13 +211,13 @@ else
         read -p "💬 Select bump type [1-3]: " bump_choice
         case $bump_choice in
             1|major|Major|MAJOR)
-                ((MAJOR++)); MINOR=0; PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="major"; echo "🔥 Selected: Major version bump"; break;;
+                ((++MAJOR)); MINOR=0; PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="major"; echo "🔥 Selected: Major version bump"; break;;
             2|minor|Minor|MINOR)
-                ((MINOR++)); PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="minor"; echo "✨ Selected: Minor version bump"; break;;
+                ((++MINOR)); PATCH=0; NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="minor"; echo "✨ Selected: Minor version bump"; break;;
             3|patch|Patch|PATCH)
-                ((PATCH++)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Selected: Patch version bump"; break;;
+                ((++PATCH)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Selected: Patch version bump"; break;;
             "")
-                ((PATCH++)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Default: Patch version bump (Enter pressed)"; break;;
+                ((++PATCH)); NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"; BUMP_TYPE="patch"; echo "🐛 Default: Patch version bump (Enter pressed)"; break;;
             *) echo "❌ Invalid choice. Please enter 1, 2, or 3 (or major, minor, patch)";;
         esac
     done
@@ -352,7 +357,18 @@ echo "✅ Prepended clean release notes to $RELEASE_NOTES"
 
 
 # Git operations - do not touch README.md
-git add VERSION index.html projects.html RELEASE_NOTES.txt
+node - "$NEW_VERSION" <<'NODE'
+const fs = require('node:fs');
+const version = process.argv[2];
+for (const name of ['package.json', 'package-lock.json']) {
+    if (!fs.existsSync(name)) continue;
+    const data = JSON.parse(fs.readFileSync(name, 'utf8'));
+    data.version = version;
+    if (data.packages?.['']) data.packages[''].version = version;
+    fs.writeFileSync(name, JSON.stringify(data, null, 2) + '\n');
+}
+NODE
+git add VERSION index.html projects.html RELEASE_NOTES.txt package.json package-lock.json
 git commit -m "Auto $BUMP_TYPE bump version to v$NEW_VERSION with update summary"
 
 echo "✅ Created commit"
@@ -363,8 +379,12 @@ echo "✅ Created tag v$NEW_VERSION"
 
 # Push changes (including the previous unpushed commits)
 echo "📤 Pushing all commits and tags to remote..."
-git push origin main
-git push origin --tags
+if [[ "$LOCAL_ONLY" == 0 ]]; then
+    git push origin main
+    git push origin "v$NEW_VERSION"
+else
+    echo "Local release prepared. Run deployment checks before pushing main and the release tag."
+fi
 
 echo ""
 echo "🎉 Successfully bumped to v$NEW_VERSION ($BUMP_TYPE)"
@@ -373,5 +393,5 @@ echo "   - VERSION file updated"
 echo "   - HTML files updated (version display + cache-busting ?v= strings)"
 echo "   - Release notes updated"
 echo "   - Git commit created with $BUMP_TYPE bump message"
-echo "   - Tag v$NEW_VERSION created and pushed"
-echo "   - All local commits pushed to remote"
+echo "   - Tag v$NEW_VERSION created"
+if [[ "$LOCAL_ONLY" == 0 ]]; then echo "   - Release pushed to remote"; fi

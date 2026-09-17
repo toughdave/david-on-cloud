@@ -1,26 +1,28 @@
 {
   "name": "david-on-cloud-portfolio",
   "version": "1.3.6",
-  "description": "Professional portfolio website for David - Cisco Networking Engineer & Web Developer",
+  "description": "David on Cloud: systems, data analysis, IT administration and development portfolio",
   "main": "index.html",
   "scripts": {
     "start": "npx http-server . -p 8080",
-    "build": "npm run lint && npm run build:copy",
-    "build:copy": "mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git",
+    "build": "npm run build:css && npm run test:validate && npm run test:regression && npm run build:copy",
+    "build:copy": "node scripts/build.js",
     "generate:llm-docs": "node scripts/generate_llm_docs.js",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "htmlhint \"*.html\" --config .htmlhintrc",
     "lint:css": "stylelint \"css/**/*.css\" --config .stylelintrc.json",
     "lint:js": "eslint \"js/**/*.js\" --config .eslintrc.js",
     "lint:fix": "npm run lint:css -- --fix && npm run lint:js -- --fix",
-    "test": "npm run lint && npm run test:validate",
-    "test:validate": "node scripts/validate.js",
-    "deploy": "./scripts/deploy.sh",
-    "deploy:staging": "DEPLOYMENT_TARGET=staging ./scripts/deploy.sh",
-    "deploy:production": "DEPLOYMENT_TARGET=production ./scripts/deploy.sh",
+    "test": "npm run test:validate && npm run test:regression",
+    "test:validate": "npm run lint:html && node scripts/validate.js && node scripts/check-references.js",
+    "deploy": "bash scripts/deploy.sh",
+    "deploy:staging": "bash scripts/deploy.sh --dry-run",
+    "deploy:production": "bash scripts/deploy.sh",
     "version:bump": "./scripts/bump_version.sh",
     "serve": "npx http-server . -p 8080 -o",
-    "dev": "npm run serve"
+    "dev": "npm run serve",
+    "build:css": "tailwindcss -i css/tailwind.css -o css/utilities.css --minify",
+    "test:regression": "node --test tests/*.test.cjs"
   },
   "repository": {
     "type": "git",
@@ -44,9 +46,10 @@
   "devDependencies": {
     "eslint": "^8.0.0",
     "htmlhint": "^1.1.4",
+    "http-server": "^14.1.1",
     "stylelint": "^15.0.0",
     "stylelint-config-standard": "^34.0.0",
-    "http-server": "^14.1.1"
+    "tailwindcss": "3.4.19"
   },
   "browserslist": [
     "> 1%",
@@ -54,7 +57,7 @@
     "not dead"
   ],
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
   }
 }

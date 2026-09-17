@@ -1,5 +1,5 @@
 {
-  "availabilityText": "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles",
+  "availabilityText": "Open to work · Toronto, ON · Willing to relocate",
   "primaryCTA": {
     "text": "Get In Touch",
     "href": "#contact"
@@ -14,11 +14,11 @@
     "Full-Stack Delivery",
     "AI/Data Evaluation"
   ],
-  "subtitle": "Information Systems, Data Analyst & IT Administrator",
+  "subtitle": "Systems & Data Analyst | IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "I'm an Information Systems and Data Analyst and IT Administrator with a Master's degree in Computer Science and 9+ years across academic ERP systems, reporting workflows, and infrastructure. Recently I've built and shipped features for a live coaching platform and reviewed data quality for AI model training.",
+  "introText": "I improve data accuracy, automate reporting, and keep systems reliable. My work spans academic IT, full-stack development, and AI data evaluation.",
   "secondaryCTA": {
-    "text": "Projects Brief",
-    "href": "#projects"
+    "text": "Explore My Projects",
+    "href": "projects.html"
   }
 }

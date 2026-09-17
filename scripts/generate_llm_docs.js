@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SITE_URL = 'https://www.davidoncloud.com';
+const SITE_URL = 'https://davidoncloud.com';
 
 const readJson = (relativePath) => {
   const absolutePath = path.join(ROOT, relativePath);

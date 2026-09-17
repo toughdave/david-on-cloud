@@ -934,6 +934,7 @@
     /* ── Hero Renderer ── */
     function renderHero(data) {
         if (!data) return;
+        document.querySelectorAll('.availability-text').forEach(element => { element.textContent = data.availabilityText || ''; });
         const section = document.querySelector('#intro');
         if (!section) return;
 

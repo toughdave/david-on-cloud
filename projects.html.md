@@ -2,7 +2,7 @@
 > Project portfolio in Markdown format for AI agents and lightweight text processing workflows.
 
 ## Source of Truth
-- [Projects JSON](https://www.davidoncloud.com/js/projects.json): Canonical project content managed through CMS data files.
+- [Projects JSON](https://davidoncloud.com/js/projects.json): Canonical project content managed through CMS data files.
 
 ## Preventing Double-Booked Coaching Sessions
 - Category: webdev
@@ -160,7 +160,7 @@ Executed a hands-on Cisco Catalyst 3850 troubleshooting lab and resolved five ne
 - Updated: 2026-02-03
 - Tags: Power BI, Google Sheets, SLA Tracking, Operations, Reporting, At-Risk Alerts
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/exam-operations-sla-tracker.md)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/exam-operations-sla-tracker.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/exam-operations-sla-tracker.pdf)
 
 ### Project Summary
 Built a Power BI and Google Sheets-based SLA tracking system to centralize examination readiness monitoring across device compliance, invigilation staffing, and pre-exam preparation checkpoints, enabling operations teams to identify and escalate at-risk items before examination periods.
@@ -183,7 +183,7 @@ Built a Power BI and Google Sheets-based SLA tracking system to centralize exami
 - Updated: 2026-01-31
 - Tags: SQL, Excel, System Integration, Data Validation, Record Management, Reconciliation, Mismatch Reporting
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/student-records-reconciliation-hub.md)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/student-records-reconciliation-hub.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/student-records-reconciliation-hub.pdf)
 
 ### Project Summary
 Built and operated a centralized records reconciliation process, cross-referencing admissions, enrollment, and results data to resolve duplicates, eligibility gaps, and mismatches before publication for 4,000+ records each cycle.
@@ -206,7 +206,7 @@ Built and operated a centralized records reconciliation process, cross-referenci
 - Updated: 2026-01-31
 - Tags: Power BI, Excel, SQL, Business Applications, Data Validation, Reporting, Scripted QA
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/academic-results-analytics-dashboard.md)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/academic-results-analytics-dashboard.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/academic-results-analytics-dashboard.pdf)
 
 ### Project Summary
 Built a Power BI and Excel analytics suite to centralize results processing, anomaly detection, and cohort performance analysis across multiple admissions and examination cycles serving 4,000+ students.
@@ -229,7 +229,7 @@ Built a Power BI and Excel analytics suite to centralize results processing, ano
 - Updated: 2025-12-20
 - Tags: Python, SQL, Business Applications, ETL Automation, Reporting, Workflow Automation, Scheduled Jobs
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/operational-reporting-automation-pipeline.md)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/operational-reporting-automation-pipeline.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/operational-reporting-automation-pipeline.pdf)
 
 ### Project Summary
 Designed and deployed automated Python/SQL pipelines that transformed recurring operational reporting from manual spreadsheets into scheduled, quality-checked workflows for leadership updates.
@@ -252,7 +252,7 @@ Designed and deployed automated Python/SQL pipelines that transformed recurring 
 - Updated: 2025-12-18
 - Tags: Excel, Google Sheets, SQL, Admissions Systems, Data Validation, Admissions Audit, Rules Engine
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/admissions-data-quality-audit.md)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/case-studies/admissions-data-quality-audit.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/admissions-data-quality-audit.pdf)
 
 ### Project Summary
 Conducted systematic audits of multi-intake admissions datasets at a federal university, reconciling applicant records across identity fields, eligibility criteria, and enrollment status for 2,000+ applicants per cycle.
@@ -485,7 +485,7 @@ Delivered frontline Windows and Linux systems support through structured triage,
 - Updated: 2025-10-27
 - Tags: Cybersecurity, Access Control, ECDH, IoT Security, Security Research
 - Deliverable Link: [Read Published Paper (CCSE Journal)](https://ccsenet.org/journal/index.php/nct/article/view/0/41982)
-- PDF: [Download PDF](https://www.davidoncloud.com/docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf)
+- PDF: [Download PDF](https://davidoncloud.com/docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf)
 
 ### Project Summary
 Co-authored a peer-reviewed research paper published in the Network and Communication Technologies journal (Canadian Center of Science and Education, 2020), proposing a Capability-based Context Aware Access Control (CCAAC) security model for internet-enabled host devices, validated through a custom web application implementing Elliptic-Curve Diffie-Hellman mutual authentication.
