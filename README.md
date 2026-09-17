@@ -134,3 +134,9 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 ## License
 
 All rights reserved. David on Cloud.
+
+### Social link previews
+
+Both HTML pages include static Open Graph and Twitter card tags near the beginning of the head, so link crawlers do not need JavaScript. The shared image is `img/branding/portfolio-preview-2026-09.jpg` (1200 x 630, approximately 106 KB). Keep its dimensions and MIME type aligned with the HTML metadata, and give replacement images a new filename so social caches can refresh. Preserve old image URLs for existing shares.
+
+After changing preview metadata, publish first and then use [Meta's Sharing Debugger](https://developers.facebook.com/tools/debug/) to scrape the URL again. A successful debugger preview verifies Facebook's fetched metadata; it cannot guarantee WhatsApp's device or cache behavior. In WhatsApp, `Settings > Privacy > Advanced > Disable link previews` must be off to generate outgoing previews. [WhatsApp documentation](https://faq.whatsapp.com/445453537819972/).
