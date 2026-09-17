@@ -14,7 +14,7 @@ permissions:
 jobs:
   auto_patch_bump:
     name: Auto patch +1 after CMS publish
-    if: ${{ github.event.head_commit && !startsWith(github.event.head_commit.message, 'Auto patch bump version to v') }}
+    if: ${{ github.event.head_commit && !startsWith(github.event.head_commit.message, 'Auto ') }}
     runs-on: ubuntu-latest
 
     steps:
