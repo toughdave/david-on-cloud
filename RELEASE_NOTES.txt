@@ -1,3 +1,13 @@
+## v5.14.1 — 2026-09-17 23:09:01
+- ✅ Auto minor bump version to v5.14.0 with update summary
+- ✅ Improve portfolio navigation, contact reliability, loading and project sharing
+- ✅ Auto patch bump version to v5.13.1 with update summary
+- ✅ Teach the CMS about the new project fields
+- ✅ Replace invented project dates with real ones
+- ✅ Bold the project modal summary
+- ✅ Bump version to v5.13.0
+- ✅ Bumped version to v5.14.1
+
 ## v5.14.0 — 2026-09-17 19:08:43
 - ✅ Improve portfolio navigation, contact reliability, loading and project sharing
 - ✅ Auto patch bump version to v5.13.1 with update summary
