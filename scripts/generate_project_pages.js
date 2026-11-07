@@ -194,7 +194,10 @@ const buildPage = (project, caseStudyMarkdown) => {
     const url = `${SITE}/${OUT_DIR}/${project.id}.html`;
     const description = trimDescription(project.summary);
     const lead = project.image ? webImage(project.image) : '';
-    const leadAbsolute = lead ? SITE + lead : `${SITE}/img/branding/portfolio-preview-2026-09.jpg`;
+    // Share cards and structured data use the original JPG/PNG: LinkedIn and
+    // some other link-preview crawlers do not reliably render WebP.
+    const original = safeUrl(project.image);
+    const leadAbsolute = original ? SITE + original : `${SITE}/img/branding/portfolio-preview-2026-09.jpg`;
     const posted = isoDate(project.posted);
     const modified = isoDate(project.modified) || posted;
 

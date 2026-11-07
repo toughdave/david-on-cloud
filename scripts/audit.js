@@ -235,6 +235,17 @@ function gateGeneratedDocs() {
             if (target && !exists(target) && !exists(path.join(target, 'index.html'))) missing.push(`${file} -> /${target}`);
         }
     }
+    // Share cards must use JPG or PNG: LinkedIn and some other link-preview
+    // crawlers do not reliably render WebP.
+    const webpCards = [];
+    for (const [file, html] of [...after, ['index.html', read('index.html')], ['projects.html', read('projects.html')]]) {
+        if (!/\.html$/.test(file)) continue;
+        for (const m of html.matchAll(/<meta (?:property|name)="(?:og:image|twitter:image)" content="([^"]+)"/g)) {
+            if (/\.webp(?:$|\?)/i.test(m[1])) webpCards.push(file);
+        }
+    }
+    if (webpCards.length) fail('generated', `share images must be JPG or PNG, not WebP: ${[...new Set(webpCards)].join(', ')}`);
+    else pass('share-card images are JPG or PNG on every page');
     if (missing.length) fail('generated', `project pages reference missing files: ${[...new Set(missing)].slice(0, 8).join(', ')}`);
     else pass('every local link and image on the project pages exists');
 }
