@@ -214,6 +214,73 @@ function gateGeneratedDocs() {
     else pass('llms.txt and the .md mirrors are in sync with the CMS');
 }
 
+// ------------------------------------------------------ gate 9: performance
+function gatePerformance() {
+    const rule = lock.performance;
+    if (!rule) return;
+    const budget = rule.imageBudgetKB * 1024;
+
+    // Every image the homepage loads up front must fit the budget.
+    const over = [];
+    let checked = 0;
+    for (const [file, keys] of Object.entries(rule.imageSources)) {
+        if (!exists(file)) continue;
+        const refs = [];
+        const walk = value => {
+            if (Array.isArray(value)) { value.forEach(walk); return; }
+            if (!value || typeof value !== 'object') return;
+            for (const [key, item] of Object.entries(value)) {
+                if (keys.includes(key) && typeof item === 'string' && item) refs.push(item);
+                else if (typeof item === 'object') walk(item);
+            }
+        };
+        walk(JSON.parse(read(file)));
+        for (const ref of refs) {
+            const local = ref.replace(/^\//, '').split(/[?#]/)[0];
+            if (!exists(local)) continue; // missing files are the references gate's job
+            checked++;
+            const size = fs.statSync(path.join(root, local)).size;
+            if (size > budget) over.push(`${local} (${Math.round(size / 1024)}KB)`);
+        }
+    }
+    if (over.length) fail('perf', `images over the ${rule.imageBudgetKB}KB homepage budget: ${over.join(', ')}. Run python3 scripts/optimize_images.py and point the CMS at the -web.webp output`);
+    else pass(`${checked} homepage images within the ${rule.imageBudgetKB}KB budget`);
+
+    // Fonts: the compressed format must be offered first.
+    const css = read('css/style.css');
+    const faces = [...css.matchAll(/@font-face\s*{[^}]*}/g)].map(m => m[0]);
+    const badFaces = faces.filter(face => {
+        const first = face.match(/src:\s*url\(([^)]+)\)\s*format\(["']?([\w-]+)/);
+        return !first || first[2] !== rule.fontFormatFirst;
+    });
+    const missingFonts = faces.flatMap(face => [...face.matchAll(/url\(["']?\/?([^"')]+)["']?\)/g)].map(m => m[1])).filter(f => !exists(f));
+    if (badFaces.length) fail('perf', `${badFaces.length} @font-face rule(s) do not offer ${rule.fontFormatFirst} first`);
+    else if (missingFonts.length) fail('perf', `font files missing: ${missingFonts.join(', ')}`);
+    else pass(`${faces.length} @font-face rules serve ${rule.fontFormatFirst} first`);
+
+    // Third-party iframes must wait for the reader to approach them.
+    const eager = [];
+    for (const file of rule.deferredIframesIn) {
+        if (!exists(file)) continue;
+        for (const tag of read(file).match(/<iframe\b[^>]*>/g) || []) {
+            if (/\ssrc\s*=\s*["']https?:/i.test(tag)) eager.push(`${file}: ${tag.slice(0, 70)}`);
+        }
+    }
+    if (eager.length) fail('perf', `iframes load eagerly instead of via data-src: ${eager.join(' | ')}`);
+    else pass('third-party iframes are deferred until near view');
+
+    // The hero must not be hidden behind a scroll-animation library.
+    const hidden = rule.noAnimationHiddenIn;
+    if (hidden && exists(hidden.file)) {
+        const html = read(hidden.file);
+        const start = html.indexOf(hidden.sectionStart);
+        const end = html.indexOf(hidden.sectionEnd, start);
+        if (start < 0 || end < 0) warn('perf', `could not locate the hero in ${hidden.file}`);
+        else if (/\sdata-aos=/.test(html.slice(start, end))) fail('perf', 'the hero carries data-aos, which hides it until JavaScript runs and delays the largest paint');
+        else pass('hero is visible from the first frame (no data-aos)');
+    }
+}
+
 // ----------------------------------------------------------------- fingerprint
 function fingerprint() {
     const snap = { takenAt: new Date().toISOString(), counts: {}, titles: {}, bytes: {} };
@@ -276,6 +343,7 @@ gateProjectIntegrity();
 gateSeo();
 gateResume();
 gateGeneratedDocs();
+gatePerformance();
 
 if (args.includes('--compare')) compareToBaseline();
 

@@ -150,7 +150,7 @@ collections:
           - {label: "Subtitle / Role", name: "subtitle", widget: "string", default: "Information Systems, Data Analyst & IT Administrator"}
           - {label: "Availability Badge Text", name: "availabilityText", widget: "string", default: "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles"}
           - {label: "Resume PDF", name: "resumePath", widget: "file", media_folder: "docs", public_folder: "/docs", hint: "Upload or select the resume PDF from docs/ folder"}
-          - {label: "Profile Picture", name: "profileImage", widget: "image", hint: "Hero portrait photo"}
+          - {label: "Profile Picture", name: "profileImage", widget: "image", hint: "Hero portrait photo. Keep under 120KB: run python3 scripts/optimize_images.py and pick the -web.webp file, or the build check fails."}
           - {label: "Introduction Paragraph", name: "introText", widget: "text", hint: "The main introductory paragraph below the subtitle"}
           - label: "Hero Tags"
             name: "heroTags"
@@ -316,8 +316,8 @@ collections:
                 name: "outcomes"
                 widget: "list"
                 field: {label: "Outcome", name: "outcome", widget: "text"}
-              - {label: "Background Image", name: "backgroundImage", widget: "image", required: false, media_folder: "img", public_folder: "/img", choose_url: false, hint: "Upload/select a local image from CMS media library (stored in img/)"}
-              - {label: "Inset Photo", name: "insetImage", widget: "image", required: false}
+              - {label: "Background Image", name: "backgroundImage", widget: "image", required: false, media_folder: "img", public_folder: "/img", choose_url: false, hint: "Upload/select a local image from CMS media library (stored in img/). Keep under 120KB: run python3 scripts/optimize_images.py and pick the -web.webp file, or the build check fails."}
+              - {label: "Inset Photo", name: "insetImage", widget: "image", required: false, hint: "Shown beside the role. Keep under 120KB: run python3 scripts/optimize_images.py and pick the -web.webp file, or the build check fails."}
               - {label: "Fun Mode Log Line", name: "logLine", widget: "string", required: false, hint: "e.g. lab sync: 250 endpoints"}
 
   # ──────────────────────────────────────────────

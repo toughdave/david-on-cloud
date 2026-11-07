@@ -30,6 +30,9 @@
     <link rel="manifest" href="/site.webmanifest" />
     <script>
         (function() {
+            // Lets CSS defer below-the-fold photos only when JavaScript is
+            // available to load them; without it, images load normally.
+            document.documentElement.classList.add('js');
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
@@ -204,9 +207,9 @@
         <div class="fun-star-overlay" aria-hidden="true"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 hero-content">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
+                <div class="hero-enter-left">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                        <span id="typing-text" class="typing-text" data-text="Hi, I'm David" >Hi, I'm David</span>
+                        <span id="typing-text" class="typing-text" data-text="Hi, I'm David!" >Hi, I'm David!</span>
                         <span class="typing-cursor typing-cursor-underscore" aria-hidden="true"></span>
                         <span class="hero-fullname">Tope David Matthew</span>
                     </h1>
@@ -234,10 +237,10 @@
                         <a href="projects.html" class="hero-secondary-btn flex-1 px-4 py-2.5 border border-white text-white rounded-md font-medium hover:bg-white hover:bg-opacity-10 transition text-center text-sm sm:text-base">Explore My Projects</a>
                     </div>
                 </div>
-                <div data-aos="fade-left" class="flex justify-center hero-portrait-wrap">
+                <div class="flex justify-center hero-portrait-wrap hero-enter-right">
                     <div class="relative">
                         <div class="hero-portrait-glow absolute -inset-6 rounded-full" aria-hidden="true"></div>
-                        <img src="img/profile/protrait-mtd-flip.jpg" alt="David" class="hero-portrait-img relative rounded-full object-cover border-4 border-white shadow-xl" width="320" height="320" loading="eager" fetchpriority="high" decoding="async">
+                        <img src="img/profile/protrait-mtd-flip-web.webp" alt="David" class="hero-portrait-img relative rounded-full object-cover border-4 border-white shadow-xl" width="320" height="320" loading="eager" fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
@@ -471,7 +474,7 @@
                 <div class="space-y-8">
                     <!-- Experience 1 -->
                     <div data-aos="fade-up" class="experience-item relative">
-                        <div class="experience-card" style="--experience-image: url('/img/projects/web/DevOps-Pipeline.png'); --experience-inset-image: url('/img/projects/web/website-hero-intro-blurred-.png');">
+                        <div class="experience-card" style="--experience-image: url('/img/projects/web/DevOps-Pipeline-web.webp'); --experience-inset-image: url('/img/projects/web/website-hero-intro-blurred--web.webp');">
                             <div class="experience-card-content">
                                 <div>
                                     <h3 class="experience-title">IT Application/Production Support Analyst</h3>
@@ -491,13 +494,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/projects/web/website-hero-intro-blurred-.png');"></div>
+                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/projects/web/website-hero-intro-blurred--web.webp');"></div>
                         </div>
                     </div>
 
                     <!-- Experience 2 -->
                     <div data-aos="fade-up" data-aos-delay="100" class="experience-item relative">
-                        <div class="experience-card" style="--experience-image: url('/img/projects/ai/ai-evaluation-bg.jpg'); --experience-inset-image: url('/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg');">
+                        <div class="experience-card" style="--experience-image: url('/img/projects/ai/ai-evaluation-bg-web.webp'); --experience-inset-image: url('/img/projects/ai/Rubric-Unit-Test-Validity-Analysis-web.webp');">
                             <div class="experience-card-content">
                                 <div>
                                     <h3 class="experience-title">AI Training Data Scientist / Data Analyst</h3>
@@ -515,13 +518,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg');"></div>
+                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/projects/ai/Rubric-Unit-Test-Validity-Analysis-web.webp');"></div>
                         </div>
                     </div>
 
                     <!-- Experience 3 -->
                     <div data-aos="fade-up" data-aos-delay="150" class="experience-item relative">
-                        <div class="experience-card" style="--experience-image: url('/img/experience/Pures-classroom-3.jpg'); --experience-inset-image: url('/img/experience/Pures-College-classroom.jpg');">
+                        <div class="experience-card" style="--experience-image: url('/img/experience/Pures-classroom-3-web.webp'); --experience-inset-image: url('/img/experience/Pures-College-classroom-web.webp');">
                             <div class="experience-card-content">
                                 <div>
                                     <h3 class="experience-title">IT Systems Support and Computer Instructor</h3>
@@ -541,13 +544,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/Pures-College-classroom.jpg');"></div>
+                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/Pures-College-classroom-web.webp');"></div>
                         </div>
                     </div>
                     
                     <!-- Experience 4 -->
                     <div data-aos="fade-up" data-aos-delay="200" class="experience-item relative">
-                        <div class="experience-card" style="--experience-image: url('/img/experience/futa-laptop-bg.jpg'); --experience-inset-image: url('/img/experience/data-analysis-mtd.jpg');">
+                        <div class="experience-card" style="--experience-image: url('/img/experience/futa-laptop-bg-web.webp'); --experience-inset-image: url('/img/experience/data-analysis-mtd-web.webp');">
 
                             <div class="experience-card-content">
                                 <div>
@@ -568,14 +571,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/data-analysis-mtd.jpg');"></div>
+                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/data-analysis-mtd-web.webp');"></div>
 
                         </div>
                     </div>
                     
                     <!-- Experience 5 -->
                     <div data-aos="fade-up" data-aos-delay="200" class="experience-item relative">
-                        <div class="experience-card experience-card-teaching" style="--experience-image: url('/img/experience/ict-teacher-lab-bg.jpg'); --experience-inset-image: url('/img/experience/Teaching-Students-Anambra.jpg');">
+                        <div class="experience-card experience-card-teaching" style="--experience-image: url('/img/experience/ict-teacher-lab-bg-web.webp'); --experience-inset-image: url('/img/experience/Teaching-Students-Anambra-web.webp');">
                             <div class="experience-card-content">
                                 <div>
                                     <h3 class="experience-title">Computer Science (ICT) Teacher</h3>
@@ -592,7 +595,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/Teaching-Students-Anambra.jpg');"></div>
+                            <div class="experience-inset" aria-hidden="true" style="background-image: url('img/experience/Teaching-Students-Anambra-web.webp');"></div>
                         </div>
                     </div>
                 </div>
@@ -915,7 +918,7 @@
                                 <span class="contact-email-label">Map</span>
                                 <a href="https://www.google.com/maps/search/North+York,+Toronto,+ON,+Canada" class="contact-map-open" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
                             </div>
-                            <iframe class="contact-map-embed" title="Google Map showing North York, Toronto vicinity" src="https://www.google.com/maps?q=North+York,+Toronto,+ON,+Canada&z=12&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                            <iframe class="contact-map-embed" title="Google Map showing North York, Toronto vicinity" data-src="https://www.google.com/maps?q=North+York,+Toronto,+ON,+Canada&z=12&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="contact-socials">

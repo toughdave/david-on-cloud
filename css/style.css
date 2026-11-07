@@ -1,6 +1,7 @@
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("/static/fonts/JetBrainsMono-400.ttf") format("truetype");
+    src: url("/static/fonts/JetBrainsMono-400.woff2") format("woff2"),
+        url("/static/fonts/JetBrainsMono-400.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
@@ -8,7 +9,8 @@
 
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("/static/fonts/JetBrainsMono-600.ttf") format("truetype");
+    src: url("/static/fonts/JetBrainsMono-600.woff2") format("woff2"),
+        url("/static/fonts/JetBrainsMono-600.ttf") format("truetype");
     font-style: normal;
     font-weight: 600;
     font-display: swap;
@@ -8762,4 +8764,51 @@ body.fun-mode .analyst-insight-card:hover {
 
 [data-theme="dark"] .project-modal-casestudy-body pre {
     background: rgb(148 163 184 / 12%);
+}
+
+/* Hero entrance without hiding the hero.
+   The hero used to carry data-aos fade attributes, which set opacity: 0 until
+   the animation library ran. That held back the largest contentful paint, so
+   on mobile the first real content appeared late. This keeps the slide-in but
+   animates only transform, so the hero is visible and paintable from the
+   first frame. */
+@keyframes hero-enter-left {
+    from { transform: translateX(-24px); }
+    to { transform: none; }
+}
+
+@keyframes hero-enter-right {
+    from { transform: translateX(24px); }
+    to { transform: none; }
+}
+
+.hero-enter-left { animation: hero-enter-left 0.7s ease-out both; }
+.hero-enter-right { animation: hero-enter-right 0.7s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-enter-left,
+    .hero-enter-right { animation: none; }
+}
+
+/* Withhold experience photos until the reader nears the section.
+   js/scripts.js adds .bg-ready to #experience; html.js is set in the page
+   head, so visitors without JavaScript still get the images. The !important
+   is needed because the inset carries its image as an inline style. */
+html.js #experience:not(.bg-ready) .experience-card::after {
+    background-image: none;
+}
+
+html.js #experience:not(.bg-ready) .experience-inset {
+    background-image: none !important;
+}
+
+/* Reserve room for the project list while it loads.
+   projects.html renders "Loading projects..." first, so on phones the footer
+   sat inside the first screen and was then shoved down when the cards
+   arrived: a 0.35 layout shift, in the "poor" band. Holding a viewport of
+   space keeps the footer below the fold until the list is real. Scoped with
+   :has() so it releases as soon as cards exist; browsers without :has() just
+   keep the old behaviour. */
+#projectsList:not(:has(.project-card)) {
+    min-height: 100vh;
 }

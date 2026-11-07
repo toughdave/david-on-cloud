@@ -14,13 +14,13 @@
         "Administered the platform's operational infrastructure: custom domain setup and verification, business email delivery and transport security, and scheduled backups.",
         "Shipped 300+ reviewed changes with automated nightly testing, and monitored service health through Sentry and PostHog."
       ],
-      "backgroundImage": "/img/projects/web/DevOps-Pipeline.png",
+      "backgroundImage": "/img/projects/web/DevOps-Pipeline-web.webp",
       "location": "Remote, North York, ON",
       "focus": "Production and application support for a live coaching platform, covering incident resolution, data integrity, payments reconciliation, user access, and the documentation the four user types depend on.",
       "logLine": "ops sync: incidents triaged • 300+ changes shipped • docs verified",
       "title": "IT Application/Production Support Analyst",
       "company": "Anchor Coaching",
-      "insetImage": "/img/projects/web/website-hero-intro-blurred-.png"
+      "insetImage": "/img/projects/web/website-hero-intro-blurred--web.webp"
     },
     {
       "period": "Dec. 2025 - July 2026",
@@ -29,13 +29,13 @@
         "Flagged tests that only passed for one specific solution, tests that validated their own output, and criteria with incorrect scoring weights.",
         "Wrote structured analysis reports separating checks a machine can verify from those needing human judgment, and cross-checked findings against independent analysis."
       ],
-      "backgroundImage": "/img/projects/ai/ai-evaluation-bg.jpg",
+      "backgroundImage": "/img/projects/ai/ai-evaluation-bg-web.webp",
       "location": "Remote, North York, ON",
       "focus": "Checking whether the rubrics and tests used to train AI models actually measure what they claim to measure, across agent-evaluation and multimodal reasoning programs.",
       "logLine": "eval pass: rubric integrity checked • ground truth verified",
       "title": "AI Training Data Scientist / Data Analyst",
       "company": "Outlier",
-      "insetImage": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis.jpg"
+      "insetImage": "/img/projects/ai/Rubric-Unit-Test-Validity-Analysis-web.webp"
     },
     {
       "period": "Jan. 2024 - Aug. 2025",
@@ -45,13 +45,13 @@
         "Installed, imaged and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus collaboration and access workflows.",
         "Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups."
       ],
-      "backgroundImage": "/img/experience/Pures-classroom-3.jpg",
+      "backgroundImage": "/img/experience/Pures-classroom-3-web.webp",
       "location": "Scarborough, ON",
       "focus": "Delivered hands-on instruction while managing lab environments, software installations, networking practicals, and Active Directory identity workflows for 250+ students.",
       "logLine": "lab sync: 250 endpoints • identity drills stable",
       "title": "IT Systems Support and Computer Instructor",
       "company": "Pures College of Technology",
-      "insetImage": "/img/experience/Pures-College-classroom.jpg"
+      "insetImage": "/img/experience/Pures-College-classroom-web.webp"
     },
     {
       "period": "Mar. 2017 - Aug. 2023",
@@ -64,13 +64,13 @@
         "Oversaw secure examination technologies, running readiness checks and biometric verification for 300+ candidates per session.",
         "Maintained IT asset inventory across laptops, tablets, biometric units and CCTV equipment, including purchasing input, distribution, recovery and reconciliation."
       ],
-      "backgroundImage": "/img/experience/futa-laptop-bg.jpg",
+      "backgroundImage": "/img/experience/futa-laptop-bg-web.webp",
       "location": "Nigeria",
       "focus": "Led enterprise academic ERP operations and data automation for 4,000+ users, combining identity governance, cross-system integration, and examination reliability.",
       "logLine": "erp ops: 4,000+ identities synced • controls and workflows stable",
       "title": "Systems & Data Analyst / System Programmer (Head, System Programmer’s Office)",
       "company": "Federal University of Technology, Akure - Centre for Continuing Education",
-      "insetImage": "/img/experience/data-analysis-mtd.jpg"
+      "insetImage": "/img/experience/data-analysis-mtd-web.webp"
     },
     {
       "period": "Dec. 2014 - Aug. 2015",
@@ -78,13 +78,13 @@
         "Delivered foundational computer science instruction focused on logical reasoning and problem-solving.",
         "Reviewed and assessed student work to ensure understanding and accuracy."
       ],
-      "backgroundImage": "/img/experience/ict-teacher-lab-bg.jpg",
+      "backgroundImage": "/img/experience/ict-teacher-lab-bg-web.webp",
       "location": "Nigeria",
       "focus": "Delivered foundational computer science instruction with emphasis on logical reasoning and structured problem solving.",
       "logLine": "curriculum boot: logic module deployed • comprehension 93%",
       "title": "Computer Science (ICT) Teacher",
       "company": "Community Secondary School, Agulu-Awka",
-      "insetImage": "/img/experience/Teaching-Students-Anambra.jpg"
+      "insetImage": "/img/experience/Teaching-Students-Anambra-web.webp"
     }
   ]
 }

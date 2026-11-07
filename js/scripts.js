@@ -403,6 +403,52 @@ const loadProjects = () => {
     document.documentElement.setAttribute('data-theme', normalizedTheme);
 })();
 
+/* ===== DEFERRED MAP EMBED ===== */
+// The contact map pulls in roughly 400KB of Google scripts. The page scrolls
+// inside a snap container, which defeats the browser's own loading="lazy"
+// distance check, so the iframe keeps its address in data-src until the
+// contact section is close to view. Visitors who never scroll there skip it.
+const loadDeferredFrame = (frame) => {
+    const src = frame.getAttribute('data-src');
+    if (!src) return;
+    frame.setAttribute('src', src);
+    frame.removeAttribute('data-src');
+};
+document.addEventListener('DOMContentLoaded', () => {
+    const frames = document.querySelectorAll('iframe[data-src]');
+    if (!frames.length) return;
+    if (!('IntersectionObserver' in window)) {
+        frames.forEach(loadDeferredFrame);
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            loadDeferredFrame(entry.target);
+            observer.unobserve(entry.target);
+        });
+    }, { rootMargin: '600px 0px' });
+    frames.forEach(frame => observer.observe(frame));
+});
+
+// The experience cards carry about 225KB of photos as CSS backgrounds, and
+// browsers fetch every rendered background at once. CSS withholds them while
+// #experience lacks .bg-ready; this adds the class as the reader approaches.
+// It targets the section, not the cards, because site-loader.js re-renders
+// the cards after the JSON arrives.
+document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('experience');
+    if (!section) return;
+    const reveal = () => section.classList.add('bg-ready');
+    if (!('IntersectionObserver' in window)) { reveal(); return; }
+    const observer = new IntersectionObserver((entries) => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        reveal();
+        observer.disconnect();
+    }, { rootMargin: '800px 0px' });
+    observer.observe(section);
+});
+
 /* ===== INITIALIZATION ===== */
 // Initialize AOS animations
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -3235,7 +3281,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Keep the primary heading readable while CMS content loads.
     const typingElement = document.getElementById('typing-text');
-    if (typingElement) typingElement.textContent = typingElement.dataset.text || typingElement.textContent.trim();
+    if (typingElement) {
+        const heading = typingElement.dataset.text || typingElement.textContent.trim();
+        if (typingElement.textContent !== heading) typingElement.textContent = heading;
+    }
 
     // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');

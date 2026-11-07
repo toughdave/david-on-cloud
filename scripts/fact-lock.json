@@ -97,6 +97,18 @@
     "js/process.json": { "key": "steps", "minCount": 4 }
   },
 
+  "performance": {
+    "_note": "Budgets that keep the homepage fast on mobile. Measured 2026-11-07: before these rules the homepage loaded 3.5MB, with one 838KB photo shown in a 250x175 box. Run python3 scripts/optimize_images.py for any new homepage image.",
+    "imageBudgetKB": 120,
+    "imageSources": {
+      "js/experience.json": ["backgroundImage", "insetImage"],
+      "js/hero.json": ["profileImage"]
+    },
+    "fontFormatFirst": "woff2",
+    "deferredIframesIn": ["index.html", "projects.html"],
+    "noAnimationHiddenIn": { "file": "index.html", "sectionStart": "<section id = \"intro\"", "sectionEnd": "<!-- About Section -->" }
+  },
+
   "requiredFiles": [
     "index.html",
     "projects.html",

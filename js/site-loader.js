@@ -938,17 +938,24 @@
         const section = document.querySelector('#intro');
         if (!section) return;
 
+        // Rewriting text that is already on the page counts as a fresh paint,
+        // which pushed the hero's largest contentful paint back to whenever the
+        // JSON arrived. Only touch text that actually differs.
+        const setText = (el, value) => {
+            if (el && typeof value === 'string' && el.textContent !== value) el.textContent = value;
+        };
+
         const typingEl = section.querySelector('#typing-text');
-        if (typingEl) {
+        if (typingEl && data.title) {
             typingEl.setAttribute('data-text', data.title);
-            typingEl.textContent = data.title;
+            setText(typingEl, data.title);
         }
 
         const fullNameEl = section.querySelector('.hero-fullname');
-        if (fullNameEl && data.fullName) fullNameEl.textContent = data.fullName;
+        setText(fullNameEl, data.fullName);
 
         const subtitleEl = section.querySelector('h2');
-        if (subtitleEl) subtitleEl.textContent = data.subtitle;
+        setText(subtitleEl, data.subtitle);
 
         const badge = section.querySelector('.availability-badge');
         if (badge) {
@@ -981,10 +988,10 @@
         if (!intro) {
             const ps = section.querySelectorAll('.hero-content p');
             ps.forEach(p => {
-                if (p.classList.contains('text-lg')) p.textContent = data.introText;
+                if (p.classList.contains('text-lg')) setText(p, data.introText);
             });
         } else {
-            intro.textContent = data.introText;
+            setText(intro, data.introText);
         }
 
         const tagsContainer = section.querySelector('.hero-tags');

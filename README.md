@@ -40,6 +40,17 @@ npm run audit:snapshot   # before editing
 npm run audit:compare    # after editing
 ```
 
+### Performance budget
+
+The audit also enforces what keeps the homepage fast on mobile. It fails the build when:
+
+- an image the homepage loads up front (experience cards and the hero portrait) is over 120KB;
+- an `@font-face` rule does not offer WOFF2 first;
+- a third-party iframe loads eagerly instead of through `data-src`;
+- the hero carries `data-aos`, which hides it until JavaScript runs and delays the largest paint.
+
+For a new homepage photo, add it to `scripts/optimize_images.py`, run `python3 scripts/optimize_images.py`, and point the CMS entry at the generated `-web.webp` file. Originals are kept. The experience photos and the contact map load only as a visitor approaches them; visitors without JavaScript still get the photos.
+
 The published resume is generated, not hand-edited: `python3 scripts/build_resume.py` rebuilds `docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf` and self-checks the hard rules before writing. Run `npm run audit` afterwards.
 
 After reviewing and committing a change batch:
