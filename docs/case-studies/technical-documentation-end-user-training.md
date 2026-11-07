@@ -4,7 +4,7 @@
 Produced comprehensive standard operating procedures, technical runbooks, and hands-on training materials to support system rollouts, troubleshooting workflows, and staff onboarding across academic IT environments, directly reducing support ticket volume and accelerating new team member productivity.
 
 ## Work Context
-At FUTA (Systems & Data Analyst / System Programmer, 2017–2023) and Pures College (Computer IT Instructor, 2024–2025), these documentation assets were central to onboarding, support consistency, and smoother handoffs between technical teams. Training workshops translated complex system workflows into practical, actionable instructions for both technical and non-technical staff.
+At FUTA (Systems & Data Analyst / System Programmer, 2017–2023) and Pures College (IT Systems Support and Computer Instructor, 2024–2025), these documentation assets were central to onboarding, support consistency, and smoother handoffs between technical teams. Training workshops translated complex system workflows into practical, actionable instructions for both technical and non-technical staff.
 
 ## Current Implementation
 I continue building the same runbook-first approach in personal projects to preserve repeatable setup and troubleshooting workflows, maintaining a centralized knowledge base of documented solutions and configuration templates.

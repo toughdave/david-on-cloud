@@ -38,7 +38,7 @@
         },
         {
             "icon": "layers",
-            "title": "Full-Stack Development",
+            "title": "Application Platforms & Integrations",
             "items": ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Supabase / InsForge", "TipTap", "Google OAuth", "REST API Integration", "Automated Testing (CI/E2E)"]
         },
         {

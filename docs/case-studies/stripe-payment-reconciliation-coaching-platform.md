@@ -4,7 +4,7 @@
 Built the payments and payouts process for a coaching platform: Stripe card payments, coach payouts, and a reconciliation check confirming the fees charged to clients match the fees the payment provider actually deducted — so any difference is recorded rather than quietly absorbed.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public plan structure this work supports — including the free tier and the "zero platform fee on your sales" commitment — is visible at https://www.theanchorcoach.com/suite/pricing.
+Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026). The public plan structure this work supports — including the free tier and the "zero platform fee on your sales" commitment — is visible at https://www.theanchorcoach.com/suite/pricing.
 
 ## The Problem
 A coaching platform that takes money on behalf of coaches has two numbers that must agree and usually don't: the fee **estimated** when a client is charged, and the fee the payment gateway **actually** deducts on settlement. If nothing reconciles the two, the difference quietly comes out of somebody's margin — and on a free tier that advertises no platform fee, that somebody is the platform.

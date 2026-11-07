@@ -4,7 +4,7 @@
 Provisioned and maintained standardized Windows Server and Active Directory lab environments across VirtualBox and VMware platforms for 250+ students, ensuring consistent and reliable virtual infrastructure for systems administration coursework.
 
 ## Work Context
-At Pures College (Computer IT Instructor, 2024–2025), these lab builds supported classroom delivery for systems administration practicals. Baseline VM images were pre-configured with Active Directory Domain Services, DNS, and Group Policy so students had ready-to-use environments from the first day of each term.
+At Pures College (IT Systems Support and Computer Instructor, 2024–2025), these lab builds supported classroom delivery for systems administration practicals. Baseline VM images were pre-configured with Active Directory Domain Services, DNS, and Group Policy so students had ready-to-use environments from the first day of each term.
 
 ## Current Implementation
 I continue refining the same baseline images and reset playbooks in personal projects and consultant onboarding drills for repeatable Active Directory and Group Policy testing across VirtualBox and VMware.

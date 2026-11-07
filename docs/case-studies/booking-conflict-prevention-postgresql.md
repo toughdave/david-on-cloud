@@ -4,7 +4,7 @@
 Fixed a fault on a live coaching platform that could let two clients book the same session at the same time. The safeguard now sits in the database rather than in one screen's code, so it applies to every route that creates a booking.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), a multi-tenant Next.js coaching SaaS platform serving Super Admin, Staff Coach, Independent Coach, and Suite client roles.
+Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026), a multi-tenant Next.js coaching SaaS platform serving Super Admin, Staff Coach, Independent Coach, and Suite client roles.
 
 ## The Problem
 Concurrent booking requests could both pass an application-level availability check before either committed. Under normal load this was invisible; under simultaneous requests for the same coach slot, two overlapping bookings could be written, and the conflict then had to be untangled manually by a coach — after a client had already been told the slot was theirs.

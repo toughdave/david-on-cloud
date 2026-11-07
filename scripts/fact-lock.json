@@ -1,0 +1,130 @@
+{
+  "_comment": [
+    "Authoritative employment facts and banned claims for davidoncloud.com.",
+    "Source of truth is the job-search skill at:",
+    "  H:\\Other computers\\My laptop\\Personal Documents\\Resume Edits\\.claude\\skills\\tailor-tech-resume\\",
+    "  (SKILL.md 'Non-negotiable facts', references/evidence-bank.md, references/document-production.md)",
+    "This file is a MIRROR of that source so the site can be checked offline. When the source changes,",
+    "update this file in the same commit as the content change. Never edit site copy to disagree with it."
+  ],
+  "_sourceCheckedOn": "2026-11-07",
+
+  "requiredPhrases": {
+    "js/experience.json": [
+      "IT Application/Production Support Analyst",
+      "Anchor Coaching",
+      "Sept. 2025",
+      "Sept. 2026",
+      "Dec. 2025",
+      "Jan. 2024",
+      "Aug. 2025",
+      "Mar. 2017",
+      "Aug. 2023",
+      "Federal University of Technology, Akure"
+    ],
+    "js/about.json": [
+      "9+ years"
+    ]
+  },
+
+  "bannedPhrases": {
+    "_note": "Unsupported metrics and withdrawn display conventions. Checked across all CMS JSON, both HTML pages, every case study in docs/case-studies, and the resume PDF text. Linking to https://www.theanchorcoach.com as a project source is fine; appending it to the employer line is not.",
+    "global": [
+      "99.9%",
+      "99% uptime",
+      "40%",
+      "60% processing",
+      "8,000+ records",
+      "Anchor Coaching (www.",
+      "Full-Stack Developer for Anchor",
+      "Independent Practice",
+      "independent consultant",
+      "Self-employed",
+      "freelance",
+      "March 2026",
+      "February–July 2026",
+      "Computer IT Instructor"
+    ]
+  },
+
+  "bannedInExperience": {
+    "_note": "Anchor must never read as ongoing, and no generic umbrella entry may sit beside it.",
+    "patterns": [
+      "Aug\\. 2025 . Present",
+      "Mar\\. 2026 . present",
+      "Anchor[^\"]{0,40}Present",
+      "Systems Consultant",
+      "Full-Stack Developer & Systems"
+    ]
+  },
+
+  "resume": {
+    "path": "docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf",
+    "mustContain": [
+      "TOPE DAVID MATTHEW",
+      "IT Application/Production Support Analyst",
+      "Anchor Coaching",
+      "Sept 2025",
+      "Sept 2026",
+      "Pures College of Technology",
+      "Federal University of Technology, Akure",
+      "Master of Technology",
+      "Bachelor of Technology"
+    ],
+    "mustNotContain": [
+      "99.9%",
+      "40%",
+      "Present",
+      "(Contract)",
+      "theanchorcoach.com",
+      "Independent",
+      "Full-Stack Developer"
+    ],
+    "mustNotContainChars": ["\u2014"],
+    "_charNote": "Em dash (U+2014) is banned as a prose interrupter in resumes. En dash in date ranges is allowed.",
+    "maxPages": 2,
+    "educationMustNotMatch": "(Master|Bachelor) of Technology[^\\n]*(19|20)\\d{2}",
+    "_eduNote": "Education carries degree and institution only; never a year or a date range."
+  },
+
+  "structuralFloors": {
+    "_note": "Guards against silently losing content that already exists. Raise these when content is deliberately added; never lower them without saying so.",
+    "js/projects.json": { "key": "projects", "minCount": 21 },
+    "js/experience.json": { "key": "entries", "minCount": 4 },
+    "js/skills.json": { "key": "categories", "minCount": 9 },
+    "js/testimonials.json": { "key": "entries", "minCount": 2 },
+    "js/script-library.json": { "key": "entries", "minCount": 5 },
+    "js/process.json": { "key": "steps", "minCount": 4 }
+  },
+
+  "requiredFiles": [
+    "index.html",
+    "projects.html",
+    "css/style.css",
+    "css/utilities.css",
+    "js/site-loader.js",
+    "js/scripts.js",
+    "robots.txt",
+    "sitemap.xml",
+    "llms.txt",
+    "site.webmanifest"
+  ],
+
+  "seo": {
+    "_note": "Recruiter-facing discoverability floors. The full legal name must be present and machine-readable.",
+    "index.html": {
+      "mustContain": [
+        "Tope David Matthew",
+        "\"@type\": \"Person\"",
+        "\"sameAs\"",
+        "linkedin.com/in/tope-david-m-48076969",
+        "github.com/toughdave",
+        "\"alumniOf\"",
+        "\"address\""
+      ]
+    },
+    "projects.html": {
+      "mustContain": ["application/ld+json"]
+    }
+  }
+}

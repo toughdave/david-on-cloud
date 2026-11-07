@@ -1,23 +1,28 @@
 {
   "sectionTitle": "About Me",
   "professionalSummary": [
-    "I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.",
-    "I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.",
-    "Recent contract work extended that range: building booking, payments, and documentation features for Anchor Coaching's platform (300+ reviewed code changes, 127+ documentation chapters), and reviewing rubric and test quality for AI training data at Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable."
+    "I am an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.",
+    "I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Entra ID, Microsoft 365, domain and DNS operations, and structured automation, with a focus on documentation and data accuracy.",
+    "Most recently I ran production and application support for a live coaching platform at Anchor Coaching: triaging incidents, protecting booking and payment data integrity, administering access and mail infrastructure, and writing the 127+ documentation chapters its four user types depend on. Alongside that I reviewed rubric and test quality for AI training data at Outlier. Both run on the same foundation as my systems work: verify the data, document the system, make it repeatable."
   ],
   "location": "Toronto, ON (open to relocate)",
   "email": "matthewtopedavid@gmail.com",
   "education": [
     {
       "degree": "M.Tech. in Computer Science",
-      "institution": "Federal University of Technology, Akure (FUTA)",
+      "institution": "Federal University of Technology, Akure",
       "year": "2019"
     },
     {
       "degree": "B.Tech. in Computer Science",
-      "institution": "Federal University of Technology, Akure (FUTA)",
+      "institution": "Federal University of Technology, Akure",
       "year": "2014"
+    },
+    {
+      "degree": "Cloud Computing (coursework)",
+      "institution": "Loyalist College",
+      "year": "Sept 2023 - Dec 2023"
     }
   ],
-  "additionalExperience": "In my home lab and consultant workflows I run enterprise-style systems and networking scenarios — Cisco Catalyst switching, VMware/VirtualBox, Docker utilities, routing, VLANs, DNS and DHCP. On the development side I work in a Git-based, AI-augmented workflow with GitHub Actions CI and automated tests."
+  "additionalExperience": "Outside client work I run enterprise-style systems and networking scenarios in a home lab: Cisco Catalyst switching, VMware/VirtualBox, Docker utilities, routing, VLANs, DNS and DHCP. I also handle standardized staff onboarding and offboarding patterns across Active Directory, Entra ID and Microsoft 365, maintain domain and DNS operations for davidoncloud.com, and produce technical runbooks for repeatable rebuilds. On the delivery side I work in a Git-based, AI-augmented workflow with GitHub Actions CI and automated tests. Ongoing study toward CCNA and foundational cloud topics; these are study tracks, not completed certifications."
 }

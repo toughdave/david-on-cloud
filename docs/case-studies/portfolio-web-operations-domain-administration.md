@@ -4,13 +4,13 @@
 Built and operated my portfolio website as a production-style web and domain operations project, combining CMS-managed content delivery, DNS record administration, Microsoft 365 identity governance, scripted release automation, and pre-flight validation checks across 50+ versioned releases.
 
 ## Work Context
-At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Those same controls shaped how I run this website project end to end.
+At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Those same controls shaped how I run this website project end to end.
 
 ## Current Implementation
 I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, Docker-containerized support utilities, and continuous service validation before each production update.
 
 ## Extension: Multi-Tenant Custom Domains at Anchor Coaching
-The same domain-operations skill set was applied at production scale during my contract engagement with Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), where the requirement moved from operating one domain to letting many coaches attach their own.
+The same domain-operations skill set was applied at production scale during my contract engagement with Anchor Coaching (Remote, North York, ON, September 2025 – September 2026), where the requirement moved from operating one domain to letting many coaches attach their own.
 
 - Shipped **host-resolved, DNS-verified custom storefront domains**, so an independent coach can point their own domain at their storefront and have ownership verified through DNS records before the domain goes live.
 - Gated the capability behind an explicit environment-variable feature switch, so the rollout could be enabled deliberately per environment rather than shipping on by default.

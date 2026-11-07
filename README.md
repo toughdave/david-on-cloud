@@ -18,7 +18,29 @@ npm start
 
 The build compiles Tailwind into `css/utilities.css`, validates HTML, JavaScript, CMS JSON and local resource paths, runs mocked contact-form regression tests, and copies public files into `dist/`. Production CSS is committed because Porkbun serves the repository directly; it does not execute the Node build. Run the build after introducing CSS classes in templates or CMS content. CI checks that committed CSS matches the source.
 
-CMS content remains in `js/*.json`. Four selected case studies appear on the homepage; every visible project stays available in the full library. Project links use `projects.html?project=<id>` and reopen the corresponding detail view. These links work with new CMS records without a separate page-generation step.
+CMS content remains in `js/*.json`. Four selected case studies appear on the homepage; every visible project stays available in the full library. Project links use `projects.html?project=<id>` and reopen the corresponding detail view. These links work with new CMS records without a separate page-generation step. A case study stored as Markdown opens inside the project modal rather than downloading, because the host serves `.md` as `application/octet-stream`; a download link stays available beneath the rendered text.
+
+### Content audit gate
+
+`npm run audit` runs as part of `npm run build` and must pass before anything ships. It checks the site against `scripts/fact-lock.json`:
+
+- **Employment facts.** Locked titles, employers and date ranges must still be present, and withdrawn framing must not be (no "Present" on the Anchor engagement, no generic independent-consultant umbrella entry, no client website on the employer line).
+- **Banned claims.** Unsupported metrics such as uptime percentages and invented reduction figures are rejected across every CMS file, every case study and both HTML pages.
+- **Structural floors.** Project, experience, skill and testimonial counts cannot silently fall, so an edit cannot quietly drop existing content.
+- **Resume.** The published PDF is re-read and checked for the locked facts, the banned strings, em dashes, dated education lines and the two-page maximum.
+- **SEO floor.** The full legal name, valid JSON-LD and the `sameAs` profile links must be present on both pages.
+- **Generated docs.** `llms.txt` and the `.md` mirrors are regenerated and must already match what is committed.
+
+`scripts/fact-lock.json` is a **mirror** of the job-search source of truth, which lives outside this repository in the `tailor-tech-resume` skill on the H drive (`SKILL.md` "Non-negotiable facts", `references/evidence-bank.md`, `references/document-production.md`). When that source changes, update the lock file in the same commit as the content change. Never edit site copy to disagree with it.
+
+Take a fingerprint before a batch of edits and compare afterwards, so nothing that already existed is lost:
+
+```bash
+npm run audit:snapshot   # before editing
+npm run audit:compare    # after editing
+```
+
+The published resume is generated, not hand-edited: `python3 scripts/build_resume.py` rebuilds `docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf` and self-checks the hard rules before writing. Run `npm run audit` afterwards.
 
 After reviewing and committing a change batch:
 

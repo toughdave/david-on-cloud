@@ -4,7 +4,7 @@
 Evaluated the validity of rubrics and unit tests used to train AI agents, applying a "zero degrees of freedom" standard to surface overfit assertions, self-referential test logic, and reward/penalty scoring errors, and separating machine-verifiable criteria from natural-language judgment.
 
 ## Work Context
-Delivered as AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February–July 2026).
+Delivered as AI Training Data Scientist / Data Analyst for Outlier (Remote, North York, ON, December 2025 – July 2026).
 
 ## The Problem
 Training data for AI agents is often graded by rubrics and unit tests written alongside the task. If a grading criterion admits more than one defensible interpretation, it does not measure capability — it measures whether the model guessed the author's intent. Worse failure modes hide inside tests that look rigorous:

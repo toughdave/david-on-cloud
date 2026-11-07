@@ -4,7 +4,7 @@
 Configured and validated DNS and DHCP infrastructure services in a mixed Windows and Linux lab environment, building foundational skills for reliable name resolution, automated IP address management, and cross-platform client connectivity.
 
 ## Work Context
-At Pures College (Computer IT Instructor, 2024–2025), this DNS/DHCP workflow supported practical networking lessons on name resolution, lease behavior, and service troubleshooting. Students configured forward and reverse zones, DHCP scopes, and validated cross-platform connectivity.
+At Pures College (IT Systems Support and Computer Instructor, 2024–2025), this DNS/DHCP workflow supported practical networking lessons on name resolution, lease behavior, and service troubleshooting. Students configured forward and reverse zones, DHCP scopes, and validated cross-platform connectivity.
 
 ## Current Implementation
 I continue validating the same service patterns in a personal lab across segmented environments, testing lease lifecycle behavior, relay agent configuration, and DNS failover scenarios.

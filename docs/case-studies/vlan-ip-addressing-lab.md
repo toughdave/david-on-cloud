@@ -4,7 +4,7 @@
 Built a hands-on networking lab using enterprise-grade switching equipment and Cisco Packet Tracer to practice VLAN segmentation, structured IP addressing plans, and inter-VLAN routing across isolated network segments.
 
 ## Work Context
-At Pures College (Computer IT Instructor, 2024–2025), this lab environment supported structured classroom delivery where students configured trunk ports, access ports, and inter-VLAN routing on managed switches. Each session followed a repeatable scenario covering VLAN assignment, IP address planning, and connectivity validation.
+At Pures College (IT Systems Support and Computer Instructor, 2024–2025), this lab environment supported structured classroom delivery where students configured trunk ports, access ports, and inter-VLAN routing on managed switches. Each session followed a repeatable scenario covering VLAN assignment, IP address planning, and connectivity validation.
 
 ## Current Implementation
 I continue extending the same lab scenarios in a personal home lab, testing segmentation patterns, routing behavior, and failover handling across physical and simulated environments.

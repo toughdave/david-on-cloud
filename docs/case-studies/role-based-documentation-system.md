@@ -4,7 +4,7 @@
 Wrote and maintained 127+ chapters of user documentation for a coaching platform, organised so each type of user reads only what applies to them, with automated checks that catch broken links before release.
 
 ## Work Context
-Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present). The public documentation surface is live at https://www.theanchorcoach.com/documentation.
+Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026). The public documentation surface is live at https://www.theanchorcoach.com/documentation.
 
 ## The Problem
 A platform with four distinct user types — Super Admin, Staff Coach, Independent Coach, and two client types — cannot be documented as one undifferentiated manual. A Staff Coach reading Super Admin procedures learns things they cannot act on and misses the ones they can. Meanwhile, documentation that is not validated rots silently: a renamed route leaves dead links that nobody notices until a user hits one.

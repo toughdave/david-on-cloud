@@ -6,16 +6,17 @@
 - [Projects (JSON)](https://davidoncloud.com/js/projects.json): Canonical CMS-managed project records used by the website UI.
 
 ## Professional Summary
-- I work as an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
-- I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Microsoft 365, domain and DNS operations, and structured automation — with a focus on documentation and data accuracy.
-- Recent contract work extended that range: building booking, payments, and documentation features for Anchor Coaching's platform (300+ reviewed code changes, 127+ documentation chapters), and reviewing rubric and test quality for AI training data at Outlier. Both run on the same foundation as my systems work — verify the data, document the system, make it repeatable.
+- I am an Information Systems Analyst, Data Analyst, and IT Administrator with a Master’s degree in Computer Science and 9+ years leading academic and enterprise IT operations, including ERP-backed workflows, implementation support, and data governance.
+- I analyze systems, improve data processes, and maintain reliability across Windows and Linux using Active Directory, Entra ID, Microsoft 365, domain and DNS operations, and structured automation, with a focus on documentation and data accuracy.
+- Most recently I ran production and application support for a live coaching platform at Anchor Coaching: triaging incidents, protecting booking and payment data integrity, administering access and mail infrastructure, and writing the 127+ documentation chapters its four user types depend on. Alongside that I reviewed rubric and test quality for AI training data at Outlier. Both run on the same foundation as my systems work: verify the data, document the system, make it repeatable.
 
 ## Education
-- M.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2019)
-- B.Tech. in Computer Science - Federal University of Technology, Akure (FUTA) (2014)
+- M.Tech. in Computer Science - Federal University of Technology, Akure (2019)
+- B.Tech. in Computer Science - Federal University of Technology, Akure (2014)
+- Cloud Computing (coursework) - Loyalist College (Sept 2023 - Dec 2023)
 
 ## Additional Practical Experience
-- In my home lab and consultant workflows I run enterprise-style systems and networking scenarios — Cisco Catalyst switching, VMware/VirtualBox, Docker utilities, routing, VLANs, DNS and DHCP. On the development side I work in a Git-based, AI-augmented workflow with GitHub Actions CI and automated tests.
+- Outside client work I run enterprise-style systems and networking scenarios in a home lab: Cisco Catalyst switching, VMware/VirtualBox, Docker utilities, routing, VLANs, DNS and DHCP. I also handle standardized staff onboarding and offboarding patterns across Active Directory, Entra ID and Microsoft 365, maintain domain and DNS operations for davidoncloud.com, and produce technical runbooks for repeatable rebuilds. On the delivery side I work in a Git-based, AI-augmented workflow with GitHub Actions CI and automated tests. Ongoing study toward CCNA and foundational cloud topics; these are study tracks, not completed certifications.
 
 ## My Skills
 ### Systems Implementation & Support
@@ -79,7 +80,7 @@
 - Decap CMS
 - CI/CD Pipelines (GitHub Actions)
 
-### Full-Stack Development
+### Application Platforms & Integrations
 - Next.js
 - TypeScript
 - PostgreSQL
@@ -152,34 +153,33 @@
 - **Ground-Truth Verification**: Validate dataset integrity through coverage-gap analysis and cross-validation against independent analysis.
 
 ## Work Experience
-### IT Administrator, Full-Stack Developer & Systems Consultant
-- Organization: Independent Practice — client: Anchor Coaching (www.theanchorcoach.com)
-- Location: North York, ON — contract work remote
-- Period: Aug. 2025 – Present
-- Work Context: Running an independent practice covering IT systems administration and full-stack contract delivery — currently building booking, payments, and documentation features for a live coaching platform.
+### IT Application/Production Support Analyst
+- Organization: Anchor Coaching
+- Location: Remote, North York, ON
+- Period: Sept. 2025 - Sept. 2026
+- Work Context: Production and application support for a live coaching platform, covering incident resolution, data integrity, payments reconciliation, user access, and the documentation the four user types depend on.
 - Key Outcomes:
-- Anchor Coaching (contract, Mar 2026 – present): delivered features for a coaching platform serving four user types — administrators, staff coaches, independent coaches, and clients.
-- Fixed a scheduling fault that could let two clients book the same session, moving the safeguard into the database so it applies to every booking route rather than one screen.
+- Provided production and application support for a live multi-tenant coaching platform serving four user types: administrators, staff coaches, independent coaches, and clients.
+- Ran support ticketing and incident workflow end to end, diagnosing recurring faults and converting them into preventive fixes rather than repeat tickets.
+- Resolved a production scheduling fault that could let two clients book the same session, moving the safeguard into the database so it applies to every booking route rather than one screen.
 - Built the payments and payouts process, including coach payouts and a reconciliation check confirming the fees charged match the fees actually deducted.
-- Wrote 127+ chapters of user documentation tailored to each role, with automated checks that catch broken links before release.
-- Administered the platform's infrastructure: custom domain setup and verification, business email delivery, and scheduled backups.
-- Shipped 300+ reviewed code changes using AI-assisted development workflows and automated nightly testing.
-- Independent systems consulting: standardized staff onboarding and offboarding with account controls across Active Directory, Entra ID, and Microsoft 365.
-- Built and maintained small-business network and server infrastructure using Cisco switching, network segmentation, and virtualization, sustaining 99.9% availability.
-- Managed domain and DNS operations for davidoncloud.com, and resolved network and system faults through structured diagnosis and root-cause analysis.
-- Produced technical runbooks and automation scripts for repeatable rebuilds, cutting manual setup effort by an estimated 40%.
+- Supported endpoints and user devices across computers, phones, tablets, printers and peripherals as part of the wider application and access operation.
+- Implemented application-level MFA enrolment and enforcement, Microsoft Entra ID app registration, and delegated Microsoft Graph access for calendar and mail integration.
+- Wrote 127+ chapters of role-based user documentation, with automated checks that catch broken links before release.
+- Administered the platform's operational infrastructure: custom domain setup and verification, business email delivery and transport security, and scheduled backups.
+- Shipped 300+ reviewed changes with automated nightly testing, and monitored service health through Sentry and PostHog.
 
 ### AI Training Data Scientist / Data Analyst
-- Organization: Outlier (OpenClaw Atlas Program)
-- Location: Remote
-- Period: Feb. 2026 – July 2026
-- Work Context: Checking whether the rubrics and tests used to train AI models actually measure what they claim to measure.
+- Organization: Outlier
+- Location: Remote, North York, ON
+- Period: Dec. 2025 - July 2026
+- Work Context: Checking whether the rubrics and tests used to train AI models actually measure what they claim to measure, across agent-evaluation and multimodal reasoning programs.
 - Key Outcomes:
 - Reviewed the rubrics and automated tests used to grade AI training data, checking each criterion had exactly one defensible interpretation.
 - Flagged tests that only passed for one specific solution, tests that validated their own output, and criteria with incorrect scoring weights.
 - Wrote structured analysis reports separating checks a machine can verify from those needing human judgment, and cross-checked findings against independent analysis.
 
-### Computer IT Instructor (Computer Science & Applied Computing)
+### IT Systems Support and Computer Instructor
 - Organization: Pures College of Technology
 - Location: Scarborough, ON
 - Period: Jan. 2024 - Aug. 2025
@@ -187,20 +187,22 @@
 - Key Outcomes:
 - Supported 250+ students with hands-on lab guidance across laptops, desktops, tests, and project sessions.
 - Built and maintained Windows Server/Windows client virtual labs in VirtualBox/VMware, including Active Directory and identity-access practicals.
-- Installed and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus collaboration and access workflows.
+- Installed, imaged and troubleshot course tooling (VS Code, Eclipse, MySQL, Python/HTML/CSS/JS) plus collaboration and access workflows.
 - Ran networking practicals covering VLAN basics, cabling, and connectivity troubleshooting, documenting repeatable lab setups.
 
 ### Systems & Data Analyst / System Programmer (Head, System Programmer’s Office)
-- Organization: Federal University of Technology, Akure (FUTA) - Centre for Continuing Education (CCE)
+- Organization: Federal University of Technology, Akure - Centre for Continuing Education
 - Location: Nigeria
 - Period: Mar. 2017 - Aug. 2023
 - Work Context: Led enterprise academic ERP operations and data automation for 4,000+ users, combining identity governance, cross-system integration, and examination reliability.
 - Key Outcomes:
 - Led and administered the academic ERP ecosystem (admissions, examinations, reporting, identity, RBAC) for 4,000+ users.
 - Led production cutover from the legacy Smarty workflow to the Gradent platform, with migration checks and rollback safeguards.
-- Cut result processing from 3–5 days to same-day, reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.
+- Cut result processing from 3-5 days to same-day, reclaiming 200+ hours annually through Python, SQL, ETL, and validation controls.
 - Governed onboarding/offboarding for 4,000+ stakeholders via Active Directory and role-based access.
+- Supported Microsoft Exchange and SharePoint for staff and students, alongside staff and student portals and departmental email.
 - Oversaw secure examination technologies, running readiness checks and biometric verification for 300+ candidates per session.
+- Maintained IT asset inventory across laptops, tablets, biometric units and CCTV equipment, including purchasing input, distribution, recovery and reconciliation.
 
 ### Computer Science (ICT) Teacher
 - Organization: Community Secondary School, Agulu-Awka

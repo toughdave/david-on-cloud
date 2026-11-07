@@ -99,6 +99,80 @@ const parseDateValue = (value) => {
     return Number.isNaN(date.getTime()) ? null : date;
 };
 
+// A case study stored as .md is served as application/octet-stream, so a plain
+// link downloads a file instead of opening one. These two helpers let the modal
+// read the same file in place; the download stays available as a secondary link.
+const isLocalMarkdown = (href) => /^(?!https?:)[^:]*\.md(?:[?#].*)?$/i.test(String(href || '').trim());
+
+const renderCaseStudyMarkdown = (source) => {
+    const lines = String(source ?? '').replace(/\r\n/g, '\n').split('\n');
+    const out = [];
+    let listType = null;
+    let inCode = false;
+    let paragraph = [];
+
+    const inline = (text) => escapeHTML(text)
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
+        .replace(/\[([^\]]+)\]\(([^)\s"'<>]+)\)/g, (match, label, url) => {
+            const safe = sanitizeUrl(url, { allowHash: true, allowMailto: true, fallback: '' });
+            if (!safe) return label;
+            const external = /^https?:/i.test(safe);
+            const rel = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+            return `<a href="${escapeHTML(safe)}"${rel}>${label}</a>`;
+        });
+
+    const closeList = () => { if (listType) { out.push(`</${listType}>`); listType = null; } };
+    const closeParagraph = () => {
+        if (paragraph.length) { out.push(`<p>${inline(paragraph.join(' '))}</p>`); paragraph = []; }
+    };
+    const openList = (type) => {
+        if (listType !== type) { closeList(); out.push(`<${type}>`); listType = type; }
+    };
+
+    for (const line of lines) {
+        const fence = line.trim().startsWith('```');
+        if (fence) {
+            closeParagraph(); closeList();
+            out.push(inCode ? '</code></pre>' : '<pre><code>');
+            inCode = !inCode;
+            continue;
+        }
+        if (inCode) { out.push(escapeHTML(line) + '\n'); continue; }
+
+        if (!line.trim()) { closeParagraph(); closeList(); continue; }
+
+        const heading = line.match(/^(#{1,6})\s+(.*)$/);
+        if (heading) {
+            closeParagraph(); closeList();
+            // The modal already shows the project title as an h3, so the case
+            // study's own levels start one step lower and never clash with it.
+            const level = Math.min(6, heading[1].length + 3);
+            out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+            continue;
+        }
+        if (/^\s*([-*_])\s*\1\s*\1[\s\S]*$/.test(line.trim())) {
+            closeParagraph(); closeList(); out.push('<hr>'); continue;
+        }
+        const bullet = line.match(/^\s*[-*+]\s+(.*)$/);
+        if (bullet) { closeParagraph(); openList('ul'); out.push(`<li>${inline(bullet[1])}</li>`); continue; }
+
+        const ordered = line.match(/^\s*\d+[.)]\s+(.*)$/);
+        if (ordered) { closeParagraph(); openList('ol'); out.push(`<li>${inline(ordered[1])}</li>`); continue; }
+
+        const quote = line.match(/^\s*>\s?(.*)$/);
+        if (quote) { closeParagraph(); closeList(); out.push(`<blockquote>${inline(quote[1])}</blockquote>`); continue; }
+
+        closeList();
+        paragraph.push(line.trim());
+    }
+    closeParagraph();
+    closeList();
+    if (inCode) out.push('</code></pre>');
+    return out.join('');
+};
+
 const hasMeaningfulModification = (postedValue, modifiedValue) => {
     const modifiedDate = parseDateValue(modifiedValue);
     if (!modifiedDate) return false;
@@ -2598,6 +2672,48 @@ document.addEventListener('DOMContentLoaded', function() {
             fallback: ''
         });
         const safeSourceText = escapeHTML(project.sourceText || 'View Live Source');
+        const readsInPage = isLocalMarkdown(safeLinkHref);
+        let caseStudyControl = '';
+        if (safeLinkHref && readsInPage) {
+            caseStudyControl = `<button type="button" class="project-modal-link project-modal-link--casestudy" data-case-study="${escapeHTML(safeLinkHref)}" aria-expanded="false"><i data-feather="book-open" class="w-4 h-4"></i> <span class="case-study-label">Read case study</span></button>`;
+        } else if (safeLinkHref) {
+            caseStudyControl = `<a href="${escapeHTML(safeLinkHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${safeLinkText}</a>`;
+        }
+
+        // Fetch the markdown on first open, render it in place, and keep a
+        // download link for anyone who wants the file itself.
+        const wireCaseStudyToggle = (scope, href) => {
+            const button = scope.querySelector('.project-modal-link--casestudy');
+            const section = scope.querySelector('.project-modal-section--casestudy');
+            if (!button || !section) return;
+            const body = section.querySelector('.project-modal-casestudy-body');
+            let loaded = false;
+
+            button.addEventListener('click', async () => {
+                const opening = section.hidden;
+                section.hidden = !opening;
+                button.setAttribute('aria-expanded', String(opening));
+                const label = button.querySelector('.case-study-label');
+                if (label) label.textContent = opening ? 'Hide case study' : 'Read case study';
+                if (!opening || loaded) {
+                    if (opening) section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    return;
+                }
+                body.innerHTML = '<p class="project-modal-casestudy-status">Loading case study...</p>';
+                try {
+                    const response = await fetch(href, { credentials: 'same-origin' });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const markdown = await response.text();
+                    body.innerHTML = renderCaseStudyMarkdown(markdown)
+                        + `<p class="project-modal-casestudy-download"><a href="${escapeHTML(href)}" download>Download this case study (Markdown)</a></p>`;
+                    loaded = true;
+                    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } catch (error) {
+                    body.innerHTML = `<p class="project-modal-casestudy-status">Could not load the case study here. <a href="${escapeHTML(href)}" download>Download it instead</a>.</p>`;
+                }
+            });
+        };
+
         content.innerHTML = `
             <div class="project-modal-header">
                 <div class="project-modal-dates">
@@ -2616,7 +2732,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="project-modal-tags">${buildTags(project.tags)}</div>
                 ${safeLinkHref || safePdfHref || safeSourceHref ? `
                     <div class="project-modal-links">
-                        ${safeLinkHref ? `<a href="${escapeHTML(safeLinkHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link"><i data-feather="external-link" class="w-4 h-4"></i> ${safeLinkText}</a>` : ''}
+                        ${caseStudyControl}
                         ${safeSourceHref ? `<a href="${escapeHTML(safeSourceHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--source"><i data-feather="globe" class="w-4 h-4"></i> ${safeSourceText}</a>` : ''}
                         ${safePdfHref ? `<a href="${escapeHTML(safePdfHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
                     </div>
@@ -2635,8 +2751,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 ` : ''}
+                ${readsInPage ? `
+                    <div class="project-modal-section project-modal-section--casestudy" hidden>
+                        <h4>Case study</h4>
+                        <div class="project-modal-casestudy-body" aria-live="polite"></div>
+                    </div>
+                ` : ''}
             </div>
         `;
+        if (readsInPage) wireCaseStudyToggle(content, safeLinkHref);
         if (typeof feather !== 'undefined') {
             feather.replace();
         }

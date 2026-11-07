@@ -21,7 +21,7 @@ Fixed a fault that could let two clients book the same coaching slot at the same
 - Shipped it in two steps: first blocking exact duplicate slots (the quick, safe win), then blocking partial overlaps such as a 2:00–3:00 session colliding with a 2:30–3:30 one.
 - Added tests covering simultaneous-booking scenarios, re-run automatically on every change, and centralised conflict handling so every part of the app responds to a rejected booking the same way.
 - Technical detail: the rule is a PostgreSQL exclusion constraint using the btree_gist extension, which lets one index combine an exact match (which coach) with a range check (do the times overlap).
-- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present), a coaching platform serving administrators, staff coaches, independent coaches, and clients.
+- Work Context: Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026), a coaching platform serving administrators, staff coaches, independent coaches, and clients.
 - Live reference: Live platform: The Anchor Coach — https://www.theanchorcoach.com
 
 ### Results and Impact
@@ -46,7 +46,7 @@ Built the payments and payouts process for a coaching platform, including coach 
 - Added a reconciliation check comparing the fee expected when a client is charged against the fee the provider actually deducted on settlement, writing any difference into an accounting record instead of letting it quietly reduce someone's margin — which matters on a free tier that advertises no platform fee.
 - Built coach payout disbursement with support for multiple payout methods, a self-serve earnings view, and guards blocking refunds on non-refundable purchases.
 - This is the same reconciliation discipline used for institutional financial data at FUTA — compare source against target, surface the difference, make the check repeatable — applied to payments instead of academic records.
-- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
+- Work Context: Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026).
 - Live reference: Live surface: Anchor Suite pricing — https://www.theanchorcoach.com/suite/pricing
 
 ### Results and Impact
@@ -71,7 +71,7 @@ Wrote and maintained 127+ chapters of user documentation for a coaching platform
 - Added automated link checking so a renamed or removed chapter breaks the build on the change that caused it, instead of leaving dead links for users to find.
 - Built public documentation pages alongside the internal role-scoped material, keeping one body of content serving both audiences.
 - This extends the documentation-standards practice established across admissions and examination workflows at FUTA, where written procedure was what made a one-person office auditable.
-- Work Context: Delivered as IT Administrator and Full-Stack Developer for Anchor Coaching (www.theanchorcoach.com, Remote, March 2026 – Present).
+- Work Context: Delivered as IT Application/Production Support Analyst for Anchor Coaching (Remote, North York, ON, September 2025 – September 2026).
 - Live reference: Live surface: platform documentation — https://www.theanchorcoach.com/documentation
 
 ### Results and Impact
@@ -96,7 +96,7 @@ Reviewed the rubrics and automated tests used to grade AI training data, checkin
 - Read the Python test suites directly rather than working from task descriptions, since the test is the real specification, and checked for requirements the tests never exercised.
 - Cross-checked conclusions against independent analysis, treating disagreement between the two as a signal to look harder rather than accepting either as authoritative.
 - The analytical core is the same one used for academic records at FUTA: establish ground truth, verify against it, and document the reasoning so someone else can check the conclusion.
-- Work Context: Delivered as AI Training Data Scientist / Data Analyst for Outlier under the OpenClaw Atlas Program (Remote, February–July 2026).
+- Work Context: Delivered as AI Training Data Scientist / Data Analyst for Outlier (Remote, North York, ON, December 2025 – July 2026).
 
 ### Results and Impact
 - **Degrees of freedom**: 0 (Validity standard applied to each criterion)
@@ -116,14 +116,14 @@ Built and operated my portfolio website as a production-style web and domain ope
 ### Technical Notes
 - Designed and maintained a CMS-managed portfolio platform using Decap CMS with structured JSON data sources, responsive Tailwind CSS layouts, and modular JavaScript rendering, enabling section-level content updates without manual HTML edits across homepage and project views.
 - Managed end-to-end domain operations for davidoncloud.com, including A/CNAME/MX/TXT record lifecycle updates, routing validation before and after each change window, SSL certificate continuity checks, and hosting provider alignment to maintain stable public availability and email delivery.
-- Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, March 2026 – Present): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.
+- Extended the same domain-operations practice to production multi-tenancy at Anchor Coaching (Remote, North York, ON, September 2025 – September 2026): shipped host-resolved, DNS-verified custom storefront domains so independent coaches can attach their own domain with ownership proven through DNS records, gated behind an explicit environment-variable feature switch and documented in a go-live runbook.
 - Restored outbound mail delivery on the platform's Hetzner hosting by moving SMTP from port 465 to 587 with STARTTLS after a provider port policy blocked the original path, then added send rate limiting, audit logging, and mailbox access revocation on coach offboarding.
 - Integrated Microsoft 365 Admin Center workflows with domain-backed identity and service administration, covering user provisioning, license assignment, role-based access changes, mailbox configuration, and access troubleshooting for day-to-day operations support.
 - Implemented a scripted release workflow using Bash automation that handles version bumping, cache-busting updates across HTML assets, changelog generation, Git tagging, and remote push in a single repeatable pass, reducing manual release steps and preventing version drift.
 - Standardized deployment validation with a Node.js-based pre-flight check script that verifies HTML structure, CSS feature usage, JavaScript syntax, image asset integrity, favicon presence, and version consistency before each release, catching configuration issues before they reach production.
 - Containerized recurring support utilities and validation checks with Docker to keep troubleshooting scripts, environment tests, and deployment verifications portable and consistent across local development and production environments.
 - Localized all runtime frontend dependencies (Tailwind CDN, AOS, Three.js, Vanta, Feather Icons, Decap CMS) and font assets to the repository to eliminate external CDN calls, improving page load reliability, offline development capability, and production resilience.
-- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.
+- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I managed implementation handovers, post-deployment stabilization, and operational continuity for high-visibility institutional systems. At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I maintained lab software installations and configuration baselines across classroom environments. Current Implementation: I now apply the same release discipline, validation controls, and operational monitoring to my portfolio operations, combining CMS governance, domain administration, identity controls, and continuous service validation.
 - Source: this site's full source is public at https://github.com/toughdave/david-on-cloud
 
 ### Results and Impact
@@ -147,7 +147,7 @@ Executed a hands-on Cisco Catalyst 3850 troubleshooting lab and resolved five ne
 - Built and executed a structured Cisco Catalyst 3850 troubleshooting lab using two endpoints, console access, and switched Ethernet links to validate baseline reachability, segmented VLAN behavior, and DHCP lease handling under real hardware conditions.
 - Diagnosed end-to-end connectivity blockers by validating host firewall policy, adapter sharing behavior, VLAN interface addressing, and SVI activation state, then applying targeted corrective changes with command-level verification after each fix.
 - Documented each issue as a structured troubleshooting record, preserving observed symptoms, root causes, commands used, and validation outcomes so the lab can be replayed as a repeatable networking operations reference.
-- Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used this same troubleshooting workflow to coach students through practical switch diagnostics and stepwise fault isolation. Current Implementation: I now run and document the same process in my personal home lab and consultant support routines, pairing switch diagnostics with Docker-based checks, domain/DNS validation, and Microsoft 365 access-impact checks before closure.
+- Work Context: At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I used this same troubleshooting workflow to coach students through practical switch diagnostics and stepwise fault isolation. Current Implementation: I now run and document the same process in my personal home lab and consultant support routines, pairing switch diagnostics with Docker-based checks, domain/DNS validation, and Microsoft 365 access-impact checks before closure.
 
 ### Results and Impact
 - **Issues resolved**: 5 (Connectivity, subnet, VLAN, and DHCP fixes)
@@ -308,7 +308,7 @@ Built and maintained a hands-on networking lab environment using enterprise-grad
 - Developed structured IP addressing plans covering subnetting, CIDR notation, and address allocation strategies for multiple VLAN segments, documenting each scheme to mirror production-grade network planning methodologies used in enterprise environments.
 - Created repeatable lab scenarios covering trunking configuration, VLAN assignment, static and dynamic routing integration, and basic failover testing, providing a consistent practice environment for validating networking concepts and troubleshooting common connectivity issues.
 - Used Cisco Packet Tracer alongside physical equipment and a Cisco network switch to bridge simulation with real-world configuration experience, reinforcing concepts such as switch port security, VLAN pruning, and spanning tree behavior in a controlled lab setting.
-- Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used this VLAN and addressing workflow to coach students through practical troubleshooting in structured lab sessions. Current Implementation: I continue extending the same scenarios in my personal home lab for repeatable segmentation, routing, and failover testing.
+- Work Context: At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I used this VLAN and addressing workflow to coach students through practical troubleshooting in structured lab sessions. Current Implementation: I continue extending the same scenarios in my personal home lab for repeatable segmentation, routing, and failover testing.
 
 ### Results and Impact
 - **VLAN segments**: 6 (Isolated lab services)
@@ -331,7 +331,7 @@ Provisioned and maintained standardized Windows Server and Active Directory lab 
 - Developed comprehensive setup playbooks and reset procedures to maintain consistency across 250+ student lab seats, enabling rapid redeployment of clean environments between terms and ensuring every student worked with identical baseline configurations regardless of their host machine.
 - Guided students through the complete lifecycle of domain controller deployment — from server role installation and domain creation through user/group management, Organizational Unit structuring, Group Policy configuration, and cloud-connected identity concepts.
 - Documented repeatable onboarding procedures covering hypervisor installation, virtual network adapter configuration, shared folder setup, and snapshot management, reducing first-week setup failures and allowing instructional time to focus on core systems administration concepts.
-- Work Context: At Pures College (Computer IT Instructor, 2024–2025), these standardized virtual lab builds supported classroom systems administration practicals with Active Directory and policy baselines. Current Implementation: I continue refining the same baseline images and reset playbooks in personal projects and consultant onboarding drills for repeatable identity and policy testing.
+- Work Context: At Pures College (IT Systems Support and Computer Instructor, 2024–2025), these standardized virtual lab builds supported classroom systems administration practicals with Active Directory and policy baselines. Current Implementation: I continue refining the same baseline images and reset playbooks in personal projects and consultant onboarding drills for repeatable identity and policy testing.
 
 ### Results and Impact
 - **Lab seats**: 250+ (Student environments)
@@ -400,7 +400,7 @@ Designed and operated a multi-site network simulation lab to practice routing fu
 - Implemented VPN tunnel configurations across isolated network segments, practicing split-tunnel, full-tunnel, and failover scenarios to understand how encrypted connectivity is established and maintained between geographically separated sites.
 - Captured detailed troubleshooting logs, packet traces, and failover behavior records for each lab scenario, building a documented reference library of common routing and VPN issues along with validated resolution steps for repeatable lab exercises.
 - Bridged theoretical networking concepts with practical implementation by systematically working through real-world scenarios such as routing table convergence, asymmetric path detection, and VPN re-establishment after link failures, using both Packet Tracer simulations and physical lab equipment.
-- Work Context: At Pures College (Computer IT Instructor, 2024–2025), I used these routing and VPN exercises to guide learners through structured troubleshooting and network behavior analysis. Current Implementation: I continue extending these scenarios in my personal lab to test failover handling and connectivity recovery patterns.
+- Work Context: At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I used these routing and VPN exercises to guide learners through structured troubleshooting and network behavior analysis. Current Implementation: I continue extending these scenarios in my personal lab to test failover handling and connectivity recovery patterns.
 
 ### Results and Impact
 - **Site links**: 5 (Simulated branch network)
@@ -423,7 +423,7 @@ Configured and validated DNS and DHCP infrastructure services in a mixed Windows
 - Configured DHCP server scopes with appropriate address ranges, lease durations, and reservation policies to provide automated IP assignment for 50+ mixed client devices, including both Windows and Linux systems operating across different network segments.
 - Validated DHCP lease lifecycle behavior including initial allocation, renewal timing, and failover scenarios, documenting the troubleshooting steps for common issues such as IP conflicts, scope exhaustion, and relay agent misconfiguration in multi-segment environments.
 - Tested cross-platform client connectivity to ensure consistent DNS resolution and DHCP address acquisition across Windows and Linux operating systems, verifying that network services functioned correctly regardless of client platform and documenting platform-specific configuration requirements.
-- Work Context: At Pures College (Computer IT Instructor, 2024–2025), this DNS/DHCP workflow supported practical networking lessons on name resolution, lease behavior, and service troubleshooting. Current Implementation: I continue validating the same service patterns in my personal lab across segmented environments.
+- Work Context: At Pures College (IT Systems Support and Computer Instructor, 2024–2025), this DNS/DHCP workflow supported practical networking lessons on name resolution, lease behavior, and service troubleshooting. Current Implementation: I continue validating the same service patterns in my personal lab across segmented environments.
 
 ### Results and Impact
 - **Leases managed**: 50+ (Mixed client devices)
@@ -471,7 +471,7 @@ Delivered frontline Windows and Linux systems support through structured triage,
 - Tracked service requests with detailed symptom logs, diagnostic actions, resolution steps, and time-to-resolution metrics in structured spreadsheets, sustaining About 95% SLA compliance across recurring academic operations windows.
 - Performed remote and onsite support across distributed environments, adapting diagnostic approach based on access constraints and coordinating with departmental contacts to minimize disruption during active academic and administrative workflows.
 - Escalated high-impact incidents with reproducible diagnostics, annotated screenshots, and clear handover notes so senior teams or vendor contacts could execute corrective actions without repeating initial triage steps.
-- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I handled incidents across the examination, admissions, and departmental IT systems serving 4,000+ users, coordinating with operations leads to keep services stable during peak cycles. At Pures College (Computer IT Instructor, 2024–2025), I maintained lab workstations and resolved software/hardware issues across classroom environments for 250+ students. Current Implementation: I apply the same structured support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes.
+- Work Context: At FUTA (Systems & Data Analyst / System Programmer, 2017–2023), I handled incidents across the examination, admissions, and departmental IT systems serving 4,000+ users, coordinating with operations leads to keep services stable during peak cycles. At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I maintained lab workstations and resolved software/hardware issues across classroom environments for 250+ students. Current Implementation: I apply the same structured support pattern in consultant operations, including domain/DNS checks, Microsoft 365 access remediation, and Docker-based validation utilities for recurring fixes.
 
 ### Results and Impact
 - **Incidents resolved**: 200+ (Hardware, OS, network, application)

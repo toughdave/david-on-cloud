@@ -7,16 +7,17 @@
   "profileImage": "img/profile/protrait-mtd-flip.jpg",
   "resumePath": "docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf",
   "heroTags": [
+    "Application & Production Support",
     "Systems Analysis",
     "Data Accuracy",
-    "Process Improvement",
-    "IT Support",
-    "Full-Stack Delivery",
-    "AI/Data Evaluation"
+    "Identity & Access",
+    "Reporting Automation",
+    "Technical Documentation"
   ],
   "subtitle": "Systems & Data Analyst | IT Administrator",
   "title": "Hi, I'm David!",
-  "introText": "I improve data accuracy, automate reporting, and keep systems reliable. My work spans academic IT, full-stack development, and AI data evaluation.",
+  "fullName": "Tope David Matthew",
+  "introText": "I keep business systems running, data accurate, and reporting on schedule. My work spans application and production support, academic IT operations, and data quality.",
   "secondaryCTA": {
     "text": "Explore My Projects",
     "href": "projects.html"

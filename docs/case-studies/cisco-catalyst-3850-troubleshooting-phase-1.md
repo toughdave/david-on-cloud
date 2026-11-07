@@ -4,7 +4,7 @@
 Executed a hands-on troubleshooting exercise on a physical Cisco Catalyst 3850 lab by resolving connectivity, subnet alignment, VLAN interface state, and DHCP conflict issues with command-level validation.
 
 ## Work Context
-At Pures College (Computer IT Instructor, 2024–2025), I regularly guided students through structured switch troubleshooting routines where each fault was isolated, corrected, and validated before moving to the next stage. The same approach drove this lab execution to keep diagnostics clear and recovery steps consistent.
+At Pures College (IT Systems Support and Computer Instructor, 2024–2025), I regularly guided students through structured switch troubleshooting routines where each fault was isolated, corrected, and validated before moving to the next stage. The same approach drove this lab execution to keep diagnostics clear and recovery steps consistent.
 
 ## Current Implementation
 I now run and document this workflow in my personal home lab and consultant operations, pairing switch diagnostics with Docker-based validation checks, domain/DNS verification, and Microsoft 365 access-impact checks before closure.

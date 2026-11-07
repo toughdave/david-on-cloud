@@ -146,6 +146,7 @@ collections:
         file: "js/hero.json"
         fields:
           - {label: "Title", name: "title", widget: "string", default: "Hi, I'm David"}
+          - {label: "Full Legal Name", name: "fullName", widget: "string", required: false, default: "Tope David Matthew", hint: "Shown under the greeting so the page matches the resume and LinkedIn. Must match the name on submitted applications."}
           - {label: "Subtitle / Role", name: "subtitle", widget: "string", default: "Information Systems, Data Analyst & IT Administrator"}
           - {label: "Availability Badge Text", name: "availabilityText", widget: "string", default: "Open to Information Systems, Systems Analyst, Data Analyst, and IT Administrator roles"}
           - {label: "Resume PDF", name: "resumePath", widget: "file", media_folder: "docs", public_folder: "/docs", hint: "Upload or select the resume PDF from docs/ folder"}

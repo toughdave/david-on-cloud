@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "npx http-server . -p 8080",
-    "build": "npm run build:css && npm run test:validate && npm run test:regression && npm run build:copy",
+    "build": "npm run build:css && npm run test:validate && npm run test:regression && npm run audit && npm run build:copy",
     "build:copy": "node scripts/build.js",
     "generate:llm-docs": "node scripts/generate_llm_docs.js",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
@@ -15,6 +15,9 @@
     "lint:fix": "npm run lint:css -- --fix && npm run lint:js -- --fix",
     "test": "npm run test:validate && npm run test:regression",
     "test:validate": "npm run lint:html && node scripts/validate.js && node scripts/check-references.js",
+    "audit": "node scripts/audit.js",
+    "audit:snapshot": "node scripts/audit.js --snapshot",
+    "audit:compare": "node scripts/audit.js --compare",
     "deploy": "bash scripts/deploy.sh",
     "deploy:staging": "bash scripts/deploy.sh --dry-run",
     "deploy:production": "bash scripts/deploy.sh",

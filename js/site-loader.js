@@ -944,6 +944,9 @@
             typingEl.textContent = data.title;
         }
 
+        const fullNameEl = section.querySelector('.hero-fullname');
+        if (fullNameEl && data.fullName) fullNameEl.textContent = data.fullName;
+
         const subtitleEl = section.querySelector('h2');
         if (subtitleEl) subtitleEl.textContent = data.subtitle;
 

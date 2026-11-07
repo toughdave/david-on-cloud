@@ -4,7 +4,7 @@
 Designed and operated a multi-site network simulation lab to practice routing fundamentals, VPN tunnel configuration, and connectivity troubleshooting using both static and dynamic routing protocols.
 
 ## Work Context
-At Pures College (Computer IT Instructor, 2024–2025), these routing and VPN exercises guided learners through structured troubleshooting and network behavior analysis. Scenarios covered static routing, dynamic routing convergence, and VPN re-establishment after link failures.
+At Pures College (IT Systems Support and Computer Instructor, 2024–2025), these routing and VPN exercises guided learners through structured troubleshooting and network behavior analysis. Scenarios covered static routing, dynamic routing convergence, and VPN re-establishment after link failures.
 
 ## Current Implementation
 I continue extending these scenarios in a personal lab to test failover handling, connectivity recovery patterns, and encrypted tunnel behavior across isolated network segments.
