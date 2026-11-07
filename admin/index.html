@@ -3,10 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
   <title>Content Manager</title>
+  <!--
+    Porkbun refuses any file named exactly config.yml or config.yaml (it closes
+    the connection without replying), so the CMS config lives in
+    cms-config.yml and this link tells Decap where to find it.
+  -->
+  <link href="/admin/cms-config.yml" type="text/yaml" rel="cms-config-url" />
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
-  <script src="/static/vendor/decap-cms/decap-cms.js"></script>
+  <!--
+    Decap CMS 3.10.1 is a single 5.1MB file. Porkbun's GitHub Connect does not
+    serve files over about 1MB, so /static/vendor/decap-cms/decap-cms.js returns
+    404 on the live site; the CMS was blank from February to November 2026
+    because of it. Load the same bytes from a CDN instead. The integrity hash is
+    of the vendored copy, so a CDN can only serve that exact file or nothing.
+    The local copy is the last fallback, for running the site locally.
+  -->
+  <script>
+    (function () {
+      var integrity = 'sha384-cfeDbz01Pc3d/tDdxwcLyYE9bmTuSm9oSEkaqblVTYBG0eQ3a6koW/K3wUGSd/lG';
+      var sources = [
+        { src: 'https://cdn.jsdelivr.net/npm/decap-cms@3.10.1/dist/decap-cms.js', integrity: integrity },
+        { src: 'https://unpkg.com/decap-cms@3.10.1/dist/decap-cms.js', integrity: integrity },
+        { src: '/static/vendor/decap-cms/decap-cms.js' }
+      ];
+      function load(index) {
+        if (index >= sources.length) {
+          document.body.insertAdjacentHTML('beforeend',
+            '<p style="font:16px system-ui;padding:2rem">The content manager could not load. ' +
+            'Check your connection, or that cdn.jsdelivr.net and unpkg.com are not blocked.</p>');
+          return;
+        }
+        var script = document.createElement('script');
+        script.src = sources[index].src;
+        if (sources[index].integrity) {
+          script.integrity = sources[index].integrity;
+          script.crossOrigin = 'anonymous';
+        }
+        script.onerror = function () { load(index + 1); };
+        document.body.appendChild(script);
+      }
+      load(0);
+    })();
+  </script>
 </body>
 </html>

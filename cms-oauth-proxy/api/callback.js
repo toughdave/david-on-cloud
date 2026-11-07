@@ -28,8 +28,8 @@ function clearStateCookie(req) {
 }
 
 function resolveAllowedOrigin() {
-  const configured = String(process.env.ALLOWED_ORIGIN || 'https://www.davidoncloud.com').trim();
-  return configured.replace(/\/+$/, '') || 'https://www.davidoncloud.com';
+  const configured = String(process.env.ALLOWED_ORIGIN || 'https://davidoncloud.com').trim();
+  return configured.replace(/\/+$/, '') || 'https://davidoncloud.com';
 }
 
 function sendOAuthPopupResponse(req, res, status, content, allowedOrigin) {
@@ -102,7 +102,7 @@ function postMessageHTML(status, content, allowedOrigin) {
     .replace(/\\/g, '\\\\')
     .replace(/'/g, "\\'")
     .replace(/\r?\n/g, '\\n');
-  const safeAllowedOrigin = JSON.stringify(String(allowedOrigin || 'https://www.davidoncloud.com'));
+  const safeAllowedOrigin = JSON.stringify(String(allowedOrigin || 'https://davidoncloud.com'));
 
   return `<!DOCTYPE html>
 <html>

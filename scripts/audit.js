@@ -281,6 +281,88 @@ function gatePerformance() {
     }
 }
 
+// -------------------------------------------------- gate 10: hosting limits
+function walkFiles(relative, out = []) {
+    const full = path.join(root, relative);
+    if (!fs.existsSync(full)) return out;
+    if (fs.statSync(full).isFile()) { out.push(relative); return out; }
+    for (const name of fs.readdirSync(full)) walkFiles(path.join(relative, name), out);
+    return out;
+}
+
+function gateHosting() {
+    const rule = lock.hosting;
+    if (!rule) return;
+    const files = rule.publicRoots.flatMap(r => walkFiles(r)).filter(f => !f.endsWith(':Zone.Identifier'));
+
+    const tooBig = files.filter(f => !rule.localOnlyFiles.includes(f) && fs.statSync(path.join(root, f)).size > rule.maxServedFileBytes);
+    if (tooBig.length) fail('hosting', `files over ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB will 404 on Porkbun: ${tooBig.join(', ')}`);
+    else pass(`all ${files.length} public files fit Porkbun's ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB per-file limit`);
+
+    const blocked = files.filter(f => rule.blockedNames.includes(path.basename(f)));
+    if (blocked.length) fail('hosting', `Porkbun refuses these file names: ${blocked.join(', ')}`);
+    else pass(`no public file uses a name Porkbun blocks (${rule.blockedNames.join(', ')})`);
+}
+
+// --------------------------------------------------------- gate 11: the CMS
+function gateCms() {
+    const rule = lock.cms;
+    if (!rule || !exists(rule.adminPage)) { fail('cms', 'admin page missing'); return; }
+    const html = read(rule.adminPage);
+
+    // 1. The config link must point at a file that exists and the host serves.
+    const link = html.match(/<link[^>]*rel="cms-config-url"[^>]*>/);
+    const href = link && (link[0].match(/href="([^"]+)"/) || [])[1];
+    if (!href) { fail('cms', 'admin page has no cms-config-url link, so Decap falls back to config.yml, which Porkbun blocks'); return; }
+    const configFile = href.replace(/^\//, '');
+    if (!exists(configFile)) { fail('cms', `cms-config-url points at ${href}, which does not exist`); return; }
+    if ((lock.hosting?.blockedNames || []).includes(path.basename(configFile))) fail('cms', `${href} uses a name Porkbun blocks`);
+
+    // 2. The CDN copy must be pinned to the vendored bytes.
+    if (exists(rule.vendoredBundle)) {
+        const hash = 'sha384-' + require('node:crypto').createHash('sha384').update(fs.readFileSync(path.join(root, rule.vendoredBundle))).digest('base64');
+        const pinned = [...html.matchAll(/sha384-[A-Za-z0-9+/=]+/g)].map(m => m[0]);
+        if (!pinned.length) fail('cms', 'the CDN script has no integrity hash');
+        else if (pinned.some(h => h !== hash)) fail('cms', `integrity hash does not match ${rule.vendoredBundle}; update both together`);
+        else pass('CMS script is pinned to the vendored bytes by integrity hash');
+    }
+
+    // 3. The config must parse and declare every field the content files use,
+    //    or a CMS save can silently drop fields it does not know about.
+    let yaml;
+    try { yaml = require('js-yaml'); } catch { warn('cms', 'js-yaml not installed; CMS config not parsed'); return; }
+    let config;
+    try { config = yaml.load(read(configFile)); }
+    catch (error) { fail('cms', `${configFile} is not valid YAML: ${error.message}`); return; }
+    if (!config?.backend?.name) fail('cms', `${configFile} has no backend`);
+
+    const declared = new Map();
+    for (const collection of config.collections || []) {
+        for (const entry of collection.files || []) {
+            const names = new Set();
+            const walk = fields => (fields || []).forEach(f => { names.add(f.name); walk(f.fields); if (f.field) names.add(f.field.name); });
+            walk(entry.fields);
+            declared.set(entry.file, names);
+        }
+    }
+    const gaps = [];
+    for (const file of rule.contentFiles) {
+        if (!exists(file)) continue;
+        const names = declared.get(file);
+        if (!names) { gaps.push(`${file} is not editable in the CMS`); continue; }
+        const keys = new Set();
+        const walk = v => {
+            if (Array.isArray(v)) return v.forEach(walk);
+            if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) { keys.add(k); walk(x); }
+        };
+        walk(JSON.parse(read(file)));
+        const missing = [...keys].filter(k => !names.has(k));
+        if (missing.length) gaps.push(`${file}: ${missing.join(', ')}`);
+    }
+    if (gaps.length) fail('cms', `content fields the CMS config does not declare (a CMS save could drop them): ${gaps.join('; ')}`);
+    else pass(`${configFile} parses and declares every field in ${rule.contentFiles.length} content files`);
+}
+
 // ----------------------------------------------------------------- fingerprint
 function fingerprint() {
     const snap = { takenAt: new Date().toISOString(), counts: {}, titles: {}, bytes: {} };
@@ -344,6 +426,8 @@ gateSeo();
 gateResume();
 gateGeneratedDocs();
 gatePerformance();
+gateHosting();
+gateCms();
 
 if (args.includes('--compare')) compareToBaseline();
 

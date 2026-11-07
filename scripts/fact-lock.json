@@ -109,6 +109,20 @@
     "noAnimationHiddenIn": { "file": "index.html", "sectionStart": "<section id = \"intro\"", "sectionEnd": "<!-- About Section -->" }
   },
 
+  "hosting": {
+    "_note": "Porkbun limits found 2026-11-07. Files over about 1MB are not served (404); the largest file that serves is 959KB. Any file named exactly config.yml or config.yaml gets no reply at all. Both silently broke the CMS from February to November 2026.",
+    "maxServedFileBytes": 1000000,
+    "localOnlyFiles": ["static/vendor/decap-cms/decap-cms.js"],
+    "blockedNames": ["config.yml", "config.yaml"],
+    "publicRoots": ["index.html", "projects.html", "css", "js", "img", "static", "docs", "admin"]
+  },
+
+  "cms": {
+    "adminPage": "admin/index.html",
+    "vendoredBundle": "static/vendor/decap-cms/decap-cms.js",
+    "contentFiles": ["js/experience.json", "js/about.json", "js/hero.json", "js/projects.json", "js/footer.json", "js/skills.json", "js/contact.json"]
+  },
+
   "requiredFiles": [
     "index.html",
     "projects.html",

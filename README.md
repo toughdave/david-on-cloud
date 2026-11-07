@@ -96,7 +96,7 @@ Systems and Data Analyst with M.Tech and B.Tech degrees in Computer Science, cur
 
 ### Technical Features
 
-- **CMS-Managed Content**: Decap CMS (admin/config.yml) with JSON data files
+- **CMS-Managed Content**: Decap CMS (admin/cms-config.yml) with JSON data files
 - **LLM-Friendly Docs**: Generated llms.txt, index.html.md, and projects.html.md
 - **Version Control**: Automated version bumping with Git integration
 - **Validation Pipeline**: HTML, CSS, JS, and JSON validation via CI/CD
