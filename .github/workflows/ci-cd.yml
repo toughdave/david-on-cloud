@@ -26,6 +26,15 @@ jobs:
       # gate degrades to a warning instead of checking the facts.
       - run: python -m pip install --quiet pypdf==5.1.0
       - run: npm ci
+      # A CMS publish pushes JSON only; the CMS workflow commits the regenerated
+      # pages a moment later. Regenerate here on pushes so CI checks that
+      # content instead of failing on drift the bot is about to fix. Pull
+      # requests skip this, so a forgotten regeneration still fails there.
+      - name: Regenerate CMS-derived files
+        if: github.event_name == 'push'
+        run: |
+          node scripts/generate_llm_docs.js
+          node scripts/generate_project_pages.js
       - run: npm run build
       - name: Check committed production CSS
         run: git diff --exit-code -- css/utilities.css

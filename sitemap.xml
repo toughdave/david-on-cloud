@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://davidoncloud.com/</loc></url>
-  <url><loc>https://davidoncloud.com/projects.html</loc></url>
+  <url><loc>https://davidoncloud.com/projects.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/booking-conflict-prevention-postgresql.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/stripe-payment-reconciliation-coaching-platform.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/role-based-documentation-system.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/rubric-unit-test-validity-analysis.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/academic-results-analytics-dashboard.html</loc><lastmod>2026-01-31</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/admissions-data-quality-audit.html</loc><lastmod>2025-12-18</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/vlan-ip-addressing-lab.html</loc><lastmod>2025-10-04</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/cisco-catalyst-3850-troubleshooting-lab.html</loc><lastmod>2026-02-26</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/virtual-lab-deployment-active-directory.html</loc><lastmod>2026-02-26</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/examination-integrity-monitoring.html</loc><lastmod>2025-10-01</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/secured-system-internet-enabled-host-devices.html</loc><lastmod>2025-10-27</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/operational-reporting-automation-pipeline.html</loc><lastmod>2025-12-20</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/student-records-reconciliation-hub.html</loc><lastmod>2026-01-31</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/exam-operations-sla-tracker.html</loc><lastmod>2026-02-03</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/systems-implementation-qa-playbooks.html</loc><lastmod>2025-09-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/routing-vpn-basics-lab.html</loc><lastmod>2025-10-04</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/dns-dhcp-services-lab.html</loc><lastmod>2025-09-19</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/operational-readiness-checks.html</loc><lastmod>2025-11-27</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/technical-documentation-end-user-training.html</loc><lastmod>2025-09-14</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/portfolio-web-operations-domain-administration.html</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://davidoncloud.com/projects/systems-support-troubleshooting.html</loc><lastmod>2026-02-26</lastmod></url>
 </urlset>

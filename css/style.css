@@ -8812,3 +8812,55 @@ html.js #experience:not(.bg-ready) .experience-inset {
 #projectsList:not(:has(.project-card)) {
     min-height: 100vh;
 }
+
+/* Readability floor.
+   Text a visitor needs to read or tap was rendering at 9.6-11.7px, which is
+   hard going on a phone. This lifts it to 12px and gives standalone links a
+   24px tap height (WCAG 2.2 target size). Purely decorative Fun Mode details
+   (system log, console chips) are left as designed. */
+.more-link-text,
+.contact-email-label,
+.contact-map-open,
+.availability-text,
+.script-library-stack-item,
+.script-library-path,
+.script-library-action,
+.scripts-library-filter-btn,
+.scripts-library-count,
+.process-tag,
+.testimonial-role,
+footer small {
+    font-size: 0.75rem;
+}
+
+/* At 12px the availability line can wrap on phones; split it evenly rather
+   than leaving one word on its own line. */
+.availability-text {
+    text-wrap: balance;
+}
+
+.experience-more-link,
+.contact-map-open {
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+}
+
+footer a {
+    display: inline-block;
+    padding-block: 2px;
+}
+
+.fun-lab-close {
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* In Fun Mode on the light theme the contact form turns near-white, where
+   the terminal label's #94a3b8 measured 2.56:1. Slate 500 gives 4.76:1. */
+html:not([data-theme="dark"]) body.fun-mode .terminal-header {
+    color: #64748b;
+}

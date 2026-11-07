@@ -28,6 +28,23 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # Project pages, sitemap.xml, llms.txt and the .md mirrors are generated
+      # from the CMS JSON. A CMS edit changes the JSON only, so regenerate and
+      # commit the derived files here; otherwise the pages go stale and the
+      # audit's drift check fails.
+      - name: Regenerate pages and docs from CMS content
+        run: |
+          node scripts/generate_llm_docs.js
+          node scripts/generate_project_pages.js
+          git add -A llms.txt index.html.md projects.html.md sitemap.xml projects
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto regenerate project pages and docs from CMS content"
+          fi
+
       - name: Run patch version bump
         run: |
           printf 'Y\n' | bash scripts/bump_version.sh --type patch

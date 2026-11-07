@@ -2779,6 +2779,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ${safeLinkHref || safePdfHref || safeSourceHref ? `
                     <div class="project-modal-links">
                         ${caseStudyControl}
+                        ${/^[a-z0-9][a-z0-9-]*$/.test(project.id || '') ? `<a href="/projects/${project.id}.html" class="project-modal-link project-modal-link--page"><i data-feather="link" class="w-4 h-4"></i> Open full page</a>` : ''}
                         ${safeSourceHref ? `<a href="${escapeHTML(safeSourceHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--source"><i data-feather="globe" class="w-4 h-4"></i> ${safeSourceText}</a>` : ''}
                         ${safePdfHref ? `<a href="${escapeHTML(safePdfHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
                     </div>

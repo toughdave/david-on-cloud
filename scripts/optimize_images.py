@@ -32,6 +32,9 @@ PROFILES = {
     "inset": {"max_width": 960, "quality": 76},
     "card": {"max_width": 1000, "quality": 62},
     "portrait": {"max_width": 704, "quality": 82},
+    # Project pages show the lead image up to about 760px wide; 1200px keeps it
+    # sharp on 2x screens at a fraction of the original weight.
+    "project": {"max_width": 1200, "quality": 78},
 }
 
 # (source, profile). The output is the same path with a .webp extension.
@@ -53,6 +56,28 @@ IMAGES = [
     ("img/experience/ict-teacher-lab-bg.jpg", "card"),
     ("img/experience/Teaching-Students-Anambra.jpg", "inset"),
 ]
+
+
+def project_images():
+    """Every image a project uses (lead image and gallery), read from the CMS
+    data so new projects are picked up without editing this file."""
+    import json
+    with open(os.path.join(ROOT, "js", "projects.json"), encoding="utf-8") as fh:
+        projects = json.load(fh).get("projects", [])
+    found = []
+    for project in projects:
+        sources = [project.get("image")] + [img.get("src") for img in project.get("images") or []]
+        for src in sources:
+            if src and not src.startswith("http"):
+                found.append(src.lstrip("/"))
+    return found
+
+
+def all_images():
+    """The explicit homepage list first, then project images not already in it."""
+    seen = {source for source, _ in IMAGES}
+    extra = [(src, "project") for src in dict.fromkeys(project_images()) if src not in seen and not src.endswith(".webp")]
+    return IMAGES + extra
 
 
 def webp_path(source):
@@ -79,18 +104,29 @@ def optimize(source, profile, force=False):
         image.save(out, "WEBP", quality=settings["quality"], method=6)
         size = image.size
 
+    # Text-heavy screenshots can compress better as PNG. Never ship a larger
+    # file: drop the WebP and let pages fall back to the original.
+    if os.path.getsize(out) >= os.path.getsize(src):
+        os.remove(out)
+        return os.path.getsize(src), None, size
     return os.path.getsize(src), os.path.getsize(out), size
 
 
 def main():
     force = "--force" in sys.argv
     before = after = 0
-    for source, profile in IMAGES:
+    for source, profile in all_images():
+        if not os.path.exists(os.path.join(ROOT, source)):
+            print(f"  missing     {source}")
+            continue
         result = optimize(source, profile, force)
         if result is None:
             print(f"  up to date  {webp_path(source)}")
             continue
         src_bytes, out_bytes, (w, h) = result
+        if out_bytes is None:
+            print(f"  kept original ({src_bytes / 1024:.0f} KB is already smaller than WebP)  {source}")
+            continue
         before += src_bytes
         after += out_bytes
         print(f"  {src_bytes / 1024:6.0f} KB -> {out_bytes / 1024:5.0f} KB  {w}x{h}  {webp_path(source)}")

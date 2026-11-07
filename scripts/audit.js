@@ -65,7 +65,8 @@ function caseStudyFiles() {
 }
 
 function gateBannedPhrases() {
-    const targets = [...cmsFiles(), ...caseStudyFiles(), 'index.html', 'projects.html'];
+    const pages = exists('projects') ? fs.readdirSync(path.join(root, 'projects')).filter(n => n.endsWith('.html')).map(n => `projects/${n}`) : [];
+    const targets = [...cmsFiles(), ...caseStudyFiles(), ...pages, 'index.html', 'projects.html'];
     const banned = lock.bannedPhrases.global;
     let hits = 0;
     for (const file of targets) {
@@ -199,19 +200,43 @@ function gateResume() {
 }
 
 // ------------------------------------------------------ gate 8: generated docs
+function generatedSnapshot() {
+    const files = ['llms.txt', 'index.html.md', 'projects.html.md', 'sitemap.xml'];
+    if (exists('projects')) {
+        for (const name of fs.readdirSync(path.join(root, 'projects'))) if (name.endsWith('.html')) files.push(`projects/${name}`);
+    }
+    return new Map(files.filter(exists).map(f => [f, read(f)]));
+}
+
 function gateGeneratedDocs() {
-    const before = ['llms.txt', 'index.html.md', 'projects.html.md']
-        .filter(exists)
-        .map(f => [f, read(f)]);
+    const before = generatedSnapshot();
     try {
         execFileSync(process.execPath, [path.join(root, 'scripts', 'generate_llm_docs.js')], { stdio: 'pipe' });
+        execFileSync(process.execPath, [path.join(root, 'scripts', 'generate_project_pages.js')], { stdio: 'pipe' });
     } catch (error) {
-        fail('llm-docs', `generator failed: ${error.message}`);
+        fail('generated', `generator failed: ${error.message}`);
         return;
     }
-    const drifted = before.filter(([file, text]) => read(file) !== text).map(([file]) => file);
-    if (drifted.length) fail('llm-docs', `regenerated and changed: ${drifted.join(', ')} — commit the regenerated files`);
-    else pass('llms.txt and the .md mirrors are in sync with the CMS');
+    const after = generatedSnapshot();
+    const changed = [...after.keys()].filter(f => before.get(f) !== after.get(f));
+    const removed = [...before.keys()].filter(f => !after.has(f));
+    if (changed.length || removed.length) {
+        fail('generated', `regenerated and changed: ${[...changed, ...removed.map(f => `${f} (removed)`)].join(', ')}. Commit the regenerated files`);
+        return;
+    }
+    pass(`llms docs, ${[...after.keys()].filter(f => f.startsWith('projects/')).length} project pages and sitemap.xml are in sync with the CMS`);
+
+    // Every local file a generated page points at must exist.
+    const missing = [];
+    for (const [file, html] of after) {
+        if (!file.startsWith('projects/')) continue;
+        for (const m of html.matchAll(/\b(?:href|src)="(\/[^"#?]*)/g)) {
+            const target = decodeURIComponent(m[1]).replace(/^\//, '');
+            if (target && !exists(target) && !exists(path.join(target, 'index.html'))) missing.push(`${file} -> /${target}`);
+        }
+    }
+    if (missing.length) fail('generated', `project pages reference missing files: ${[...new Set(missing)].slice(0, 8).join(', ')}`);
+    else pass('every local link and image on the project pages exists');
 }
 
 // ------------------------------------------------------ gate 9: performance

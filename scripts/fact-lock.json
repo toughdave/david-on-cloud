@@ -114,7 +114,7 @@
     "maxServedFileBytes": 1000000,
     "localOnlyFiles": ["static/vendor/decap-cms/decap-cms.js"],
     "blockedNames": ["config.yml", "config.yaml"],
-    "publicRoots": ["index.html", "projects.html", "css", "js", "img", "static", "docs", "admin"]
+    "publicRoots": ["index.html", "projects.html", "sitemap.xml", "css", "js", "img", "static", "docs", "admin", "projects"]
   },
 
   "cms": {

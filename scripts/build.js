@@ -9,7 +9,7 @@ const entries = [
     'VERSION', 'robots.txt', 'sitemap.xml', 'site.webmanifest',
     'favicon.ico', 'favicon.svg', 'favicon-96x96.png', 'apple-touch-icon.png',
     'web-app-manifest-192x192.png', 'web-app-manifest-512x512.png',
-    'llms.txt', 'llms-full.txt', 'css', 'js', 'img', 'static', 'docs', 'admin'
+    'llms.txt', 'llms-full.txt', 'css', 'js', 'img', 'static', 'docs', 'admin', 'projects'
 ];
 if (output !== path.join(root, 'dist')) throw new Error('Invalid build output path');
 fs.rmSync(output, { recursive: true, force: true });

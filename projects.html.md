@@ -10,6 +10,7 @@
 - Updated: 2026-07-29
 - Tags: Databases, PostgreSQL, Scheduling, Data Integrity, Automated Testing
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/booking-conflict-prevention-postgresql.md)
+- Page: https://davidoncloud.com/projects/booking-conflict-prevention-postgresql.html
 - PDF: N/A
 
 ### Project Summary
@@ -34,6 +35,7 @@ Fixed a fault that could let two clients book the same coaching slot at the same
 - Updated: 2026-07-29
 - Tags: Payments, Stripe, Reconciliation, Financial Controls, Data Validation
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/stripe-payment-reconciliation-coaching-platform.md)
+- Page: https://davidoncloud.com/projects/stripe-payment-reconciliation-coaching-platform.html
 - PDF: N/A
 
 ### Project Summary
@@ -59,6 +61,7 @@ Built the payments and payouts process for a coaching platform, including coach 
 - Updated: 2026-07-29
 - Tags: Documentation, CI/CD, GitHub Actions, Technical Writing, Quality Assurance
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/role-based-documentation-system.md)
+- Page: https://davidoncloud.com/projects/role-based-documentation-system.html
 - PDF: N/A
 
 ### Project Summary
@@ -84,6 +87,7 @@ Wrote and maintained 127+ chapters of user documentation for a coaching platform
 - Updated: 2026-07-29
 - Tags: AI Evaluation, Data Validation, Python, Quality Analysis, Technical Review
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/rubric-unit-test-validity-analysis.md)
+- Page: https://davidoncloud.com/projects/rubric-unit-test-validity-analysis.html
 - PDF: N/A
 
 ### Project Summary
@@ -108,6 +112,7 @@ Reviewed the rubrics and automated tests used to grade AI training data, checkin
 - Updated: 2026-07-29
 - Tags: Web Operations, Domain & DNS, Microsoft 365, CMS, Deployment, Release Automation, Docker, Validation, Custom Domains, DNS Verification, SMTP, Hetzner
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/portfolio-web-operations-domain-administration.md)
+- Page: https://davidoncloud.com/projects/portfolio-web-operations-domain-administration.html
 - PDF: N/A
 
 ### Project Summary
@@ -138,6 +143,7 @@ Built and operated my portfolio website as a production-style web and domain ope
 - Updated: 2026-02-26
 - Tags: Cisco Catalyst 3850, Switch Troubleshooting, VLAN, DHCP, ICMP, Documentation
 - Deliverable Link: [View Case Study (Markdown)](docs/case-studies/cisco-catalyst-3850-troubleshooting-phase-1.md)
+- Page: https://davidoncloud.com/projects/cisco-catalyst-3850-troubleshooting-lab.html
 - PDF: N/A
 
 ### Project Summary
@@ -160,6 +166,7 @@ Executed a hands-on Cisco Catalyst 3850 troubleshooting lab and resolved five ne
 - Updated: 2026-02-03
 - Tags: Power BI, Google Sheets, SLA Tracking, Operations, Reporting, At-Risk Alerts
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/exam-operations-sla-tracker.md)
+- Page: https://davidoncloud.com/projects/exam-operations-sla-tracker.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/exam-operations-sla-tracker.pdf)
 
 ### Project Summary
@@ -183,6 +190,7 @@ Built a Power BI and Google Sheets-based SLA tracking system to centralize exami
 - Updated: 2026-01-31
 - Tags: SQL, Excel, System Integration, Data Validation, Record Management, Reconciliation, Mismatch Reporting
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/student-records-reconciliation-hub.md)
+- Page: https://davidoncloud.com/projects/student-records-reconciliation-hub.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/student-records-reconciliation-hub.pdf)
 
 ### Project Summary
@@ -206,6 +214,7 @@ Built and operated a centralized records reconciliation process, cross-referenci
 - Updated: 2026-01-31
 - Tags: Power BI, Excel, SQL, Business Applications, Data Validation, Reporting, Scripted QA
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/academic-results-analytics-dashboard.md)
+- Page: https://davidoncloud.com/projects/academic-results-analytics-dashboard.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/academic-results-analytics-dashboard.pdf)
 
 ### Project Summary
@@ -229,6 +238,7 @@ Built a Power BI and Excel analytics suite to centralize results processing, ano
 - Updated: 2025-12-20
 - Tags: Python, SQL, Business Applications, ETL Automation, Reporting, Workflow Automation, Scheduled Jobs
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/operational-reporting-automation-pipeline.md)
+- Page: https://davidoncloud.com/projects/operational-reporting-automation-pipeline.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/operational-reporting-automation-pipeline.pdf)
 
 ### Project Summary
@@ -252,6 +262,7 @@ Designed and deployed automated Python/SQL pipelines that transformed recurring 
 - Updated: 2025-12-18
 - Tags: Excel, Google Sheets, SQL, Admissions Systems, Data Validation, Admissions Audit, Rules Engine
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/admissions-data-quality-audit.md)
+- Page: https://davidoncloud.com/projects/admissions-data-quality-audit.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/case-studies/admissions-data-quality-audit.pdf)
 
 ### Project Summary
@@ -275,6 +286,7 @@ Conducted systematic audits of multi-intake admissions datasets at a federal uni
 - Updated: 2025-11-27
 - Tags: Preventative Maintenance, Compliance, Windows Support, Troubleshooting, Operations
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/operational-readiness-checks.md)
+- Page: https://davidoncloud.com/projects/operational-readiness-checks.html
 - PDF: N/A
 
 ### Project Summary
@@ -298,6 +310,7 @@ Performed systematic preventative maintenance and operational readiness verifica
 - Updated: 2025-10-04
 - Tags: VLAN, TCP/IP, IP Addressing, Switching, Routing
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/vlan-ip-addressing-lab.md)
+- Page: https://davidoncloud.com/projects/vlan-ip-addressing-lab.html
 - PDF: N/A
 
 ### Project Summary
@@ -321,6 +334,7 @@ Built and maintained a hands-on networking lab environment using enterprise-grad
 - Updated: 2026-02-26
 - Tags: Windows Server, Active Directory, Identity & Access, Group Policy, VirtualBox/VMware, Lab Deployment
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/virtual-lab-deployment-active-directory.md)
+- Page: https://davidoncloud.com/projects/virtual-lab-deployment-active-directory.html
 - PDF: N/A
 
 ### Project Summary
@@ -344,6 +358,7 @@ Provisioned and maintained standardized Windows Server and Active Directory lab 
 - Updated: 2025-10-01
 - Tags: Biometric Verification, CCTV Monitoring, Compliance, Incident Response, Audit Trails
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/examination-integrity-monitoring.md)
+- Page: https://davidoncloud.com/projects/examination-integrity-monitoring.html
 - PDF: N/A
 
 ### Project Summary
@@ -367,6 +382,7 @@ Designed and implemented a multi-layered examination integrity monitoring workfl
 - Updated: 2025-09-29
 - Tags: Documentation, QA Support, Implementation, Process Improvement, Change Management
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/systems-implementation-qa-playbooks.md)
+- Page: https://davidoncloud.com/projects/systems-implementation-qa-playbooks.html
 - PDF: N/A
 
 ### Project Summary
@@ -390,6 +406,7 @@ Created comprehensive implementation checklists, quality assurance scripts, and 
 - Updated: 2025-10-04
 - Tags: Routing, VPN Basics, TCP/IP, Troubleshooting, Network Design
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/routing-vpn-basics-lab.md)
+- Page: https://davidoncloud.com/projects/routing-vpn-basics-lab.html
 - PDF: N/A
 
 ### Project Summary
@@ -413,6 +430,7 @@ Designed and operated a multi-site network simulation lab to practice routing fu
 - Updated: 2025-09-19
 - Tags: DNS, DHCP, Windows, Linux, Network Services
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/dns-dhcp-services-lab.md)
+- Page: https://davidoncloud.com/projects/dns-dhcp-services-lab.html
 - PDF: N/A
 
 ### Project Summary
@@ -436,6 +454,7 @@ Configured and validated DNS and DHCP infrastructure services in a mixed Windows
 - Updated: 2025-09-14
 - Tags: Documentation, End-User Training, Stakeholder Communication, Process Improvement, Knowledge Base
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/technical-documentation-end-user-training.md)
+- Page: https://davidoncloud.com/projects/technical-documentation-end-user-training.html
 - PDF: N/A
 
 ### Project Summary
@@ -459,6 +478,7 @@ Produced comprehensive standard operating procedures, technical runbooks, and ha
 - Updated: 2026-02-26
 - Tags: Systems Support, Troubleshooting, Windows, Linux, Service Desk
 - Deliverable Link: [View Case Summary (Markdown)](docs/case-studies/systems-support-troubleshooting.md)
+- Page: https://davidoncloud.com/projects/systems-support-troubleshooting.html
 - PDF: N/A
 
 ### Project Summary
@@ -485,6 +505,7 @@ Delivered frontline Windows and Linux systems support through structured triage,
 - Updated: 2025-10-27
 - Tags: Cybersecurity, Access Control, ECDH, IoT Security, Security Research
 - Deliverable Link: [Read Published Paper (CCSE Journal)](https://ccsenet.org/journal/index.php/nct/article/view/0/41982)
+- Page: https://davidoncloud.com/projects/secured-system-internet-enabled-host-devices.html
 - PDF: [Download PDF](https://davidoncloud.com/docs/A-Secured-System-for-Internet-Enabled-Host-Devices.pdf)
 
 ### Project Summary

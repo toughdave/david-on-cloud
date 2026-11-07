@@ -165,6 +165,7 @@ const buildProjectsMarkdown = (projectsData) => {
         `- Updated: ${formatDate(project.modified)}`,
         `- Tags: ${tags.length ? tags.join(', ') : 'N/A'}`,
         `- Deliverable Link: ${link}`,
+        `- Page: ${SITE_URL}/projects/${normalizeText(project.id)}.html`,
         `- PDF: ${pdf}`,
         '',
         '### Project Summary',
