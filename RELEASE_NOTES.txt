@@ -1,3 +1,7 @@
+## v5.16.0 — 2026-11-07 16:54:56
+- ✅ Cut homepage weight by 91% and fix the projects page layout shift
+- ✅ Bumped version to v5.16.0
+
 ## v5.15.0 — 2026-11-07 15:37:43
 - ✅ Align the portfolio with the submitted CV and add a content audit gate
 - ✅ Bumped version to v5.15.0
