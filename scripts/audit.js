@@ -399,6 +399,24 @@ function gateCms() {
     else pass(`${configFile} parses and declares every field in ${rule.contentFiles.length} content files`);
 }
 
+// ------------------------------------------------------ gate 12: analytics
+function gateAnalytics() {
+    const rule = lock.analytics;
+    if (!rule) return;
+    const pages = rule.pages.flatMap(pattern => {
+        if (!pattern.includes('*')) return exists(pattern) ? [pattern] : [];
+        const dir = path.dirname(pattern);
+        return exists(dir) ? fs.readdirSync(path.join(root, dir)).filter(n => n.endsWith('.html')).map(n => `${dir}/${n}`) : [];
+    });
+    const missing = pages.filter(file => !read(file).includes(rule.tag));
+    const strays = pages.filter(file => (read(file).match(/cloud\.umami\.is\/script\.js/g) || []).length !== 1);
+    const leaked = rule.mustNotAppearIn.filter(file => exists(file) && read(file).includes('umami'));
+    if (missing.length) fail('analytics', `pages without the exact analytics tag: ${missing.join(', ')}`);
+    else if (strays.length) fail('analytics', `pages loading the analytics script other than exactly once: ${strays.join(', ')}`);
+    else pass(`analytics tag present exactly once on all ${pages.length} public pages`);
+    if (leaked.length) fail('analytics', `analytics must not run on: ${leaked.join(', ')}`);
+}
+
 // ----------------------------------------------------------------- fingerprint
 function fingerprint() {
     const snap = { takenAt: new Date().toISOString(), counts: {}, titles: {}, bytes: {} };
@@ -464,6 +482,7 @@ gateGeneratedDocs();
 gatePerformance();
 gateHosting();
 gateCms();
+gateAnalytics();
 
 if (args.includes('--compare')) compareToBaseline();
 

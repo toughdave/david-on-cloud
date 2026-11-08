@@ -32,6 +32,9 @@ const PERSON = {
     sameAs: ['https://www.linkedin.com/in/tope-david-m-48076969', 'https://github.com/toughdave']
 };
 
+// Same tag as index.html and projects.html; npm run audit checks they match.
+const ANALYTICS_TAG = '<script defer src="https://cloud.umami.is/script.js" data-website-id="0a722f93-cb18-4e94-88c4-518df33ae35b" data-domains="davidoncloud.com"></script>';
+
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const exists = rel => fs.existsSync(path.join(ROOT, rel));
 
@@ -283,6 +286,7 @@ const buildPage = (project, caseStudyMarkdown) => {
 ${JSON.stringify(jsonLd, null, 2)}
   </script>
   <style>${STYLE}</style>
+  ${ANALYTICS_TAG}
 </head>
 <body>
   <header class="site">

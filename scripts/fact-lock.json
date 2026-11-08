@@ -8,7 +8,6 @@
     "update this file in the same commit as the content change. Never edit site copy to disagree with it."
   ],
   "_sourceCheckedOn": "2026-11-07",
-
   "requiredPhrases": {
     "js/experience.json": [
       "IT Application/Production Support Analyst",
@@ -26,7 +25,6 @@
       "9+ years"
     ]
   },
-
   "bannedPhrases": {
     "_note": "Unsupported metrics and withdrawn display conventions. Checked across all CMS JSON, both HTML pages, every case study in docs/case-studies, and the resume PDF text. Linking to https://www.theanchorcoach.com as a project source is fine; appending it to the employer line is not.",
     "global": [
@@ -46,7 +44,6 @@
       "Computer IT Instructor"
     ]
   },
-
   "bannedInExperience": {
     "_note": "Anchor must never read as ongoing, and no generic umbrella entry may sit beside it.",
     "patterns": [
@@ -57,7 +54,6 @@
       "Full-Stack Developer & Systems"
     ]
   },
-
   "resume": {
     "path": "docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf",
     "mustContain": [
@@ -80,49 +76,112 @@
       "Independent",
       "Full-Stack Developer"
     ],
-    "mustNotContainChars": ["\u2014"],
+    "mustNotContainChars": [
+      "—"
+    ],
     "_charNote": "Em dash (U+2014) is banned as a prose interrupter in resumes. En dash in date ranges is allowed.",
     "maxPages": 2,
     "educationMustNotMatch": "(Master|Bachelor) of Technology[^\\n]*(19|20)\\d{2}",
     "_eduNote": "Education carries degree and institution only; never a year or a date range."
   },
-
   "structuralFloors": {
     "_note": "Guards against silently losing content that already exists. Raise these when content is deliberately added; never lower them without saying so.",
-    "js/projects.json": { "key": "projects", "minCount": 21 },
-    "js/experience.json": { "key": "entries", "minCount": 4 },
-    "js/skills.json": { "key": "categories", "minCount": 9 },
-    "js/testimonials.json": { "key": "entries", "minCount": 2 },
-    "js/script-library.json": { "key": "entries", "minCount": 5 },
-    "js/process.json": { "key": "steps", "minCount": 4 }
+    "js/projects.json": {
+      "key": "projects",
+      "minCount": 21
+    },
+    "js/experience.json": {
+      "key": "entries",
+      "minCount": 4
+    },
+    "js/skills.json": {
+      "key": "categories",
+      "minCount": 9
+    },
+    "js/testimonials.json": {
+      "key": "entries",
+      "minCount": 2
+    },
+    "js/script-library.json": {
+      "key": "entries",
+      "minCount": 5
+    },
+    "js/process.json": {
+      "key": "steps",
+      "minCount": 4
+    }
   },
-
   "performance": {
     "_note": "Budgets that keep the homepage fast on mobile. Measured 2026-11-07: before these rules the homepage loaded 3.5MB, with one 838KB photo shown in a 250x175 box. Run python3 scripts/optimize_images.py for any new homepage image.",
     "imageBudgetKB": 120,
     "imageSources": {
-      "js/experience.json": ["backgroundImage", "insetImage"],
-      "js/hero.json": ["profileImage"]
+      "js/experience.json": [
+        "backgroundImage",
+        "insetImage"
+      ],
+      "js/hero.json": [
+        "profileImage"
+      ]
     },
     "fontFormatFirst": "woff2",
-    "deferredIframesIn": ["index.html", "projects.html"],
-    "noAnimationHiddenIn": { "file": "index.html", "sectionStart": "<section id = \"intro\"", "sectionEnd": "<!-- About Section -->" }
+    "deferredIframesIn": [
+      "index.html",
+      "projects.html"
+    ],
+    "noAnimationHiddenIn": {
+      "file": "index.html",
+      "sectionStart": "<section id = \"intro\"",
+      "sectionEnd": "<!-- About Section -->"
+    }
   },
-
   "hosting": {
     "_note": "Porkbun limits found 2026-11-07. Files over about 1MB are not served (404); the largest file that serves is 959KB. Any file named exactly config.yml or config.yaml gets no reply at all. Both silently broke the CMS from February to November 2026.",
     "maxServedFileBytes": 1000000,
-    "localOnlyFiles": ["static/vendor/decap-cms/decap-cms.js"],
-    "blockedNames": ["config.yml", "config.yaml"],
-    "publicRoots": ["index.html", "projects.html", "sitemap.xml", "css", "js", "img", "static", "docs", "admin", "projects"]
+    "localOnlyFiles": [
+      "static/vendor/decap-cms/decap-cms.js"
+    ],
+    "blockedNames": [
+      "config.yml",
+      "config.yaml"
+    ],
+    "publicRoots": [
+      "index.html",
+      "projects.html",
+      "sitemap.xml",
+      "css",
+      "js",
+      "img",
+      "static",
+      "docs",
+      "admin",
+      "projects"
+    ]
   },
-
   "cms": {
     "adminPage": "admin/index.html",
     "vendoredBundle": "static/vendor/decap-cms/decap-cms.js",
-    "contentFiles": ["js/experience.json", "js/about.json", "js/hero.json", "js/projects.json", "js/footer.json", "js/skills.json", "js/contact.json"]
+    "contentFiles": [
+      "js/experience.json",
+      "js/about.json",
+      "js/hero.json",
+      "js/projects.json",
+      "js/footer.json",
+      "js/skills.json",
+      "js/contact.json"
+    ]
   },
-
+  "analytics": {
+    "_note": "Umami Cloud (free Hobby plan, chosen 2026-11-08). Every public page must carry exactly this tag; the admin page must not. data-domains stops previews and local runs from being counted.",
+    "tag": "<script defer src=\"https://cloud.umami.is/script.js\" data-website-id=\"0a722f93-cb18-4e94-88c4-518df33ae35b\" data-domains=\"davidoncloud.com\"></script>",
+    "pages": [
+      "index.html",
+      "projects.html",
+      "projects/*.html"
+    ],
+    "mustNotAppearIn": [
+      "admin/index.html"
+    ]
+  },
   "requiredFiles": [
     "index.html",
     "projects.html",
@@ -135,7 +194,6 @@
     "llms.txt",
     "site.webmanifest"
   ],
-
   "seo": {
     "_note": "Recruiter-facing discoverability floors. The full legal name must be present and machine-readable.",
     "index.html": {
@@ -150,7 +208,9 @@
       ]
     },
     "projects.html": {
-      "mustContain": ["application/ld+json"]
+      "mustContain": [
+        "application/ld+json"
+      ]
     }
   }
 }
