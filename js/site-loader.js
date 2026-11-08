@@ -1300,7 +1300,7 @@
                 socials.innerHTML = data.socialLinks.map(s => {
                     const safeHref = sanitizeUrl(s.url || '', { allowHash: false, allowMailto: false, fallback: '' });
                     if (!safeHref) return '';
-                    return `<a href="${escapeHTML(safeHref)}" class="contact-social-btn" aria-label="${escapeHTML(s.label)}" target="_blank" rel="noopener noreferrer">
+                    return `<a href="${escapeHTML(safeHref)}" class="contact-social-btn" data-umami-event="outbound-${escapeHTML(s.platform)}" data-umami-event-from="contact" aria-label="${escapeHTML(s.label)}" target="_blank" rel="noopener noreferrer">
                         <i data-feather="${escapeHTML(s.platform)}" class="text-gray-700"></i>
                     </a>`
                 }).join('');
@@ -1342,7 +1342,7 @@
                 socialsContainer.innerHTML = data.socialLinks.map(s => {
                     const safeHref = sanitizeUrl(s.url || '', { allowHash: false, allowMailto: false, fallback: '' });
                     if (!safeHref) return '';
-                    return `<a href="${escapeHTML(safeHref)}" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(s.label)}">
+                    return `<a href="${escapeHTML(safeHref)}" class="text-gray-400 hover:text-white transition" data-umami-event="outbound-${escapeHTML(s.platform)}" data-umami-event-from="footer" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(s.label)}">
                         <i data-feather="${escapeHTML(s.platform)}"></i>
                     </a>`
                 }).join('');

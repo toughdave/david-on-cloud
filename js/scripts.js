@@ -99,6 +99,19 @@ const parseDateValue = (value) => {
     return Number.isNaN(date.getTime()) ? null : date;
 };
 
+// Optional analytics (Umami). Does nothing if the script is absent or blocked,
+// so an ad blocker can never break the site.
+const trackEvent = (name, data) => {
+    try {
+        if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data);
+    } catch (_err) { /* analytics must never break the page */ }
+};
+
+document.addEventListener('click', (event) => {
+    const mail = event.target.closest && event.target.closest('a[href^="mailto:"]');
+    if (mail) trackEvent('email-click', { to: mail.getAttribute('href').slice(7).split('?')[0].split('@')[1] || '' });
+});
+
 // A case study stored as .md is served as application/octet-stream, so a plain
 // link downloads a file instead of opening one. These two helpers let the modal
 // read the same file in place; the download stays available as a secondary link.
@@ -2753,6 +2766,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     body.innerHTML = renderCaseStudyMarkdown(markdown)
                         + `<p class="project-modal-casestudy-download"><a href="${escapeHTML(href)}" download>Download this case study (Markdown)</a></p>`;
                     loaded = true;
+                    trackEvent('case-study-read', { project: project.id || '' });
                     section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } catch (error) {
                     body.innerHTML = `<p class="project-modal-casestudy-status">Could not load the case study here. <a href="${escapeHTML(href)}" download>Download it instead</a>.</p>`;
@@ -2779,7 +2793,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ${safeLinkHref || safePdfHref || safeSourceHref ? `
                     <div class="project-modal-links">
                         ${caseStudyControl}
-                        ${/^[a-z0-9][a-z0-9-]*$/.test(project.id || '') ? `<a href="/projects/${project.id}.html" class="project-modal-link project-modal-link--page"><i data-feather="link" class="w-4 h-4"></i> Open full page</a>` : ''}
+                        ${/^[a-z0-9][a-z0-9-]*$/.test(project.id || '') ? `<a href="/projects/${project.id}.html" class="project-modal-link project-modal-link--page" data-umami-event="project-full-page" data-umami-event-project="${project.id}"><i data-feather="link" class="w-4 h-4"></i> Open full page</a>` : ''}
                         ${safeSourceHref ? `<a href="${escapeHTML(safeSourceHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--source"><i data-feather="globe" class="w-4 h-4"></i> ${safeSourceText}</a>` : ''}
                         ${safePdfHref ? `<a href="${escapeHTML(safePdfHref)}" target="_blank" rel="noopener noreferrer" class="project-modal-link project-modal-link--pdf"><i data-feather="file-text" class="w-4 h-4"></i> Download PDF</a>` : ''}
                     </div>
@@ -2836,6 +2850,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalState.sourceCard = sourceCard || null;
 
         renderProjectModal(project);
+        trackEvent('project-view', { project: project.id || '' });
         if (project.id) {
             const url = new URL(window.location.href);
             if (url.searchParams.get('project') !== project.id) {

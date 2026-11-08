@@ -219,12 +219,12 @@ const buildPage = (project, caseStudyMarkdown) => {
     const links = [];
     links.push(`<a class="primary" href="/projects.html?project=${esc(project.id)}">Open in the portfolio</a>`);
     const source = safeUrl(project.sourceUrl, { relative: false });
-    if (source) links.push(`<a href="${esc(source)}" rel="noopener">${esc(project.sourceText || 'Live source')}</a>`);
+    if (source) links.push(`<a href="${esc(source)}" rel="noopener" data-umami-event="project-source" data-umami-event-project="${esc(project.id)}">${esc(project.sourceText || 'Live source')}</a>`);
     const external = /^https?:/i.test(project.link || '') ? safeUrl(project.link, { relative: false }) : '';
     if (external) links.push(`<a href="${esc(external)}" rel="noopener">${esc(project.linkText || 'View publication')}</a>`);
     const pdf = safeUrl(project.pdf);
     if (pdf) links.push(`<a href="${esc(pdf)}">Download PDF</a>`);
-    links.push('<a href="/docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf">Resume (PDF)</a>');
+    links.push('<a href="/docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf" data-umami-event="resume-download" data-umami-event-from="project-page">Resume (PDF)</a>');
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -291,7 +291,7 @@ ${JSON.stringify(jsonLd, null, 2)}
       <nav aria-label="Site">
         <a href="/">Home</a>
         <a href="/projects.html">All projects</a>
-        <a href="/docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf">Resume</a>
+        <a href="/docs/T-David-Matthew-Resume-Information-Systems-Analyst.pdf" data-umami-event="resume-download" data-umami-event-from="project-nav">Resume</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>

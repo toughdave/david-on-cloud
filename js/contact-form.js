@@ -28,6 +28,8 @@ function initializeContactForm(form, request = fetch) {
             });
             if (!response.ok) throw new Error('Message was not accepted');
             showStatus('Thank you! Your message has been sent.');
+            // Analytics is optional; a blocked or missing script must never matter.
+            try { window.umami?.track?.('contact-submitted'); } catch { /* ignore */ }
             form.reset();
         } catch {
             showStatus('Your message could not be sent. Please try again or use the email link.', true);
