@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Porkbun GitHub Connect deploys the repository's main branch.
+# Vercel builds and publishes the repository's main branch (see vercel.json).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 DRY_RUN=0
@@ -19,5 +19,5 @@ git diff --quiet && git diff --cached --quiet || { echo 'Commit the reviewed sit
 git fetch origin main
 git merge-base --is-ancestor origin/main HEAD || { echo 'Remote main has changes; integrate and test them first.' >&2; exit 1; }
 git push origin HEAD:refs/heads/main
-echo 'Sent to GitHub. Porkbun will deploy this commit; checking the public site...'
+echo 'Sent to GitHub. Vercel will deploy this commit; checking the public site...'
 node scripts/check-live.js

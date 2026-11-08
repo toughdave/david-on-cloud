@@ -25,7 +25,7 @@ async function check() {
         try { await check(); return; }
         catch (error) {
             if (attempt === 20) throw error;
-            console.log(`Waiting for Porkbun (${attempt}/20): ${error.message}`);
+            console.log(`Waiting for the deployment (${attempt}/20): ${error.message}`);
             await new Promise(resolve => setTimeout(resolve, 15000));
         }
     }

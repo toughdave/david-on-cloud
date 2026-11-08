@@ -6,7 +6,7 @@ A modern, responsive portfolio website showcasing professional experience in inf
 
 ## Development and publishing
 
-This site uses **Porkbun Secure Static Hosting**, connected to this repository's **main** branch through GitHub Connect. The domain registration and hosting subscription renew separately. GitHub Pages, Netlify and Vercel are not the production hosting service.
+This site is hosted on **Vercel** (project `david-on-cloud`), which builds and publishes every commit to the **main** branch. It moved from Porkbun Secure Static Hosting on 2026-11-08. The domain and DNS stay at **Porkbun**: the root `A` record points to Vercel and `www` redirects to `https://davidoncloud.com`; email forwarding, Resend/Amazon SES, SPF, DKIM and DMARC records are unchanged. The CMS sign-in proxy is a separate Vercel project (`david-on-cloud-cms-oauth`, root `cms-oauth-proxy`).
 
 Use Node.js 24 LTS in WSL:
 
@@ -16,7 +16,7 @@ npm run build
 npm start
 ```
 
-The build compiles Tailwind into `css/utilities.css`, validates HTML, JavaScript, CMS JSON and local resource paths, runs mocked contact-form regression tests, and copies public files into `dist/`. Production CSS is committed because Porkbun serves the repository directly; it does not execute the Node build. Run the build after introducing CSS classes in templates or CMS content. CI checks that committed CSS matches the source.
+The build compiles Tailwind into `css/utilities.css`, validates HTML, JavaScript, CMS JSON and local resource paths, runs mocked contact-form regression tests, and copies public files into `dist/`. Production CSS is committed because Vercel's build only copies public files (`node scripts/build.js` into `dist/`, set in `vercel.json`); it does not install dependencies or run Tailwind. Run the build after introducing CSS classes in templates or CMS content. CI checks that committed CSS matches the source.
 
 CMS content remains in `js/*.json`. Four selected case studies appear on the homepage; every visible project stays available in the full library. Project links use `projects.html?project=<id>` and reopen the corresponding detail view. These links work with new CMS records without a separate page-generation step. A case study stored as Markdown opens inside the project modal rather than downloading, because the host serves `.md` as `application/octet-stream`; a download link stays available beneath the rendered text.
 
@@ -68,11 +68,11 @@ npm run deploy
 git push origin "v$(cat VERSION)"
 ```
 
-Choose patch, minor or major according to the change. `--local-only` prepares the version commit and tag without publishing. `npm run deploy` builds and validates, requires a clean main branch, checks that the remote can be advanced safely, and pushes main. Porkbun then updates the live site. The script checks the public release and reports a failure if it cannot verify it. `npm run deploy:staging` performs a local dry run without pushing. Before publishing CMS edits, note that GitHub Connect updates production on commit; CI is a check, not a deployment gate.
+Choose patch, minor or major according to the change. `--local-only` prepares the version commit and tag without publishing. `npm run deploy` builds and validates, requires a clean main branch, checks that the remote can be advanced safely, and pushes main. Vercel then builds and publishes the live site. The script checks the public release and reports a failure if it cannot verify it. `npm run deploy:staging` performs a local dry run without pushing. Before publishing CMS edits, note that Vercel publishes every commit to main; CI is a check, not a deployment gate.
 
 To roll back a bad release, revert its change and release commits on main, run the checks, and push the revert normally. Keep the known-good release tag; do not force-push public history.
 
-The `_headers` file documents a configuration for hosts that support that format. Current Porkbun responses do not apply it. Server-only policies such as HSTS and frame restrictions require support from the hosting provider; HTML metadata is not a replacement. The pages set a referrer policy directly.
+Response headers live in `vercel.json`: a Content Security Policy on every page except `/admin` (Decap needs CDN, GitHub API and blob access), HSTS, `nosniff`, `X-Frame-Options`, Referrer-Policy and Permissions-Policy. Caching: HTML, JSON and the resume always revalidate; versioned CSS and JS and the fonts are immutable; images and vendor files are cached for a week. If a new third-party service is added (a script, an embed, a form endpoint), add its host to the CSP or the browser will block it.
 
 ## About David
 

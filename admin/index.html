@@ -6,20 +6,18 @@
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
   <!--
-    Porkbun refuses any file named exactly config.yml or config.yaml (it closes
-    the connection without replying), so the CMS config lives in
-    cms-config.yml and this link tells Decap where to find it.
+    The CMS config lives in cms-config.yml (this link tells Decap where it is).
+    It was renamed while the site was on Porkbun, which refused any file named
+    config.yml; the name is kept because nothing depends on the old one.
   -->
   <link href="/admin/cms-config.yml" type="text/yaml" rel="cms-config-url" />
 </head>
 <body>
   <!--
-    Decap CMS 3.10.1 is a single 5.1MB file. Porkbun's GitHub Connect does not
-    serve files over about 1MB, so /static/vendor/decap-cms/decap-cms.js returns
-    404 on the live site; the CMS was blank from February to November 2026
-    because of it. Load the same bytes from a CDN instead. The integrity hash is
-    of the vendored copy, so a CDN can only serve that exact file or nothing.
-    The local copy is the last fallback, for running the site locally.
+    Decap CMS 3.10.1 is a single 5.1MB file. On Porkbun (until 2026-11-08) the
+    local copy could not be served, so it loads from a CDN, pinned by an
+    integrity hash of the vendored copy: a CDN can only serve that exact file
+    or nothing. The local copy is the fallback, and on Vercel it serves fine.
   -->
   <script>
     (function () {

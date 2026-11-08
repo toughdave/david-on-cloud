@@ -332,12 +332,12 @@ function gateHosting() {
     const files = rule.publicRoots.flatMap(r => walkFiles(r)).filter(f => !f.endsWith(':Zone.Identifier'));
 
     const tooBig = files.filter(f => !rule.localOnlyFiles.includes(f) && fs.statSync(path.join(root, f)).size > rule.maxServedFileBytes);
-    if (tooBig.length) fail('hosting', `files over ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB will 404 on Porkbun: ${tooBig.join(', ')}`);
-    else pass(`all ${files.length} public files fit Porkbun's ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB per-file limit`);
+    if (tooBig.length) fail('hosting', `files over the ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB per-file cap: ${tooBig.join(', ')}`);
+    else pass(`all ${files.length} public files are under the ${(rule.maxServedFileBytes / 1e6).toFixed(1)}MB per-file cap`);
 
     const blocked = files.filter(f => rule.blockedNames.includes(path.basename(f)));
-    if (blocked.length) fail('hosting', `Porkbun refuses these file names: ${blocked.join(', ')}`);
-    else pass(`no public file uses a name Porkbun blocks (${rule.blockedNames.join(', ')})`);
+    if (blocked.length) fail('hosting', `the host refuses these file names: ${blocked.join(', ')}`);
+    else if (rule.blockedNames.length) pass(`no public file uses a name the host blocks (${rule.blockedNames.join(', ')})`);
 }
 
 // --------------------------------------------------------- gate 11: the CMS
@@ -349,10 +349,10 @@ function gateCms() {
     // 1. The config link must point at a file that exists and the host serves.
     const link = html.match(/<link[^>]*rel="cms-config-url"[^>]*>/);
     const href = link && (link[0].match(/href="([^"]+)"/) || [])[1];
-    if (!href) { fail('cms', 'admin page has no cms-config-url link, so Decap falls back to config.yml, which Porkbun blocks'); return; }
+    if (!href) { fail('cms', 'admin page has no cms-config-url link, so Decap would look for admin/config.yml, which does not exist'); return; }
     const configFile = href.replace(/^\//, '');
     if (!exists(configFile)) { fail('cms', `cms-config-url points at ${href}, which does not exist`); return; }
-    if ((lock.hosting?.blockedNames || []).includes(path.basename(configFile))) fail('cms', `${href} uses a name Porkbun blocks`);
+    if ((lock.hosting?.blockedNames || []).includes(path.basename(configFile))) fail('cms', `${href} uses a name the host blocks`);
 
     // 2. The CDN copy must be pinned to the vendored bytes.
     if (exists(rule.vendoredBundle)) {

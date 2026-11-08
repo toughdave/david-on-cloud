@@ -135,15 +135,10 @@
     }
   },
   "hosting": {
-    "_note": "Porkbun limits found 2026-11-07. Files over about 1MB are not served (404); the largest file that serves is 959KB. Any file named exactly config.yml or config.yaml gets no reply at all. Both silently broke the CMS from February to November 2026.",
-    "maxServedFileBytes": 1000000,
-    "localOnlyFiles": [
-      "static/vendor/decap-cms/decap-cms.js"
-    ],
-    "blockedNames": [
-      "config.yml",
-      "config.yaml"
-    ],
+    "_note": "Hosted on Vercel since 2026-11-08 (Porkbun's 1MB file limit and config.yml block no longer apply). The cap keeps oversized files from being published by accident; raise it deliberately if a larger public file is ever needed.",
+    "maxServedFileBytes": 6000000,
+    "localOnlyFiles": [],
+    "blockedNames": [],
     "publicRoots": [
       "index.html",
       "projects.html",

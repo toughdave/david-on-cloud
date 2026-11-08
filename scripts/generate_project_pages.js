@@ -9,7 +9,8 @@
  * URL, title, description, share card and structured data, with the case
  * study rendered as HTML (the .md files are served as downloads).
  *
- * Outputs (committed, because Porkbun serves the repository as-is):
+ * Outputs (committed, because the Vercel build only copies files and does not
+ *          run generators):
  *   projects/<id>.html   one per project in js/projects.json
  *   sitemap.xml          home, projects.html and every project page
  *
