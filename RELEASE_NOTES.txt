@@ -1,3 +1,7 @@
+## v5.19.0 — 2026-11-08 16:52:45
+- ✅ Document the move to Vercel and retire Porkbun-specific rules
+- ✅ Bumped version to v5.19.0
+
 ## v5.18.1 — 2026-11-08 14:50:23
 - ✅ Add vercel.json for the move to Vercel hosting
 - ✅ Bumped version to v5.18.1
