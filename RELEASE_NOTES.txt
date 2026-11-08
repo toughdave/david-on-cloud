@@ -1,3 +1,7 @@
+## v5.18.0 — 2026-11-08 14:47:19
+- ✅ Turn on Umami analytics across the public pages
+- ✅ Bumped version to v5.18.0
+
 ## v5.17.2 — 2026-11-08 09:42:45
 - ✅ Prepare analytics event hooks for Umami (inert until the script is added)
 - ✅ Bumped version to v5.17.2
