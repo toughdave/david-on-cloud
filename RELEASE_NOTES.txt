@@ -1,3 +1,7 @@
+## v5.19.1 — 2026-11-08 19:41:45
+- ✅ Archive the files left on the old Porkbun static host
+- ✅ Bumped version to v5.19.1
+
 ## v5.19.0 — 2026-11-08 16:52:45
 - ✅ Document the move to Vercel and retire Porkbun-specific rules
 - ✅ Bumped version to v5.19.0
